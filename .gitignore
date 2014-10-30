@@ -1,3 +1,15 @@
 # https://git-scm.com/docs/gitignore
 # https://help.github.com/articles/ignoring-files
 # Example .gitignore files: https://github.com/github/gitignore
+/.metadata/
+/Servers/
+/RemoteSystemsTempFiles/
+/00-syntax-highliter/.settings/
+/00-syntax-highliter/.classpath
+/00-syntax-highliter/.project
+/00-syntax-highliter/target/
+/00-syntax-highliter/bin/
+/01-java-concurrency-example/.settings/
+/01-java-concurrency-example/target/
+/01-java-concurrency-example/.project
+/01-java-concurrency-example/.classpath
