@@ -1,7 +1,7 @@
-package net.lkrnac.book.eiws;
+package net.lkrnac.book.eiws.executors;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,9 +12,10 @@ public class Application {
 	private static final int EXEC_COUNT = 10;
 
 	public static void main(String[] args) throws InterruptedException {
-		ExecutorService executorService = Executors.newWorkStealingPool();
-		List<Future<String>> results = new ArrayList<>(10);
+		ExecutorService executorService = Executors.newWorkStealingPool(EXEC_COUNT);
+		Collection<Future<String>> results = new ArrayList<>(EXEC_COUNT);
 
+		long start = System.currentTimeMillis();
 		for (int idx = 0; idx < EXEC_COUNT; idx++) {
 			SimpleTask task = new SimpleTask();
 			results.add(executorService.submit(task));
@@ -24,12 +25,13 @@ public class Application {
 		executorService.shutdown();
 		executorService.awaitTermination(Integer.MAX_VALUE, TimeUnit.DAYS);
 
-		for (Future<String> result : results) {
+		results.forEach(result -> {
 			try {
 				System.out.println(result.get());
-			} catch (InterruptedException | ExecutionException e) {
-				System.out.println(e.getLocalizedMessage());
+			} catch (InterruptedException | ExecutionException exception) {
+				System.out.println(exception.getLocalizedMessage());
 			}
-		}
+		});
+		System.out.println("Elapsed time: " + (System.currentTimeMillis() - start));
 	}
 }
