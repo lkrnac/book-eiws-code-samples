@@ -13,3 +13,10 @@
 /01-java-concurrency-example/target/
 /01-java-concurrency-example/.project
 /01-java-concurrency-example/.classpath
+/00-syntax-highliter/.springBeans
+/01-java-concurrency-example/.springBeans
+/02-async-job-exection/.settings/
+/02-async-job-exection/.classpath
+/02-async-job-exection/.project
+/02-async-job-exection/.springBeans
+/02-async-job-exection/target/
