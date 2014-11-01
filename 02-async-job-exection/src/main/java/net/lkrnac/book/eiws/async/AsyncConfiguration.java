@@ -1,0 +1,24 @@
+package net.lkrnac.book.eiws.async;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
+
+@Configuration
+@ComponentScan
+@EnableAsync
+public class AsyncConfiguration {
+	@Bean
+	@Qualifier("customTaskExecutor")
+	public ExecutorService createThreadPool(){
+		//return Executors.newWorkStealingPool();
+		//return Executors.newCachedThreadPool();
+		return Executors.newFixedThreadPool(20);
+		//return Executors.
+	}
+}
