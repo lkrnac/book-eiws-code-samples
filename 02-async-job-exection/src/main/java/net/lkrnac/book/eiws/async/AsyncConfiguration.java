@@ -16,9 +16,7 @@ public class AsyncConfiguration {
 	@Bean
 	@Qualifier("customTaskExecutor")
 	public ExecutorService createThreadPool(){
-		//return Executors.newWorkStealingPool();
-		//return Executors.newCachedThreadPool();
-		return Executors.newFixedThreadPool(20);
-		//return Executors.
+		return Executors.newWorkStealingPool();
+		//return Executors.newWorkStealingPool(10);
 	}
 }
