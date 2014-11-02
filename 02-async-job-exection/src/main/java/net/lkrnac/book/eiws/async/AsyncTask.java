@@ -4,6 +4,7 @@ import java.util.concurrent.Future;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,7 +13,7 @@ class AsyncTask {
 	public Future<String> call(int parameter) throws InterruptedException {
 		String threadName = Thread.currentThread().getName();
 
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		if (parameter % 2 == 0) {
 			throw new UnsupportedOperationException(threadName
 					+ " threw exception");
