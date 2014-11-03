@@ -20,3 +20,7 @@
 /02-async-job-exection/.project
 /02-async-job-exection/.springBeans
 /02-async-job-exection/target/
+/03-scheduled-job-execution/.classpath
+/03-scheduled-job-execution/.project
+/03-scheduled-job-execution/target/
+/03-scheduled-job-execution/.settings/
