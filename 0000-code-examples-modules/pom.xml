@@ -8,7 +8,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>../0000-code-examples-parent</module>
 		<module>../0101-java-concurrency-example</module>
 		<module>../0102-async-job-exection</module>
 		<module>../0103-scheduled-job-execution</module>
