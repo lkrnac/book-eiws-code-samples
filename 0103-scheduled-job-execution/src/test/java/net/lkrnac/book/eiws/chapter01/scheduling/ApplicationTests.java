@@ -1,4 +1,6 @@
-package net.lkrnac.book.eiws.scheduling;
+package net.lkrnac.book.eiws.chapter01.scheduling;
+
+import net.lkrnac.book.eiws.chapter01.scheduling.Application;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -10,7 +10,7 @@
 		<config>src/main/resources/scheduled-config.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>java:net.lkrnac.book.eiws.scheduling.Application</config>
+		<config>java:net.lkrnac.book.eiws.chapter01.scheduling.Application</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

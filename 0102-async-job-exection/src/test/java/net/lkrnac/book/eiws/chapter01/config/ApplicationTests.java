@@ -1,6 +1,6 @@
-package net.lkrnac.book.eiws.config;
+package net.lkrnac.book.eiws.chapter01.config;
 
-import net.lkrnac.book.eiws.async.Application;
+import net.lkrnac.book.eiws.chapter01.async.Application;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.executors;
+package net.lkrnac.book.eiws.chapter01.executors;
 
 import java.util.Random;
 import java.util.concurrent.Callable;

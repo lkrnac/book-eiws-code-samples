@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.async;
+package net.lkrnac.book.eiws.chapter01.async;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

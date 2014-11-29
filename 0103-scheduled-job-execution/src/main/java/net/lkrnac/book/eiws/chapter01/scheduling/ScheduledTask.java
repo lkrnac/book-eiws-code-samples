@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.scheduling;
+package net.lkrnac.book.eiws.chapter01.scheduling;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
