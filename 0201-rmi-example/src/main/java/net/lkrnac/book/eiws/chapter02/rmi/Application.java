@@ -1,4 +1,4 @@
-package ;
+package net.lkrnac.book.eiws.chapter02.rmi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

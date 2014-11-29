@@ -1,4 +1,4 @@
-package ;
+package net.lkrnac.book.eiws.chapter02.rmi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
