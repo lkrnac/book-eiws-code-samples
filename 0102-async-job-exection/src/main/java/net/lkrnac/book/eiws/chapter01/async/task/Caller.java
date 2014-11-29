@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter01.async;
+package net.lkrnac.book.eiws.chapter01.async.task;
 
 import java.util.ArrayList;
 import java.util.Collection;
