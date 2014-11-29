@@ -4,7 +4,7 @@
 	<groupId>net.lkrnac.book.eiws</groupId>
 	<artifactId>0000-code-examples-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>0000-code-examples-parent</name>
+	<name>${artefactName}</name>
 	<packaging>pom</packaging>
 
 	<parent>
