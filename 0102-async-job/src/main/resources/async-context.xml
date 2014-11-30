@@ -6,9 +6,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-  <context:component-scan base-package="net.lkrnac.book.eiws.chapter01.async" />
-  <task:annotation-driven executor="customTaskExecutor" />
-  <task:executor id="customTaskExecutor" pool-size="4"
+  <context:component-scan base-package="net.lkrnac.book.eiws.chapter01.async.task" />
+  <task:executor id="customTaskExecutor" pool-size="10"
     queue-capacity="20" />
+  <task:annotation-driven executor="customTaskExecutor" />
+
+
 
 </beans>

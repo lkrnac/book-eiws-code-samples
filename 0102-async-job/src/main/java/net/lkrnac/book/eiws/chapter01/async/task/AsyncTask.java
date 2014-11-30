@@ -2,17 +2,19 @@ package net.lkrnac.book.eiws.chapter01.async.task;
 
 import java.util.concurrent.Future;
 
+import net.lkrnac.book.eiws.chapter01.async.SpringConstants;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
 @Component
 class AsyncTask {
-  @Async("customTaskExecutor")
+  @Async(SpringConstants.TASK_EXECUTOR)
   public Future<String> call(int parameter) throws InterruptedException {
     String threadName = Thread.currentThread().getName();
 
-    // Thread.sleep(2000);
+    Thread.sleep(1000);
     if (parameter % 2 == 0) {
       throw new UnsupportedOperationException(threadName + " threw exception");
     }

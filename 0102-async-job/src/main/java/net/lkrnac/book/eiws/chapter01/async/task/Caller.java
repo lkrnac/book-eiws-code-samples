@@ -5,35 +5,35 @@ import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-class Caller {
-  private static final int EXEC_COUNT = 10;
-  private AsyncTask asyncTask;
+public class Caller {
+  private final AsyncTask asyncTask;
+  private final SimpleLogger logger;
 
   @Autowired
-  public Caller(AsyncTask asyncTask) {
+  public Caller(AsyncTask asyncTask, SimpleLogger logger) {
     this.asyncTask = asyncTask;
+    this.logger = logger;
   }
 
-  @PostConstruct
-  public void kickOffAsyncTasks() throws InterruptedException {
-    Collection<Future<String>> results = new ArrayList<>(EXEC_COUNT);
+  public void kickOffAsyncTasks(int execCount) throws InterruptedException {
+    Collection<Future<String>> results = new ArrayList<>(execCount);
 
-    for (int idx = 0; idx < EXEC_COUNT; idx++) {
+    long start = System.currentTimeMillis();
+    for (int idx = 0; idx < execCount; idx++) {
       results.add(asyncTask.call(idx));
     }
 
     results.forEach(result -> {
       try {
-        System.out.println(result.get());
+        logger.log(result.get());
       } catch (InterruptedException | ExecutionException e) {
-        System.out.println(e.getLocalizedMessage());
+        logger.log(e.getLocalizedMessage());
       }
     });
+    logger.log("Elapsed time: " + (System.currentTimeMillis() - start));
   }
 }

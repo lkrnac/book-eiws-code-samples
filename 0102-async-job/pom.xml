@@ -14,6 +14,6 @@
 
   <properties>
     <artefactName>0102-async-job-executor</artefactName>
-    <start-class>net.lkrnac.book.eiws.chapter01.async.Application</start-class>
+    <start-class>net.lkrnac.book.eiws.chapter01.async.AsyncConfigurationBiggerPool</start-class>
   </properties>
 </project>
