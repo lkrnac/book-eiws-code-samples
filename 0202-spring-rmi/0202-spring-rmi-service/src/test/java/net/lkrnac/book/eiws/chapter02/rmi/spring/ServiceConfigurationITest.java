@@ -1,4 +1,6 @@
-package net.lkrnac.book.eiws.chapter02.rmi;
+package net.lkrnac.book.eiws.chapter02.rmi.spring;
+
+import net.lkrnac.book.eiws.chapter02.rmi.spring.ServiceConfiguration;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;

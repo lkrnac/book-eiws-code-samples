@@ -1,11 +1,11 @@
-package net.lkrnac.book.eiws.chapter02.rmi;
+package net.lkrnac.book.eiws.chapter02.rmi.spring;
 
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
-import net.lkrnac.book.eiws.chapter02.rmi.client.BarService;
-import net.lkrnac.book.eiws.chapter02.rmi.client.ClientConfiguration;
+import net.lkrnac.book.eiws.chapter02.rmi.spring.client.BarService;
+import net.lkrnac.book.eiws.chapter02.rmi.spring.client.ClientConfiguration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
@@ -29,7 +29,7 @@ public class RmiE2ETest {
     Process process = null;
     try {
       process = new ProcessExecutor().execute("0202-spring-rmi-service.jar");
-      Thread.sleep(4000);
+      Thread.sleep(2000);
 
       ApplicationContext context = SpringApplication.run(contextToTest);
       BarService barService = context.getBean(BarService.class);

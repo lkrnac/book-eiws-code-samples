@@ -13,6 +13,6 @@
     </parent>
 
     <properties>
-        <start-class>net.lkrnac.book.eiws.chapter02.rmi.Application</start-class>
+        <start-class>net.lkrnac.book.eiws.chapter02.rmi.spring.Application</start-class>
     </properties>
 </project>

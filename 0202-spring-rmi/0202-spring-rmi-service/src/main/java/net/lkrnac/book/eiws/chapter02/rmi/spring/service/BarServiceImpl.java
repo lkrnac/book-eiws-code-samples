@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter02.rmi.service;
+package net.lkrnac.book.eiws.chapter02.rmi.spring.service;
 
 import org.springframework.stereotype.Service;
 

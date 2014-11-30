@@ -1,6 +1,6 @@
-package net.lkrnac.book.eiws.chapter02.rmi;
+package net.lkrnac.book.eiws.chapter02.rmi.spring;
 
-import net.lkrnac.book.eiws.chapter02.rmi.service.BarService;
+import net.lkrnac.book.eiws.chapter02.rmi.spring.service.BarService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

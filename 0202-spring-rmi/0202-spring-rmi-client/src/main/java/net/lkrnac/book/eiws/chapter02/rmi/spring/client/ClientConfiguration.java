@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter02.rmi.client;
+package net.lkrnac.book.eiws.chapter02.rmi.spring.client;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
