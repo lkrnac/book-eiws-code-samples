@@ -3,11 +3,11 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-  <context:component-scan base-package="net.lkrnac.book.eiws.chapter02.rmi" />
+  <context:component-scan base-package="net.lkrnac.book.eiws.chapter02.rmi.service" />
 
   <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
     <property name="serviceName" value="BarService" />
-    <property name="service" ref="BarService" />
+    <property name="service" ref="barServiceImpl" />
     <property name="serviceInterface"
       value="net.lkrnac.book.eiws.chapter02.rmi.service.BarService" />
     <property name="registryPort" value="5000" />
