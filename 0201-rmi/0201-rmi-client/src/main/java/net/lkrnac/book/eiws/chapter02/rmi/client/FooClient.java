@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FooClient {
-	private BarService barService;
+  private BarService barService;
 
-	@Autowired
-	public FooClient(BarService barService) {
-		this.barService = barService;
-	}
+  @Autowired
+  public FooClient(BarService barService) {
+    this.barService = barService;
+  }
 
-	@PostConstruct
-	public void callBarService() {
-		System.out.println(barService.serveBar("FooClient"));
-	}
+  @PostConstruct
+  public void callBarService() {
+    System.out.println(barService.serveBar("FooClient"));
+  }
 }

@@ -6,12 +6,12 @@ import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 
 @Configuration
 public class ClientConfiguration {
-	@Bean
-	public BarService createBarServiceLink() {
-		RmiProxyFactoryBean rmiProxyFactoryBean = new RmiProxyFactoryBean();
-		rmiProxyFactoryBean.setServiceUrl("rmi://localhost:5000/BarService");
-		rmiProxyFactoryBean.setServiceInterface(BarService.class);
-		rmiProxyFactoryBean.afterPropertiesSet();
-		return (BarService) rmiProxyFactoryBean.getObject();
-	}
+  @Bean
+  public BarService createBarServiceLink() {
+    RmiProxyFactoryBean rmiProxyFactoryBean = new RmiProxyFactoryBean();
+    rmiProxyFactoryBean.setServiceUrl("rmi://localhost:5000/BarService");
+    rmiProxyFactoryBean.setServiceInterface(BarService.class);
+    rmiProxyFactoryBean.afterPropertiesSet();
+    return (BarService) rmiProxyFactoryBean.getObject();
+  }
 }

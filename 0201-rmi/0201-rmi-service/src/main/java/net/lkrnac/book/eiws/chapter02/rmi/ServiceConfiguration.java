@@ -10,14 +10,14 @@ import org.springframework.remoting.rmi.RmiServiceExporter;
 @Configuration
 @ComponentScan
 public class ServiceConfiguration {
-	@Bean
-	public RmiServiceExporter registerService(BarService barService) {
-		RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
-		rmiServiceExporter.setServiceName("BarService");
-		rmiServiceExporter.setService(barService);
-		rmiServiceExporter.setServiceInterface(BarService.class);
-		rmiServiceExporter.setRegistryPort(5000);
+  @Bean
+  public RmiServiceExporter registerService(BarService barService) {
+    RmiServiceExporter rmiServiceExporter = new RmiServiceExporter();
+    rmiServiceExporter.setServiceName("BarService");
+    rmiServiceExporter.setService(barService);
+    rmiServiceExporter.setServiceInterface(BarService.class);
+    rmiServiceExporter.setRegistryPort(5000);
 
-		return rmiServiceExporter;
-	}
+    return rmiServiceExporter;
+  }
 }

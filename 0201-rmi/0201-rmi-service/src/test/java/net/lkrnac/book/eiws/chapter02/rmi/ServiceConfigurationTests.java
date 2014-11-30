@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class ServiceConfigurationTests {
-	@Test
-	public void contextLoads() {
-	}
+  @Test
+  public void contextLoads() {
+  }
 }
