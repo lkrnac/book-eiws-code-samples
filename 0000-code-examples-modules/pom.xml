@@ -4,14 +4,14 @@
 	<groupId>net.lkrnac.book.eiws</groupId>
 	<artifactId>0000-code-examples-modules</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>${artefactName}</name>
+	<name>${project.artifactId}</name>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>../0101-java-concurrency-example</module>
-		<module>../0102-async-job-exection</module>
-		<module>../0103-scheduled-job-execution</module>
-		<module>../0201-rmi-example/service</module>
-		<module>../0201-rmi-example/client</module>
+		<module>../0101-java-concurrency</module>
+		<module>../0102-async-job</module>
+		<module>../0103-scheduled-job</module>
+		<module>../0201-rmi/0201-rmi-service</module>
+		<module>../0201-rmi/0201-rmi-client</module>
 	</modules>
 </project>
