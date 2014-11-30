@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableScheduling
 public class ScheduledTask {
-	DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS");
+  DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS");
 
-	@Scheduled(fixedRate = 1000)
-	public void call(){
-		System.out.println(dateFormat.format(new Date()) + " - job kicked off");
-	}
+  @Scheduled(fixedRate = 1000)
+  public void call() {
+    System.out.println(dateFormat.format(new Date()) + " - job kicked off");
+  }
 }
