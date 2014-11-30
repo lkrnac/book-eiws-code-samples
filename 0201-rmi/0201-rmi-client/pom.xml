@@ -16,4 +16,35 @@
   <properties>
     <start-class>net.lkrnac.book.eiws.chapter02.rmi.Application</start-class>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0201-rmi-service</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeArtifactIds>0201-rmi-service</includeArtifactIds>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
