@@ -8,38 +8,39 @@ import static org.mockito.Mockito.verify;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import net.lkrnac.book.eiws.chapter01.javaconcurrency.SimpleLogger;
-import net.lkrnac.book.eiws.chapter01.javaconcurrency.SimpleTaskExecutor;
-
 import org.testng.annotations.Test;
 
 public class SimpleTaskExecutorITest {
-	private static final int EXEC_COUNT = 10;
+  private static final int EXEC_COUNT = 10;
 
-	@Test(timeOut = 2000)
-	public void testExecuteTasks_threadsCountEqualTasksCount() throws InterruptedException {
-		// GIVEN
-		ExecutorService executorService = Executors.newFixedThreadPool(EXEC_COUNT);
+  @Test(timeOut = 2000)
+  public void testExecuteTasks_threadsCountEqualTasksCount()
+      throws InterruptedException {
+    // GIVEN
+    ExecutorService executorService = Executors.newFixedThreadPool(EXEC_COUNT);
 
-		testSimpleTaskExecutor(executorService);
-	}
+    testSimpleTaskExecutor(executorService);
+  }
 
-	@Test(timeOut = 8000)
-	public void testExecuteTasks_threadsCountLessThanTasksCount() throws InterruptedException {
-		// GIVEN
-		ExecutorService executorService = Executors.newWorkStealingPool();
+  @Test(timeOut = 8000)
+  public void testExecuteTasks_threadsCountLessThanTasksCount()
+      throws InterruptedException {
+    // GIVEN
+    ExecutorService executorService = Executors.newWorkStealingPool();
 
-		testSimpleTaskExecutor(executorService);
-	}
+    testSimpleTaskExecutor(executorService);
+  }
 
-	private void testSimpleTaskExecutor(ExecutorService executorService) throws InterruptedException {
-		SimpleLogger logger = mock(SimpleLogger.class);
-		SimpleTaskExecutor simpleTaskExecutor = new SimpleTaskExecutor(logger, executorService, EXEC_COUNT);
+  private void testSimpleTaskExecutor(ExecutorService executorService)
+      throws InterruptedException {
+    SimpleLogger logger = mock(SimpleLogger.class);
+    SimpleTaskExecutor simpleTaskExecutor = new SimpleTaskExecutor(logger,
+        executorService, EXEC_COUNT);
 
-		// WHEN
-		simpleTaskExecutor.executeTasks();
+    // WHEN
+    simpleTaskExecutor.executeTasks();
 
-		// THEN
-		verify(logger, times(EXEC_COUNT + 1)).log(anyString());
-	}
+    // THEN
+    verify(logger, times(EXEC_COUNT + 1)).log(anyString());
+  }
 }

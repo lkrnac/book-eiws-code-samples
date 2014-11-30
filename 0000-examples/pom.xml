@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>net.lkrnac.book.eiws</groupId>
-	<artifactId>0000-examples</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>${project.artifactId}</name>
-	<packaging>pom</packaging>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.lkrnac.book.eiws</groupId>
+  <artifactId>0000-examples</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>${project.artifactId}</name>
+  <packaging>pom</packaging>
 
-	<modules>
-		<module>../0101-java-concurrency</module>
-		<module>../0102-async-job</module>
-		<module>../0103-scheduled-job</module>
-		<module>../0201-rmi/0201-rmi-service</module>
-		<module>../0201-rmi/0201-rmi-client</module>
-	</modules>
+  <modules>
+    <module>../0101-java-concurrency</module>
+    <module>../0102-async-job</module>
+    <module>../0103-scheduled-job</module>
+    <module>../0201-rmi/0201-rmi-service</module>
+    <module>../0201-rmi/0201-rmi-client</module>
+  </modules>
 </project>
