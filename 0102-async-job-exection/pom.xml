@@ -5,6 +5,7 @@
 
 	<artifactId>0102-async-job-executor</artifactId>
 	<packaging>jar</packaging>
+	<name>${artefactName}</name>
 
 	<parent>
 		<groupId>net.lkrnac.book.eiws</groupId>
