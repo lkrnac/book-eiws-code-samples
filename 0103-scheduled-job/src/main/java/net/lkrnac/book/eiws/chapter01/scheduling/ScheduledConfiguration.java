@@ -3,13 +3,13 @@ package net.lkrnac.book.eiws.chapter01.scheduling;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 @ComponentScan
-@ImportResource("classpath:scheduled-config.xml")
-public class Application {
+@EnableScheduling
+public class ScheduledConfiguration {
   public static void main(String[] args) {
-    SpringApplication.run(Application.class, args);
+    SpringApplication.run(ScheduledConfiguration.class, args);
   }
 }
