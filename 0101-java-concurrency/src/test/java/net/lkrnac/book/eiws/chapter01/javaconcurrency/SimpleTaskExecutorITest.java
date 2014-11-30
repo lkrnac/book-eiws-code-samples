@@ -22,7 +22,7 @@ public class SimpleTaskExecutorITest {
     testSimpleTaskExecutor(executorService);
   }
 
-  @Test(timeOut = 8000)
+  @Test(timeOut = 4000)
   public void testExecuteTasks_threadsCountLessThanTasksCount()
       throws InterruptedException {
     // GIVEN
