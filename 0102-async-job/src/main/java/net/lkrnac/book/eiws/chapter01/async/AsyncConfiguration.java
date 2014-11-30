@@ -11,10 +11,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @ComponentScan
 @EnableAsync
 public class AsyncConfiguration {
-	@Bean
-	@Qualifier("customTaskExecutor")
-	public ExecutorService createThreadPool(){
-		return Executors.newWorkStealingPool();
-		//return Executors.newWorkStealingPool(10);
-	}
+  @Bean
+  @Qualifier("customTaskExecutor")
+  public ExecutorService createThreadPool() {
+    return Executors.newWorkStealingPool();
+    // return Executors.newWorkStealingPool(10);
+  }
 }
