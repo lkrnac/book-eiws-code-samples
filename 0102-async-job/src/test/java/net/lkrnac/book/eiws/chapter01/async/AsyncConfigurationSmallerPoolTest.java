@@ -1,9 +1,10 @@
-package net.lkrnac.book.eiws.chapter01.async.task;
+package net.lkrnac.book.eiws.chapter01.async;
 
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import net.lkrnac.book.eiws.chapter01.async.AsyncConfigurationSmallerPool;
+import net.lkrnac.book.eiws.chapter01.async.task.Caller;
+import net.lkrnac.book.eiws.chapter01.async.task.SimpleLogger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
