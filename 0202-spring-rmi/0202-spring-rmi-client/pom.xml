@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>0201-rmi-client</artifactId>
+  <artifactId>0202-spring-rmi-client</artifactId>
   <name>${project.artifactId}</name>
   <packaging>jar</packaging>
 
@@ -15,12 +15,13 @@
 
   <properties>
     <start-class>net.lkrnac.book.eiws.chapter02.rmi.Application</start-class>
+    <rmi.service.name>0202-spring-rmi-service</rmi.service.name>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>0201-rmi-service</artifactId>
+      <artifactId>${rmi.service.name}</artifactId>
       <version>0.0.1-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
@@ -39,7 +40,7 @@
               <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-              <includeArtifactIds>0201-rmi-service</includeArtifactIds>
+              <includeArtifactIds>${rmi.service.name}</includeArtifactIds>
               <stripVersion>true</stripVersion>
             </configuration>
           </execution>

@@ -28,7 +28,7 @@ public class RmiE2ETest {
       throws IOException, InterruptedException {
     Process process = null;
     try {
-      process = new ProcessExecutor().execute("0201-rmi-service.jar");
+      process = new ProcessExecutor().execute("0202-spring-rmi-service.jar");
       Thread.sleep(4000);
 
       ApplicationContext context = SpringApplication.run(contextToTest);
