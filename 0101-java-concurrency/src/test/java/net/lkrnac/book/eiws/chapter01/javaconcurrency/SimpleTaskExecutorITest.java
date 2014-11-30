@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter01.executors;
+package net.lkrnac.book.eiws.chapter01.javaconcurrency;
 
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -8,9 +8,12 @@ import static org.mockito.Mockito.verify;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import net.lkrnac.book.eiws.chapter01.javaconcurrency.SimpleLogger;
+import net.lkrnac.book.eiws.chapter01.javaconcurrency.SimpleTaskExecutor;
+
 import org.testng.annotations.Test;
 
-public class SimpleTaskExecutorTest {
+public class SimpleTaskExecutorITest {
 	private static final int EXEC_COUNT = 10;
 
 	@Test(timeOut = 2000)
