@@ -5,7 +5,7 @@
 
 	<artifactId>0101-java-concurrency</artifactId>
 	<packaging>jar</packaging>
-	<name>${artefactName}</name>
+	<name>${project.artifactId}</name>
 
 	<parent>
 		<groupId>net.lkrnac.book.eiws</groupId>
