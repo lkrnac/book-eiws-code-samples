@@ -4,12 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.lkrnac.book.eiws.chapter01.scheduling</groupId>
-	<artifactId>scheduled-job-execution</artifactId>
+	<artifactId>0103-scheduled-job</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>${project.artifactId}</name>
 	<packaging>jar</packaging>
-
-	<name>03-scheduled-job-execution</name>
-	<description></description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

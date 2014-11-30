@@ -4,12 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.lkrnac.book.eiws.chapter02.rmi</groupId>
-	<artifactId>rmi-example-client</artifactId>
+	<artifactId>0201-rmi-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>${project.artifactId}</name>
 	<packaging>jar</packaging>
-
-	<name>rmi-example-client</name>
-	<description></description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
