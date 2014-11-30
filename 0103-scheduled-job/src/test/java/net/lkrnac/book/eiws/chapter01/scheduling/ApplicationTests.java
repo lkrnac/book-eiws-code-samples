@@ -1,18 +1,12 @@
 package net.lkrnac.book.eiws.chapter01.scheduling;
 
-import net.lkrnac.book.eiws.chapter01.scheduling.Application;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.Test;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class ApplicationTests {
-
-	@Test
-	public void contextLoads() {
-	}
-
+public class ApplicationTests extends AbstractTestNGSpringContextTests {
+  @Test
+  public void contextLoads() {
+  }
 }
