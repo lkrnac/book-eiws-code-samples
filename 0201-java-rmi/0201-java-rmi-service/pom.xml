@@ -10,6 +10,6 @@
   </parent>
 
   <properties>
-    <start-class></start-class>
+    <start-class>net.lkrnac.book.eiws.chapter02.rmi.java.RmiServer</start-class>
   </properties>
 </project>
