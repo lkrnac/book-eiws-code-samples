@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter02.rmi.spring;
+package net.lkrnac.book.eiws;
 
 import java.io.File;
 import java.io.IOException;

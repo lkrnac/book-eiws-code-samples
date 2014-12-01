@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
+import net.lkrnac.book.eiws.ProcessExecutor;
 import net.lkrnac.book.eiws.chapter02.rmi.spring.client.BarService;
 import net.lkrnac.book.eiws.chapter02.rmi.spring.client.ClientConfiguration;
 

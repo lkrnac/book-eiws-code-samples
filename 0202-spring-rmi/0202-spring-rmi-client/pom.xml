@@ -25,6 +25,12 @@
       <version>0.0.1-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0000-common-library</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
