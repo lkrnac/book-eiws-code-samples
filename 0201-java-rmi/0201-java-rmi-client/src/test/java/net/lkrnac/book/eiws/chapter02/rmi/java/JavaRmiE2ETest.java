@@ -16,7 +16,7 @@ public class JavaRmiE2ETest {
     Process process = null;
     try {
       process = new ProcessExecutor().execute("0201-java-rmi-service.jar");
-      Thread.sleep(2000);
+      Thread.sleep(3000);
 
       String response = new FooClient().callService("E2E test");
       assertEquals(response, "Bar service reponse to parameter: E2E test");
