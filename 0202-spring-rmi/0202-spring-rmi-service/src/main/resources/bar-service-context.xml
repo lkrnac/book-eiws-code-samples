@@ -10,7 +10,7 @@
     <property name="serviceName" value="BarService" />
     <property name="service" ref="barServiceImpl" />
     <property name="serviceInterface"
-      value="net.lkrnac.book.eiws.chapter02.rmi.spring.service.BarService " />
+      value="net.lkrnac.book.eiws.chapter02.rmi.spring.service.BarService" />
     <property name="registryPort" value="5000" />
   </bean>
 </beans>
