@@ -8,6 +8,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>../0000-common-library</module>
     <module>../0101-java-concurrency</module>
     <module>../0102-async-job</module>
     <module>../0103-scheduled-job</module>
