@@ -30,7 +30,7 @@ public class RmiE2ETest {
     Process process = null;
     try {
       process = new ProcessExecutor().execute("0202-spring-rmi-service.jar");
-      Thread.sleep(2000);
+      Thread.sleep(4000);
 
       ApplicationContext context = SpringApplication.run(contextToTest);
       BarService barService = context.getBean(BarService.class);
