@@ -13,5 +13,7 @@
     <module>../0103-scheduled-job</module>
     <module>../0202-spring-rmi/0202-spring-rmi-service</module>
     <module>../0202-spring-rmi/0202-spring-rmi-client</module>
+    <module>../0201-java-rmi/0201-java-rmi-service</module>
+    <module>../0201-java-rmi/0201-java-rmi-client</module>
   </modules>
 </project>
