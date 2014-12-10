@@ -11,10 +11,14 @@ public class FooClient {
     System.out.println(new FooClient().callService("Main method"));
   }
 
-  public String callService(String parameter) throws RemoteException,
-      NotBoundException {
-    Registry registry = LocateRegistry.getRegistry(5000);
-    BarService barService = (BarService) registry.lookup("BarService");
-    return barService.serveBar(parameter);
+  public String callService(String parameter) {
+    Registry registry;
+    try {
+      registry = LocateRegistry.getRegistry(5000);
+      BarService barService = (BarService) registry.lookup("BarService");
+      return barService.serveBar(parameter);
+    } catch (RemoteException | NotBoundException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

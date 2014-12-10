@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>0203-http-invoker-service-java-servlet</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <name>${project.artifactId}</name>
 
   <parent>
@@ -17,6 +17,11 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>2.10.4</version>
     </dependency>
   </dependencies>
 
