@@ -7,9 +7,7 @@ import org.testng.annotations.Test;
 @SpringApplicationConfiguration(classes = ServletConfigurationTest.class)
 @WebAppConfiguration
 public class ServletConfigurationTest {
-
   @Test
   public void contextLoads() {
   }
-
 }

@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>0203-http-invoker-service-java-servlet</artifactId>
+  <artifactId>0203-http-invoker-servlet</artifactId>
   <packaging>war</packaging>
   <name>${project.artifactId}</name>
 
@@ -13,14 +13,14 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
+  <properties>
+    <start-class>net.lkrnac.book.eiws.chapter02.httpinvoker.Application</start-class>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
-
-  <properties>
-    <start-class>net.lkrnac.book.eiws.chapter02.httpinvoker.Application</start-class>
-  </properties>
 </project>

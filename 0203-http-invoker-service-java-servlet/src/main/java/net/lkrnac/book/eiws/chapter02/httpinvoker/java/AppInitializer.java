@@ -12,7 +12,7 @@ public class AppInitializer extends
 
   @Override
   protected Class<?>[] getServletConfigClasses() {
-    return new Class[] { ServletConfiguration.class };
+    return new Class[] { Application.class };
   }
 
   @Override
