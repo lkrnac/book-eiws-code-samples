@@ -8,7 +8,7 @@ import java.lang.ProcessBuilder.Redirect;
  * Class responsible to executing jar files.
  * 
  * @author Lubos Krnac
- *
+ * 
  */
 public class ProcessExecutor {
   /**

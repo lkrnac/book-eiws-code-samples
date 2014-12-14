@@ -17,5 +17,7 @@
     <module>../02-remoting/0201-java-rmi-client</module>
     <module>../02-remoting/0202-spring-rmi-java-config-service</module>
     <module>../02-remoting/0202-spring-rmi-java-config-client</module>
+    <module>../02-remoting/0203-spring-rmi-xml-config-service</module>
+    <module>../02-remoting/0203-spring-rmi-xml-config-client</module>
   </modules>
 </project>
