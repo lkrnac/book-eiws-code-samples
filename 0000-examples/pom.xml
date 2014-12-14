@@ -20,5 +20,6 @@
     <module>../02-remoting/0203-spring-rmi-xml-config-service</module>
     <module>../02-remoting/0203-spring-rmi-xml-config-client</module>
     <module>../02-remoting/0204-http-invoker-servlet-java-config</module>
+    <module>../02-remoting/0205-http-invoker-servlet-xml-config</module>
   </modules>
 </project>
