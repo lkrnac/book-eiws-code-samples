@@ -11,8 +11,4 @@
         <artifactId>0000-examples-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <properties>
-        <start-class>net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.service.Application</start-class>
-    </properties>
 </project>

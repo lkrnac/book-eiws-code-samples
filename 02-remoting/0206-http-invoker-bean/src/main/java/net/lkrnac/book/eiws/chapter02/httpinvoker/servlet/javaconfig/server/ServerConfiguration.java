@@ -10,14 +10,9 @@ import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 @Configuration
 @ComponentScan
 public class ServerConfiguration {
-  public static void main(String... args) {
-    // this is war package, just making spring boot repackage happy
-  }
-
   @Bean
   public HttpInvokerServiceExporter barExporter(BarService barService) {
-    HttpInvokerServiceExporter httpInvokerServiceExporter =
-        new HttpInvokerServiceExporter();
+    HttpInvokerServiceExporter httpInvokerServiceExporter = new HttpInvokerServiceExporter();
     httpInvokerServiceExporter.setService(barService);
     httpInvokerServiceExporter.setServiceInterface(BarService.class);
     return httpInvokerServiceExporter;

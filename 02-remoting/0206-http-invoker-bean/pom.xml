@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>0204-http-invoker-servlet-java-config</artifactId>
+  <artifactId>0206-http-invoker-bean</artifactId>
   <packaging>war</packaging>
   <name>${project.artifactId}</name>
 
@@ -12,6 +12,10 @@
     <artifactId>0000-examples-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+
+  <properties>
+    <start-class>net.lkrnac.book.eiws.chapter02.httpinvoker.Application</start-class>
+  </properties>
 
   <dependencies>
     <dependency>

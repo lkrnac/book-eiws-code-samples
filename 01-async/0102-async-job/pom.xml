@@ -11,9 +11,4 @@
     <artifactId>0000-examples-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-
-  <properties>
-    <artefactName>0102-async-job-executor</artefactName>
-    <start-class>net.lkrnac.book.eiws.chapter01.async.AsyncConfigurationBiggerPool</start-class>
-  </properties>
 </project>

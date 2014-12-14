@@ -14,7 +14,6 @@
   </parent>
 
   <properties>
-    <start-class>net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.client.Application</start-class>
     <rmi.service.name>0202-spring-rmi-java-config-service</rmi.service.name>
   </properties>
 
