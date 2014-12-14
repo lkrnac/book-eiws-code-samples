@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 public class SpringRmiJavaConfigE2ETest {
   private static final int RETRY_TIMEOUT = 4000;
 
-  @Test
+  @Test(groups = "maventests")
   public void testRmiCall() throws IOException, InterruptedException {
     Process process =
         new ProcessExecutor()
