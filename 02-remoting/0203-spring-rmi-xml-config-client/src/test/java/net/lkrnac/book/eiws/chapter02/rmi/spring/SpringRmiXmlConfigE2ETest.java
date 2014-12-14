@@ -19,13 +19,15 @@ public class SpringRmiXmlConfigE2ETest {
 
   @Test
   public void testRmiCall() throws IOException, InterruptedException {
-    Process process = new ProcessExecutor()
-        .execute("0203-spring-rmi-xml-config-service.jar");
+    Process process =
+        new ProcessExecutor().execute("0203-spring-rmi-xml-config-service.jar");
     try {
 
-      RetryHandler<Object, ApplicationContext> retryHandler = new RetryHandler<>();
-      ApplicationContext context = retryHandler.retry(SpringApplication::run,
-          new ClassPathResource("foo-client-context.xml"), RETRY_TIMEOUT);
+      RetryHandler<Object, ApplicationContext> retryHandler =
+          new RetryHandler<>();
+      ApplicationContext context =
+          retryHandler.retry(SpringApplication::run, new ClassPathResource(
+              "foo-client-context.xml"), RETRY_TIMEOUT);
       BarService barService = context.getBean(BarService.class);
 
       String response = barService.serveBar("0203 E2E test");

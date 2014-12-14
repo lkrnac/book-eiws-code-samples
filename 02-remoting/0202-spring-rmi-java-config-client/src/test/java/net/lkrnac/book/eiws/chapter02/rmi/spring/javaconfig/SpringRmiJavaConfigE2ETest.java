@@ -18,13 +18,16 @@ public class SpringRmiJavaConfigE2ETest {
 
   @Test
   public void testRmiCall() throws IOException, InterruptedException {
-    Process process = new ProcessExecutor()
-        .execute("0202-spring-rmi-java-config-service.jar");
+    Process process =
+        new ProcessExecutor()
+            .execute("0202-spring-rmi-java-config-service.jar");
     try {
 
-      RetryHandler<Object, ApplicationContext> retryHandler = new RetryHandler<>();
-      ApplicationContext context = retryHandler.retry(SpringApplication::run,
-          ClientConfiguration.class, RETRY_TIMEOUT);
+      RetryHandler<Object, ApplicationContext> retryHandler =
+          new RetryHandler<>();
+      ApplicationContext context =
+          retryHandler.retry(SpringApplication::run, ClientConfiguration.class,
+              RETRY_TIMEOUT);
       BarService barService = context.getBean(BarService.class);
 
       String response = barService.serveBar("0202 E2E test");
