@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter02.httpinvoker.servlet;
+package net.lkrnac.book.eiws.chapter02.httpinvoker.servlet.javaconfig.server;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,16 +13,11 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
   @Override
   public void onStartup(ServletContext servletContext) throws ServletException {
-    // Create the root appcontext
     AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-    rootContext.register(SpringContext.class);
-    // since we registered RootConfig instead of passing it to the constructor
+    rootContext.register(ServerConfiguration.class);
     rootContext.refresh();
 
-    // Manage the lifecycle of the root appcontext
     servletContext.addListener(new ContextLoaderListener(rootContext));
-
-    // The main Spring MVC servlet.
     ServletRegistration.Dynamic appServlet = servletContext.addServlet(
         "barExporter", new HttpRequestHandlerServlet());
     appServlet.addMapping("/");
