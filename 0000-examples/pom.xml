@@ -22,5 +22,7 @@
     <module>../02-remoting/0204-http-invoker-servlet-java-config</module>
     <module>../02-remoting/0205-http-invoker-servlet-xml-config</module>
     <module>../02-remoting/0206-http-invoker-bean</module>
+    <module>../02-remoting/0207-http-invoker-simple-service</module>
+    <module>../02-remoting/0207-http-invoker-simple-client</module>
   </modules>
 </project>

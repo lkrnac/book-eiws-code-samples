@@ -11,6 +11,10 @@ import java.lang.ProcessBuilder.Redirect;
  * 
  */
 public class ProcessExecutor {
+  public static void main(String... args) {
+    // this is library, just making spring boot repackage happy
+  }
+
   /**
    * Runs executable jar is separate process and redirects console into "log"
    * file.
