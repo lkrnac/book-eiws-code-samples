@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @ComponentScan
 @EnableScheduling
 public class ScheduledConfiguration {
-  public static void main(String[] args) {
+  public static void main(String... args) {
     SpringApplication.run(ScheduledConfiguration.class, args);
   }
 }

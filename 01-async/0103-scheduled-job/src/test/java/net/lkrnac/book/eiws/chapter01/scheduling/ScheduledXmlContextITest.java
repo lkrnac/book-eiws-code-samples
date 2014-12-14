@@ -18,7 +18,7 @@ public class ScheduledXmlContextITest extends AbstractTestNGSpringContextTests {
   private SimpleLogger loggerSpy;
 
   @Test
-  public void verifyScheduling() throws InterruptedException {
+  public void testScheduling() throws InterruptedException {
     Thread.sleep(WAIT_FOR_SCHEDULING);
 
     verify(loggerSpy, atLeast(2)).log(anyString());
