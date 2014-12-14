@@ -6,6 +6,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class FooClient {
+  private static final int RMI_PORT = 10201;
+
   public static void main(String[] args) throws RemoteException,
       NotBoundException {
     System.out.println(new FooClient().callService("Main method"));
@@ -14,7 +16,7 @@ public class FooClient {
   public String callService(String parameter) {
     Registry registry;
     try {
-      registry = LocateRegistry.getRegistry(5000);
+      registry = LocateRegistry.getRegistry(RMI_PORT);
       BarService barService = (BarService) registry.lookup("BarService");
       return barService.serveBar(parameter);
     } catch (RemoteException | NotBoundException e) {

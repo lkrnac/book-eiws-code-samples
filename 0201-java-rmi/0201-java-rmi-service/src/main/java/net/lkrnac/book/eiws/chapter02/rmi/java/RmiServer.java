@@ -5,11 +5,16 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class RmiServer {
+public final class RmiServer {
+  private static final int RMI_PORT = 10201;
+
+  private RmiServer() {
+  }
+
   public static void main(String[] args) throws RemoteException,
       AlreadyBoundException {
     BarServiceImpl engine = new BarServiceImpl();
-    Registry registry = LocateRegistry.createRegistry(5000);
+    Registry registry = LocateRegistry.createRegistry(RMI_PORT);
     registry.bind("BarService", engine);
   }
 }

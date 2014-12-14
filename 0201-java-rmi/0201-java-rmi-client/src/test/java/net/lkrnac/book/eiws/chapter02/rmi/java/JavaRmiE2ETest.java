@@ -10,18 +10,23 @@ import net.lkrnac.book.eiws.RetryHandler;
 import org.testng.annotations.Test;
 
 public class JavaRmiE2ETest {
+  private static final int RETRY_TIMEOUT = 10000;
+
   @Test
-  public void parformJavaRmiE2ETest() throws IOException {
+  public final void parformJavaRmiE2ETest() throws IOException,
+      InterruptedException {
     Process process = null;
     try {
       process = new ProcessExecutor().execute("0201-java-rmi-service.jar");
 
       RetryHandler<String, String> retryHandler = new RetryHandler<String, String>();
       String response = retryHandler.retry(new FooClient()::callService,
-          "E2E test", 3000);
-      assertEquals(response, "Bar service response to parameter: E2E test");
+          "Java RMI E2E test", RETRY_TIMEOUT);
+      assertEquals(response,
+          "Bar service (Java RMI) response to parameter: Java RMI E2E test");
     } finally {
       process.destroyForcibly();
+      process.waitFor();
     }
   }
 }

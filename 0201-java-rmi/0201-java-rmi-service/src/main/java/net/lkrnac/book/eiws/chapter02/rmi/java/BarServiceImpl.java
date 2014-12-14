@@ -11,6 +11,6 @@ public class BarServiceImpl extends UnicastRemoteObject implements BarService {
 
   @Override
   public String serveBar(String param) throws RemoteException {
-    return "Bar service response to parameter: " + param;
+    return "Bar service (Java RMI) response to parameter: " + param;
   }
 }
