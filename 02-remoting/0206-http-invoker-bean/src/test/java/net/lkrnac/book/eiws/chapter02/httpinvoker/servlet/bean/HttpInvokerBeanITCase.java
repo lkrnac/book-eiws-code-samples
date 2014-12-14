@@ -1,7 +1,8 @@
-package net.lkrnac.book.eiws.chapter02.httpinvoker.servlet.javaconfig.client;
+package net.lkrnac.book.eiws.chapter02.httpinvoker.servlet.bean;
 
 import static org.testng.Assert.assertEquals;
-import net.lkrnac.book.eiws.chapter02.httpinvoker.servlet.javaconfig.shared.BarService;
+import net.lkrnac.book.eiws.chapter02.httpinvoker.bean.client.ClientConfiguration;
+import net.lkrnac.book.eiws.chapter02.httpinvoker.bean.shared.BarService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -9,8 +10,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = { ClientConfiguration.class })
-public class HttpInvokerServletJavaConfigITCase extends
-    AbstractTestNGSpringContextTests {
+public class HttpInvokerBeanITCase extends AbstractTestNGSpringContextTests {
   @Autowired
   private BarService barService;
 
@@ -19,10 +19,10 @@ public class HttpInvokerServletJavaConfigITCase extends
     // GIVEN - client context
 
     // WHEN
-    String actualResult = barService.serveBar("0204 Integration test");
+    String actualResult = barService.serveBar("0206 Integration test");
 
     // THEN
     assertEquals(actualResult,
-        "Bar service 0204 response to parameter: 0204 Integration test");
+        "Bar service 0206 response to parameter: 0206 Integration test");
   }
 }

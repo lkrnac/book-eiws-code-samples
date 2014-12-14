@@ -13,10 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <properties>
-    <start-class>net.lkrnac.book.eiws.chapter02.httpinvoker.Application</start-class>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -55,7 +51,7 @@
               <goal>run-war-only</goal>
             </goals>
             <configuration>
-              <port>10204</port>
+              <port>10206</port>
               <fork>true</fork>
             </configuration>
           </execution>

@@ -1,6 +1,6 @@
-package net.lkrnac.book.eiws.chapter02.httpinvoker.servlet.javaconfig.client;
+package net.lkrnac.book.eiws.chapter02.httpinvoker.bean.client;
 
-import net.lkrnac.book.eiws.chapter02.httpinvoker.servlet.javaconfig.shared.BarService;
+import net.lkrnac.book.eiws.chapter02.httpinvoker.bean.shared.BarService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ public class ClientConfiguration {
   @Bean
   public HttpInvokerProxyFactoryBean httpInvokerProxy() {
     HttpInvokerProxyFactoryBean httpInvoker = new HttpInvokerProxyFactoryBean();
-    httpInvoker.setServiceUrl("http://localhost:10204/BarService");
+    httpInvoker.setServiceUrl("http://localhost:10206/BarService");
     httpInvoker.setServiceInterface(BarService.class);
     return httpInvoker;
   }
