@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter02.rmi.spring.service;
+package net.lkrnac.book.eiws.chapter02.rmi.spring.xmlconfig.service;
 
 import org.springframework.stereotype.Service;
 
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 public class BarServiceImpl implements BarService {
   @Override
   public String serveBar(String param) {
-    return "Bar service (Spring RMI Java config) reponse to parameter: "
-        + param;
+    return "Bar service 0203 reponse to parameter: " + param;
   }
 }

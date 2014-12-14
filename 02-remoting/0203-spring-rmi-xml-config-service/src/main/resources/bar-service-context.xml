@@ -4,13 +4,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
   <context:component-scan
-    base-package="net.lkrnac.book.eiws.chapter02.rmi.spring.service" />
+    base-package="net.lkrnac.book.eiws.chapter02.rmi.spring.xmlconfig.service" />
 
   <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
     <property name="serviceName" value="BarService" />
     <property name="service" ref="barServiceImpl" />
     <property name="serviceInterface"
-      value="net.lkrnac.book.eiws.chapter02.rmi.spring.service.BarService" />
-    <property name="registryPort" value="5000" />
+      value="net.lkrnac.book.eiws.chapter02.rmi.spring.xmlconfig.service.BarService" />
+    <property name="registryPort" value="10203" />
   </bean>
 </beans>

@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter02.rmi.spring.client;
+package net.lkrnac.book.eiws.chapter02.rmi.spring.xmlconfig.client;
 
 import javax.annotation.PostConstruct;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FooClient {
-  private BarService barService;
+  private final BarService barService;
 
   @Autowired
   public FooClient(BarService barService) {
