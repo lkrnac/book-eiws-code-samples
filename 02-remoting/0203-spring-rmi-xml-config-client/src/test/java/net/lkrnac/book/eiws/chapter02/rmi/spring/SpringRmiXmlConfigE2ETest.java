@@ -30,7 +30,7 @@ public class SpringRmiXmlConfigE2ETest {
 
       String response = barService.serveBar("0203 E2E test");
       assertEquals(response,
-          "Bar service 0203 reponse to parameter: 0203 E2E test");
+          "Bar service 0203 response to parameter: 0203 E2E test");
     } finally {
       process.destroyForcibly();
       process.waitFor();

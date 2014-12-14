@@ -23,6 +23,6 @@ public class HttpInvokerServletJavaConfigITCase extends
 
     // THEN
     assertEquals(actualResult,
-        "Bar service 0204 reponse to parameter: 0204 Integration test");
+        "Bar service 0204 response to parameter: 0204 Integration test");
   }
 }

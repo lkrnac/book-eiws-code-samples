@@ -29,7 +29,7 @@ public class SpringRmiJavaConfigE2ETest {
 
       String response = barService.serveBar("0202 E2E test");
       assertEquals(response,
-          "Bar service 0202 reponse to parameter: 0202 E2E test");
+          "Bar service 0202 response to parameter: 0202 E2E test");
     } finally {
       process.destroyForcibly();
       process.waitFor();
