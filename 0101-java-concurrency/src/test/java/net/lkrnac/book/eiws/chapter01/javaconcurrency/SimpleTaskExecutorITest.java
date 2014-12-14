@@ -10,11 +10,13 @@ import java.util.concurrent.Executors;
 
 import org.testng.annotations.Test;
 
+@SuppressWarnings("PMD.MethodNamingConventions")
 public class SimpleTaskExecutorITest {
+  private static final int TEST_TIMEOUT = 4000;
   private static final int EXEC_COUNT = 10;
 
-  @Test(timeOut = 2000)
-  public void testExecuteTasks_threadsCountEqualTasksCount()
+  @Test(timeOut = TEST_TIMEOUT)
+  public final void testExecuteTasks_threadsCountEqualTasksCount()
       throws InterruptedException {
     // GIVEN
     ExecutorService executorService = Executors.newFixedThreadPool(EXEC_COUNT);
@@ -22,7 +24,7 @@ public class SimpleTaskExecutorITest {
     testSimpleTaskExecutor(executorService);
   }
 
-  @Test(timeOut = 4000)
+  @Test(timeOut = TEST_TIMEOUT)
   public void testExecuteTasks_threadsCountLessThanTasksCount()
       throws InterruptedException {
     // GIVEN

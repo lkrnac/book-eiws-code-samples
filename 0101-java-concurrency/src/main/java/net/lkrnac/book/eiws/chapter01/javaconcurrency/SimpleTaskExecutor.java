@@ -7,11 +7,22 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+@SuppressWarnings("PMD.DataflowAnomalyAnalysis")
 public class SimpleTaskExecutor {
   private final SimpleLogger logger;
   private final ExecutorService executorService;
   private final int execCount;
 
+  /**
+   * Creates {@link SimpleTaskExecutor} instance.
+   * 
+   * @param simpleLogger
+   *          logger
+   * @param executorService
+   *          thread pool
+   * @param execCount
+   *          simple task execution count
+   */
   public SimpleTaskExecutor(SimpleLogger simpleLogger,
       ExecutorService executorService, int execCount) {
     super();
@@ -20,12 +31,16 @@ public class SimpleTaskExecutor {
     this.execCount = execCount;
   }
 
+  /**
+   * 
+   * @throws InterruptedException
+   */
   public void executeTasks() throws InterruptedException {
     Collection<Future<String>> results = new ArrayList<>(execCount);
 
-    long start = System.currentTimeMillis();
+    long start = System.currentTimeMillis(); //
+    SimpleTask task = new SimpleTask();
     for (int idx = 0; idx < execCount; idx++) {
-      SimpleTask task = new SimpleTask();
       results.add(executorService.submit(task));
     }
 
