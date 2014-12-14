@@ -7,6 +7,7 @@ public class BarServiceImpl extends UnicastRemoteObject implements BarService {
   private static final long serialVersionUID = 1L;
 
   protected BarServiceImpl() throws RemoteException {
+    super();
   }
 
   @Override

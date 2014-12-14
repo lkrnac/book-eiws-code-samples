@@ -1,0 +1,21 @@
+package net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.client;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class FooClient {
+  private final BarService barService;
+
+  @Autowired
+  public FooClient(BarService barService) {
+    this.barService = barService;
+  }
+
+  @PostConstruct
+  public void callBarService() {
+    System.out.println(barService.serveBar("FooClient"));
+  }
+}

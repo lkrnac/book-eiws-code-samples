@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>0202-spring-rmi-client</artifactId>
+  <artifactId>0203-spring-rmi-xml-config-client</artifactId>
   <name>${project.artifactId}</name>
   <packaging>jar</packaging>
 
@@ -15,7 +15,7 @@
 
   <properties>
     <start-class>net.lkrnac.book.eiws.chapter02.rmi.Application</start-class>
-    <rmi.service.name>0202-spring-rmi-service</rmi.service.name>
+    <rmi.service.name>0203-spring-rmi-xml-config-service</rmi.service.name>
   </properties>
 
   <dependencies>
