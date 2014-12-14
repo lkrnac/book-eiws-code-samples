@@ -13,12 +13,14 @@ import org.testng.annotations.Test;
 @SpringApplicationConfiguration(classes = ScheduledConfiguration.class)
 public class ScheduledConfigurationITest extends
     AbstractTestNGSpringContextTests {
+  private static final int WAIT_FOR_SCHEDULING = 1000;
+
   @Autowired
   private SimpleLogger loggerSpy;
 
   @Test
   public void verifyScheduling() throws InterruptedException {
-    Thread.sleep(1000);
+    Thread.sleep(WAIT_FOR_SCHEDULING);
 
     verify(loggerSpy, atLeast(2)).log(anyString());
   }

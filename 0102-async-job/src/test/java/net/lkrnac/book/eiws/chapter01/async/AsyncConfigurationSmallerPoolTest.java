@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 @SpringApplicationConfiguration(classes = AsyncConfigurationSmallerPool.class)
 public class AsyncConfigurationSmallerPoolTest extends
     AbstractTestNGSpringContextTests {
+  private static final int TEST_TIMEOUT = 4000;
   private static final int EXEC_COUNT = 10;
 
   @Autowired
@@ -22,7 +23,7 @@ public class AsyncConfigurationSmallerPoolTest extends
   @Autowired
   private Caller caller;
 
-  @Test(timeOut = 4000)
+  @Test(timeOut = TEST_TIMEOUT)
   public void contextLoads() throws InterruptedException {
     // GIVEN - Spring configuration
 

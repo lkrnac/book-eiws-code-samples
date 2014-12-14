@@ -1,7 +1,6 @@
 package net.lkrnac.book.eiws.chapter01.async.task;
 
 import static org.mockito.Mockito.spy;
-import net.lkrnac.book.eiws.chapter01.async.task.SimpleLogger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

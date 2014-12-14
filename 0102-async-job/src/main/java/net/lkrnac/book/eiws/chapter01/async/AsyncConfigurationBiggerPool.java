@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @Configuration
-@ComponentScan(SpringConstants.TASK_PACKAGE)
+@ComponentScan(basePackageClasses = Caller.class)
 @EnableAsync
 public class AsyncConfigurationBiggerPool {
   private static final int EXEC_COUNT = 10;

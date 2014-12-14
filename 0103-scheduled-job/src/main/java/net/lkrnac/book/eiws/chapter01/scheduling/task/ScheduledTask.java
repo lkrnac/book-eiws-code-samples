@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ScheduledTask {
+  private static final int SCHEDULING_DELAY = 1000;
+
   private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS");
 
   private SimpleLogger logger;
@@ -19,7 +21,7 @@ public class ScheduledTask {
     this.logger = logger;
   }
 
-  @Scheduled(fixedRate = 1000)
+  @Scheduled(fixedRate = SCHEDULING_DELAY)
   public void call() {
     logger.log(dateFormat.format(new Date()) + " - job kicked off");
   }

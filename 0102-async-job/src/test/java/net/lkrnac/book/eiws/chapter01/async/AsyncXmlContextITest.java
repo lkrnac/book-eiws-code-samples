@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 @SpringApplicationConfiguration(locations = "classpath:async-context.xml")
 public class AsyncXmlContextITest extends AbstractTestNGSpringContextTests {
+  private static final int TEST_TIMEOUT = 2000;
   private static final int EXEC_COUNT = 10;
 
   @Autowired
@@ -21,7 +22,7 @@ public class AsyncXmlContextITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private Caller caller;
 
-  @Test(timeOut = 2000)
+  @Test(timeOut = TEST_TIMEOUT)
   public void contextLoads() throws InterruptedException {
     // GIVEN - Spring configuration
 
