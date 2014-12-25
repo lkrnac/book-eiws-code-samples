@@ -19,10 +19,13 @@
     <module>../02-remoting/0202-spring-rmi-java-config-client</module>
     <module>../02-remoting/0203-spring-rmi-xml-config-service</module>
     <module>../02-remoting/0203-spring-rmi-xml-config-client</module>
-    <module>../02-remoting/0204-http-invoker-servlet-java-config</module>
-    <module>../02-remoting/0205-http-invoker-servlet-xml-config</module>
-    <module>../02-remoting/0206-http-invoker-bean</module>
+    <module>../02-remoting/0204-http-invoker-handler-servlet-java-config</module>
+    <module>../02-remoting/0205-http-invoker-handler-servlet-xml-config</module>
+    <module>../02-remoting/0206-http-invoker-dispatcher-servlet</module>
     <module>../02-remoting/0207-http-invoker-simple-service</module>
     <module>../02-remoting/0207-http-invoker-simple-client</module>
+    <module>../02-remoting/0208-hessian-handler-servlet-java-config</module>
+    <module>../02-remoting/0209-burlap-handler-servlet-xml-config</module>
+    <module>../02-remoting/0210-hessian-dispatcher-servlet</module>
   </modules>
 </project>
