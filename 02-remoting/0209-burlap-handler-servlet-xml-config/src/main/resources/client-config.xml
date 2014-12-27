@@ -5,7 +5,7 @@
 
   <bean id="burlapProxy"
     class="org.springframework.remoting.caucho.BurlapProxyFactoryBean">
-    <property name="serviceUrl" value="http://localhost:10209/lala/BarService" />
+    <property name="serviceUrl" value="http://localhost:10209/BarService" />
     <property name="serviceInterface"
       value="net.lkrnac.book.eiws.chapter02.burlap.handlerservlet.xmlconfig.shared.BarService" />
   </bean>
