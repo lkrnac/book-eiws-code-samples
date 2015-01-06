@@ -1,7 +1,6 @@
 package net.lkrnac.book.eiws.chapter02.httpinvoker.handlerservlet.javaconfig.client;
 
 import static org.testng.Assert.assertEquals;
-import net.lkrnac.book.eiws.chapter02.httpinvoker.handlerservlet.javaconfig.client.ClientConfiguration;
 import net.lkrnac.book.eiws.chapter02.httpinvoker.handlerservlet.javaconfig.shared.BarService;
 
 import org.springframework.beans.factory.annotation.Autowired;
