@@ -14,4 +14,5 @@
 /**/.checkstyle
 /**/.eclipse-pmd
 /**/*.log
-
+/gs-consuming-web-service-complete
+/gs-producing-web-service-complete

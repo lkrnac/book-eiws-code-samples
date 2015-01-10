@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" 
+    elementFormDefault="qualified" 
+    targetNamespace="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model">
+  <xs:element xmlns:mod="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model" 
+      name="getUserDetialsResponse" type="mod:UserDetailsType"/>
+
+  <xs:element xmlns:mod="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model" 
+      name="getUserDetailsRequest" type="mod:emailAddress"/>
+  
+  <xs:simpleType name="emailAddress"> 
+    <xs:restriction base="xs:string"> 
+      <xs:pattern value="[^@]+@[^\.]+\..+"/> 
+    </xs:restriction> 
+  </xs:simpleType> 
+
+  <xs:complexType name="UserDetailsType">
+    <xs:sequence>
+      <xs:element type="xs:NCName" name="FirstName"/>
+      <xs:element type="xs:NCName" name="LastName"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
