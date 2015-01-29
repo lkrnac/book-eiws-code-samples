@@ -8,16 +8,23 @@
 
   <context:component-scan base-package="net.lkrnac.book.eiws.chapter03.ws.javaconfig" />
 
-  <ws:annotation-driven />
+<!--   <ws:annotation-driven /> -->
 
   <ws:dynamic-wsdl id="userDetails" portTypeName="UserDetailsPort"
     locationUri="/wsdl/"
-    targetNamespace="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model">
+    targetNamespace="http://localhost:10301/0301-ws-xmlconfig-service">
     <ws:xsd location="classpath:userDetails.xsd" />
   </ws:dynamic-wsdl>
 
 <!--     targetNamespace="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model"> -->
-  <!-- <bean class=""></bean> -->
-  <!-- <bean class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition"> -->
-  <!-- </bean> -->
+  <bean id="xsdSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+    <property name="xsd" value="classpath:userDetails.xsd"/>
+  </bean>
+  <bean class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+    <property name="locationUri" value="/getUserDetails"/>
+    <property name="portTypeName" value="UserDetialsPort"/>
+<!--     <property name="targetNamespace" value="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model"/> -->
+    <property name="targetNamespace" value="http://localhost:10301/0301-ws-xmlconfig-service"/>
+    <property name="schema" ref="xsdSchema"/>
+  </bean>
 </beans>
