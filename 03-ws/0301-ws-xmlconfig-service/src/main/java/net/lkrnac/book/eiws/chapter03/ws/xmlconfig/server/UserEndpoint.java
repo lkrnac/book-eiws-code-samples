@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter03.ws.javaconfig.server;
+package net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server;
 
 import localhost._10301._0301_ws_xmlconfig_service.UserDetailsResponse;
 
@@ -11,7 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 // @Address("http://localhost:8080/StockService")
 public class UserEndpoint {
   // @PayloadRoot(namespace =
-  // "http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model", localPart =
+  // "http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model", localPart =
   // "getUserDetails")
   @PayloadRoot(namespace = "http://localhost:10301/0301-ws-xmlconfig-service/", localPart = "getUserDetails")
   @ResponsePayload

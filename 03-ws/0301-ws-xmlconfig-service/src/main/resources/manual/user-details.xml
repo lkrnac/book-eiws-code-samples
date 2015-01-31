@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<UserDetails xmlns="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model">
+<UserDetails xmlns="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model">
   <FirstName>John</FirstName>
   <LastName>Doe</LastName>
 </UserDetails>

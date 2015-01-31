@@ -41,7 +41,7 @@
         </executions>
         <configuration>
           <schemaLanguage>WSDL</schemaLanguage>
-          <generatePackage>net.lkrnac.book.eiws.chapter03.ws.javaconfig.model</generatePackage>
+          <generatePackage>net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model</generatePackage>
           <schemas>
 <!--             <schema> -->
 <!--               <url>http://localhost:10301/0301-ws-xmlconfig-service/wsdl/userDetails.wsdl</url> -->
@@ -55,7 +55,7 @@
                 </fileset>
             </schema>
           </schemas>
-          <detail>true</detail>
+          <detail>true</detail>  
         </configuration>
       </plugin>
      </plugins>

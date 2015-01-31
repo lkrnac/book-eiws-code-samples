@@ -1,9 +1,9 @@
-package net.lkrnac.book.eiws.chapter03.ws.javaconfig.client;
+package net.lkrnac.book.eiws.chapter03.ws.xmlconfig.client;
 
 import javax.annotation.PostConstruct;
 
-import net.lkrnac.book.eiws.chapter03.ws.javaconfig.model.UserDetailsResponse;
-import net.lkrnac.book.eiws.chapter03.ws.javaconfig.model.UserRequest;
+import net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model.UserDetailsResponse;
+import net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model.UserRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

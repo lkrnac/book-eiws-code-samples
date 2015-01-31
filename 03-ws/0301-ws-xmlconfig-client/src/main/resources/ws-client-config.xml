@@ -7,11 +7,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
   
-  <context:component-scan base-package="net.lkrnac.book.eiws.chapter03.ws.javaconfig.client"/>
+  <context:component-scan base-package="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.client"/>
   
   <web-services:annotation-driven/>
   <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-    <property name="contextPath" value="net.lkrnac.book.eiws.chapter03.ws.javaconfig.model"/>
+    <property name="contextPath" value="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model"/>
   </bean>
   
   <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">

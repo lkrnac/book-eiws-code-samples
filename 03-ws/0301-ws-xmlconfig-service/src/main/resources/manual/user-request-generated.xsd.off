@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model">
-  <xs:element xmlns:mod="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model" name="UserDetailsRequest" type="mod:UserDetailsRequestType"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model">
+  <xs:element xmlns:mod="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model" name="UserDetailsRequest" type="mod:UserDetailsRequestType"/>
   <xs:complexType name="UserDetailsRequestType">
     <xs:sequence>
       <xs:element type="xs:string" name="Email"/>

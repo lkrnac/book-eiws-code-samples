@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
-  <context:component-scan base-package="net.lkrnac.book.eiws.chapter03.ws.javaconfig.server" />
+  <context:component-scan base-package="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server" />
 
   <ws:annotation-driven />
 
@@ -16,7 +16,7 @@
     <ws:xsd location="classpath:userDetails.xsd" />
   </ws:dynamic-wsdl>
 
-<!--     targetNamespace="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model"> -->
+<!--     targetNamespace="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model"> -->
 
 <!--   <bean id="xsdSchema" class="org.springframework.xml.xsd.SimpleXsdSchema"> -->
 <!--     <property name="xsd" value="classpath:userDetails.xsd"/> -->
@@ -25,7 +25,7 @@
 <!--     <property name="locationUri" value="/getUserDetails"/> -->
 <!--     <property name="portTypeName" value="UserDetialsPort"/> -->
 
-<!--     <property name="targetNamespace" value="http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model"/> -->
+<!--     <property name="targetNamespace" value="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model"/> -->
 
 <!--     <property name="targetNamespace" value="http://localhost:10301/0301-ws-xmlconfig-service"/> -->
 <!--     <property name="schema" ref="xsdSchema"/> -->
