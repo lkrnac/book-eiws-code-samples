@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>0303-ws-boot-client</artifactId>
   <name>${project.artifactId}</name>
@@ -17,14 +18,18 @@
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-ws</artifactId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-core</artifactId>
     </dependency>
     <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
     </dependency>
   </dependencies>
-  
+
   <build>
     <plugins>
       <plugin>
@@ -32,8 +37,8 @@
         <artifactId>maven-jaxb2-plugin</artifactId>
         <version>0.12.3</version>
         <executions>
-          <execution> 
-            <goals> 
+          <execution>
+            <goals>
               <goal>generate</goal>
             </goals>
           </execution>
@@ -45,14 +50,14 @@
             <schema>
               <url>http://localhost:10303/0303-ws-boot-service/wsdl/userDetails.wsdl</url>
             </schema>
-<!--             <schema> -->
-<!--                 <fileset> -->
-<!--                     <directory>${basedir}/src/main/schemas</directory> -->
-<!--                     <includes> -->
-<!--                         <include>userDetails.wsdl</include> -->
-<!--                     </includes> -->
-<!--                 </fileset> -->
-<!--             </schema> -->
+            <!-- <schema> -->
+            <!-- <fileset> -->
+            <!-- <directory>${basedir}/src/main/schemas</directory> -->
+            <!-- <includes> -->
+            <!-- <include>userDetails.wsdl</include> -->
+            <!-- </includes> -->
+            <!-- </fileset> -->
+            <!-- </schema> -->
           </schemas>
           <detail>true</detail>
         </configuration>
@@ -101,5 +106,5 @@
         </executions>
       </plugin>
     </plugins>
-  </build>  
+  </build>
 </project>
