@@ -28,6 +28,36 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.12.3</version>
+        <executions>
+          <execution> 
+            <goals> 
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <schemaLanguage>WSDL</schemaLanguage>
+          <generatePackage>net.lkrnac.book.eiws.chapter03.ws.boot.model</generatePackage>
+          <schemas>
+            <schema>
+              <url>http://localhost:10303/0303-ws-boot-service/wsdl/userDetails.wsdl</url>
+            </schema>
+<!--             <schema> -->
+<!--                 <fileset> -->
+<!--                     <directory>${basedir}/src/main/schemas</directory> -->
+<!--                     <includes> -->
+<!--                         <include>userDetails.wsdl</include> -->
+<!--                     </includes> -->
+<!--                 </fileset> -->
+<!--             </schema> -->
+          </schemas>
+          <detail>true</detail>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <executions>
           <execution>
@@ -56,7 +86,7 @@
               <goal>run-war-only</goal>
             </goals>
             <configuration>
-              <port>10301</port>
+              <port>10303</port>
               <fork>true</fork>
             </configuration>
           </execution>
