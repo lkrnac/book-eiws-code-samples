@@ -41,7 +41,7 @@ public class WebServiceClient {
   public void test() {
     UserDetailsResponse userDetails =
         this.getUserDetails("lubos.krnac@gmail.com");
-    log.debug("User Details: " + userDetails.getFirstName() + " "
+    log.error("User Details: " + userDetails.getFirstName() + " "
         + userDetails.getLastName());
   }
 }
