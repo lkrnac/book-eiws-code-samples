@@ -11,15 +11,32 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <spring.version>4.1.4.RELEASE</spring.version>
+    <spring.ws.version>2.2.0.RELEASE</spring.ws.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework.ws</groupId>
       <artifactId>spring-ws-core</artifactId>
-      <version>2.2.0.RELEASE</version>
+      <version>${spring-ws.version}</version>
    </dependency>
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-test</artifactId>
+      <version>${spring.ws.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>4.0.5.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.8.8</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
@@ -37,56 +54,6 @@
           <source>${java.version}</source>
           <target>${java.version}</target>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jaxb2-maven-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>xjc</id>
-            <goals>
-              <goal>xjc</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
-          <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-          <clearOutputDir>false</clearOutputDir>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <path>/</path>
-          <useTestClasspath>true</useTestClasspath>
-        </configuration>
-        <executions>
-          <!-- At pre-integration-test phase, run the war in an embedded 
-            Tomcat server. -->
-          <execution>
-            <id>start-tomcat</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>run-war-only</goal>
-            </goals>
-            <configuration>
-              <port>10301</port>
-              <fork>true</fork>
-            </configuration>
-          </execution>
-          <!-- At post-integration-test phase, stop the embedded Tomcat server. -->
-          <execution>
-            <id>stop-tomcat</id>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>shutdown</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
