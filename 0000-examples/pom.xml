@@ -27,7 +27,7 @@
     <module>../02-remoting/0208-hessian-handler-servlet-java-config</module>
     <module>../02-remoting/0209-burlap-handler-servlet-xml-config</module>
     <module>../02-remoting/0210-hessian-dispatcher-servlet</module>
-    <module>../03-ws/0301-ws-xmlconfig-client</module>
     <module>../03-ws/0301-ws-xmlconfig-service</module>
+    <module>../03-ws/0301-ws-xmlconfig-client</module>
   </modules>
 </project>
