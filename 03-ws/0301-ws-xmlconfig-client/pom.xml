@@ -37,6 +37,7 @@
 
   <build>
     <plugins>
+      <!-- Generate model out of WSDL -->
       <plugin>
         <groupId>org.jvnet.jaxb2.maven2</groupId>
         <artifactId>maven-jaxb2-plugin</artifactId>
@@ -67,6 +68,8 @@
           <detail>true</detail>
         </configuration>
       </plugin>
+      
+      <!-- Run *ITCase.java tests during integration phase -->
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <executions>
@@ -78,6 +81,8 @@
           </execution>
         </executions>
       </plugin>
+      
+      <!-- Download server war and unpack it -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -103,6 +108,9 @@
           </execution>
         </executions>
       </plugin>
+      
+      <!-- Run server war before integration test phase --> 
+      <!-- and stop server after integration test phase -->
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
