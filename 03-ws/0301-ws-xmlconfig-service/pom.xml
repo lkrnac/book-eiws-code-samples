@@ -19,7 +19,7 @@
       <groupId>org.springframework.ws</groupId>
       <artifactId>spring-ws-core</artifactId>
       <version>${spring.ws.version}</version>
-   </dependency>
+    </dependency>
     <dependency>
       <groupId>org.springframework.ws</groupId>
       <artifactId>spring-ws-test</artifactId>
@@ -27,9 +27,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-test</artifactId>
-        <version>4.0.5.RELEASE</version>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>4.0.5.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.testng</groupId>
@@ -46,6 +46,7 @@
 
   <build>
     <plugins>
+      <!-- Use Java 8 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -53,6 +54,26 @@
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
+        </configuration>
+      </plugin>
+      
+      <!-- Generate model based on XSD -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>xjc</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+          <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+          <clearOutputDir>false</clearOutputDir>
         </configuration>
       </plugin>
     </plugins>
