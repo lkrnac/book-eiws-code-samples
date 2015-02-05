@@ -15,7 +15,7 @@ import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(locations = { "classpath:web-service-config.xml" })
-public class WsXmlConfigITest extends AbstractTestNGSpringContextTests {
+public class WsXmlConfigServerITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private ApplicationContext applicationContext;
 
