@@ -16,3 +16,4 @@
 /**/*.log
 /gs-consuming-web-service-complete
 /gs-producing-web-service-complete
+/03-ws/0301-ws-xmlconfig-service/src/main/java/localhost/*
