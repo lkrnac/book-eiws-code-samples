@@ -21,10 +21,10 @@
       <artifactId>spring-boot-starter-ws</artifactId>
     </dependency>
     <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-tomcat</artifactId>
-        <scope>provided</scope>
-    </dependency>    
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
@@ -42,8 +42,8 @@
         <artifactId>maven-jaxb2-plugin</artifactId>
         <version>0.12.3</version>
         <executions>
-          <execution> 
-            <goals> 
+          <execution>
+            <goals>
               <goal>generate</goal>
             </goals>
           </execution>
@@ -52,21 +52,90 @@
           <schemaLanguage>WSDL</schemaLanguage>
           <generatePackage>net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model</generatePackage>
           <schemas>
-<!--             <schema> -->
-<!--               <url>http://localhost:10301/0301-ws-xmlconfig-service/wsdl/userDetails.wsdl</url> -->
-<!--             </schema> -->
+            <!-- <schema> -->
+            <!-- <url>http://localhost:10301/0301-ws-xmlconfig-service/wsdl/userDetails.wsdl</url> -->
+            <!-- </schema> -->
             <schema>
-                <fileset>
-                    <directory>${basedir}/src/main/schemas</directory>
-                    <includes>
-                        <include>userDetails.wsdl</include>
-                    </includes>
-                </fileset>
+              <fileset>
+                <directory>${basedir}/src/main/schemas</directory>
+                <includes>
+                  <include>userDetails.wsdl</include>
+                </includes>
+              </fileset>
             </schema>
           </schemas>
-          <detail>true</detail>  
+          <detail>true</detail>
         </configuration>
       </plugin>
-     </plugins>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unzip-webapp</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>net.lkrnac.book.eiws</groupId>
+                  <artifactId>0301-ws-xmlconfig-service</artifactId>
+                  <version>0.0.1-SNAPSHOT</version>
+                  <type>war</type>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/webapp</outputDirectory>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <useTestClasspath>true</useTestClasspath>
+        </configuration>        
+        <executions>
+          <execution>
+            <id>tomcat-run</id>
+            <goals>
+              <goal>run-war-only</goal>
+            </goals>
+            <phase>pre-integration-test</phase>
+            <configuration>
+              <path>/0301-ws-xmlconfig-service</path>
+              <port>10301</port>
+              <uriEncoding>UTF-8</uriEncoding>
+              <warDirectory>${project.build.directory}/webapp/</warDirectory>
+              <fork>true</fork>
+              <ignorePackaging>true</ignorePackaging>
+            </configuration>
+          </execution>
+          <execution>
+            <id>tomcat-shutdown</id>
+            <goals>
+              <goal>shutdown</goal>
+            </goals>
+            <phase>post-integration-test</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
   </build>
 </project>

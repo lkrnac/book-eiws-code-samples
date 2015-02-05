@@ -9,7 +9,6 @@
   
   <context:component-scan base-package="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.client"/>
   
-  <web-services:annotation-driven/>
   <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
     <property name="contextPath" value="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model"/>
   </bean>
@@ -17,5 +16,6 @@
   <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
     <property name="marshaller" ref="marshaller"/>
     <property name="unmarshaller" ref="marshaller"/>
+    <property name="defaultUri" value="http://localhost:10301/0301-ws-xmlconfig-service"/>
   </bean>
 </beans>
