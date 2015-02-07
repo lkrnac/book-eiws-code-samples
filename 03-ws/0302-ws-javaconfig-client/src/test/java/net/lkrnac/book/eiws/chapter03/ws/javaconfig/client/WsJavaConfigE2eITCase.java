@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = WsClientConfiguration.class)
 public class WsJavaConfigE2eITCase extends AbstractTestNGSpringContextTests {
@@ -20,7 +19,13 @@ public class WsJavaConfigE2eITCase extends AbstractTestNGSpringContextTests {
   @Autowired
   private WebServiceTemplate webServiceTemplate;
 
-  @Test(groups = "maventests")
+  /**
+   * Turned off because tomcat7-maven-plugin doesn't execute dependency war
+   * without web.xml
+   * 
+   * @throws IOException
+   */
+  // @Test(groups = "maventests")
   public void testGetUserDetails() throws IOException {
     // GIVEN
 
