@@ -30,5 +30,8 @@
     <module>../03-ws/0301-ws-xmlconfig-service</module>
     <module>../03-ws/0301-ws-xmlconfig-client</module>
     <module>../03-ws/0302-ws-javaconfig-service</module>
+    <module>../03-ws/0302-ws-javaconfig-client</module>
+    <module>../03-ws/0303-ws-boot-service</module>
+    <module>../03-ws/0303-ws-boot-client</module>
   </modules>
 </project>
