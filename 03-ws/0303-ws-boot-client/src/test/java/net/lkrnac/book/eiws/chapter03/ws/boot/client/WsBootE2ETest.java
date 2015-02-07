@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = { WsBootClientConfiguration.class })
 public class WsBootE2ETest extends AbstractTestNGSpringContextTests {
-  private static final int RETRY_TIMEOUT = 10000;
+  private static final int RETRY_TIMEOUT = 20000;
 
   @Autowired
   private WebServiceClient wsClient;
