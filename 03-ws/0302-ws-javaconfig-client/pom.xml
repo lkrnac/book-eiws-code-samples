@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>0302-ws-javaconfig-client</artifactId>
   <name>${project.artifactId}</name>
@@ -20,13 +21,55 @@
       <artifactId>spring-boot-starter-ws</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-test</artifactId>
+    </dependency>
   </dependencies>
-  
+
   <build>
     <plugins>
+      <!-- Generate model out of WSDL -->
+      <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.12.3</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <schemaLanguage>WSDL</schemaLanguage>
+          <generatePackage>net.lkrnac.book.eiws.chapter03.ws.javaconfig.model</generatePackage>
+          <schemas>
+            <!-- <schema> -->
+            <!-- <url>http://localhost:10302/0302-ws-javaconfig-service/wsdl/userDetails.wsdl</url> -->
+            <!-- </schema> -->
+            <schema>
+              <fileset>
+                <directory>${basedir}/src/main/schemas</directory>
+                <includes>
+                  <include>userDetails.wsdl</include>
+                </includes>
+              </fileset>
+            </schema>
+          </schemas>
+          <detail>true</detail>
+        </configuration>
+      </plugin>
+
+      <!-- Run *ITCase.java tests during integration phase -->
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <executions>
@@ -38,38 +81,69 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- Download server war and unpack it -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unzip-webapp</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>net.lkrnac.book.eiws</groupId>
+                  <artifactId>0302-ws-javaconfig-service</artifactId>
+                  <version>0.0.1-SNAPSHOT</version>
+                  <type>war</type>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/webapp</outputDirectory>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Run server war before integration test phase -->
+      <!-- and stop server after integration test phase -->
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <path>/</path>
           <useTestClasspath>true</useTestClasspath>
         </configuration>
         <executions>
-          <!-- At pre-integration-test phase, run the war in an embedded 
-            Tomcat server. -->
           <execution>
-            <id>start-tomcat</id>
-            <phase>pre-integration-test</phase>
+            <id>tomcat-run</id>
             <goals>
               <goal>run-war-only</goal>
             </goals>
+            <phase>pre-integration-test</phase>
             <configuration>
-              <port>10301</port>
+              <path>/0302-ws-javaconfig-service</path>
+              <port>10302</port>
+              <uriEncoding>UTF-8</uriEncoding>
+              <warDirectory>${project.build.directory}/webapp/</warDirectory>
               <fork>true</fork>
+              <ignorePackaging>true</ignorePackaging>
             </configuration>
           </execution>
-          <!-- At post-integration-test phase, stop the embedded Tomcat server. -->
           <execution>
-            <id>stop-tomcat</id>
-            <phase>post-integration-test</phase>
+            <id>tomcat-shutdown</id>
             <goals>
               <goal>shutdown</goal>
             </goals>
+            <phase>post-integration-test</phase>
           </execution>
         </executions>
       </plugin>
+
     </plugins>
-  </build>  
+  </build>
 </project>
