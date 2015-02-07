@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter03.ws.xmlconfig.client;
+package net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server;
 
 import java.io.IOException;
 

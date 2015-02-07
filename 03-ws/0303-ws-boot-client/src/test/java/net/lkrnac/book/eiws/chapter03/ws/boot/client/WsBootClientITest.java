@@ -18,7 +18,7 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = WsBootClientConfiguration.class)
-public class WsXmlConfigClientITest extends AbstractTestNGSpringContextTests {
+public class WsBootClientITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private WebServiceClient webServiceClient;
 

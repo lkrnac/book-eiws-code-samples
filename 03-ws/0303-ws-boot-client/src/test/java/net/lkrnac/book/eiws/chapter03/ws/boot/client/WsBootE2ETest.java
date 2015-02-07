@@ -14,7 +14,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = { WsBootClientConfiguration.class })
-public class WsXmlConfigE2ETest extends AbstractTestNGSpringContextTests {
+public class WsBootE2ETest extends AbstractTestNGSpringContextTests {
   private static final int RETRY_TIMEOUT = 10000;
 
   @Autowired
