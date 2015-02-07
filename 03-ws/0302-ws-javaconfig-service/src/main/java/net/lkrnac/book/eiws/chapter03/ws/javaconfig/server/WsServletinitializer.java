@@ -15,4 +15,8 @@ public class WsServletinitializer extends
     return new Class[] { ServerConfiguration.class };
   }
 
+  @Override
+  protected String[] getServletMappings() {
+    return new String[] { "/" };
+  }
 }

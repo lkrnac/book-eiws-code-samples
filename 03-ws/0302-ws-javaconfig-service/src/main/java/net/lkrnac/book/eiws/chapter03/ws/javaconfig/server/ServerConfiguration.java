@@ -15,7 +15,13 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class ServerConfiguration extends WsConfigurerAdapter {
   public static final String NAMESPACE =
-      "http://lkrnac.net/book/eiws/chapter03/ws/javaconfig/model";
+      "http://localhost:10302/0302-ws-javaconfig-service";
+
+  // @Bean
+  // public SimpleWsdl11Definition orders() {
+  // return new SimpleWsdl11Definition(new
+  // ClassPathResource("userDetails.xsd"));
+  // }
 
   @Bean
   public DefaultWsdl11Definition userDetails(XsdSchema userDetailsSchema) {
@@ -23,7 +29,7 @@ public class ServerConfiguration extends WsConfigurerAdapter {
     wsdlDefinition.setTargetNamespace(NAMESPACE);
     wsdlDefinition.setSchema(userDetailsSchema);
     wsdlDefinition.setPortTypeName("UserDetailsPort");
-    wsdlDefinition.setLocationUri("/");
+    wsdlDefinition.setLocationUri("/wsdl/");
     return wsdlDefinition;
   }
 
