@@ -9,7 +9,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class UserEndpoint {
-  @PayloadRoot(namespace = ServerConfiguration.NAMESPACE, localPart = "getUserDetails")
+  @PayloadRoot(namespace = ServerConfiguration.NAMESPACE, localPart = "UserRequest")
   @ResponsePayload
   public UserDetailsResponse getCountry(@RequestPayload String userEmail) {
     UserDetailsResponse userDetails = null;

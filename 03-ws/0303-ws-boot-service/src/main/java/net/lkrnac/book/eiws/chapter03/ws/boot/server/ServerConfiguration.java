@@ -16,7 +16,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class ServerConfiguration extends WsConfigurerAdapter {
   public static final String NAMESPACE =
-      "http://localhost:10302/0302-ws-javaconfig-service";
+      "http://localhost:10303/0303-ws-boot-service";
 
   @Bean
   public XsdSchema userDetailsSchema() {
@@ -29,7 +29,7 @@ public class ServerConfiguration extends WsConfigurerAdapter {
     wsdlDefinition.setTargetNamespace(NAMESPACE);
     wsdlDefinition.setSchema(userDetailsSchema);
     wsdlDefinition.setPortTypeName("UserDetailsPort");
-    wsdlDefinition.setLocationUri("/");
+    wsdlDefinition.setLocationUri("/wsdl/");
     return wsdlDefinition;
   }
 
