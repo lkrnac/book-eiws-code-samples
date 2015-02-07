@@ -9,11 +9,13 @@ import net.lkrnac.book.eiws.RetryHandler;
 import net.lkrnac.book.eiws.chapter03.ws.boot.model.UserDetailsResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = { WsBootClientConfiguration.class })
+@DirtiesContext
 public class WsBootE2ETest extends AbstractTestNGSpringContextTests {
   private static final int RETRY_TIMEOUT = 20000;
 

@@ -8,6 +8,7 @@ import net.lkrnac.book.eiws.chapter03.ws.boot.model.UserDetailsResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -18,6 +19,7 @@ import org.springframework.ws.test.client.ResponseCreators;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = WsBootClientConfiguration.class)
+@DirtiesContext
 public class WsBootClientITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private WebServiceClient webServiceClient;
