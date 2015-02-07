@@ -4,10 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
 @Configuration
 @ComponentScan
-public class WebServiceConfiguration {
+public class WsBootClientConfiguration {
   @Bean
   public Jaxb2Marshaller marshaller() {
     Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
@@ -16,11 +17,12 @@ public class WebServiceConfiguration {
   }
 
   @Bean
-  public WebServiceClient webServiceClient(Jaxb2Marshaller marshaller) {
-    WebServiceClient client = new WebServiceClient();
-    client.setDefaultUri("http://localhost:10303/0303-ws-bootservice");
-    client.setMarshaller(marshaller);
-    client.setUnmarshaller(marshaller);
-    return client;
+  public WebServiceTemplate webServiceTemplate(Jaxb2Marshaller marshaller) {
+    WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+    webServiceTemplate.setMarshaller(marshaller);
+    webServiceTemplate.setUnmarshaller(marshaller);
+    webServiceTemplate
+        .setDefaultUri("http://localhost:10303/0303-ws-boot-service");
+    return webServiceTemplate;
   }
 }

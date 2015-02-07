@@ -21,12 +21,40 @@
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.ws</groupId>
-      <artifactId>spring-ws-core</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-ws</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <!-- <dependency> -->
+    <!-- <groupId>org.springframework.ws</groupId> -->
+    <!-- <artifactId>spring-ws-core</artifactId> -->
+    <!-- </dependency> -->
     <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0000-common-library</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0303-ws-boot-service</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -47,61 +75,35 @@
           <schemaLanguage>WSDL</schemaLanguage>
           <generatePackage>net.lkrnac.book.eiws.chapter03.ws.boot.model</generatePackage>
           <schemas>
-            <schema>
-              <url>http://localhost:10303/0303-ws-boot-service/wsdl/userDetails.wsdl</url>
-            </schema>
             <!-- <schema> -->
-            <!-- <fileset> -->
-            <!-- <directory>${basedir}/src/main/schemas</directory> -->
-            <!-- <includes> -->
-            <!-- <include>userDetails.wsdl</include> -->
-            <!-- </includes> -->
-            <!-- </fileset> -->
+            <!-- <url>http://localhost:10303/0303-ws-boot-service/wsdl/userDetails.wsdl</url> -->
             <!-- </schema> -->
+            <schema>
+              <fileset>
+                <directory>${basedir}/src/main/schemas</directory>
+                <includes>
+                  <include>userDetails.wsdl</include>
+                </includes>
+              </fileset>
+            </schema>
           </schemas>
           <detail>true</detail>
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
+            <id>copy-dependencies</id>
+            <phase>compile</phase>
             <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <path>/</path>
-          <useTestClasspath>true</useTestClasspath>
-        </configuration>
-        <executions>
-          <!-- At pre-integration-test phase, run the war in an embedded 
-            Tomcat server. -->
-          <execution>
-            <id>start-tomcat</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>run-war-only</goal>
+              <goal>copy-dependencies</goal>
             </goals>
             <configuration>
-              <port>10303</port>
-              <fork>true</fork>
+              <includeArtifactIds>0303-ws-boot-service</includeArtifactIds>
+              <stripVersion>true</stripVersion>
             </configuration>
-          </execution>
-          <!-- At post-integration-test phase, stop the embedded Tomcat server. -->
-          <execution>
-            <id>stop-tomcat</id>
-            <phase>post-integration-test</phase>
-            <goals>
-              <goal>shutdown</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
