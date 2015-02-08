@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<UserDetailsRequest xmlns="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model">
+<UserRequest>
   <Email>lubos.krnac@gmail.com</Email>
-</UserDetailsRequest>
+</UserRequest>

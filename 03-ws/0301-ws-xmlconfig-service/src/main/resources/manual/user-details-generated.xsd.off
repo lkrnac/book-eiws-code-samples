@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model">
-  <xs:element xmlns:mod="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model" name="UserDetails" type="mod:UserDetailsType"/>
-  <xs:complexType name="UserDetailsType">
-    <xs:sequence>
-      <xs:element type="xs:string" name="FirstName"/>
-      <xs:element type="xs:string" name="LastName"/>
-    </xs:sequence>
-  </xs:complexType>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="UserDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="FirstName"/>
+        <xs:element type="xs:string" name="LastName"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

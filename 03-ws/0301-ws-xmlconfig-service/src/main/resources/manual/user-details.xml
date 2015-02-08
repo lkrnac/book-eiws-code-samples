@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<UserDetails xmlns="http://lkrnac.net/book/eiws/chapter03/ws/xmlconfig/model">
-  <FirstName>John</FirstName>
-  <LastName>Doe</LastName>
-</UserDetails>
+<UserDetailsResponse>
+  <FirstName>Lubos</FirstName>
+  <LastName>Krnac</LastName>
+</UserDetailsResponse>
