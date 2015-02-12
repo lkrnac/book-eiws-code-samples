@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>0304-ws-xmpp-client</artifactId>
+  <name>${project.artifactId}</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <parent>
+    <groupId>net.lkrnac.book.eiws</groupId>
+    <artifactId>0000-examples-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-ws</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>wsdl4j</groupId>
+      <artifactId>wsdl4j</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>jivesoftware</groupId>
+        <artifactId>smack</artifactId>
+        <version>3.1.0</version>
+    </dependency>
+    <dependency>
+        <groupId>jivesoftware</groupId>
+        <artifactId>smackx</artifactId>
+        <version>3.1.0</version>
+    </dependency>    
+    <dependency>
+      <groupId>org.springframework.ws</groupId>
+      <artifactId>spring-ws-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0000-common-library</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0304-ws-xmpp-service</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.12.3</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <schemaLanguage>WSDL</schemaLanguage>
+          <generatePackage>net.lkrnac.book.eiws.chapter03.ws.xmpp.model</generatePackage>
+          <schemas>
+<!--             <schema> -->
+<!--             <url>xmpp:eiws@blah.im/wsdl/userDetails.wsdl</url> -->
+<!--             </schema> -->
+            <schema>
+              <fileset>
+                <directory>${basedir}/src/main/schemas</directory>
+                <includes>
+                  <include>userDetails.wsdl</include>
+                </includes>
+              </fileset>
+            </schema>
+          </schemas>
+          <detail>true</detail>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeArtifactIds>0304-ws-xmpp-service</includeArtifactIds>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

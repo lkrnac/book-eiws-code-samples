@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  attributeFormDefault="unqualified" elementFormDefault="qualified"
+  targetNamespace="http://localhost:10305/0305-ws-interceptor-service">
+
+  <xs:element name="UserDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:NCName" name="FirstName" />
+        <xs:element type="xs:NCName" name="LastName" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UserRequest">
+    <xs:complexType>
+      <xs:attribute name="Email">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^\.]+\..+" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

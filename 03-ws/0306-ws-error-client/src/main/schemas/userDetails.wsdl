@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://localhost:10303/0303-ws-error-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost:10303/0303-ws-error-service" targetNamespace="http://localhost:10303/0303-ws-error-service">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://localhost:10303/0303-ws-error-service">
+
+  <xs:element name="UserDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="FirstName" type="xs:NCName"/>
+        <xs:element name="LastName" type="xs:NCName"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UserRequest">
+    <xs:complexType>
+      <xs:attribute name="Email">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^\.]+\..+"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="UserDetailsResponse">
+    <wsdl:part element="tns:UserDetailsResponse" name="UserDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserRequest">
+    <wsdl:part element="tns:UserRequest" name="UserRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserDetailsPort">
+    <wsdl:operation name="UserDetails">
+      <wsdl:output message="tns:UserDetailsResponse" name="UserDetailsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User">
+      <wsdl:input message="tns:UserRequest" name="UserRequest">
+    </wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserDetailsPortSoap11" type="tns:UserDetailsPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UserDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:output name="UserDetailsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="User">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserDetailsPortService">
+    <wsdl:port binding="tns:UserDetailsPortSoap11" name="UserDetailsPortSoap11">
+      <soap:address location="http://localhost:10303/wsdl/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
