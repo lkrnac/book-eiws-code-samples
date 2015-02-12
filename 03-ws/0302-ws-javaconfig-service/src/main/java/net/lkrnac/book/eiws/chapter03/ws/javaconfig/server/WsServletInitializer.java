@@ -2,7 +2,7 @@ package net.lkrnac.book.eiws.chapter03.ws.javaconfig.server;
 
 import org.springframework.ws.transport.http.support.AbstractAnnotationConfigMessageDispatcherServletInitializer;
 
-public class WsServletinitializer extends
+public class WsServletInitializer extends
     AbstractAnnotationConfigMessageDispatcherServletInitializer {
 
   @Override
