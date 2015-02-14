@@ -16,7 +16,9 @@
     <ws:xsd location="classpath:userDetails.xsd" />
   </ws:dynamic-wsdl>
   
-<!--   <ws:interceptors> -->
-<!--     <ref bean="globalInterceptor"/> -->
-<!--   </ws:interceptors> -->
+  <ws:interceptors>
+    <ref bean="globalInterceptor"/>
+  </ws:interceptors>
+  
+  <bean id="globalInterceptor" class="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server.GlobalIntercetor" />
 </beans>
