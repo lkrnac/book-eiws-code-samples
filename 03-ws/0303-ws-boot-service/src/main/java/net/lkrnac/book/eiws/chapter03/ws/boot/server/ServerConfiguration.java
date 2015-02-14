@@ -10,9 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurationSupport;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
-import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
-import org.springframework.xml.xsd.SimpleXsdSchema;
-import org.springframework.xml.xsd.XsdSchema;
+import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 
 @EnableWs
 @Configuration
@@ -23,18 +21,8 @@ public class ServerConfiguration extends WsConfigurationSupport {
       "http://localhost:10303/0303-ws-boot-service";
 
   @Bean
-  public XsdSchema userDetailsSchema() {
-    return new SimpleXsdSchema(new ClassPathResource("userDetails.xsd"));
-  }
-
-  @Bean
-  public DefaultWsdl11Definition userDetails(XsdSchema userDetailsSchema) {
-    DefaultWsdl11Definition wsdlDefinition = new DefaultWsdl11Definition();
-    wsdlDefinition.setTargetNamespace(NAMESPACE);
-    wsdlDefinition.setSchema(userDetailsSchema);
-    wsdlDefinition.setPortTypeName("UserDetailsPort");
-    wsdlDefinition.setLocationUri("/wsdl/");
-    return wsdlDefinition;
+  public SimpleWsdl11Definition userDetails() {
+    return new SimpleWsdl11Definition(new ClassPathResource("userDetails.xsd"));
   }
 
   @Bean
