@@ -27,6 +27,11 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>el-impl</artifactId>
+      <version>2.2</version>
+    </dependency>
+    <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
     </dependency>
@@ -70,86 +75,86 @@
         </configuration>
       </plugin>
 
-<!-- ########################################################## -->
-<!-- Exectuion of *ITCase.java tests against war executed by --> 
-<!-- tomcat7-maven-plugin is turned off because, --> 
-<!-- tomcat7-maven-plugin ignores Spring's Java deployment descriptor -->
-<!-- ########################################################## -->
+      <!-- ########################################################## -->
+      <!-- Exectuion of *ITCase.java tests against war executed by -->
+      <!-- tomcat7-maven-plugin is turned off because, -->
+      <!-- tomcat7-maven-plugin ignores Spring's Java deployment descriptor -->
+      <!-- ########################################################## -->
 
       <!-- Run *ITCase.java tests during integration phase -->
-<!--       <plugin> -->
-<!--         <artifactId>maven-failsafe-plugin</artifactId> -->
-<!--         <executions> -->
-<!--           <execution> -->
-<!--             <goals> -->
-<!--               <goal>integration-test</goal> -->
-<!--               <goal>verify</goal> -->
-<!--             </goals> -->
-<!--           </execution> -->
-<!--         </executions> -->
-<!--       </plugin> -->
+      <!-- <plugin> -->
+      <!-- <artifactId>maven-failsafe-plugin</artifactId> -->
+      <!-- <executions> -->
+      <!-- <execution> -->
+      <!-- <goals> -->
+      <!-- <goal>integration-test</goal> -->
+      <!-- <goal>verify</goal> -->
+      <!-- </goals> -->
+      <!-- </execution> -->
+      <!-- </executions> -->
+      <!-- </plugin> -->
 
       <!-- Download server war and unpack it -->
-<!--       <plugin> -->
-<!--         <groupId>org.apache.maven.plugins</groupId> -->
-<!--         <artifactId>maven-dependency-plugin</artifactId> -->
-<!--         <executions> -->
-<!--           <execution> -->
-<!--             <id>unzip-webapp</id> -->
-<!--             <phase>pre-integration-test</phase> -->
-<!--             <goals> -->
-<!--               <goal>unpack</goal> -->
-<!--             </goals> -->
-<!--             <configuration> -->
-<!--               <artifactItems> -->
-<!--                 <artifactItem> -->
-<!--                   <groupId>net.lkrnac.book.eiws</groupId> -->
-<!--                   <artifactId>0302-ws-javaconfig-service</artifactId> -->
-<!--                   <version>0.0.1-SNAPSHOT</version> -->
-<!--                   <type>war</type> -->
-<!--                 </artifactItem> -->
-<!--               </artifactItems> -->
-<!--               <outputDirectory>${project.build.directory}/webapp</outputDirectory> -->
-<!--               <overWriteSnapshots>true</overWriteSnapshots> -->
-<!--             </configuration> -->
-<!--           </execution> -->
-<!--         </executions> -->
-<!--       </plugin> -->
+      <!-- <plugin> -->
+      <!-- <groupId>org.apache.maven.plugins</groupId> -->
+      <!-- <artifactId>maven-dependency-plugin</artifactId> -->
+      <!-- <executions> -->
+      <!-- <execution> -->
+      <!-- <id>unzip-webapp</id> -->
+      <!-- <phase>pre-integration-test</phase> -->
+      <!-- <goals> -->
+      <!-- <goal>unpack</goal> -->
+      <!-- </goals> -->
+      <!-- <configuration> -->
+      <!-- <artifactItems> -->
+      <!-- <artifactItem> -->
+      <!-- <groupId>net.lkrnac.book.eiws</groupId> -->
+      <!-- <artifactId>0302-ws-javaconfig-service</artifactId> -->
+      <!-- <version>0.0.1-SNAPSHOT</version> -->
+      <!-- <type>war</type> -->
+      <!-- </artifactItem> -->
+      <!-- </artifactItems> -->
+      <!-- <outputDirectory>${project.build.directory}/webapp</outputDirectory> -->
+      <!-- <overWriteSnapshots>true</overWriteSnapshots> -->
+      <!-- </configuration> -->
+      <!-- </execution> -->
+      <!-- </executions> -->
+      <!-- </plugin> -->
 
       <!-- Run server war before integration test phase -->
       <!-- and stop server after integration test phase -->
-<!--       <plugin> -->
-<!--         <groupId>org.apache.tomcat.maven</groupId> -->
-<!--         <artifactId>tomcat7-maven-plugin</artifactId> -->
-<!--         <version>2.2</version> -->
-<!--         <configuration> -->
-<!--           <useTestClasspath>true</useTestClasspath> -->
-<!--         </configuration> -->
-<!--         <executions> -->
-<!--           <execution> -->
-<!--             <id>tomcat-run</id> -->
-<!--             <goals> -->
-<!--               <goal>run-war-only</goal> -->
-<!--             </goals> -->
-<!--             <phase>pre-integration-test</phase> -->
-<!--             <configuration> -->
-<!--               <path>/0302-ws-javaconfig-service</path> -->
-<!--               <port>10302</port> -->
-<!--               <uriEncoding>UTF-8</uriEncoding> -->
-<!--               <warDirectory>${project.build.directory}/webapp/</warDirectory> -->
-<!--               <fork>true</fork> -->
-<!--               <ignorePackaging>true</ignorePackaging> -->
-<!--             </configuration> -->
-<!--           </execution> -->
-<!--           <execution> -->
-<!--             <id>tomcat-shutdown</id> -->
-<!--             <goals> -->
-<!--               <goal>shutdown</goal> -->
-<!--             </goals> -->
-<!--             <phase>post-integration-test</phase> -->
-<!--           </execution> -->
-<!--         </executions> -->
-<!--       </plugin> -->
+      <!-- <plugin> -->
+      <!-- <groupId>org.apache.tomcat.maven</groupId> -->
+      <!-- <artifactId>tomcat7-maven-plugin</artifactId> -->
+      <!-- <version>2.2</version> -->
+      <!-- <configuration> -->
+      <!-- <useTestClasspath>true</useTestClasspath> -->
+      <!-- </configuration> -->
+      <!-- <executions> -->
+      <!-- <execution> -->
+      <!-- <id>tomcat-run</id> -->
+      <!-- <goals> -->
+      <!-- <goal>run-war-only</goal> -->
+      <!-- </goals> -->
+      <!-- <phase>pre-integration-test</phase> -->
+      <!-- <configuration> -->
+      <!-- <path>/0302-ws-javaconfig-service</path> -->
+      <!-- <port>10302</port> -->
+      <!-- <uriEncoding>UTF-8</uriEncoding> -->
+      <!-- <warDirectory>${project.build.directory}/webapp/</warDirectory> -->
+      <!-- <fork>true</fork> -->
+      <!-- <ignorePackaging>true</ignorePackaging> -->
+      <!-- </configuration> -->
+      <!-- </execution> -->
+      <!-- <execution> -->
+      <!-- <id>tomcat-shutdown</id> -->
+      <!-- <goals> -->
+      <!-- <goal>shutdown</goal> -->
+      <!-- </goals> -->
+      <!-- <phase>post-integration-test</phase> -->
+      <!-- </execution> -->
+      <!-- </executions> -->
+      <!-- </plugin> -->
 
     </plugins>
   </build>
