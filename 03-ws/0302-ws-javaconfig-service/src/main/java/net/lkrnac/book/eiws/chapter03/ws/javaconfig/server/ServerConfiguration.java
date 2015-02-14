@@ -17,12 +17,6 @@ public class ServerConfiguration extends WsConfigurerAdapter {
   public static final String NAMESPACE =
       "http://localhost:10302/0302-ws-javaconfig-service";
 
-  // @Bean
-  // public SimpleWsdl11Definition orders() {
-  // return new SimpleWsdl11Definition(new
-  // ClassPathResource("userDetails.xsd"));
-  // }
-
   @Bean
   public DefaultWsdl11Definition userDetails(XsdSchema userDetailsSchema) {
     DefaultWsdl11Definition wsdlDefinition = new DefaultWsdl11Definition();
