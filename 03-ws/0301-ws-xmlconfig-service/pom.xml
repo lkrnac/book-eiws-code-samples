@@ -42,6 +42,11 @@
       <artifactId>wsdl4j</artifactId>
       <version>1.6.3</version>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.10</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -56,7 +61,7 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
-      
+
       <!-- Generate model based on XSD -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

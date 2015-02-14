@@ -15,4 +15,8 @@
     targetNamespace="http://localhost:10301/0301-ws-xmlconfig-service">
     <ws:xsd location="classpath:userDetails.xsd" />
   </ws:dynamic-wsdl>
+  
+<!--   <ws:interceptors> -->
+<!--     <ref bean="globalInterceptor"/> -->
+<!--   </ws:interceptors> -->
 </beans>

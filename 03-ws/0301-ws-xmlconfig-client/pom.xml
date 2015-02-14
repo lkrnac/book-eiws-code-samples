@@ -27,6 +27,11 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
       <groupId>wsdl4j</groupId>
       <artifactId>wsdl4j</artifactId>
     </dependency>
@@ -70,7 +75,7 @@
           <detail>true</detail>
         </configuration>
       </plugin>
-      
+
       <!-- Run *ITCase.java tests during integration phase -->
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
@@ -83,7 +88,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- Download server war and unpack it -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -110,8 +115,8 @@
           </execution>
         </executions>
       </plugin>
-      
-      <!-- Run server war before integration test phase --> 
+
+      <!-- Run server war before integration test phase -->
       <!-- and stop server after integration test phase -->
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
@@ -119,7 +124,7 @@
         <version>2.2</version>
         <configuration>
           <useTestClasspath>true</useTestClasspath>
-        </configuration>        
+        </configuration>
         <executions>
           <execution>
             <id>tomcat-run</id>
