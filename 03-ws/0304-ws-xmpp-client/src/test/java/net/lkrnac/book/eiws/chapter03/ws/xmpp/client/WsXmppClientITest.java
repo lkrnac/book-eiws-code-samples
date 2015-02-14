@@ -16,7 +16,6 @@ import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatchers;
 import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
-import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = WsXmppClientConfiguration.class)
 @DirtiesContext
@@ -27,7 +26,7 @@ public class WsXmppClientITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private WebServiceTemplate webServiceTemplate;
 
-  @Test
+  // @Test
   public void testGetUserDetails() throws IOException {
     // GIVEN
     MockWebServiceServer mockWsServer =
