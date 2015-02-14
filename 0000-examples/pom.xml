@@ -33,5 +33,9 @@
     <module>../03-ws/0302-ws-javaconfig-client</module>
     <module>../03-ws/0303-ws-boot-service</module>
     <module>../03-ws/0303-ws-boot-client</module>
+    <module>../03-ws/0305-ws-interceptor-client</module>
+    <module>../03-ws/0305-ws-interceptor-service</module>    
+    <module>../03-ws/0306-ws-error-client</module>
+    <module>../03-ws/0306-ws-error-service</module>    
   </modules>
 </project>
