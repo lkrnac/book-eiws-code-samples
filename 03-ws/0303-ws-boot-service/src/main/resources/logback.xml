@@ -12,7 +12,7 @@
     <level value="TRACE" />
   </logger>
 
-  <root level="trace">
+  <root level="INFO">
     <appender-ref ref="STDOUT" />
   </root>
 </configuration>
