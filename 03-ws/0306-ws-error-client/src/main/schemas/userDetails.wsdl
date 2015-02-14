@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://localhost:10303/0303-ws-error-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost:10303/0303-ws-error-service" targetNamespace="http://localhost:10303/0303-ws-error-service">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://localhost:10306/0306-ws-error-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost:10306/0306-ws-error-service" targetNamespace="http://localhost:10306/0306-ws-error-service">
   <wsdl:types>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://localhost:10303/0303-ws-error-service">
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://localhost:10306/0306-ws-error-service">
 
   <xs:element name="UserDetailsResponse">
     <xs:complexType>
@@ -61,7 +61,7 @@
   </wsdl:binding>
   <wsdl:service name="UserDetailsPortService">
     <wsdl:port binding="tns:UserDetailsPortSoap11" name="UserDetailsPortSoap11">
-      <soap:address location="http://localhost:10303/wsdl/"/>
+      <soap:address location="http://localhost:10306/wsdl/"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

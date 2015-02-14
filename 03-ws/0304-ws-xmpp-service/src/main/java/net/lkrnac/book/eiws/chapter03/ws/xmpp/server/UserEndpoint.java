@@ -1,12 +1,12 @@
 package net.lkrnac.book.eiws.chapter03.ws.xmpp.server;
 
-import localhost._10304._0304_ws_xmpp_service.UserDetailsResponse;
-import localhost._10304._0304_ws_xmpp_service.UserRequest;
-
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+
+import xmpp.eiws_blah.UserDetailsResponse;
+import xmpp.eiws_blah.UserRequest;
 
 @Endpoint
 public class UserEndpoint {

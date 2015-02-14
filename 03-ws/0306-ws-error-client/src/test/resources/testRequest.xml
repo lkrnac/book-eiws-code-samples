@@ -1,2 +1,2 @@
-<ns2:UserRequest xmlns:ns2="http://localhost:10303/0303-ws-error-service"
+<ns2:UserRequest xmlns:ns2="http://localhost:10306/0306-ws-error-service"
     Email="lubos.krnac@gmail.com" />
