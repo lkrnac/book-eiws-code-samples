@@ -1,6 +1,5 @@
 package net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server;
 
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -41,9 +40,9 @@ public class GlobalInterceptorITest extends AbstractTestNGSpringContextTests {
     wsClient.sendRequest(requestCreator);
 
     // THEN
-    verify(logger, atLeastOnce()).log("Global handleRequest");
-    verify(logger, atLeastOnce()).log("Global handleResponse");
-    verify(logger, atLeastOnce()).log("Global afterCompletion");
+    verify(logger).log("Global handleRequest");
+    verify(logger).log("Global handleResponse");
+    verify(logger).log("Global afterCompletion");
     verify(logger, times(0)).log("Global handleFault");
   }
 
@@ -61,9 +60,9 @@ public class GlobalInterceptorITest extends AbstractTestNGSpringContextTests {
     wsClient.sendRequest(requestCreator);
 
     // THEN
-    verify(logger, atLeastOnce()).log("Global handleRequest");
-    verify(logger, atLeastOnce()).log("Global handleFault");
-    verify(logger, atLeastOnce()).log("Global afterCompletion");
+    verify(logger).log("Global handleRequest");
+    verify(logger).log("Global handleFault");
+    verify(logger).log("Global afterCompletion");
     verify(logger, times(0)).log("Global handleResponse");
   }
 }
