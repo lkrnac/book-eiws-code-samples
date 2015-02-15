@@ -24,14 +24,14 @@ public class UserInterceptor implements EndpointInterceptor {
   public boolean handleResponse(MessageContext messageContext, Object endpoint)
       throws Exception {
     simpleLogger.log("Endpoint handleResponse");
-    return false;
+    return true;
   }
 
   @Override
   public boolean handleFault(MessageContext messageContext, Object endpoint)
       throws Exception {
     simpleLogger.log("Endpoint handleFault");
-    return false;
+    return true;
   }
 
   @Override
