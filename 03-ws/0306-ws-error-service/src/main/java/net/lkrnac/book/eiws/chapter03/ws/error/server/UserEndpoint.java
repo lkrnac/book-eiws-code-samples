@@ -19,8 +19,12 @@ public class UserEndpoint {
       userDetails = new UserDetailsResponse();
       userDetails.setFirstName("Lubos");
       userDetails.setLastName("Krnac");
-    } else if ("client.error".equals(userRequest.getEmail())) {
-      throw new IllegalStateException("Simulate error");
+    } else if ("generic.client.error".equals(userRequest.getEmail())) {
+      throw new IllegalStateException("Generic client error");
+    } else if ("specific.client.error".equals(userRequest.getEmail())) {
+
+    } else {
+      throw new NullPointerException("Server error");
     }
     return userDetails;
   }

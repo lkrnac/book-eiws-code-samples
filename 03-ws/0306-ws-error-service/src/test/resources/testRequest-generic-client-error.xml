@@ -1,2 +1,2 @@
 <ns2:UserRequest xmlns:ns2="http://localhost:10306/0306-ws-error-service"
-    Email="client.error" />
+    Email="generic.client.error" />

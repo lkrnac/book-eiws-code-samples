@@ -17,7 +17,7 @@ import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = ServerConfiguration.class)
-public class WsErrorClientErrorITest extends AbstractTestNGSpringContextTests {
+public class GenericClientErrorITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private ApplicationContext applicationContext;
 
@@ -29,7 +29,7 @@ public class WsErrorClientErrorITest extends AbstractTestNGSpringContextTests {
 
     RequestCreator requestCreator =
         RequestCreators.withPayload(new ClassPathResource(
-            "testRequest-client-error.xml"));
+            "testRequest-generic-client-error.xml"));
 
     // WHEN
     ResponseActions response = wsClient.sendRequest(requestCreator);
@@ -37,6 +37,6 @@ public class WsErrorClientErrorITest extends AbstractTestNGSpringContextTests {
     // THEN
     response.andExpect(ResponseMatchers.clientOrSenderFault()).andExpect(
         ResponseMatchers.payload(new ClassPathResource(
-            "testResponse-client-error.xml")));
+            "testResponse-generic-client-error.xml")));
   }
 }

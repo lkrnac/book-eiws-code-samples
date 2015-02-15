@@ -48,8 +48,8 @@ public class ServerConfiguration extends WsConfigurationSupport {
     exceptionResolver.setDefaultFault(defaultSoapFault);
 
     Properties errorMappings = new Properties();
-    errorMappings.put(IllegalStateException.class.getName(), "CLIENT");
-    // SoapFaultDefinition.CLIENT);
+    errorMappings.put(IllegalStateException.class.getName(),
+        SoapFaultDefinition.CLIENT.toString());
     exceptionResolver.setExceptionMappings(errorMappings);
     exceptionResolver.setOrder(1);
 
