@@ -1,4 +1,4 @@
     <SOAP-ENV:Fault xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
       <faultcode>SOAP-ENV:Client</faultcode>
-      <faultstring xml:lang="en">Generic client error</faultstring>
+      <faultstring xml:lang="en">Specific client error</faultstring>
     </SOAP-ENV:Fault>

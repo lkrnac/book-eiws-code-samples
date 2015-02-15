@@ -22,7 +22,7 @@ public class UserEndpoint {
     } else if ("generic.client.error".equals(userRequest.getEmail())) {
       throw new IllegalStateException("Generic client error");
     } else if ("specific.client.error".equals(userRequest.getEmail())) {
-
+      throw new CustomErrorException("Specific client error");
     } else {
       throw new NullPointerException("Server error");
     }
