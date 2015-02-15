@@ -5,8 +5,6 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
@@ -17,7 +15,6 @@ import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = ServerConfiguration.class)
-@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class WsInterceptorServerITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private ApplicationContext applicationContext;

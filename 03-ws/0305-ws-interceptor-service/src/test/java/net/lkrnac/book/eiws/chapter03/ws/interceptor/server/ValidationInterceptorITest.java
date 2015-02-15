@@ -1,5 +1,6 @@
 package net.lkrnac.book.eiws.chapter03.ws.interceptor.server;
 
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -8,17 +9,15 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = ServerConfiguration.class)
-@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class ValidationInterceptorITest extends
     AbstractTestNGSpringContextTests {
   @Autowired
@@ -26,6 +25,11 @@ public class ValidationInterceptorITest extends
 
   @Autowired
   private SimpleLogger logger;
+
+  @BeforeMethod
+  public void resetMocks() {
+    reset(logger);
+  }
 
   @Test
   public void testGetUserDetails_Success() throws IOException {
