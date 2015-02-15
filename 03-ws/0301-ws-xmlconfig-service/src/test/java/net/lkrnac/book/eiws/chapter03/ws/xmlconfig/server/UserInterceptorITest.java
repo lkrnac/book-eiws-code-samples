@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 
 @ContextConfiguration(locations = { "classpath:web-service-config.xml" })
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class GlobalInterceptorITest extends AbstractTestNGSpringContextTests {
+public class UserInterceptorITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private ApplicationContext applicationContext;
 
@@ -40,10 +40,10 @@ public class GlobalInterceptorITest extends AbstractTestNGSpringContextTests {
     wsClient.sendRequest(requestCreator);
 
     // THEN
-    verify(logger).log("Global handleRequest");
-    verify(logger).log("Global handleResponse");
-    verify(logger).log("Global afterCompletion");
-    verify(logger, times(0)).log("Global handleFault");
+    verify(logger).log("Endpoint handleRequest");
+    verify(logger).log("Endpoint handleResponse");
+    verify(logger).log("Endpoint afterCompletion");
+    verify(logger, times(0)).log("Endpoint handleFault");
   }
 
   @Test
@@ -60,9 +60,9 @@ public class GlobalInterceptorITest extends AbstractTestNGSpringContextTests {
     wsClient.sendRequest(requestCreator);
 
     // THEN
-    verify(logger).log("Global handleRequest");
-    verify(logger).log("Global handleFault");
-    verify(logger).log("Global afterCompletion");
-    verify(logger, times(0)).log("Global handleResponse");
+    verify(logger).log("Endpoint handleRequest");
+    verify(logger).log("Endpoint handleFault");
+    verify(logger).log("Endpoint afterCompletion");
+    verify(logger, times(0)).log("Endpoint handleResponse");
   }
 }

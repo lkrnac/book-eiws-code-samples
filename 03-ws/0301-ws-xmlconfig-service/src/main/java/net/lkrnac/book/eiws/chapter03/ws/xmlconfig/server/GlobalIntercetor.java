@@ -16,28 +16,28 @@ public class GlobalIntercetor implements EndpointInterceptor {
   @Override
   public boolean handleRequest(MessageContext messageContext, Object endpoint)
       throws Exception {
-    simpleLogger.log("handleRequest");
+    simpleLogger.log("Global handleRequest");
     return true;
   }
 
   @Override
   public boolean handleResponse(MessageContext messageContext, Object endpoint)
       throws Exception {
-    simpleLogger.log("handleResponse");
+    simpleLogger.log("Global handleResponse");
     return false;
   }
 
   @Override
   public boolean handleFault(MessageContext messageContext, Object endpoint)
       throws Exception {
-    simpleLogger.log("handleFault");
+    simpleLogger.log("Global handleFault");
     return false;
   }
 
   @Override
   public void afterCompletion(MessageContext messageContext, Object endpoint,
       Exception ex) throws Exception {
-    simpleLogger.log("afterCompletion");
+    simpleLogger.log("Global afterCompletion");
   }
 
 }

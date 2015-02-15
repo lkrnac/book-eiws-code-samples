@@ -18,6 +18,9 @@
   
   <ws:interceptors>
     <ref bean="globalInterceptor"/>
+    <ws:payloadRoot namespaceUri="http://localhost:10301/0301-ws-xmlconfig-service" localPart="UserRequest">
+      <bean class="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server.UserInterceptor"/>
+    </ws:payloadRoot>
   </ws:interceptors>
   
   <bean id="globalInterceptor" class="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server.GlobalIntercetor" />

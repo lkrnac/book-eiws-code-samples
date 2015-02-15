@@ -26,7 +26,8 @@ public class WsXmlConfigServerITest extends AbstractTestNGSpringContextTests {
         MockWebServiceClient.createClient(applicationContext);
 
     RequestCreator requestCreator =
-        RequestCreators.withPayload(new ClassPathResource("testRequest.xml"));
+        RequestCreators.withPayload(new ClassPathResource(
+            "testRequest-success.xml"));
 
     // WHEN
     ResponseActions response = wsClient.sendRequest(requestCreator);
