@@ -11,29 +11,27 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
-import org.springframework.ws.config.annotation.WsConfigurationSupport;
+import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.server.EndpointInterceptor;
+import org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor;
+import org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor;
+import org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
+import org.springframework.xml.xsd.SimpleXsdSchema;
 
 @EnableWs
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class ServerConfiguration extends WsConfigurationSupport {
+public class ServerConfiguration extends WsConfigurerAdapter {
   public static final String NAMESPACE =
       "http://localhost:10305/0305-ws-interceptor-service";
 
-  private UserInterceptor userInterceptor;
-  private GlobalIntercetor globalInterceptor;
-
   @Autowired
-  public ServerConfiguration(UserInterceptor userInterceptor,
-      GlobalIntercetor globalInterceptor) {
-    super();
-    this.userInterceptor = userInterceptor;
-    this.globalInterceptor = globalInterceptor;
-  }
+  private UserInterceptor userInterceptor;
+  @Autowired
+  private GlobalIntercetor globalInterceptor;
 
   @Bean
   public SimpleWsdl11Definition userDetails() {
@@ -53,5 +51,16 @@ public class ServerConfiguration extends WsConfigurationSupport {
   public void addInterceptors(List<EndpointInterceptor> interceptors) {
     interceptors.add(globalInterceptor);
     interceptors.add(userInterceptor);
+    interceptors.add(new PayloadLoggingInterceptor());
+    interceptors.add(new SoapEnvelopeLoggingInterceptor());
+
+    PayloadValidatingInterceptor validationInterceptor =
+        new PayloadValidatingInterceptor();
+    SimpleXsdSchema schema =
+        new SimpleXsdSchema(new ClassPathResource("userDetails.xsd"));
+    validationInterceptor.setXsdSchema(schema);
+    validationInterceptor.setValidateRequest(true);
+    validationInterceptor.setValidateResponse(true);
+    interceptors.add(validationInterceptor);
   }
 }

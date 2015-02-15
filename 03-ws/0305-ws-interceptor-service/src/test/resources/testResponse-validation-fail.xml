@@ -1,0 +1,6 @@
+  <ns2:UserDetailsResponse
+    xmlns:ns2="http://localhost:10305/0305-ws-interceptor-service">
+    <ns2:FirstName>Lubos</ns2:FirstName>
+    <ns2:LastName>12345</ns2:LastName>
+  </ns2:UserDetailsResponse>
+
