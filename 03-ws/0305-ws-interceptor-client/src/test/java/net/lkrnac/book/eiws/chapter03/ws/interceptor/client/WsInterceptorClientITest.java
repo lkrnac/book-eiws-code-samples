@@ -1,5 +1,8 @@
 package net.lkrnac.book.eiws.chapter03.ws.interceptor.client;
 
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
@@ -16,6 +19,7 @@ import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.ws.test.client.RequestMatchers;
 import org.springframework.ws.test.client.ResponseCreator;
 import org.springframework.ws.test.client.ResponseCreators;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = WsInterceptorClientConfiguration.class)
@@ -26,6 +30,14 @@ public class WsInterceptorClientITest extends AbstractTestNGSpringContextTests {
 
   @Autowired
   private WebServiceTemplate webServiceTemplate;
+
+  @Autowired
+  private SimpleLogger logger;
+
+  @BeforeMethod
+  public void resetMocks() {
+    reset(logger);
+  }
 
   @Test
   public void testGetUserDetails() throws IOException {
@@ -48,5 +60,9 @@ public class WsInterceptorClientITest extends AbstractTestNGSpringContextTests {
     assertEquals(userDetails.getFirstName(), "Lubos");
     assertEquals(userDetails.getLastName(), "Krnac");
     mockWsServer.verify();
+    verify(logger).log("Client handleRequest");
+    verify(logger).log("Client handleResponse");
+    verify(logger).log("Client afterCompletion");
+    verify(logger, times(0)).log("Client handleFault");
   }
 }

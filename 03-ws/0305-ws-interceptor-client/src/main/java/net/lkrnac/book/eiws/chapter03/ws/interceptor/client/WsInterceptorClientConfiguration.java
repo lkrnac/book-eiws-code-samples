@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
-import org.springframework.ws.transport.http.HttpComponentsMessageSender;
+import org.springframework.ws.client.support.interceptor.ClientInterceptor;
 
 @Configuration
 @ComponentScan
@@ -19,18 +19,17 @@ public class WsInterceptorClientConfiguration {
   }
 
   @Bean
-  public WebServiceTemplate webServiceTemplate(Jaxb2Marshaller marshaller) {
+  public WebServiceTemplate webServiceTemplate(Jaxb2Marshaller marshaller,
+      UserInterceptor userInterceptor) {
     WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
     webServiceTemplate.setMarshaller(marshaller);
     webServiceTemplate.setUnmarshaller(marshaller);
     webServiceTemplate
         .setDefaultUri("http://localhost:10305/0305-ws-interceptor-service");
 
-    HttpComponentsMessageSender messageSender =
-        new HttpComponentsMessageSender();
-    messageSender.setConnectionTimeout(100);
-    messageSender.setMaxTotalConnections(10);
-    webServiceTemplate.setMessageSender(messageSender);
+    ClientInterceptor[] interceptors =
+        new ClientInterceptor[] { userInterceptor };
+    webServiceTemplate.setInterceptors(interceptors);
     return webServiceTemplate;
   }
 }
