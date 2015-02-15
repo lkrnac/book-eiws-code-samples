@@ -10,29 +10,29 @@
   <modules>
     <module>../0000-examples-parent</module>
     <module>../0000-common-library</module>
-    <module>../01-async/0101-java-concurrency</module>
-    <module>../01-async/0102-async-job</module>
-    <module>../01-async/0103-scheduled-job</module>
-    <module>../02-remoting/0201-java-rmi-service</module>
-    <module>../02-remoting/0201-java-rmi-client</module>
-    <module>../02-remoting/0202-spring-rmi-java-config-service</module>
-    <module>../02-remoting/0202-spring-rmi-java-config-client</module>
-    <module>../02-remoting/0203-spring-rmi-xml-config-service</module>
-    <module>../02-remoting/0203-spring-rmi-xml-config-client</module>
-    <module>../02-remoting/0204-http-invoker-handler-servlet-java-config</module>
-    <module>../02-remoting/0205-http-invoker-handler-servlet-xml-config</module>
-    <module>../02-remoting/0206-http-invoker-dispatcher-servlet</module>
-    <module>../02-remoting/0207-http-invoker-simple-service</module>
-    <module>../02-remoting/0207-http-invoker-simple-client</module>
-    <module>../02-remoting/0208-hessian-handler-servlet-java-config</module>
-    <module>../02-remoting/0209-burlap-handler-servlet-xml-config</module>
-    <module>../02-remoting/0210-hessian-dispatcher-servlet</module>
-    <module>../03-ws/0301-ws-xmlconfig-service</module>
-    <module>../03-ws/0301-ws-xmlconfig-client</module>
-    <module>../03-ws/0302-ws-javaconfig-service</module>
-    <module>../03-ws/0302-ws-javaconfig-client</module>
-    <module>../03-ws/0303-ws-boot-service</module>
-    <module>../03-ws/0303-ws-boot-client</module>
+<!--     <module>../01-async/0101-java-concurrency</module> -->
+<!--     <module>../01-async/0102-async-job</module> -->
+<!--     <module>../01-async/0103-scheduled-job</module> -->
+<!--     <module>../02-remoting/0201-java-rmi-service</module> -->
+<!--     <module>../02-remoting/0201-java-rmi-client</module> -->
+<!--     <module>../02-remoting/0202-spring-rmi-java-config-service</module> -->
+<!--     <module>../02-remoting/0202-spring-rmi-java-config-client</module> -->
+<!--     <module>../02-remoting/0203-spring-rmi-xml-config-service</module> -->
+<!--     <module>../02-remoting/0203-spring-rmi-xml-config-client</module> -->
+<!--     <module>../02-remoting/0204-http-invoker-handler-servlet-java-config</module> -->
+<!--     <module>../02-remoting/0205-http-invoker-handler-servlet-xml-config</module> -->
+<!--     <module>../02-remoting/0206-http-invoker-dispatcher-servlet</module> -->
+<!--     <module>../02-remoting/0207-http-invoker-simple-service</module> -->
+<!--     <module>../02-remoting/0207-http-invoker-simple-client</module> -->
+<!--     <module>../02-remoting/0208-hessian-handler-servlet-java-config</module> -->
+<!--     <module>../02-remoting/0209-burlap-handler-servlet-xml-config</module> -->
+<!--     <module>../02-remoting/0210-hessian-dispatcher-servlet</module> -->
+<!--     <module>../03-ws/0301-ws-xmlconfig-service</module> -->
+<!--     <module>../03-ws/0301-ws-xmlconfig-client</module> -->
+<!--     <module>../03-ws/0302-ws-javaconfig-service</module> -->
+<!--     <module>../03-ws/0302-ws-javaconfig-client</module> -->
+<!--     <module>../03-ws/0303-ws-boot-service</module> -->
+<!--     <module>../03-ws/0303-ws-boot-client</module> -->
     <module>../03-ws/0305-ws-interceptor-client</module>
     <module>../03-ws/0305-ws-interceptor-service</module>    
     <module>../03-ws/0306-ws-error-client</module>
