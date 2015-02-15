@@ -19,6 +19,8 @@ public class UserEndpoint {
       userDetails = new UserDetailsResponse();
       userDetails.setFirstName("Lubos");
       userDetails.setLastName("Krnac");
+    } else if ("client.error".equals(userRequest.getEmail())) {
+      throw new IllegalStateException("Simulate error");
     }
     return userDetails;
   }

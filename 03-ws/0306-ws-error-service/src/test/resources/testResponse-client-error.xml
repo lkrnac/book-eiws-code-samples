@@ -1,0 +1,4 @@
+    <SOAP-ENV:Fault xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+      <faultcode>SOAP-ENV:Client</faultcode>
+      <faultstring xml:lang="en">Simulate error</faultstring>
+    </SOAP-ENV:Fault>
