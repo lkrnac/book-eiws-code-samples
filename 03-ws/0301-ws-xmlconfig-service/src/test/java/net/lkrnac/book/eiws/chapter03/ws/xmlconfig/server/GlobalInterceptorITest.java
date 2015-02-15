@@ -15,7 +15,6 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
-import org.springframework.xml.transform.StringSource;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(locations = { "classpath:web-service-config.xml" })
@@ -34,7 +33,8 @@ public class GlobalInterceptorITest extends AbstractTestNGSpringContextTests {
         MockWebServiceClient.createClient(applicationContext);
 
     RequestCreator requestCreator =
-        RequestCreators.withPayload(new ClassPathResource("testRequest.xml"));
+        RequestCreators.withPayload(new ClassPathResource(
+            "testRequest-success.xml"));
 
     // WHEN
     wsClient.sendRequest(requestCreator);
@@ -46,14 +46,15 @@ public class GlobalInterceptorITest extends AbstractTestNGSpringContextTests {
     verify(logger, times(0)).log("handleFault");
   }
 
-  // @Test
+  @Test
   public void testGetUserDetails_Fail() throws IOException {
     // GIVEN
     MockWebServiceClient wsClient =
         MockWebServiceClient.createClient(applicationContext);
 
     RequestCreator requestCreator =
-        RequestCreators.withPayload(new StringSource("lalala"));
+        RequestCreators.withPayload(new ClassPathResource(
+            "testRequest-fail.xml"));
 
     // WHEN
     wsClient.sendRequest(requestCreator);
