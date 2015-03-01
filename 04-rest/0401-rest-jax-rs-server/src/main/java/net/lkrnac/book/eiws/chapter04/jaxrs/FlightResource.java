@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Path("/flight")
 @Component
 public class FlightResource {
-  private FlightService flightService;
+  private final FlightService flightService;
 
   @Autowired
   public FlightResource(FlightService flightService) {
@@ -34,14 +34,14 @@ public class FlightResource {
   @GET
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Flight getFlight(@PathParam("id") int id) {
-    return flightService.getFlight(id);
+  public Flight getFlight(@PathParam("id") int identifier) {
+    return flightService.getFlight(identifier);
   }
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   public Response postFlight(Flight flight) {
-    String message = "Flight " + flight.getId() + " created";
+    String message = "Flight " + flight.getIdentifier() + " created";
     flightService.putFlight(flight);
     return Response.status(201).entity(message).build();
   }

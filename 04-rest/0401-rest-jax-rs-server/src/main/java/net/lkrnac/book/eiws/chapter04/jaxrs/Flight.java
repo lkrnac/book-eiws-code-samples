@@ -1,31 +1,32 @@
 package net.lkrnac.book.eiws.chapter04.jaxrs;
 
+
 public class Flight {
-  private int id;
-  private String from;
-  private String to;
+  private int identifier;
+  private String origin;
+  private String destination;
 
-  public int getId() {
-    return id;
+  public int getIdentifier() {
+    return identifier;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setIdentifier(int identifier) {
+    this.identifier = identifier;
   }
 
-  public String getFrom() {
-    return from;
+  public String getOrigin() {
+    return origin;
   }
 
-  public void setFrom(String from) {
-    this.from = from;
+  public void setOrigin(String origin) {
+    this.origin = origin;
   }
 
-  public String getTo() {
-    return to;
+  public String getDestination() {
+    return destination;
   }
 
-  public void setTo(String to) {
-    this.to = to;
+  public void setDestination(String destination) {
+    this.destination = destination;
   }
 }

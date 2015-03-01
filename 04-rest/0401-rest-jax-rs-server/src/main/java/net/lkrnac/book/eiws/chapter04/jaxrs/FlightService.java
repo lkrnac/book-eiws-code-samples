@@ -2,25 +2,24 @@ package net.lkrnac.book.eiws.chapter04.jaxrs;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class FlightService {
-  private Map<Integer, Flight> flights = Collections
-      .synchronizedMap(new HashMap<>());
+  private final ConcurrentHashMap<Integer, Flight> flights =
+      new ConcurrentHashMap<>();
 
   public Collection<Flight> getAllFlights() {
     return Collections.unmodifiableCollection(flights.values());
   }
 
-  public Flight getFlight(int id) {
-    return flights.get(id);
+  public Flight getFlight(int identifier) {
+    return flights.get(identifier);
   }
 
   public void putFlight(Flight flight) {
-    flights.put(flight.getId(), flight);
+    flights.put(flight.getIdentifier(), flight);
   }
 }
