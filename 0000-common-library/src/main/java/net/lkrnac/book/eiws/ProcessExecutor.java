@@ -26,8 +26,25 @@ public class ProcessExecutor {
    *           if I/O error occurs
    */
   public final Process execute(String jarName) throws IOException {
+    return execute("dependency", jarName);
+  }
+
+  /**
+   * Runs executable jar is separate process and redirects console into "log"
+   * file.
+   * 
+   * @param jarName
+   *          name of the jar to run
+   * @param directory
+   *          directory where is dependency located (build folder is root)
+   * @return started {@link Process} instance
+   * @throws IOException
+   *           if I/O error occurs
+   */
+  public final Process execute(String directory, String jarName)
+      throws IOException {
     ProcessBuilder processBuilder = new ProcessBuilder("java", "-jar", jarName);
-    processBuilder.directory(new File("target/dependency"));
+    processBuilder.directory(new File("target" + File.separator + directory));
     File log = new File("process-executor.log");
     processBuilder.redirectErrorStream(true);
     processBuilder.redirectOutput(Redirect.appendTo(log));

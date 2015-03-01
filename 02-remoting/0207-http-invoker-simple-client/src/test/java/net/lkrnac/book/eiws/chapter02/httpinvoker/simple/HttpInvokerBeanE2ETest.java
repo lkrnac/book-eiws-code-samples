@@ -4,8 +4,8 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
+import net.lkrnac.book.eiws.FunctionRetryHandler;
 import net.lkrnac.book.eiws.ProcessExecutor;
-import net.lkrnac.book.eiws.RetryHandler;
 import net.lkrnac.book.eiws.chapter02.httpinvoker.simple.client.ClientConfiguration;
 import net.lkrnac.book.eiws.chapter02.httpinvoker.simple.shared.BarService;
 
@@ -25,8 +25,8 @@ public class HttpInvokerBeanE2ETest extends AbstractTestNGSpringContextTests {
         new ProcessExecutor().execute("0207-http-invoker-simple-service.jar");
     try {
 
-      RetryHandler<Object, ApplicationContext> retryHandler =
-          new RetryHandler<>();
+      FunctionRetryHandler<Object, ApplicationContext> retryHandler =
+          new FunctionRetryHandler<>();
       ApplicationContext context =
           retryHandler.retry(SpringApplication::run, ClientConfiguration.class,
               RETRY_TIMEOUT);

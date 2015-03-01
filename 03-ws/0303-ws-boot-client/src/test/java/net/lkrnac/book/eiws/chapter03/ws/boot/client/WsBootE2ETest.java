@@ -4,8 +4,8 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
+import net.lkrnac.book.eiws.FunctionRetryHandler;
 import net.lkrnac.book.eiws.ProcessExecutor;
-import net.lkrnac.book.eiws.RetryHandler;
 import net.lkrnac.book.eiws.chapter03.ws.boot.model.UserDetailsResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,8 @@ public class WsBootE2ETest extends AbstractTestNGSpringContextTests {
     Process process = new ProcessExecutor().execute("0303-ws-boot-service.jar");
     try {
 
-      RetryHandler<String, UserDetailsResponse> retryHandler =
-          new RetryHandler<>();
+      FunctionRetryHandler<String, UserDetailsResponse> retryHandler =
+          new FunctionRetryHandler<>();
 
       // WHEN
       UserDetailsResponse userDetails =

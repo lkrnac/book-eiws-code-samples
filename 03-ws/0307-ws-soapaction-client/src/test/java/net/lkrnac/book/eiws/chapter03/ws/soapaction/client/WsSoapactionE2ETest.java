@@ -5,7 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.io.IOException;
 
 import net.lkrnac.book.eiws.ProcessExecutor;
-import net.lkrnac.book.eiws.RetryHandler;
+import net.lkrnac.book.eiws.FunctionRetryHandler;
 import net.lkrnac.book.eiws.chapter03.ws.soapaction.model.UserDetailsResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +29,8 @@ public class WsSoapactionE2ETest extends AbstractTestNGSpringContextTests {
         new ProcessExecutor().execute("0307-ws-soapaction-service.jar");
     try {
 
-      RetryHandler<String, UserDetailsResponse> retryHandler =
-          new RetryHandler<>();
+      FunctionRetryHandler<String, UserDetailsResponse> retryHandler =
+          new FunctionRetryHandler<>();
 
       // WHEN
       UserDetailsResponse userDetails =

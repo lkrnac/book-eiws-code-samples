@@ -5,7 +5,7 @@ import static org.testng.Assert.assertEquals;
 import java.io.IOException;
 
 import net.lkrnac.book.eiws.ProcessExecutor;
-import net.lkrnac.book.eiws.RetryHandler;
+import net.lkrnac.book.eiws.FunctionRetryHandler;
 import net.lkrnac.book.eiws.chapter03.ws.xmpp.model.UserDetailsResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,8 @@ public class WsXmppE2ETest extends AbstractTestNGSpringContextTests {
     Process process = new ProcessExecutor().execute("0304-ws-xmpp-service.jar");
     try {
 
-      RetryHandler<String, UserDetailsResponse> retryHandler =
-          new RetryHandler<>();
+      FunctionRetryHandler<String, UserDetailsResponse> retryHandler =
+          new FunctionRetryHandler<>();
 
       // WHEN
       UserDetailsResponse userDetails =

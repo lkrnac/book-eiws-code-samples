@@ -3,7 +3,7 @@ package net.lkrnac.book.eiws;
 import java.util.function.Function;
 
 /**
- * Class responsible to retrying operations.
+ * Class responsible to retrying operations of {@link Function} instance.
  * 
  * @author Lubos Krnac
  *
@@ -12,7 +12,7 @@ import java.util.function.Function;
  * @param <R>
  *          return type of retry operation (function)
  */
-public class RetryHandler<T, R> {
+public class FunctionRetryHandler<T, R> {
   private static final int RETRY_TIMEOUT = 50;
 
   /**

@@ -4,8 +4,8 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
+import net.lkrnac.book.eiws.FunctionRetryHandler;
 import net.lkrnac.book.eiws.ProcessExecutor;
-import net.lkrnac.book.eiws.RetryHandler;
 import net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.client.BarService;
 import net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.client.ClientConfiguration;
 
@@ -23,8 +23,8 @@ public class SpringRmiJavaConfigE2ETest {
             .execute("0202-spring-rmi-java-config-service.jar");
     try {
 
-      RetryHandler<Object, ApplicationContext> retryHandler =
-          new RetryHandler<>();
+      FunctionRetryHandler<Object, ApplicationContext> retryHandler =
+          new FunctionRetryHandler<>();
       ApplicationContext context =
           retryHandler.retry(SpringApplication::run, ClientConfiguration.class,
               RETRY_TIMEOUT);
