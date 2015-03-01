@@ -40,5 +40,6 @@
     <module>../03-ws/0307-ws-soapaction-client</module>    
     <module>../03-ws/0307-ws-soapaction-service</module>    
     <module>../04-rest/0401-rest-jax-rs-server</module>    
+    <module>../04-rest/0403-rest-xml-config-server</module>    
   </modules>
 </project>
