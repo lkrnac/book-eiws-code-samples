@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class RestJaxrsApplication extends SpringBootServletInitializer {
+public class RestXmlConfigApplication extends SpringBootServletInitializer {
   public static void main(String... args) {
-    SpringApplication.run(RestJaxrsApplication.class, args);
+    SpringApplication.run(RestXmlConfigApplication.class, args);
   }
 }

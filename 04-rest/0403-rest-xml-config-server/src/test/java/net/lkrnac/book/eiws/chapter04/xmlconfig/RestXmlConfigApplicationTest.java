@@ -16,9 +16,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@SpringApplicationConfiguration(classes = RestJaxrsApplication.class)
+@SpringApplicationConfiguration(classes = RestXmlConfigApplication.class)
 @WebAppConfiguration
-public class RestJaxrsApplicationTest extends AbstractTestNGSpringContextTests {
+public class RestXmlConfigApplicationTest extends AbstractTestNGSpringContextTests {
   private static final String TEST_RECORD1 =
       "{\"identifier\": \"1\", \"origin\": \"Bratislava\", \"destination\": \"Dublin\"}";
   private static final String TEST_RECORD2 =
