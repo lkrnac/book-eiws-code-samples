@@ -1,6 +1,7 @@
 package net.lkrnac.book.eiws.chapter04.jaxrs;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
 
 import java.io.IOException;
 import java.net.URI;
@@ -96,6 +97,22 @@ public class RestJaxrsApplicationITCase extends
     assertEquals(actualFlights[1].getDestination(),
         expectedFlight2.getDestination());
     assertEquals(actualFlights[1].getOrigin(), expectedFlight2.getOrigin());
+  }
+
+  @Test
+  public void testDeleteFlight() {
+    // GIVEN
+    Flight expectedFlight = createTestingRecord(1);
+    restTemplate.postForEntity(FLIGHT_URL, expectedFlight, String.class);
+
+    // WHEN
+    restTemplate.delete(FLIGHT_URL + "/" + expectedFlight.getIdentifier());
+
+    // THEN
+    Flight actualFlight =
+        restTemplate.getForObject(
+            FLIGHT_URL + "/" + expectedFlight.getIdentifier(), Flight.class);
+    assertNull(actualFlight);
   }
 
   private Flight createTestingRecord(int idx) {

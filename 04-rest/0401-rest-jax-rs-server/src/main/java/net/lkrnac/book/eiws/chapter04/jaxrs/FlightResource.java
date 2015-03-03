@@ -3,6 +3,7 @@ package net.lkrnac.book.eiws.chapter04.jaxrs;
 import java.util.Collection;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -41,8 +42,14 @@ public class FlightResource {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   public Response postFlight(Flight flight) {
-    String message = "Flight " + flight.getIdentifier() + " created";
     flightService.putFlight(flight);
-    return Response.status(201).entity(message).build();
+    return Response.status(201).build();
+  }
+
+  @DELETE
+  @Path("/{id}")
+  public Response deleteFlight(@PathParam("id") int identifier) {
+    flightService.deleteFlight(identifier);
+    return Response.ok().build();
   }
 }
