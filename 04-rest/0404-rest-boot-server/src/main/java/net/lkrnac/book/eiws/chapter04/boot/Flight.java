@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter04.xmlconfig;
+package net.lkrnac.book.eiws.chapter04.boot;
 
 
 public class Flight {

@@ -1,9 +1,10 @@
-package net.lkrnac.book.eiws.chapter04.xmlconfig;
+package net.lkrnac.book.eiws.chapter04.boot;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import net.lkrnac.book.eiws.chapter04.boot.RestBootApplication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -16,9 +17,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@SpringApplicationConfiguration(classes = RestXmlConfigApplication.class)
+@SpringApplicationConfiguration(classes = RestBootApplication.class)
 @WebAppConfiguration
-public class RestXmlConfigApplicationTest extends AbstractTestNGSpringContextTests {
+public class RestBootApplicationTest extends AbstractTestNGSpringContextTests {
   private static final String TEST_RECORD1 =
       "{\"identifier\": \"1\", \"origin\": \"Bratislava\", \"destination\": \"Dublin\"}";
   private static final String TEST_RECORD2 =
