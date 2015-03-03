@@ -79,6 +79,18 @@ public class RestJaxrsApplicationITCase extends
   }
 
   @Test
+  public void testSingleGetNoContent() {
+    // GIVEN
+
+    // WHEN
+    Flight actualFlight =
+        restTemplate.getForObject(FLIGHT_URL + "/3", Flight.class);
+
+    // THEN
+    assertNull(actualFlight);
+  }
+
+  @Test
   public void testMultiGet() {
     // GIVEN
     Flight expectedFlight1 = createTestingRecord(1);
