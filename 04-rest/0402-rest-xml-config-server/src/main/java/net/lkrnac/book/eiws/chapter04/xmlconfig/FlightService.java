@@ -22,4 +22,8 @@ public class FlightService {
   public void putFlight(Flight flight) {
     flights.put(flight.getIdentifier(), flight);
   }
+
+  public Flight deleteFlight(int identifier) {
+    return flights.remove(identifier);
+  }
 }

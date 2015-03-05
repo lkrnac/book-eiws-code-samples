@@ -1,10 +1,11 @@
 package net.lkrnac.book.eiws.chapter04.boot;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import net.lkrnac.book.eiws.chapter04.boot.RestBootApplication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -96,4 +97,22 @@ public class RestBootApplicationTest extends AbstractTestNGSpringContextTests {
       .andExpect(jsonPath("$[1].destination").value("Paris"));
     // @formatter:off
   }
+  
+  @Test
+  public void testDeleteFlight() throws Exception{
+    //GIVEN
+    mockMvc.perform(post(FLIGHT_URL)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(TEST_RECORD1));
+    
+    //WHEN
+    mockMvc.perform(delete(FLIGHT_URL + "/{id}", 1));
+    
+    //THEN
+    mockMvc.perform(get(FLIGHT_URL + "/{id}", 1)
+        .accept(MediaType.APPLICATION_JSON)
+      ) 
+      .andExpect(status().isOk())
+      .andExpect(content().string(""));
+  }  
 }
