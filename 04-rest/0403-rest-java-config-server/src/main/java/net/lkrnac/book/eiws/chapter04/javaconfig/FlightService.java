@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter04.xmlconfig;
+package net.lkrnac.book.eiws.chapter04.javaconfig;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -21,5 +21,9 @@ public class FlightService {
 
   public void putFlight(Flight flight) {
     flights.put(flight.getIdentifier(), flight);
+  }
+
+  public Flight deleteFlight(int identifier) {
+    return flights.remove(identifier);
   }
 }
