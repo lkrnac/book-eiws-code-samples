@@ -17,16 +17,10 @@
 
   <dependencies>
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>7.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.glassfish</groupId>
       <artifactId>javax.servlet</artifactId>
       <version>3.0</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
