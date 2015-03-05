@@ -43,5 +43,6 @@
     <module>../04-rest/0402-rest-xml-config-server</module>    
     <module>../04-rest/0403-rest-java-config-server</module>    
     <module>../04-rest/0404-rest-boot-server</module>    
+    <module>../04-rest/0405-rest-restcontroller-server</module>    
   </modules>
 </project>
