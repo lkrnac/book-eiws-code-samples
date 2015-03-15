@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter01.async;
 
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import net.lkrnac.book.eiws.chapter01.async.task.Caller;
@@ -16,17 +16,15 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @ComponentScan(basePackageClasses = Caller.class)
 @EnableAsync
 public class AsyncConfigurationSmallerPool {
-  private static final int EXEC_COUNT = 10;
-
-  @Bean(name = SpringConstants.TASK_EXECUTOR)
-  public ExecutorService createThreadPool() {
+  @Bean
+  public Executor customTaskExecutor() {
     return Executors.newWorkStealingPool();
   }
 
   public static void main(String... args) throws InterruptedException {
     ApplicationContext context =
-        SpringApplication.run(AsyncConfigurationBiggerPool.class, args);
+        SpringApplication.run(AsyncConfigurationSmallerPool.class, args);
     Caller caller = context.getBean(Caller.class);
-    caller.kickOffAsyncTasks(EXEC_COUNT);
+    caller.kickOffAsyncTasks(10);
   }
 }

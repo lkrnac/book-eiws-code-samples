@@ -34,6 +34,6 @@ public class Caller {
         logger.log(e.getLocalizedMessage());
       }
     });
-    logger.log("Elapsed time: " + (System.currentTimeMillis() - start));
+    logger.log("Elapsed time: " + (System.currentTimeMillis() - start) + " ms");
   }
 }

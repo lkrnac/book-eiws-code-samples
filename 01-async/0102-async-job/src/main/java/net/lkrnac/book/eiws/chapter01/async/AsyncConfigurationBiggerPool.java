@@ -1,7 +1,6 @@
 package net.lkrnac.book.eiws.chapter01.async;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.Executor;
 
 import net.lkrnac.book.eiws.chapter01.async.task.Caller;
 
@@ -11,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
 @ComponentScan(basePackageClasses = Caller.class)
@@ -18,9 +18,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class AsyncConfigurationBiggerPool {
   private static final int EXEC_COUNT = 10;
 
-  @Bean(name = SpringConstants.TASK_EXECUTOR)
-  public ExecutorService createThreadPool() {
-    return Executors.newFixedThreadPool(EXEC_COUNT);
+  @Bean
+  public Executor customTaskExecutor() {
+    ThreadPoolTaskExecutor threadPool = new ThreadPoolTaskExecutor();
+    threadPool.setCorePoolSize(EXEC_COUNT);
+    return threadPool;
   }
 
   public static void main(String... args) throws InterruptedException {

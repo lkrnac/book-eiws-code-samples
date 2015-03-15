@@ -2,8 +2,6 @@ package net.lkrnac.book.eiws.chapter01.async.task;
 
 import java.util.concurrent.Future;
 
-import net.lkrnac.book.eiws.chapter01.async.SpringConstants;
-
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Component;
 class AsyncTask {
   private static final int SIMULATE_IO = 1000;
 
-  @Async(SpringConstants.TASK_EXECUTOR)
+  @Async("customTaskExecutor")
   public Future<String> call(int parameter) throws InterruptedException {
     String threadName = Thread.currentThread().getName();
 
