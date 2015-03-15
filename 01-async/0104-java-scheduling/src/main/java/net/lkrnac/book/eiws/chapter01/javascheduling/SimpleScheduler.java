@@ -15,6 +15,6 @@ public class SimpleScheduler {
   public void scheduleTask() {
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     ScheduledTask task = new ScheduledTask(logger);
-    executor.scheduleAtFixedRate(task, 0L, 1000, TimeUnit.MILLISECONDS);
+    executor.scheduleAtFixedRate(task, 0L, 1, TimeUnit.SECONDS);
   }
 }
