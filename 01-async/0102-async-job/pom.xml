@@ -6,6 +6,10 @@
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
 
+  <properties>
+    <start-class>net.lkrnac.book.eiws.chapter01.async.AsyncConfigurationBiggerPool</start-class>
+  </properties>
+
   <parent>
     <groupId>net.lkrnac.book.eiws</groupId>
     <artifactId>0000-examples-parent</artifactId>
