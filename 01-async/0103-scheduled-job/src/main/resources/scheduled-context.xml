@@ -9,7 +9,6 @@
   <context:component-scan
     base-package="net.lkrnac.book.eiws.chapter01.scheduling.task" />
   <task:scheduled-tasks>
-    <task:scheduled ref="scheduledTask" method="call"
-      fixed-rate="1000" />
+    <task:scheduled  ref="scheduledTask" method="call" fixed-rate="1000" />
   </task:scheduled-tasks>
 </beans>
