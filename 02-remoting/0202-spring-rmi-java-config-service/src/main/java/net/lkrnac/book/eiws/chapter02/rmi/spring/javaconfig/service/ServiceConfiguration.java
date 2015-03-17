@@ -1,5 +1,7 @@
 package net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.service;
 
+import net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.BarService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

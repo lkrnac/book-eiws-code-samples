@@ -2,6 +2,8 @@ package net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.client;
 
 import javax.annotation.PostConstruct;
 
+import net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.BarService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

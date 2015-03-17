@@ -1,5 +1,7 @@
 package net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.client;
 
+import net.lkrnac.book.eiws.chapter02.rmi.spring.javaconfig.BarService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiProxyFactoryBean;

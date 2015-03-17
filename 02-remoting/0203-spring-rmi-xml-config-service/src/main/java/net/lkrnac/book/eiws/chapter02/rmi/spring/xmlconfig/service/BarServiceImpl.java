@@ -1,5 +1,7 @@
 package net.lkrnac.book.eiws.chapter02.rmi.spring.xmlconfig.service;
 
+import net.lkrnac.book.eiws.chapter02.rmi.spring.xmlconfig.BarService;
+
 import org.springframework.stereotype.Service;
 
 @Service

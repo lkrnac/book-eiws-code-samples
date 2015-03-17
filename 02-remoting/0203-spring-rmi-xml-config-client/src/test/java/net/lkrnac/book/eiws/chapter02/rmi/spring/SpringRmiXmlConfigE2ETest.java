@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import net.lkrnac.book.eiws.FunctionRetryHandler;
 import net.lkrnac.book.eiws.ProcessExecutor;
-import net.lkrnac.book.eiws.chapter02.rmi.spring.xmlconfig.client.BarService;
+import net.lkrnac.book.eiws.chapter02.rmi.spring.xmlconfig.BarService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
