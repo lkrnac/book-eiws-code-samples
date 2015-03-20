@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="httpInvokerProxy"
     class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
     <property name="serviceUrl" value="http://localhost:10205/BarService" />
-    <property name="serviceInterface"
-      value="net.lkrnac.book.eiws.chapter02.httpinvoker.handlerservlet.xmlconfig.shared.BarService" />
+    <property name="serviceInterface" value=
+      "net.lkrnac.book.eiws.chapter02.httpinvoker.handlerservlet.xmlconfig.shared.BarService" />
     <property name="httpInvokerRequestExecutor">
-      <bean
-        class="org.springframework.remoting.httpinvoker.HttpComponentsHttpInvokerRequestExecutor" />
+      <bean class=
+        "org.springframework.remoting.httpinvoker.HttpComponentsHttpInvokerRequestExecutor" />
     </property>
   </bean>
 </beans>
