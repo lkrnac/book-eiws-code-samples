@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter03.ws.javaconfig.client;
+package net.lkrnac.book.eiws.chapter03.ws.boot.client;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import org.springframework.ws.test.server.ResponseMatchers;
 import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = ServerConfiguration.class)
-public class WsJavaConfigServerITest extends AbstractTestNGSpringContextTests {
+public class WsBootServerITest extends AbstractTestNGSpringContextTests {
   @Autowired
   private ApplicationContext applicationContext;
 
