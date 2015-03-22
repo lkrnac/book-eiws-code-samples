@@ -5,7 +5,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
-import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
@@ -13,7 +12,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs
 @ComponentScan
 @Configuration
-public class ServerConfiguration extends WsConfigurerAdapter {
+public class ServerConfiguration {
   public static final String NAMESPACE =
       "http://localhost:10302/0302-ws-javaconfig-service";
 
