@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  attributeFormDefault="unqualified" elementFormDefault="qualified"
+  xmlns:mod="http://localhost:10308/0308-ws-objectfactory-service"
+  targetNamespace="http://localhost:10308/0308-ws-objectfactory-service">
+  <xs:element name="Person" type="mod:PersonType"/>
+  <xs:complexType name="PersonType">
+    <xs:sequence>
+      <xs:element name="FirstName" type="xs:string"/>
+      <xs:element name="LastName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Employee" type="mod:EmployeeType"
+                substitutionGroup="mod:Person"/>
+  <xs:complexType name="EmployeeType">
+    <xs:complexContent>
+      <xs:extension base="mod:PersonType">
+        <xs:sequence>
+          <xs:element name="positionName" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Customer" type="mod:CustomerType"
+                substitutionGroup="mod:Person"/>
+  <xs:complexType name="CustomerType">
+    <xs:complexContent>
+      <xs:extension base="mod:PersonType">
+        <xs:sequence>
+          <xs:element name="country" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
