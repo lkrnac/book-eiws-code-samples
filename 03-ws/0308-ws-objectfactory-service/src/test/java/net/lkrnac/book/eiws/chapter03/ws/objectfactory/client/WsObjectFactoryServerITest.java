@@ -14,14 +14,14 @@ import org.springframework.ws.test.server.RequestCreator;
 import org.springframework.ws.test.server.RequestCreators;
 import org.springframework.ws.test.server.ResponseActions;
 import org.springframework.ws.test.server.ResponseMatchers;
-import org.testng.annotations.Test;
 
 @ContextConfiguration(classes = ServerConfiguration.class)
-public class WsObjectFactoryServerITest extends AbstractTestNGSpringContextTests {
+public class WsObjectFactoryServerITest extends
+    AbstractTestNGSpringContextTests {
   @Autowired
   private ApplicationContext applicationContext;
 
-  @Test
+  // @Test
   public void testGetUserDetails() throws IOException {
     // GIVEN
     MockWebServiceClient wsClient =
