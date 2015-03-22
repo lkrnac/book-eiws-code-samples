@@ -76,13 +76,13 @@
           <generatePackage>net.lkrnac.book.eiws.chapter03.ws.soapaction.model</generatePackage>
           <schemas>
             <!-- <schema> -->
-            <!-- <url>http://localhost:10307/0307-ws-soapaction-service/wsdl/userDetails.wsdl</url> -->
+            <!-- <url>http://localhost:10307/0307-ws-soapaction-service/userDetailsSchema.wsdl</url> -->
             <!-- </schema> -->
             <schema>
               <fileset>
                 <directory>${basedir}/src/main/schemas</directory>
                 <includes>
-                  <include>userDetails.wsdl</include>
+                  <include>userDetailsSchema.wsdl</include>
                 </includes>
               </fileset>
             </schema>

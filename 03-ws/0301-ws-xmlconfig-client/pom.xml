@@ -61,13 +61,13 @@
           <generatePackage>net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model</generatePackage>
           <schemas>
             <!-- <schema> -->
-            <!-- <url>http://localhost:10301/0301-ws-xmlconfig-service/wsdl/userDetails.wsdl</url> -->
+            <!-- <url>http://localhost:10301/0301-ws-xmlconfig-service/userDetailsSchema.wsdl</url> -->
             <!-- </schema> -->
             <schema>
               <fileset>
                 <directory>${basedir}/src/main/schemas</directory>
                 <includes>
-                  <include>userDetails.wsdl</include>
+                  <include>userDetailsSchema.wsdl</include>
                 </includes>
               </fileset>
             </schema>

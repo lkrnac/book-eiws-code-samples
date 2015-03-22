@@ -35,7 +35,8 @@ public class ServerConfiguration extends WsConfigurerAdapter {
 
   @Bean
   public SimpleWsdl11Definition userDetails() {
-    return new SimpleWsdl11Definition(new ClassPathResource("userDetails.wsdl"));
+    return new SimpleWsdl11Definition(new ClassPathResource(
+        "userDetailsSchema.wsdl"));
   }
 
   @Bean
@@ -57,7 +58,7 @@ public class ServerConfiguration extends WsConfigurerAdapter {
     PayloadValidatingInterceptor validationInterceptor =
         new PayloadValidatingInterceptor();
     SimpleXsdSchema schema =
-        new SimpleXsdSchema(new ClassPathResource("userDetails.xsd"));
+        new SimpleXsdSchema(new ClassPathResource("userDetailsSchema.xsd"));
     validationInterceptor.setXsdSchema(schema);
     validationInterceptor.setValidateRequest(true);
     validationInterceptor.setValidateResponse(true);

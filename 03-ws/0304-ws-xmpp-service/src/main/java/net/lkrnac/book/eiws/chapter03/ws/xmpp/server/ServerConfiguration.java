@@ -29,7 +29,7 @@ public class ServerConfiguration {
 
   @Bean
   public XsdSchema userDetailsSchema() {
-    return new SimpleXsdSchema(new ClassPathResource("userDetails.xsd"));
+    return new SimpleXsdSchema(new ClassPathResource("userDetailsSchema.xsd"));
   }
 
   private class SecureXmppConnection extends XmppConnectionFactoryBean {
@@ -78,7 +78,7 @@ public class ServerConfiguration {
     wsdlDefinition.setTargetNamespace(NAMESPACE);
     wsdlDefinition.setSchema(userDetailsSchema);
     wsdlDefinition.setPortTypeName("UserDetailsPort");
-    wsdlDefinition.setLocationUri("/wsdl/");
+    wsdlDefinition.setLocationUri("/");
     return wsdlDefinition;
   }
 

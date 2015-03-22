@@ -82,13 +82,13 @@
           <generatePackage>net.lkrnac.book.eiws.chapter03.ws.xmpp.model</generatePackage>
           <schemas>
 <!--             <schema> -->
-<!--             <url>xmpp:eiws@blah.im/wsdl/userDetails.wsdl</url> -->
+<!--             <url>xmpp:eiws@blah.im/userDetailsSchema.wsdl</url> -->
 <!--             </schema> -->
             <schema>
               <fileset>
                 <directory>${basedir}/src/main/schemas</directory>
                 <includes>
-                  <include>userDetails.wsdl</include>
+                  <include>userDetailsSchema.wsdl</include>
                 </includes>
               </fileset>
             </schema>

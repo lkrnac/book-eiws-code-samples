@@ -5,9 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
-import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
-import org.springframework.xml.xsd.SimpleXsdSchema;
-import org.springframework.xml.xsd.XsdSchema;
+import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 
 @EnableWs
 @ComponentScan
@@ -17,17 +15,8 @@ public class ServerConfiguration {
       "http://localhost:10302/0302-ws-javaconfig-service";
 
   @Bean
-  public DefaultWsdl11Definition userDetails(XsdSchema userDetailsSchema) {
-    DefaultWsdl11Definition wsdlDefinition = new DefaultWsdl11Definition();
-    wsdlDefinition.setTargetNamespace(NAMESPACE);
-    wsdlDefinition.setSchema(userDetailsSchema);
-    wsdlDefinition.setPortTypeName("UserDetailsPort");
-    wsdlDefinition.setLocationUri("/wsdl/");
-    return wsdlDefinition;
-  }
-
-  @Bean
-  public XsdSchema userDetailsSchema() {
-    return new SimpleXsdSchema(new ClassPathResource("userDetails.xsd"));
+  public SimpleWsdl11Definition userDetails() {
+    return new SimpleWsdl11Definition(new ClassPathResource(
+        "userDetailsSchema.wsdl"));
   }
 }

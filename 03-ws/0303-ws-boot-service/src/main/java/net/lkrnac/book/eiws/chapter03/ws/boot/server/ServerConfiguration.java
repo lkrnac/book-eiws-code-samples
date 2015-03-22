@@ -20,8 +20,9 @@ public class ServerConfiguration {
       "http://localhost:10303/0303-ws-boot-service";
 
   @Bean
-  public SimpleWsdl11Definition userDetailsSchema() {
-    return new SimpleWsdl11Definition(new ClassPathResource("userDetails.xsd"));
+  public SimpleWsdl11Definition userDetails() {
+    return new SimpleWsdl11Definition(new ClassPathResource(
+        "userDetailsSchema.wsdl"));
   }
 
   @Bean

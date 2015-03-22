@@ -21,7 +21,8 @@ public class ServerConfiguration {
 
   @Bean
   public SimpleWsdl11Definition userDetails() {
-    return new SimpleWsdl11Definition(new ClassPathResource("userDetails.xsd"));
+    return new SimpleWsdl11Definition(new ClassPathResource(
+        "userDetailsSchema.xsd"));
   }
 
   @Bean

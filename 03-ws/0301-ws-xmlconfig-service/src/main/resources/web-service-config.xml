@@ -4,21 +4,23 @@
   xmlns:context="http://www.springframework.org/schema/context"
   xmlns:ws="http://www.springframework.org/schema/web-services"
   xsi:schemaLocation="http://www.springframework.org/schema/web-services 
-  http://www.springframework.org/schema/web-services/web-services.xsd
+    http://www.springframework.org/schema/web-services/web-services.xsd
 		http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context 
-    http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+    http://www.springframework.org/schema/context/spring-context.xsd">
 
   <context:component-scan base-package="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server" />
 
   <ws:annotation-driven />
 
-  <ws:dynamic-wsdl id="userDetails" portTypeName="UserDetailsPort"
-    locationUri="/wsdl/"
-    targetNamespace="http://localhost:10301/0301-ws-xmlconfig-service">
-    <ws:xsd location="classpath:userDetails.xsd" />
-  </ws:dynamic-wsdl>
+  <ws:static-wsdl id="userDetails" location="classpath:userDetailsSchema.wsdl"/>
+
+<!--   <ws:dynamic-wsdl id="userDetails" portTypeName="UserDetailsPort" -->
+<!--     locationUri="/" -->
+<!--     targetNamespace="http://localhost:10301/0301-ws-xmlconfig-service"> -->
+<!--     <ws:xsd location="classpath:userDetailsSchema.xsd" /> -->
+<!--   </ws:dynamic-wsdl> -->
   
   <ws:interceptors>
     <ref bean="globalInterceptor"/>
