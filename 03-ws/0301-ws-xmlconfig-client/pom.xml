@@ -57,7 +57,6 @@
           </execution>
         </executions>
         <configuration>
-          <schemaLanguage>WSDL</schemaLanguage>
           <generatePackage>net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model</generatePackage>
           <schemas>
             <!-- <schema> -->
@@ -72,7 +71,6 @@
               </fileset>
             </schema>
           </schemas>
-          <detail>true</detail>
         </configuration>
       </plugin>
 
