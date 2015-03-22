@@ -19,4 +19,19 @@ public class ServerConfiguration {
     return new SimpleWsdl11Definition(new ClassPathResource(
         "userDetailsSchema.wsdl"));
   }
+
+  // @Bean
+  // public DefaultWsdl11Definition userDetails(XsdSchema userDetailsSchema) {
+  // DefaultWsdl11Definition wsdlDefinition = new DefaultWsdl11Definition();
+  // wsdlDefinition.setTargetNamespace(NAMESPACE);
+  // wsdlDefinition.setSchema(userDetailsSchema);
+  // wsdlDefinition.setPortTypeName("UserDetailsPort");
+  // wsdlDefinition.setLocationUri("/");
+  // return wsdlDefinition;
+  // }
+  //
+  // @Bean
+  // public XsdSchema userDetailsSchema() {
+  // return new SimpleXsdSchema(new ClassPathResource("userDetails.xsd"));
+  // }
 }
