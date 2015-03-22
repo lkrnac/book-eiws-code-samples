@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
-import org.springframework.ws.config.annotation.WsConfigurationSupport;
 import org.springframework.ws.soap.server.endpoint.SoapFaultDefinition;
 import org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
@@ -20,7 +19,7 @@ import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class ServerConfiguration extends WsConfigurationSupport {
+public class ServerConfiguration {
   public static final String NAMESPACE =
       "http://localhost:10306/0306-ws-error-service";
 

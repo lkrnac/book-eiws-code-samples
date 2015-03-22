@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
-import org.springframework.ws.config.annotation.WsConfigurationSupport;
 import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.transport.xmpp.XmppMessageReceiver;
@@ -23,7 +22,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class ServerConfiguration extends WsConfigurationSupport {
+public class ServerConfiguration {
   public static final String NAMESPACE = "xmpp:eiws@blah.im";
 
   // public static final String NAMESPACE = "xmpp:durosurina@gmail.com";
