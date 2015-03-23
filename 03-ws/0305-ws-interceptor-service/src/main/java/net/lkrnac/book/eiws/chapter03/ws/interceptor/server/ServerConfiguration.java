@@ -51,10 +51,8 @@ public class ServerConfiguration extends WsConfigurerAdapter {
 
   @Override
   public void addInterceptors(List<EndpointInterceptor> interceptors) {
-    PayloadRootSmartSoapEndpointInterceptor smartUserInterceptor =
-        new PayloadRootSmartSoapEndpointInterceptor(userInterceptor, NAMESPACE,
-            "UserRequest");
-    interceptors.add(smartUserInterceptor);
+    interceptors.add(new PayloadRootSmartSoapEndpointInterceptor(
+        userInterceptor, NAMESPACE, "UserRequest"));
 
     PayloadRootSmartSoapEndpointInterceptor smartLoggingInterceptor =
         new PayloadRootSmartSoapEndpointInterceptor(
