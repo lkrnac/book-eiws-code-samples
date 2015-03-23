@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.EndpointInterceptor;
 
-public class GlobalIntercetor implements EndpointInterceptor {
+public class GlobalInterceptor implements EndpointInterceptor {
   private SimpleLogger simpleLogger;
 
   @Autowired
-  public GlobalIntercetor(SimpleLogger simpleLogger) {
+  public GlobalInterceptor(SimpleLogger simpleLogger) {
     super();
     this.simpleLogger = simpleLogger;
   }

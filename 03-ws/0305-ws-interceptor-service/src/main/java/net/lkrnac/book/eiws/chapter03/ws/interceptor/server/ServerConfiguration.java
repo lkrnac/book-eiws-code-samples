@@ -14,6 +14,7 @@ import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.server.EndpointInterceptor;
 import org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor;
+import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartSoapEndpointInterceptor;
 import org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor;
 import org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
@@ -50,9 +51,17 @@ public class ServerConfiguration extends WsConfigurerAdapter {
 
   @Override
   public void addInterceptors(List<EndpointInterceptor> interceptors) {
+    PayloadRootSmartSoapEndpointInterceptor smartUserInterceptor =
+        new PayloadRootSmartSoapEndpointInterceptor(userInterceptor, NAMESPACE,
+            "UserRequest");
+    interceptors.add(smartUserInterceptor);
+
+    PayloadRootSmartSoapEndpointInterceptor smartLoggingInterceptor =
+        new PayloadRootSmartSoapEndpointInterceptor(
+            new PayloadLoggingInterceptor(), NAMESPACE, "UserRequest");
+    interceptors.add(smartLoggingInterceptor);
+
     interceptors.add(globalInterceptor);
-    interceptors.add(userInterceptor);
-    interceptors.add(new PayloadLoggingInterceptor());
     interceptors.add(new SoapEnvelopeLoggingInterceptor());
 
     PayloadValidatingInterceptor validationInterceptor =

@@ -26,8 +26,17 @@
     <ref bean="globalInterceptor"/>
     <ws:payloadRoot namespaceUri="http://localhost:10301/0301-ws-xmlconfig-service" localPart="UserRequest">
       <bean class="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server.UserInterceptor"/>
+      <ref bean="loggingInterceptor"/>
     </ws:payloadRoot>
+    <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+    <bean class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+      <property name="schema" value="classpath:userDetailsSchema.xsd"/>
+      <property name="validateRequest" value="true"/>
+      <property name="validateResponse" value="true"/>
+    </bean>
   </ws:interceptors>
   
-  <bean id="globalInterceptor" class="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server.GlobalIntercetor" />
+  <bean id="loggingInterceptor" class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+  <bean id="globalInterceptor" 
+    class="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server.GlobalInterceptor" />
 </beans>
