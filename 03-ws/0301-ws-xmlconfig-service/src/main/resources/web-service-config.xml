@@ -28,7 +28,7 @@
       <bean class="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.server.UserInterceptor"/>
       <ref bean="loggingInterceptor"/>
     </ws:payloadRoot>
-    <bean class="org.springframework.ws.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+    <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
     <bean class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
       <property name="schema" value="classpath:userDetailsSchema.xsd"/>
       <property name="validateRequest" value="true"/>
