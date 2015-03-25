@@ -4,8 +4,6 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
 
-import net.lkrnac.book.eiws.chapter03.ws.soapaction.client.WebServiceClient;
-import net.lkrnac.book.eiws.chapter03.ws.soapaction.client.WsSoapactionClientConfiguration;
 import net.lkrnac.book.eiws.chapter03.ws.soapaction.model.UserDetailsResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
