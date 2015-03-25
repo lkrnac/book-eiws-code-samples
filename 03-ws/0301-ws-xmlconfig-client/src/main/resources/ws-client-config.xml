@@ -21,5 +21,10 @@
         <property name="unmarshaller" ref="marshaller" />
         <property name="defaultUri" 
           value="http://localhost:10301/0301-ws-xmlconfig-service" />
+        <property name="interceptors">
+          <array>
+            <bean class="net.lkrnac.book.eiws.chapter03.ws.xmlconfig.config.UserInterceptor"/>
+          </array>
+        </property>
     </bean>
 </beans>
