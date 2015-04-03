@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
-@RequestMapping("/flight")
+@RequestMapping("/flights")
 public class FlightController {
   private final FlightService flightService;
 

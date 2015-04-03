@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Path("/flight")
+@Path("/flights")
 @Component
 public class FlightResource {
   private final FlightService flightService;

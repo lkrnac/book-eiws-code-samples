@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 @WebAppConfiguration
 public class RestJaxrsApplicationITCase extends
     AbstractTestNGSpringContextTests {
-  private static final String FLIGHT_URL = "http://localhost:10401/flight";
+  private static final String FLIGHT_URL = "http://localhost:10401/flights";
 
   private static final int RETRY_TIMEOUT = 10000;
 

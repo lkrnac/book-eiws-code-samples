@@ -2,6 +2,8 @@ package net.lkrnac.book.eiws.chapter04.boot;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
-@RequestMapping("/flight")
+@RequestMapping("/flights")
 public class FlightController {
   private final FlightService flightService;
 
@@ -31,7 +33,8 @@ public class FlightController {
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   @ResponseBody
-  public Flight getFlight(@PathVariable("id") int identifier) {
+  public Flight getFlight(@PathVariable("id") int identifier,
+      HttpServletRequest request) {
     return flightService.getFlight(identifier);
   }
 

@@ -27,7 +27,7 @@ public class RestRestcontrollerApplicationTest extends AbstractTestNGSpringConte
   private static final String TEST_RECORD2 =
       "{\"identifier\": \"2\", \"origin\": \"Prague\", \"destination\": \"Paris\"}";
 
-  private static final String FLIGHT_URL = "/flight";
+  private static final String FLIGHT_URL = "/flights";
   private MockMvc mockMvc;
 
   @Autowired
