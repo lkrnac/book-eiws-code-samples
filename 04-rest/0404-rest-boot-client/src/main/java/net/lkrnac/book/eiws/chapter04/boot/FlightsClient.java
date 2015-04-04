@@ -36,4 +36,8 @@ public class FlightsClient {
         restTemplate.getForObject(flightsEndpointUrl, Flight[].class);
     return Arrays.asList(flightsArray);
   }
+
+  public void deleteFlight(int identifier) {
+    restTemplate.delete(flightsEndpointUrl + "/" + identifier);
+  }
 }

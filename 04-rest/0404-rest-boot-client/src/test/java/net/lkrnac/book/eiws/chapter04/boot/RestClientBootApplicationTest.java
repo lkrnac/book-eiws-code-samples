@@ -121,5 +121,18 @@ public class RestClientBootApplicationTest extends
 
   @Test
   public void testDeleteFlight() throws Exception {
+    // GIVEN
+    //@formatter:off
+    int testingIdentifier = 1;
+    mockServer.expect(requestTo(flightServerHostname + FLIGHTS_URL + "/" + testingIdentifier))
+      .andExpect(method(HttpMethod.DELETE))
+      .andRespond(withSuccess());
+    //@formatter:on
+
+    // WHEN
+    flightsClient.deleteFlight(testingIdentifier);
+
+    // THEN
+    mockServer.verify();
   }
 }
