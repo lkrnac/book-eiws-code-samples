@@ -1,5 +1,8 @@
 package net.lkrnac.book.eiws.chapter04.boot;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -26,5 +29,11 @@ public class FlightsClient {
   public Flight getFlight(int identifier) {
     return restTemplate.getForObject(flightsEndpointUrl + "/" + identifier,
         Flight.class);
+  }
+
+  public List<Flight> getFlights() {
+    Flight[] flightsArray =
+        restTemplate.getForObject(flightsEndpointUrl, Flight[].class);
+    return Arrays.asList(flightsArray);
   }
 }

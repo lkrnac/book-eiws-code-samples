@@ -7,6 +7,8 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 import static org.testng.Assert.assertEquals;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -96,6 +98,25 @@ public class RestClientBootApplicationTest extends
 
   @Test
   public void testMultiGet() throws Exception {
+    // GIVEN
+    //@formatter:off
+    mockServer.expect(requestTo(flightServerHostname + FLIGHTS_URL))
+      .andExpect(method(HttpMethod.GET))
+      .andRespond(withSuccess("[ " + TEST_RECORD1 + ", " + TEST_RECORD2 + "]", 
+          MediaType.APPLICATION_JSON));
+    //@formatter:on
+
+    // WHEN
+    List<Flight> flights = flightsClient.getFlights();
+
+    // THEN
+    mockServer.verify();
+    assertEquals(flights.get(0).getIdentifier(), 1);
+    assertEquals(flights.get(0).getOrigin(), BRATISLAVA);
+    assertEquals(flights.get(0).getDestination(), DUBLIN);
+    assertEquals(flights.get(1).getIdentifier(), 2);
+    assertEquals(flights.get(1).getOrigin(), "Prague");
+    assertEquals(flights.get(1).getDestination(), "Paris");
   }
 
   @Test
