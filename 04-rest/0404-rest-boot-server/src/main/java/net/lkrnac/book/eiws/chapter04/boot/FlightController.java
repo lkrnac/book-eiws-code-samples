@@ -4,6 +4,9 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.lkrnac.book.eiws.chapter04.model.Flight;
+import net.lkrnac.book.eiws.chapter04.service.FlightService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
