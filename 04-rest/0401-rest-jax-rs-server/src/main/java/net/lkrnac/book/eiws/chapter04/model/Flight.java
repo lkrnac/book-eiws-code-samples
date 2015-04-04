@@ -1,6 +1,5 @@
 package net.lkrnac.book.eiws.chapter04.model;
 
-
 public class Flight {
   private int identifier;
   private String origin;
