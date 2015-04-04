@@ -5,21 +5,29 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+import static org.testng.Assert.assertEquals;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @SpringApplicationConfiguration(classes = RestClientBootApplication.class)
 @WebAppConfiguration
 public class RestClientBootApplicationTest extends
     AbstractTestNGSpringContextTests {
+  private static final String TEST_RECORD1 =
+      "{\"identifier\": \"1\", \"origin\": \"Bratislava\", \"destination\": \"Dublin\"}";
+  private static final String TEST_RECORD2 =
+      "{\"identifier\": \"2\", \"origin\": \"Prague\", \"destination\": \"Paris\"}";
+
   private static final String DUBLIN = "Dublin";
 
   private static final String BRATISLAVA = "Bratislava";
@@ -34,7 +42,10 @@ public class RestClientBootApplicationTest extends
   @Autowired
   private FlightsClient flightsClient;
 
-  @BeforeClass
+  @Value("${flight.server.hostname}")
+  private String flightServerHostname;
+
+  @BeforeMethod
   public void init() {
     mockServer = MockRestServiceServer.createServer(restTemplate);
   }
@@ -43,7 +54,7 @@ public class RestClientBootApplicationTest extends
   public void testPost() throws Exception {
     // GIVEN
     //@formatter:off
-    mockServer.expect(requestTo(FLIGHTS_URL))
+    mockServer.expect(requestTo(flightServerHostname + FLIGHTS_URL))
       .andExpect(method(HttpMethod.POST))
       .andExpect(jsonPath("$.identifier", is(1)))
       .andExpect(jsonPath("$.origin", is(BRATISLAVA)))
@@ -65,6 +76,22 @@ public class RestClientBootApplicationTest extends
 
   @Test
   public void testSingleGet() throws Exception {
+    // GIVEN
+    //@formatter:off
+    int testingIdentifier = 1;
+    mockServer.expect(requestTo(flightServerHostname + FLIGHTS_URL + "/" + testingIdentifier))
+      .andExpect(method(HttpMethod.GET))
+      .andRespond(withSuccess(TEST_RECORD1, MediaType.APPLICATION_JSON));
+    //@formatter:on
+
+    // WHEN
+    Flight flight = flightsClient.getFlight(testingIdentifier);
+
+    // THEN
+    mockServer.verify();
+    assertEquals(flight.getIdentifier(), testingIdentifier);
+    assertEquals(flight.getOrigin(), BRATISLAVA);
+    assertEquals(flight.getDestination(), DUBLIN);
   }
 
   @Test
