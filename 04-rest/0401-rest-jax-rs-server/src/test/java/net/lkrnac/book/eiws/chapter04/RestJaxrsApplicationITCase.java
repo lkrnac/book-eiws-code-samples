@@ -9,7 +9,7 @@ import java.net.URISyntaxException;
 
 import net.lkrnac.book.eiws.BiFunctionRetryHandler;
 import net.lkrnac.book.eiws.ProcessExecutor;
-import net.lkrnac.book.eiws.chapter04.model.Flight;
+import net.lkrnac.book.eiws.chapter04.model.User;
 
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,9 @@ import org.testng.annotations.Test;
 @WebAppConfiguration
 public class RestJaxrsApplicationITCase extends
     AbstractTestNGSpringContextTests {
-  private static final String FLIGHT_URL = "http://localhost:10401/flights";
+  private static final String MAVENTESTS = "maventests";
+
+  private static final String FULL_USERS_URL = "http://localhost:10401/users";
 
   private static final int RETRY_TIMEOUT = 10000;
 
@@ -37,11 +39,11 @@ public class RestJaxrsApplicationITCase extends
     process =
         new ProcessExecutor().execute("", "0401-rest-jax-rs-server-exec.jar");
 
-    BiFunctionRetryHandler<URI, Class<Flight[]>, Flight[]> retryHandler =
+    BiFunctionRetryHandler<URI, Class<User[]>, User[]> retryHandler =
         new BiFunctionRetryHandler<>();
 
-    retryHandler.retry(restTemplate::getForObject, new URI(FLIGHT_URL),
-        Flight[].class, RETRY_TIMEOUT);
+    retryHandler.retry(restTemplate::getForObject, new URI(FULL_USERS_URL),
+        User[].class, RETRY_TIMEOUT);
   }
 
   @AfterClass
@@ -50,89 +52,100 @@ public class RestJaxrsApplicationITCase extends
     process.waitFor();
   }
 
-  @Test
+  @Test(groups = MAVENTESTS)
   public void testPost() {
     // GIVEN
-    Flight flight = createTestingRecord(1);
+    int testingIdentifier = 0;
+    User user = createTestingRecord(testingIdentifier);
 
     // WHEN
     ResponseEntity<String> response =
-        restTemplate.postForEntity(FLIGHT_URL, flight, String.class);
+        restTemplate.postForEntity(FULL_USERS_URL, user, String.class);
 
     // THEN
     assertEquals(response.getStatusCode(), HttpStatus.CREATED);
+    assertEquals(response.getHeaders().get("Location").get(0), FULL_USERS_URL
+        + "/" + testingIdentifier);
   }
 
-  @Test
+  @Test(groups = MAVENTESTS, dependsOnMethods = "testPost")
   public void testSingleGet() {
     // GIVEN
-    Flight expectedFlight = createTestingRecord(1);
-    restTemplate.postForEntity(FLIGHT_URL, expectedFlight, String.class);
+    int testingIdentifier = 1;
+    User expectedUser = createTestingRecord(testingIdentifier);
+    ResponseEntity<String> response =
+        restTemplate.postForEntity(FULL_USERS_URL, expectedUser, String.class);
+    String url = FULL_USERS_URL + "/" + testingIdentifier;
 
     // WHEN
-    Flight actualFlight =
-        restTemplate.getForObject(
-            FLIGHT_URL + "/" + expectedFlight.getIdentifier(), Flight.class);
+    User actualUser = restTemplate.getForObject(url, User.class);
 
     // THEN
-    assertEquals(actualFlight.getDestination(), expectedFlight.getDestination());
-    assertEquals(actualFlight.getOrigin(), expectedFlight.getOrigin());
+    assertEquals(actualUser.getIdentifier(), testingIdentifier);
+    assertEquals(actualUser.getEmail(), expectedUser.getEmail());
+    assertEquals(actualUser.getName(), expectedUser.getName());
   }
 
-  @Test
+  @Test(groups = MAVENTESTS, dependsOnMethods = "testSingleGet")
   public void testSingleGetNoContent() {
     // GIVEN
 
     // WHEN
-    Flight actualFlight =
-        restTemplate.getForObject(FLIGHT_URL + "/3", Flight.class);
+    User actualUser =
+        restTemplate.getForObject(FULL_USERS_URL + "/3", User.class);
 
     // THEN
-    assertNull(actualFlight);
+    assertNull(actualUser);
   }
 
-  @Test
+  @Test(groups = MAVENTESTS, dependsOnMethods = "testSingleGetNoContent")
   public void testMultiGet() {
     // GIVEN
-    Flight expectedFlight1 = createTestingRecord(1);
-    restTemplate.postForEntity(FLIGHT_URL, expectedFlight1, String.class);
-    Flight expectedFlight2 = createTestingRecord(2);
-    restTemplate.postForEntity(FLIGHT_URL, expectedFlight2, String.class);
+    restTemplate.delete(FULL_USERS_URL + "/" + 0);
+    restTemplate.delete(FULL_USERS_URL + "/" + 1);
+
+    int testingIdentifier1 = 2;
+    User expectedUser1 = createTestingRecord(testingIdentifier1);
+    restTemplate.postForEntity(FULL_USERS_URL, expectedUser1, String.class);
+
+    int testingIdentifier2 = 3;
+    User expectedUser2 = createTestingRecord(testingIdentifier2);
+    restTemplate.postForEntity(FULL_USERS_URL, expectedUser2, String.class);
 
     // WHEN
-    Flight[] actualFlights =
-        restTemplate.getForObject(FLIGHT_URL, Flight[].class);
+    User[] actualUsers =
+        restTemplate.getForObject(FULL_USERS_URL, User[].class);
 
     // THEN
-    assertEquals(actualFlights[0].getDestination(),
-        expectedFlight1.getDestination());
-    assertEquals(actualFlights[0].getOrigin(), expectedFlight1.getOrigin());
-    assertEquals(actualFlights[1].getDestination(),
-        expectedFlight2.getDestination());
-    assertEquals(actualFlights[1].getOrigin(), expectedFlight2.getOrigin());
+    assertEquals(actualUsers[0].getIdentifier(), expectedUser1.getIdentifier());
+    assertEquals(actualUsers[0].getEmail(), expectedUser1.getEmail());
+    assertEquals(actualUsers[0].getName(), expectedUser1.getName());
+    assertEquals(actualUsers[1].getIdentifier(), expectedUser2.getIdentifier());
+    assertEquals(actualUsers[1].getEmail(), expectedUser2.getEmail());
+    assertEquals(actualUsers[1].getName(), expectedUser2.getName());
   }
 
-  @Test
-  public void testDeleteFlight() {
+  @Test(groups = MAVENTESTS, dependsOnMethods = "testMultiGet")
+  public void testDeleteUser() {
     // GIVEN
-    Flight expectedFlight = createTestingRecord(1);
-    restTemplate.postForEntity(FLIGHT_URL, expectedFlight, String.class);
+    int testinIdentifier = 4;
+    User expectedUser = createTestingRecord(testinIdentifier);
+    restTemplate.postForEntity(FULL_USERS_URL, expectedUser, String.class);
+    String url = FULL_USERS_URL + "/" + testinIdentifier;
 
     // WHEN
-    restTemplate.delete(FLIGHT_URL + "/" + expectedFlight.getIdentifier());
+    restTemplate.delete(url);
 
     // THEN
-    Flight actualFlight =
-        restTemplate.getForObject(
-            FLIGHT_URL + "/" + expectedFlight.getIdentifier(), Flight.class);
-    assertNull(actualFlight);
+    User actualUser = restTemplate.getForObject(url, User.class);
+    assertNull(actualUser);
   }
 
-  private Flight createTestingRecord(int idx) {
-    Flight flight = new Flight();
-    flight.setIdentifier(idx);
-    flight.setOrigin("Bratislava" + idx);
-    flight.setDestination("Dublin" + idx);
-    return flight;
+  private User createTestingRecord(int idx) {
+    User user = new User();
+    user.setIdentifier(idx);
+    user.setEmail("user" + idx + "@gmail.com");
+    user.setName("User" + idx);
+    return user;
   }
 }

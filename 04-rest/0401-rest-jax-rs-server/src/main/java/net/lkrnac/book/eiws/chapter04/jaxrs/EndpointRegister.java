@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public class EndpointRegister extends ResourceConfig {
   public EndpointRegister() {
     super();
-    register(FlightResource.class);
+    register(UserResource.class);
   }
 }
