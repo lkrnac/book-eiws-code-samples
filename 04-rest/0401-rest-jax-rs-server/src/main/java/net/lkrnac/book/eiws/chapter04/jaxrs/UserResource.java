@@ -46,7 +46,7 @@ public class UserResource {
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response putUser(User user) throws URISyntaxException {
+  public Response postUser(User user) throws URISyntaxException {
     int identifier = userRepository.addUser(user);
     URI uri = new URI(UrlConstants.USERS_URL + "/" + identifier);
     return Response.created(uri).build();
