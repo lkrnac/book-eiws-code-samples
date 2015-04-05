@@ -6,34 +6,32 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import net.lkrnac.book.eiws.chapter04.RestRestcontrollerApplication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @SpringApplicationConfiguration(classes = RestRestcontrollerApplication.class)
 @WebAppConfiguration
-public class RestRestcontrollerApplicationTest extends AbstractTestNGSpringContextTests {
-  private static final String TEST_RECORD1 =
-      "{\"identifier\": \"1\", \"origin\": \"Bratislava\", \"destination\": \"Dublin\"}";
-  private static final String TEST_RECORD2 =
-      "{\"identifier\": \"2\", \"origin\": \"Prague\", \"destination\": \"Paris\"}";
-
-  private static final String FLIGHT_URL = "/flights";
+@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
+public class RestRestcontrollerApplicationTest extends
+    AbstractTestNGSpringContextTests {
+  private static final String FULL_USER_URL = "http://localhost:10405/users";
   private MockMvc mockMvc;
 
   @Autowired
   private WebApplicationContext webApplicationContext;
 
-  @BeforeClass
+  @BeforeMethod
   public void init() {
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
@@ -44,76 +42,83 @@ public class RestRestcontrollerApplicationTest extends AbstractTestNGSpringConte
 
     // WHEN
     // @formatter:off
-    mockMvc.perform(post(FLIGHT_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(TEST_RECORD1))
-         
-    // THEN
-      .andExpect(status().isCreated());
-    // @formatter:on
+      mockMvc.perform(post(FULL_USER_URL)
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(createTestRecord(0)))
+           
+      // THEN
+        .andExpect(status().isCreated());
+      // @formatter:on
   }
 
   @Test
   public void testSingleGet() throws Exception {
     // @formatter:off
-    // GIVEN
-    mockMvc.perform(post(FLIGHT_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(TEST_RECORD1));
+      // GIVEN
+      mockMvc.perform(post(FULL_USER_URL)
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(createTestRecord(0)));
 
-    // WHEN
-    mockMvc.perform(get(FLIGHT_URL + "/{id}", 1)
-        .accept(MediaType.APPLICATION_JSON)
-      )
+      // WHEN
+      mockMvc.perform(get(FULL_USER_URL + "/{id}", 0)
+          .accept(MediaType.APPLICATION_JSON)
+        )
 
-    // THEN
-      .andExpect(status().isOk())
-      .andExpect(jsonPath("$.identifier").value(1))
-      .andExpect(jsonPath("$.origin").value("Bratislava"))
-      .andExpect(jsonPath("$.destination").value("Dublin"));
-    // @formatter:off
-  }
+      // THEN
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.identifier").value(0))
+        .andExpect(jsonPath("$.email").value("user0@gmail.com"))
+        .andExpect(jsonPath("$.name").value("User0"));
+      // @formatter:off
+    }
 
-  @Test
-  public void testMultiGet() throws Exception {
-    // @formatter:off
-    // GIVEN
-    mockMvc.perform(post(FLIGHT_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(TEST_RECORD1));
-    mockMvc.perform(post(FLIGHT_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(TEST_RECORD2));
+    @Test
+    public void testMultiGet() throws Exception {
+      // @formatter:off
+      // GIVEN
+      mockMvc.perform(post(FULL_USER_URL)
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(createTestRecord(0)));
+      mockMvc.perform(post(FULL_USER_URL)
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(createTestRecord(1)));
 
-    // WHEN
-    mockMvc.perform(get(FLIGHT_URL).accept(MediaType.APPLICATION_JSON))
+      // WHEN
+      mockMvc.perform(get(FULL_USER_URL).accept(MediaType.APPLICATION_JSON))
 
-    // THEN
-      .andExpect(status().isOk())
-      .andExpect(jsonPath("$[0].identifier").value(1))
-      .andExpect(jsonPath("$[0].origin").value("Bratislava"))
-      .andExpect(jsonPath("$[0].destination").value("Dublin"))
-      .andExpect(jsonPath("$[1].identifier").value(2))
-      .andExpect(jsonPath("$[1].origin").value("Prague"))
-      .andExpect(jsonPath("$[1].destination").value("Paris"));
-    // @formatter:off
+      // THEN
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].identifier").value(0))
+        .andExpect(jsonPath("$[0].email").value("user0@gmail.com"))
+        .andExpect(jsonPath("$[0].name").value("User0"))
+        .andExpect(jsonPath("$[1].identifier").value(1))
+        .andExpect(jsonPath("$[1].email").value("user1@gmail.com"))
+        .andExpect(jsonPath("$[1].name").value("User1"));
+      // @formatter:off
+    }
+    
+    @Test
+    public void testDeleteUser() throws Exception{
+      //GIVEN
+      mockMvc.perform(post(FULL_USER_URL)
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(createTestRecord(0)));
+      
+      //WHEN
+      mockMvc.perform(delete(FULL_USER_URL + "/{id}", 0));
+      
+      //THEN
+      mockMvc.perform(get(FULL_USER_URL + "/{id}", 0)
+          .accept(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(status().isOk())
+        .andExpect(content().string(""));
+    }
+    
+    private static String createTestRecord(int identifier) {
+      String testingRecordString =
+          "{\"identifier\": \"%d\", \"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
+      return String.format(testingRecordString, identifier, identifier, identifier);
+    }
   }
   
-  @Test
-  public void testDeleteFlight() throws Exception{
-    //GIVEN
-    mockMvc.perform(post(FLIGHT_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(TEST_RECORD1));
-    
-    //WHEN
-    mockMvc.perform(delete(FLIGHT_URL + "/{id}", 1));
-    
-    //THEN
-    mockMvc.perform(get(FLIGHT_URL + "/{id}", 1)
-        .accept(MediaType.APPLICATION_JSON)
-      ) 
-      .andExpect(status().isOk())
-      .andExpect(content().string(""));
-  }  
-}

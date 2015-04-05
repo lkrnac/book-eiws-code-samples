@@ -9,9 +9,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.util.List;
 
-import net.lkrnac.book.eiws.chapter04.client.FlightsClient;
-import net.lkrnac.book.eiws.chapter04.client.RestClientBootApplication;
-import net.lkrnac.book.eiws.chapter04.model.Flight;
+import net.lkrnac.book.eiws.chapter04.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,16 +27,15 @@ import org.testng.annotations.Test;
 @WebAppConfiguration
 public class RestClientBootApplicationTest extends
     AbstractTestNGSpringContextTests {
+  private static final String USER0_NAME = "User0";
+  private static final String USER0_EMAIL = "user0@gmail.com";
+  private static final String TEST_RECORD0 =
+      "{\"identifier\": \"0\", \"email\": \"" + USER0_EMAIL
+          + "\", \"name\": \"" + USER0_NAME + "\"}";
   private static final String TEST_RECORD1 =
-      "{\"identifier\": \"1\", \"origin\": \"Bratislava\", \"destination\": \"Dublin\"}";
-  private static final String TEST_RECORD2 =
-      "{\"identifier\": \"2\", \"origin\": \"Prague\", \"destination\": \"Paris\"}";
+      "{\"identifier\": \"1\", \"email\": \"user1@gmail.com\", \"name\": \"User1\"}";
 
-  private static final String DUBLIN = "Dublin";
-
-  private static final String BRATISLAVA = "Bratislava";
-
-  private static final String FLIGHTS_URL = "/flights";
+  private static final String USERS_URL = "/users";
 
   private MockRestServiceServer mockServer;
 
@@ -46,10 +43,10 @@ public class RestClientBootApplicationTest extends
   private RestTemplate restTemplate;
 
   @Autowired
-  private FlightsClient flightsClient;
+  private UsersClient usersClient;
 
-  @Value("${flight.server.hostname}")
-  private String flightServerHostname;
+  @Value("${user.server.hostname}")
+  private String userServerHostname;
 
   @BeforeMethod
   public void init() {
@@ -60,21 +57,21 @@ public class RestClientBootApplicationTest extends
   public void testPost() throws Exception {
     // GIVEN
     //@formatter:off
-    mockServer.expect(requestTo(flightServerHostname + FLIGHTS_URL))
+    mockServer.expect(requestTo(userServerHostname + USERS_URL))
       .andExpect(method(HttpMethod.POST))
-      .andExpect(jsonPath("$.identifier", is(1)))
-      .andExpect(jsonPath("$.origin", is(BRATISLAVA)))
-      .andExpect(jsonPath("$.destination", is(DUBLIN)))
+      .andExpect(jsonPath("$.identifier", is(0)))
+      .andExpect(jsonPath("$.email", is(USER0_EMAIL)))
+      .andExpect(jsonPath("$.name", is(USER0_NAME)))
       .andRespond(withSuccess());
     //@formatter:on
 
-    Flight flight = new Flight();
-    flight.setIdentifier(1);
-    flight.setOrigin(BRATISLAVA);
-    flight.setDestination(DUBLIN);
+    User user = new User();
+    user.setIdentifier(0);
+    user.setName(USER0_NAME);
+    user.setEmail(USER0_EMAIL);
 
     // WHEN
-    flightsClient.bookFlight(flight);
+    usersClient.createUser(user);
 
     // THEN
     mockServer.verify();
@@ -84,57 +81,57 @@ public class RestClientBootApplicationTest extends
   public void testSingleGet() throws Exception {
     // GIVEN
     //@formatter:off
-    int testingIdentifier = 1;
-    mockServer.expect(requestTo(flightServerHostname + FLIGHTS_URL + "/" + testingIdentifier))
+    int testingIdentifier = 0;
+    mockServer.expect(requestTo(userServerHostname + USERS_URL + "/" + testingIdentifier))
       .andExpect(method(HttpMethod.GET))
-      .andRespond(withSuccess(TEST_RECORD1, MediaType.APPLICATION_JSON));
+      .andRespond(withSuccess(TEST_RECORD0, MediaType.APPLICATION_JSON));
     //@formatter:on
 
     // WHEN
-    Flight flight = flightsClient.getFlight(testingIdentifier);
+    User user = usersClient.getUser(testingIdentifier);
 
     // THEN
     mockServer.verify();
-    assertEquals(flight.getIdentifier(), testingIdentifier);
-    assertEquals(flight.getOrigin(), BRATISLAVA);
-    assertEquals(flight.getDestination(), DUBLIN);
+    assertEquals(user.getIdentifier(), testingIdentifier);
+    assertEquals(user.getName(), USER0_NAME);
+    assertEquals(user.getEmail(), USER0_EMAIL);
   }
 
   @Test
   public void testMultiGet() throws Exception {
     // GIVEN
     //@formatter:off
-    mockServer.expect(requestTo(flightServerHostname + FLIGHTS_URL))
+    mockServer.expect(requestTo(userServerHostname + USERS_URL))
       .andExpect(method(HttpMethod.GET))
-      .andRespond(withSuccess("[ " + TEST_RECORD1 + ", " + TEST_RECORD2 + "]", 
+      .andRespond(withSuccess("[ " + TEST_RECORD0 + ", " + TEST_RECORD1 + "]", 
           MediaType.APPLICATION_JSON));
     //@formatter:on
 
     // WHEN
-    List<Flight> flights = flightsClient.getFlights();
+    List<User> users = usersClient.getUsers();
 
     // THEN
     mockServer.verify();
-    assertEquals(flights.get(0).getIdentifier(), 1);
-    assertEquals(flights.get(0).getOrigin(), BRATISLAVA);
-    assertEquals(flights.get(0).getDestination(), DUBLIN);
-    assertEquals(flights.get(1).getIdentifier(), 2);
-    assertEquals(flights.get(1).getOrigin(), "Prague");
-    assertEquals(flights.get(1).getDestination(), "Paris");
+    assertEquals(users.get(0).getIdentifier(), 0);
+    assertEquals(users.get(0).getName(), USER0_NAME);
+    assertEquals(users.get(0).getEmail(), USER0_EMAIL);
+    assertEquals(users.get(1).getIdentifier(), 1);
+    assertEquals(users.get(1).getName(), "User1");
+    assertEquals(users.get(1).getEmail(), "user1@gmail.com");
   }
 
   @Test
-  public void testDeleteFlight() throws Exception {
+  public void testDeleteUser() throws Exception {
     // GIVEN
     //@formatter:off
     int testingIdentifier = 1;
-    mockServer.expect(requestTo(flightServerHostname + FLIGHTS_URL + "/" + testingIdentifier))
+    mockServer.expect(requestTo(userServerHostname + USERS_URL + "/" + testingIdentifier))
       .andExpect(method(HttpMethod.DELETE))
       .andRespond(withSuccess());
     //@formatter:on
 
     // WHEN
-    flightsClient.deleteFlight(testingIdentifier);
+    usersClient.deleteUser(testingIdentifier);
 
     // THEN
     mockServer.verify();
