@@ -73,8 +73,7 @@ public class RestJaxrsApplicationITCase extends
     // GIVEN
     int testingIdentifier = 1;
     User expectedUser = createTestingRecord(testingIdentifier);
-    ResponseEntity<String> response =
-        restTemplate.postForEntity(FULL_USERS_URL, expectedUser, String.class);
+    restTemplate.postForEntity(FULL_USERS_URL, expectedUser, String.class);
     String url = FULL_USERS_URL + "/" + testingIdentifier;
 
     // WHEN

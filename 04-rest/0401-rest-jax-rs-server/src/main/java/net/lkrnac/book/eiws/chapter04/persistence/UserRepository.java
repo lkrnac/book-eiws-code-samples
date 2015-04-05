@@ -10,6 +10,7 @@ import net.lkrnac.book.eiws.chapter04.model.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@SuppressWarnings("PMD.AvoidSynchronizedAtMethodLevel")
 public class UserRepository {
   @SuppressWarnings("PMD.UseConcurrentHashMap")
   private final Map<Integer, User> users = new HashMap<>();
