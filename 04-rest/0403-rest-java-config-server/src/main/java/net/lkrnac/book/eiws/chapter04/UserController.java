@@ -1,7 +1,8 @@
-package net.lkrnac.book.eiws.chapter04.javaconfig;
+package net.lkrnac.book.eiws.chapter04;
 
 import java.util.Collection;
 
+import net.lkrnac.book.eiws.chapter04.javaconfig.UrlConstants;
 import net.lkrnac.book.eiws.chapter04.model.User;
 import net.lkrnac.book.eiws.chapter04.persistence.UserRepository;
 

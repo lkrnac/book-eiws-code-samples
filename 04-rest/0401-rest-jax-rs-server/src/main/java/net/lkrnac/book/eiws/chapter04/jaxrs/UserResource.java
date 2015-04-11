@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import net.lkrnac.book.eiws.chapter04.UrlConstants;
 import net.lkrnac.book.eiws.chapter04.model.User;
 import net.lkrnac.book.eiws.chapter04.persistence.UserRepository;
 
