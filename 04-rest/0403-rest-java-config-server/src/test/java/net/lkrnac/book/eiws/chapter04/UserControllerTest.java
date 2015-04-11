@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.testng.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,8 +15,10 @@ import net.lkrnac.book.eiws.chapter04.model.User;
 import net.lkrnac.book.eiws.chapter04.persistence.UserRepository;
 
 import org.mockito.Mockito;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.testng.annotations.Test;
 
@@ -35,13 +38,15 @@ public class UserControllerTest {
 
     // WHEN
     // @formatter:off
-    mockMvc.perform(post(FULL_USER_URL)
+    MvcResult mvcResult = mockMvc.perform(post(FULL_USER_URL)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(createTestRecord(TESTING_ID)))
-         
-    // THEN
-      .andExpect(status().isCreated());
+        .content(createTestRecord(0)))
+        .andReturn();
     // @formatter:on
+
+    // THEN
+    int httpStatus = mvcResult.getResponse().getStatus();
+    assertEquals(httpStatus, HttpStatus.CREATED.value());
 
     Mockito.verify(userRepository).addUser(testingUser);
     Mockito.verifyNoMoreInteractions(userRepository);
