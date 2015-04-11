@@ -6,8 +6,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.testng.Assert.assertEquals;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -15,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.BeforeMethod;
@@ -43,13 +46,15 @@ public class RestApplicationContextTest extends
 
     // WHEN
     // @formatter:off
-    mockMvc.perform(post(FULL_USER_URL)
+    MvcResult mvcResult = mockMvc.perform(post(FULL_USER_URL)
         .contentType(MediaType.APPLICATION_JSON)
         .content(createTestRecord(0)))
-         
-    // THEN
-      .andExpect(status().isCreated());
+        .andReturn();
     // @formatter:on
+
+    // THEN
+    int httpStatus = mvcResult.getResponse().getStatus();
+    assertEquals(httpStatus, HttpStatus.CREATED.value());
   }
 
   @Test
