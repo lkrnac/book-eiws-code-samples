@@ -43,13 +43,14 @@ public class RestApplicationContextTest extends
 
   @Test
   public void testPost() throws Exception {
-    // GIVEN: TEST_RECORD1
+    // GIVEN
+    String testingRecord = createTestRecord(0);
 
     // WHEN
     // @formatter:off
     MvcResult mvcResult = mockMvc.perform(post(FULL_USER_URL)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(createTestRecord(0)))
+        .content(testingRecord))
         .andReturn();
     // @formatter:on
 
@@ -125,7 +126,8 @@ public class RestApplicationContextTest extends
   
   private static String createTestRecord(int identifier) {
     String testingRecordString =
-        "{\"identifier\": \"%d\", \"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
+        "{\"identifier\": \"%d\", \"email\": "
+        + "\"user%d@gmail.com\", \"name\": \"User%d\"}";
     return String.format(testingRecordString, identifier, identifier, identifier);
   }
 }
