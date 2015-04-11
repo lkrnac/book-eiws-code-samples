@@ -3,62 +3,60 @@ package net.lkrnac.book.eiws.chapter04;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import net.lkrnac.book.eiws.chapter04.javaconfig.UserController;
+import net.lkrnac.book.eiws.chapter04.model.User;
+import net.lkrnac.book.eiws.chapter04.persistence.UserRepository;
+
+import org.mockito.Mockito;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@ContextConfiguration(classes = RestJavaConfigConfiguration.class)
-@WebAppConfiguration
-@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class RestJavaConfigApplicationTest extends
-    AbstractTestNGSpringContextTests {
-
+public class UserControllerTest {
+  private static final int TESTING_ID = 0;
   private static final String FULL_USER_URL = "http://localhost:10403/users";
-  private MockMvc mockMvc;
-
-  @Autowired
-  private WebApplicationContext webApplicationContext;
-
-  @BeforeMethod
-  public void init() {
-    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-  }
 
   @Test
   public void testPost() throws Exception {
-    // GIVEN: TEST_RECORD1
+    // GIVEN:
+    UserRepository userRepository = Mockito.mock(UserRepository.class);
+    UserController userController = new UserController(userRepository);
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+
+    User testingUser = createTestUser(TESTING_ID);
+    Mockito.when(userRepository.addUser(testingUser)).thenReturn(TESTING_ID);
 
     // WHEN
     // @formatter:off
     mockMvc.perform(post(FULL_USER_URL)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(createTestRecord(0)))
+        .content(createTestRecord(TESTING_ID)))
          
     // THEN
       .andExpect(status().isCreated());
     // @formatter:on
+
+    Mockito.verify(userRepository).addUser(testingUser);
+    Mockito.verifyNoMoreInteractions(userRepository);
   }
 
   @Test
   public void testSingleGet() throws Exception {
     // @formatter:off
     // GIVEN
-    mockMvc.perform(post(FULL_USER_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(createTestRecord(0)));
+    UserRepository userRepository = Mockito.mock(UserRepository.class);
+    UserController userController = new UserController(userRepository);
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+
+    User testingUser = createTestUser(TESTING_ID);
+    Mockito.when(userRepository.getUser(TESTING_ID)).thenReturn(testingUser);
 
     // WHEN
     mockMvc.perform(get(FULL_USER_URL + "/{id}", 0)
@@ -77,13 +75,15 @@ public class RestJavaConfigApplicationTest extends
   public void testMultiGet() throws Exception {
     // @formatter:off
     // GIVEN
-    mockMvc.perform(post(FULL_USER_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(createTestRecord(0)));
-    mockMvc.perform(post(FULL_USER_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(createTestRecord(1)));
+    UserRepository userRepository = Mockito.mock(UserRepository.class);
+    UserController userController = new UserController(userRepository);
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
+    Collection<User> testingUsers = new ArrayList<>(); 
+    testingUsers.add(createTestUser(TESTING_ID));
+    testingUsers.add(createTestUser(1));
+    Mockito.when(userRepository.getAllUsers()).thenReturn(testingUsers);
+    
     // WHEN
     mockMvc.perform(get(FULL_USER_URL).accept(MediaType.APPLICATION_JSON))
 
@@ -101,19 +101,24 @@ public class RestJavaConfigApplicationTest extends
   @Test
   public void testDeleteUser() throws Exception{
     //GIVEN
-    mockMvc.perform(post(FULL_USER_URL)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(createTestRecord(0)));
-    
+    UserRepository userRepository = Mockito.mock(UserRepository.class);
+    UserController userController = new UserController(userRepository);
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+
     //WHEN
     mockMvc.perform(delete(FULL_USER_URL + "/{id}", 0));
     
     //THEN
-    mockMvc.perform(get(FULL_USER_URL + "/{id}", 0)
-        .accept(MediaType.APPLICATION_JSON)
-      )
-      .andExpect(status().isOk())
-      .andExpect(content().string(""));
+    Mockito.verify(userRepository).deleteUser(TESTING_ID);
+    Mockito.verifyNoMoreInteractions(userRepository);
+  }
+  
+  private static User createTestUser(int identifier){
+    User user = new User();
+    user.setIdentifier(identifier);
+    user.setEmail("user" + identifier + "@gmail.com");
+    user.setName("User" + identifier);
+    return user;
   }
   
   private static String createTestRecord(int identifier) {
