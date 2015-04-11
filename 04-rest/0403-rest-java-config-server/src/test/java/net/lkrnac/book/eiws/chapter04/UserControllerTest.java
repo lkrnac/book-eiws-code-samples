@@ -3,6 +3,7 @@ package net.lkrnac.book.eiws.chapter04;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.testng.Assert.assertEquals;
@@ -69,11 +70,13 @@ public class UserControllerTest {
       )
 
     // THEN
+      .andDo(print())
       .andExpect(status().isOk())
       .andExpect(jsonPath("$.identifier").value(0))
       .andExpect(jsonPath("$.email").value("user0@gmail.com"))
       .andExpect(jsonPath("$.name").value("User0"));
     // @formatter:off
+    
   }
 
   @Test
