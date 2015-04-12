@@ -27,9 +27,24 @@ public class UserControllerTest {
   private static final int TESTING_ID = 0;
   private static final String FULL_USER_URL = "http://localhost:10403/users";
 
+  private static User createTestUser(int identifier) {
+    User user = new User();
+    user.setIdentifier(identifier);
+    user.setEmail("user" + identifier + "@gmail.com");
+    user.setName("User" + identifier);
+    return user;
+  }
+
+  private static String createTestRecord(int identifier) {
+    String testingRecordString =
+        "{\"identifier\": \"%d\", \"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
+    return String.format(testingRecordString, identifier, identifier,
+        identifier);
+  }
+
   @Test
   public void testPost() throws Exception {
-    // GIVEN:
+    // GIVEN
     UserRepository userRepository = Mockito.mock(UserRepository.class);
     UserController userController = new UserController(userRepository);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
@@ -119,19 +134,5 @@ public class UserControllerTest {
     //THEN
     Mockito.verify(userRepository).deleteUser(TESTING_ID);
     Mockito.verifyNoMoreInteractions(userRepository);
-  }
-  
-  private static User createTestUser(int identifier){
-    User user = new User();
-    user.setIdentifier(identifier);
-    user.setEmail("user" + identifier + "@gmail.com");
-    user.setName("User" + identifier);
-    return user;
-  }
-  
-  private static String createTestRecord(int identifier) {
-    String testingRecordString =
-        "{\"identifier\": \"%d\", \"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
-    return String.format(testingRecordString, identifier, identifier, identifier);
   }
 }
