@@ -4,15 +4,16 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withCreatedEntity;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 import static org.testng.Assert.assertEquals;
 
+import java.net.URI;
 import java.util.List;
 
 import net.lkrnac.book.eiws.chapter04.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,6 +21,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -34,7 +36,7 @@ public class RestClientBootApplicationTest extends
           + "\", \"name\": \"" + USER0_NAME + "\"}";
   private static final String TEST_RECORD1 =
       "{\"identifier\": \"1\", \"email\": \"user1@gmail.com\", \"name\": \"User1\"}";
-  private static final String USERS_URL = "/users";
+  private static final String USERS_URL = "http://localhost:10404/users";
 
   private MockRestServiceServer mockServer;
 
@@ -44,9 +46,6 @@ public class RestClientBootApplicationTest extends
   @Autowired
   private UsersClient usersClient;
 
-  @Value("${user.server.hostname}")
-  private String userServerHostname;
-
   @BeforeMethod
   public void init() {
     mockServer = MockRestServiceServer.createServer(restTemplate);
@@ -55,13 +54,14 @@ public class RestClientBootApplicationTest extends
   @Test
   public void testPost() throws Exception {
     // GIVEN
+    URI expectedUri = new URI(USERS_URL + "/0");
     //@formatter:off
-    mockServer.expect(requestTo(userServerHostname + USERS_URL))
+    mockServer.expect(requestTo(USERS_URL))
       .andExpect(method(HttpMethod.POST))
       .andExpect(jsonPath("$.identifier", is(0)))
       .andExpect(jsonPath("$.email", is(USER0_EMAIL)))
       .andExpect(jsonPath("$.name", is(USER0_NAME)))
-      .andRespond(withSuccess());
+      .andRespond(withCreatedEntity(expectedUri));
     //@formatter:on
 
     User user = new User();
@@ -70,9 +70,10 @@ public class RestClientBootApplicationTest extends
     user.setEmail(USER0_EMAIL);
 
     // WHEN
-    usersClient.createUser(user);
+    URI location = usersClient.createUser(user);
 
     // THEN
+    Assert.assertEquals(location, expectedUri);
     mockServer.verify();
   }
 
@@ -81,7 +82,7 @@ public class RestClientBootApplicationTest extends
     // GIVEN
     //@formatter:off
     int testingIdentifier = 0;
-    mockServer.expect(requestTo(userServerHostname + USERS_URL + "/" + testingIdentifier))
+    mockServer.expect(requestTo(USERS_URL + "/" + testingIdentifier))
       .andExpect(method(HttpMethod.GET))
       .andRespond(withSuccess(TEST_RECORD0, MediaType.APPLICATION_JSON));
     //@formatter:on
@@ -100,7 +101,7 @@ public class RestClientBootApplicationTest extends
   public void testMultiGet() throws Exception {
     // GIVEN
     //@formatter:off
-    mockServer.expect(requestTo(userServerHostname + USERS_URL))
+    mockServer.expect(requestTo(USERS_URL))
       .andExpect(method(HttpMethod.GET))
       .andRespond(withSuccess("[ " + TEST_RECORD0 + ", " + TEST_RECORD1 + "]", 
           MediaType.APPLICATION_JSON));
@@ -124,7 +125,7 @@ public class RestClientBootApplicationTest extends
     // GIVEN
     //@formatter:off
     int testingIdentifier = 1;
-    mockServer.expect(requestTo(userServerHostname + USERS_URL + "/" + testingIdentifier))
+    mockServer.expect(requestTo(USERS_URL + "/" + testingIdentifier))
       .andExpect(method(HttpMethod.DELETE))
       .andRespond(withSuccess());
     //@formatter:on
