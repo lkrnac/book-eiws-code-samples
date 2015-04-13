@@ -22,7 +22,7 @@ public class UsersClient {
   }
 
   public URI createUser(User user) {
-    return restTemplate.postForLocation(URL, user, Object.class);
+    return restTemplate.postForLocation(URL, user);
   }
 
   public User getUser(int identifier) {

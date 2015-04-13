@@ -18,14 +18,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@WebAppConfiguration
 @ContextConfiguration(classes = ClientConfiguration.class)
 public class RestClientBootApplicationTest extends
     AbstractTestNGSpringContextTests {
@@ -35,7 +33,8 @@ public class RestClientBootApplicationTest extends
       "{\"identifier\": \"0\", \"email\": \"" + USER0_EMAIL
           + "\", \"name\": \"" + USER0_NAME + "\"}";
   private static final String TEST_RECORD1 =
-      "{\"identifier\": \"1\", \"email\": \"user1@gmail.com\", \"name\": \"User1\"}";
+      "{\"identifier\": \"1\", \"email\": "
+          + "\"user1@gmail.com\", \"name\": \"User1\"}";
   private static final String USERS_URL = "http://localhost:10404/users";
 
   private MockRestServiceServer mockServer;
