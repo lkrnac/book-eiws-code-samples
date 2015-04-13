@@ -13,9 +13,9 @@ import net.lkrnac.book.eiws.chapter04.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.client.MockRestServiceServer;
@@ -23,8 +23,8 @@ import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@SpringApplicationConfiguration(classes = RestClientBootApplication.class)
 @WebAppConfiguration
+@ContextConfiguration(classes = ClientConfiguration.class)
 public class RestClientBootApplicationTest extends
     AbstractTestNGSpringContextTests {
   private static final String USER0_NAME = "User0";
@@ -34,7 +34,6 @@ public class RestClientBootApplicationTest extends
           + "\", \"name\": \"" + USER0_NAME + "\"}";
   private static final String TEST_RECORD1 =
       "{\"identifier\": \"1\", \"email\": \"user1@gmail.com\", \"name\": \"User1\"}";
-
   private static final String USERS_URL = "/users";
 
   private MockRestServiceServer mockServer;
