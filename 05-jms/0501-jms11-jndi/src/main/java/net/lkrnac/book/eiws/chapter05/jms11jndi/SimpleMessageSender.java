@@ -14,7 +14,7 @@ public class SimpleMessageSender {
   public SimpleMessageSender(Connection connection, Queue queue)
       throws JMSException {
     super();
-    Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
     messageProducer = session.createProducer(queue);
   }
 

@@ -10,6 +10,7 @@ public class Jms11JndiApplication {
     try (JmsConfiguration jmsConfiguration = new JmsConfiguration()) {
       Queue queue = jmsConfiguration.getQueue();
       Connection connection = jmsConfiguration.getConnection();
+      connection.start();
 
       SimpleMessageSender messageSender =
           new SimpleMessageSender(connection, queue);

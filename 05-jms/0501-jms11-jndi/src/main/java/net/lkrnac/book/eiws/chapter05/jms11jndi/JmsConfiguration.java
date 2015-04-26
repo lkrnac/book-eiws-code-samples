@@ -29,9 +29,12 @@ public class JmsConfiguration implements AutoCloseable {
     connection = connectionFactory.createConnection();
   }
 
-  public void close() throws NamingException {
+  public void close() throws NamingException, JMSException {
     if (initialContext != null) {
       initialContext.close();
+    }
+    if (connection != null) {
+      connection.close();
     }
   }
 

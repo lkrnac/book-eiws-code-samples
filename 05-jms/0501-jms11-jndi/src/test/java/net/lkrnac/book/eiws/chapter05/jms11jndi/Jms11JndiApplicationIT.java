@@ -16,6 +16,7 @@ public class Jms11JndiApplicationIT {
     try (JmsConfiguration jmsConfiguration = new JmsConfiguration()) {
       Connection connection = jmsConfiguration.getConnection();
       Queue queue = jmsConfiguration.getQueue();
+      connection.start();
 
       // WHEN
       SimpleMessageSender messageSender =
