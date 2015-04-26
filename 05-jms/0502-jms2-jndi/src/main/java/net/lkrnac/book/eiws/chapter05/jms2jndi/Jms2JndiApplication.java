@@ -11,10 +11,12 @@ public class Jms2JndiApplication {
       JMSContext jmsContext = jmsConfiguration.getJmsContext();
       Queue queue = jmsConfiguration.getQueue();
 
-      MessageSender messageSender = new MessageSender(jmsContext, queue);
+      SimpleMessageSender messageSender =
+          new SimpleMessageSender(jmsContext, queue);
       messageSender.sendMessage("Hello World!");
 
-      MessageConsumer messageConsumer = new MessageConsumer(jmsContext, queue);
+      SimpleMessageReader messageConsumer =
+          new SimpleMessageReader(jmsContext, queue);
       String message = messageConsumer.readMessage();
 
       System.out.println("Message Received: " + message);

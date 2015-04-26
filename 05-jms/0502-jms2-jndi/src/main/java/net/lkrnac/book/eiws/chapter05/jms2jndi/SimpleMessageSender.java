@@ -3,11 +3,11 @@ package net.lkrnac.book.eiws.chapter05.jms2jndi;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 
-public class MessageSender {
+public class SimpleMessageSender {
   private JMSContext jmsContext;
   private Queue queue;
 
-  public MessageSender(JMSContext jmsContext, Queue queue) {
+  public SimpleMessageSender(JMSContext jmsContext, Queue queue) {
     super();
     this.jmsContext = jmsContext;
     this.queue = queue;

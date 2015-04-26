@@ -6,11 +6,11 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.jms.TextMessage;
 
-public class MessageConsumer {
+public class SimpleMessageReader {
   private JMSContext jmsContext;
   private Queue queue;
 
-  public MessageConsumer(JMSContext jmsContext, Queue queue) {
+  public SimpleMessageReader(JMSContext jmsContext, Queue queue) {
     super();
     this.jmsContext = jmsContext;
     this.queue = queue;

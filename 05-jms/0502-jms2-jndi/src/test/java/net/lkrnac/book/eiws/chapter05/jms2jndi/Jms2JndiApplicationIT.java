@@ -5,10 +5,6 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
 
-import net.lkrnac.book.eiws.chapter05.jms2jndi.JmsConfiguration;
-import net.lkrnac.book.eiws.chapter05.jms2jndi.MessageConsumer;
-import net.lkrnac.book.eiws.chapter05.jms2jndi.MessageSender;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,10 +18,12 @@ public class Jms2JndiApplicationIT {
       Queue queue = jmsConfiguration.getQueue();
 
       // WHEN
-      MessageSender messageSender = new MessageSender(jmsContext, queue);
+      SimpleMessageSender messageSender =
+          new SimpleMessageSender(jmsContext, queue);
       messageSender.sendMessage(MESSAGE_TEXT);
 
-      MessageConsumer messageConsumer = new MessageConsumer(jmsContext, queue);
+      SimpleMessageReader messageConsumer =
+          new SimpleMessageReader(jmsContext, queue);
       String actualMessage = messageConsumer.readMessage();
 
       // THEN
