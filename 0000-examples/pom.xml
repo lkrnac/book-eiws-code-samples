@@ -49,7 +49,6 @@
     <module>../05-jms/0501-jms11-jndi</module>    
     <module>../05-jms/0502-jms2-jndi</module>    
     <module>../05-jms/0503-async-jndi</module>    
-    <module>../05-jms/0503-jms-async</module>    
     <module>../05-jms/0504-jmstemplate</module>    
   </modules>
 </project>
