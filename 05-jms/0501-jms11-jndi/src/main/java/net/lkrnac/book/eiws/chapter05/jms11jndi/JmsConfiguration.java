@@ -14,7 +14,7 @@ public class JmsConfiguration implements AutoCloseable {
   private Queue queue;
   private Connection connection;
 
-  public JmsConfiguration() throws NamingException, JMSException {
+  public void init() throws NamingException, JMSException {
     Hashtable<Object, Object> env = new Hashtable<Object, Object>();
     env.put("java.naming.factory.initial",
         "org.jnp.interfaces.NamingContextFactory");

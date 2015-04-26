@@ -13,7 +13,7 @@ public class JmsConfiguration implements AutoCloseable {
   private JMSContext jmsContext;
   private Queue queue;
 
-  public JmsConfiguration() throws NamingException {
+  public void init() throws NamingException {
     Hashtable<Object, Object> env = new Hashtable<Object, Object>();
     env.put("java.naming.factory.initial",
         "org.jnp.interfaces.NamingContextFactory");

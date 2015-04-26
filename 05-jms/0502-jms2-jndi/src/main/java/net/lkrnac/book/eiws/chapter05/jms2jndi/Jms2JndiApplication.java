@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 public class Jms2JndiApplication {
   public static void main(String[] args) throws JMSException, NamingException {
     try (JmsConfiguration jmsConfiguration = new JmsConfiguration()) {
+      jmsConfiguration.init();
       JMSContext jmsContext = jmsConfiguration.getJmsContext();
       Queue queue = jmsConfiguration.getQueue();
 

@@ -14,6 +14,7 @@ public class Jms11JndiApplicationIT {
   @Test(groups = "maventests")
   public void queueTest() throws NamingException, JMSException {
     try (JmsConfiguration jmsConfiguration = new JmsConfiguration()) {
+      jmsConfiguration.init();
       Connection connection = jmsConfiguration.getConnection();
       Queue queue = jmsConfiguration.getQueue();
       connection.start();
