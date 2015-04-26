@@ -47,6 +47,8 @@
     <module>../04-rest/0404-rest-boot-client</module>    
     <module>../04-rest/0405-rest-restcontroller-server</module>    
     <module>../05-jms/0501-jms11-jndi</module>    
-    <module>../05-jms/0502-java-jms-async</module>    
+    <module>../05-jms/0502-jms2-jndi</module>    
+    <module>../05-jms/0503-jms-async</module>    
+    <module>../05-jms/0504-jmstemplate</module>    
   </modules>
 </project>
