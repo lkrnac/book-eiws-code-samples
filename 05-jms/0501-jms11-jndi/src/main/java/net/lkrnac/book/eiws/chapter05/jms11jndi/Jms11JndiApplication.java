@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter05.jms11jndi;
 
-import javax.jms.JMSContext;
+import javax.jms.Connection;
 import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
@@ -8,14 +8,16 @@ import javax.naming.NamingException;
 public class Jms11JndiApplication {
   public static void main(String[] args) throws JMSException, NamingException {
     try (JmsConfiguration jmsConfiguration = new JmsConfiguration()) {
-      JMSContext jmsContext = jmsConfiguration.getJmsContext();
       Queue queue = jmsConfiguration.getQueue();
+      Connection connection = jmsConfiguration.getConnection();
 
-      MessageSender messageSender = new MessageSender(jmsContext, queue);
+      SimpleMessageSender messageSender =
+          new SimpleMessageSender(connection, queue);
       messageSender.sendMessage("Hello World!");
 
-      MessageConsumer messageConsumer = new MessageConsumer(jmsContext, queue);
-      String message = messageConsumer.readMessage();
+      SimpleMessageReader messageReader =
+          new SimpleMessageReader(connection, queue);
+      String message = messageReader.readMessage();
 
       System.out.println("Message Received: " + message);
     }

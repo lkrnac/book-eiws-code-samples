@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter05.jms11jndi;
 
-import javax.jms.JMSContext;
+import javax.jms.Connection;
 import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
@@ -14,15 +14,17 @@ public class Jms11JndiApplicationIT {
   @Test(groups = "maventests")
   public void queueTest() throws NamingException, JMSException {
     try (JmsConfiguration jmsConfiguration = new JmsConfiguration()) {
-      JMSContext jmsContext = jmsConfiguration.getJmsContext();
+      Connection connection = jmsConfiguration.getConnection();
       Queue queue = jmsConfiguration.getQueue();
 
       // WHEN
-      MessageSender messageSender = new MessageSender(jmsContext, queue);
+      SimpleMessageSender messageSender =
+          new SimpleMessageSender(connection, queue);
       messageSender.sendMessage(MESSAGE_TEXT);
 
-      MessageConsumer messageConsumer = new MessageConsumer(jmsContext, queue);
-      String actualMessage = messageConsumer.readMessage();
+      SimpleMessageReader messageReader =
+          new SimpleMessageReader(connection, queue);
+      String actualMessage = messageReader.readMessage();
 
       // THEN
       Assert.assertEquals(MESSAGE_TEXT, actualMessage);
