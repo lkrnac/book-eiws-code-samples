@@ -5,19 +5,27 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
 
-public class Jms11JndiApplication {
-  public static void main(String[] args) throws JMSException, NamingException {
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class Jms11JndiApplicationIT {
+  private static final String MESSAGE_TEXT = "dummyMessage";
+
+  @Test(groups = "maventests")
+  public void queueTest() throws NamingException, JMSException {
     try (JmsConfiguration jmsConfiguration = new JmsConfiguration()) {
       JMSContext jmsContext = jmsConfiguration.getJmsContext();
       Queue queue = jmsConfiguration.getQueue();
 
+      // WHEN
       MessageSender messageSender = new MessageSender(jmsContext, queue);
-      messageSender.sendMessage("Hello World!");
+      messageSender.sendMessage(MESSAGE_TEXT);
 
       MessageConsumer messageConsumer = new MessageConsumer(jmsContext, queue);
-      String message = messageConsumer.readMessage();
+      String actualMessage = messageConsumer.readMessage();
 
-      System.out.println("Message Received: " + message);
+      // THEN
+      Assert.assertEquals(MESSAGE_TEXT, actualMessage);
     }
   }
 }
