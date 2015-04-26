@@ -1,23 +1,22 @@
-package org.hornetq.test;
+package net.lkrnac.book.eiws.chapter05.jms11jndi;
 
 import java.util.Hashtable;
 
 import javax.jms.ConnectionFactory;
-import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
+import javax.jms.JMSException;
 import javax.jms.Queue;
-import javax.jms.TextMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class QueueJndiIT {
   private static final String MESSAGE_TEXT = "lalala";
 
-  @Test
-  public void queueTest() throws NamingException {
+  @Test(groups = "maventests")
+  public void queueTest() throws NamingException, JMSException {
     InitialContext initialContext = null;
     JMSContext jmsContext = null;
     try {
@@ -33,15 +32,16 @@ public class QueueJndiIT {
       ConnectionFactory cf =
           (ConnectionFactory) initialContext.lookup("/ConnectionFactory");
       jmsContext = cf.createContext();
-      jmsContext.createProducer().send(queue, MESSAGE_TEXT);
 
-      JMSConsumer jmsConsumer = jmsContext.createConsumer(queue);
+      // WHEN
+      MessageSender messageSender = new MessageSender(jmsContext, queue);
+      messageSender.sendMessage(MESSAGE_TEXT);
 
-      TextMessage messageReceived = (TextMessage) jmsConsumer.receive(5000);
+      MessageConsumer messageConsumer = new MessageConsumer(jmsContext, queue);
+      String actualMessage = messageConsumer.readMessage();
 
-      Assert.assertEquals(MESSAGE_TEXT, messageReceived.getText());
-    } catch (Exception e) {
-      e.printStackTrace();
+      // THEN
+      Assert.assertEquals(MESSAGE_TEXT, actualMessage);
     } finally {
       if (initialContext != null) {
         initialContext.close();

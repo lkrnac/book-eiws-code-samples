@@ -2,9 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>net.lkrnac.book.eiws</groupId>
-  <artifactId>0501-java-jms-jndi</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>0501-jms11-jndi</artifactId>
   <packaging>jar</packaging>
 
   <properties>
@@ -14,13 +12,13 @@
     <jboss-jms-api.version>1.0.0.Final</jboss-jms-api.version>
   </properties>
 
+  <parent>
+    <groupId>net.lkrnac.book.eiws</groupId>
+    <artifactId>0000-examples-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>org.hornetq</groupId>
       <artifactId>hornetq-core-client</artifactId>
@@ -30,7 +28,6 @@
     <dependency>
       <groupId>org.hornetq</groupId>
       <artifactId>hornetq-jms-client</artifactId>
-      <version>${hornetq.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -113,7 +110,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.18.1</version>
         <executions>
           <execution>
             <id>integration-test</id>
