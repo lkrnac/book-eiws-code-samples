@@ -54,6 +54,12 @@ public class UserController {
     return new ResponseEntity<Void>(httpHeaders, HttpStatus.CREATED);
   }
 
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+  @ResponseStatus(HttpStatus.OK)
+  public void putUser(@PathVariable("id") int identifier, @RequestBody User user) {
+    userService.updateOrAddUser(identifier, user);
+  }
+
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
   public void deleteUser(@PathVariable("id") int identifier) {
     userService.deleteUser(identifier);
