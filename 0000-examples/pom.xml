@@ -48,7 +48,8 @@
     <module>../04-rest/0405-rest-restcontroller-server</module>    
     <module>../05-jms/0501-jms11-jndi</module>    
     <module>../05-jms/0502-jms2-jndi</module>    
-    <module>../05-jms/0503-async-jndi</module>    
-    <module>../05-jms/0504-jmstemplate</module>    
+    <module>../05-jms/0503-async-jndi</module>
+    <module>../05-jms/0504-spring-jms-xml-jndi</module>
+    <module>../05-jms/0505-jmstemplate</module>    
   </modules>
 </project>

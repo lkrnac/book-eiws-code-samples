@@ -3,6 +3,7 @@ package net.lkrnac.book.eiws.chapter04;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -104,26 +105,40 @@ public class RestApplicationContextTest extends
   }
   
   @Test
-  public void testDeleteUser() throws Exception{
-    //GIVEN
-    mockMvc.perform(post(FULL_USER_URL)
+  public void testPut() throws Exception {
+    // GIVEN: TEST_RECORD1
+
+    // WHEN
+    // @formatter:off
+    mockMvc.perform(put(FULL_USER_URL + "/0")
         .contentType(MediaType.APPLICATION_JSON)
-        .content(createTestRecord(0)));
-    
-    //WHEN
-    mockMvc.perform(delete(FULL_USER_URL + "/{id}", 0));
-    
-    //THEN
-    mockMvc.perform(get(FULL_USER_URL + "/{id}", 0)
-        .accept(MediaType.APPLICATION_JSON)
-      )
-      .andExpect(status().isOk())
-      .andExpect(content().string(""));
+        .content(createTestRecord(0)))
+         
+    // THEN
+      .andExpect(status().isOk());
+    // @formatter:on  
   }
-  
+
+  @Test
+  public void testDeleteUser() throws Exception {
+    // GIVEN
+    mockMvc.perform(post(FULL_USER_URL).contentType(MediaType.APPLICATION_JSON)
+        .content(createTestRecord(0)));
+
+    // WHEN
+    mockMvc.perform(delete(FULL_USER_URL + "/{id}", 0));
+
+    // THEN
+    mockMvc
+        .perform(
+            get(FULL_USER_URL + "/{id}", 0).accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk()).andExpect(content().string(""));
+  }
+
   private static String createTestRecord(int identifier) {
     String testingRecordString =
         "{\"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
-    return String.format(testingRecordString, identifier, identifier, identifier);
+    return String.format(testingRecordString, identifier, identifier,
+        identifier);
   }
 }

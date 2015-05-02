@@ -3,6 +3,7 @@ package net.lkrnac.book.eiws.chapter04;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -116,18 +117,43 @@ public class UserControllerTest {
       .andExpect(jsonPath("$[1].name").value("User1"));
     // @formatter:off
   }
-  
+
   @Test
-  public void testDeleteUser() throws Exception{
-    //GIVEN
+  public void testPut() throws Exception {
+    // GIVEN
     UserService userService = Mockito.mock(UserService.class);
     UserController userController = new UserController(userService);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
-    //WHEN
+    User testingUser = createTestUser(TESTING_ID);
+
+    // WHEN
+    // @formatter:off
+    MvcResult mvcResult = mockMvc.perform(put(FULL_USER_URL + "/" + TESTING_ID)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(createTestRecord(0)))
+        .andReturn();
+    // @formatter:on
+
+    // THEN
+    int httpStatus = mvcResult.getResponse().getStatus();
+    assertEquals(httpStatus, HttpStatus.OK.value());
+
+    Mockito.verify(userService).updateOrAddUser(TESTING_ID, testingUser);
+    Mockito.verifyNoMoreInteractions(userService);
+  }
+
+  @Test
+  public void testDeleteUser() throws Exception {
+    // GIVEN
+    UserService userService = Mockito.mock(UserService.class);
+    UserController userController = new UserController(userService);
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+
+    // WHEN
     mockMvc.perform(delete(FULL_USER_URL + "/{id}", 0));
-    
-    //THEN
+
+    // THEN
     Mockito.verify(userService).deleteUser(TESTING_ID);
     Mockito.verifyNoMoreInteractions(userService);
   }
