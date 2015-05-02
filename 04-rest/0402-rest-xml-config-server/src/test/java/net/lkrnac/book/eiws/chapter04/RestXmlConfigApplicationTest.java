@@ -131,10 +131,26 @@ public class RestXmlConfigApplicationTest extends
     //@formatter:on
   }
 
+  @Test
+  public void testClientError() throws Exception {
+    // @formatter:off
+    // GIVEN
+
+    // WHEN
+    mockMvc.perform(get(FULL_USER_URL + "/{id}", -1)
+        .accept(MediaType.APPLICATION_JSON)
+      )
+
+    // THEN
+      .andExpect(status().isBadRequest())
+      .andExpect(content().string("Identifier -1 is not supported."));
+    // @formatter:off
+  }
+
   private static String createTestRecord(int identifier) {
     String testingRecordString =
         "{\"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
     return String.format(testingRecordString, identifier, identifier,
-        identifier);
+        identifier); 
   }
 }
