@@ -43,6 +43,15 @@
       <artifactId>spring-web</artifactId>
       <version>${spring.version}</version>
     </dependency>
+    
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.4</version>
+    </dependency>
+    
+    
+    <!-- Test -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>

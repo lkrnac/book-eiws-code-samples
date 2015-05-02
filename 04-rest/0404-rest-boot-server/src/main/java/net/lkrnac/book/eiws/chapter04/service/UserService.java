@@ -7,9 +7,9 @@ import java.util.Map;
 
 import net.lkrnac.book.eiws.chapter04.model.User;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 @SuppressWarnings("PMD.AvoidSynchronizedAtMethodLevel")
 public class UserService {
   @SuppressWarnings("PMD.UseConcurrentHashMap")
@@ -25,11 +25,12 @@ public class UserService {
   }
 
   public synchronized int addUser(User user) {
-    int identifier = userSequence;
-    userSequence++;
-    user.setIdentifier(identifier);
+    users.put(userSequence, user);
+    return userSequence++;
+  }
+
+  public synchronized void updateOrAddUser(int identifier, User user) {
     users.put(identifier, user);
-    return identifier;
   }
 
   public synchronized User deleteUser(int identifier) {

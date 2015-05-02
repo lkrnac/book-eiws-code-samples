@@ -67,7 +67,6 @@ public class RestXmlConfigApplicationTest extends
 
     // THEN
       .andExpect(status().isOk())
-      .andExpect(jsonPath("$.identifier").value(0))
       .andExpect(jsonPath("$.email").value("user0@gmail.com"))
       .andExpect(jsonPath("$.name").value("User0"));
     // @formatter:off
@@ -89,13 +88,11 @@ public class RestXmlConfigApplicationTest extends
 
     // THEN
       .andExpect(status().isOk())
-      .andExpect(jsonPath("$[0].identifier").value(0))
       .andExpect(jsonPath("$[0].email").value("user0@gmail.com"))
       .andExpect(jsonPath("$[0].name").value("User0"))
-      .andExpect(jsonPath("$[1].identifier").value(1))
       .andExpect(jsonPath("$[1].email").value("user1@gmail.com"))
       .andExpect(jsonPath("$[1].name").value("User1"));
-    // @formatter:off
+    // @formatter:off 
   }
   
   @Test
@@ -118,7 +115,7 @@ public class RestXmlConfigApplicationTest extends
   
   private static String createTestRecord(int identifier) {
     String testingRecordString =
-        "{\"identifier\": \"%d\", \"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
+        "{\"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
     return String.format(testingRecordString, identifier, identifier, identifier);
   }
 }

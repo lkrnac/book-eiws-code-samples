@@ -29,12 +29,10 @@ public class RestClientBootApplicationTest extends
     AbstractTestNGSpringContextTests {
   private static final String USER0_NAME = "User0";
   private static final String USER0_EMAIL = "user0@gmail.com";
-  private static final String TEST_RECORD0 =
-      "{\"identifier\": \"0\", \"email\": \"" + USER0_EMAIL
-          + "\", \"name\": \"" + USER0_NAME + "\"}";
-  private static final String TEST_RECORD1 =
-      "{\"identifier\": \"1\", \"email\": "
-          + "\"user1@gmail.com\", \"name\": \"User1\"}";
+  private static final String TEST_RECORD0 = "{\"email\": \"" + USER0_EMAIL
+      + "\", \"name\": \"" + USER0_NAME + "\"}";
+  private static final String TEST_RECORD1 = "{\"email\": "
+      + "\"user1@gmail.com\", \"name\": \"User1\"}";
   private static final String USERS_URL = "http://localhost:10404/users";
 
   private MockRestServiceServer mockServer;
@@ -57,14 +55,12 @@ public class RestClientBootApplicationTest extends
     //@formatter:off
     mockServer.expect(requestTo(USERS_URL))
       .andExpect(method(HttpMethod.POST))
-      .andExpect(jsonPath("$.identifier", is(0)))
       .andExpect(jsonPath("$.email", is(USER0_EMAIL)))
       .andExpect(jsonPath("$.name", is(USER0_NAME)))
       .andRespond(withCreatedEntity(expectedUri));
     //@formatter:on
 
     User user = new User();
-    user.setIdentifier(0);
     user.setName(USER0_NAME);
     user.setEmail(USER0_EMAIL);
 
@@ -91,7 +87,6 @@ public class RestClientBootApplicationTest extends
 
     // THEN
     mockServer.verify();
-    assertEquals(user.getIdentifier(), testingIdentifier);
     assertEquals(user.getName(), USER0_NAME);
     assertEquals(user.getEmail(), USER0_EMAIL);
   }
@@ -111,10 +106,8 @@ public class RestClientBootApplicationTest extends
 
     // THEN
     mockServer.verify();
-    assertEquals(users.get(0).getIdentifier(), 0);
     assertEquals(users.get(0).getName(), USER0_NAME);
     assertEquals(users.get(0).getEmail(), USER0_EMAIL);
-    assertEquals(users.get(1).getIdentifier(), 1);
     assertEquals(users.get(1).getName(), "User1");
     assertEquals(users.get(1).getEmail(), "user1@gmail.com");
   }

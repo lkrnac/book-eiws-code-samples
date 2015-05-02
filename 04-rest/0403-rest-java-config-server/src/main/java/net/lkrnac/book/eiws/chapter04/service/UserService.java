@@ -25,11 +25,12 @@ public class UserService {
   }
 
   public synchronized int addUser(User user) {
-    int identifier = userSequence;
-    userSequence++;
-    user.setIdentifier(identifier);
+    users.put(userSequence, user);
+    return userSequence++;
+  }
+
+  public synchronized void updateOrAddUser(int identifier, User user) {
     users.put(identifier, user);
-    return identifier;
   }
 
   public synchronized User deleteUser(int identifier) {
