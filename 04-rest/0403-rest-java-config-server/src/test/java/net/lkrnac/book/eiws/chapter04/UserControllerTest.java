@@ -44,12 +44,12 @@ public class UserControllerTest {
   @Test
   public void testPost() throws Exception {
     // GIVEN
-    UserService userRepository = Mockito.mock(UserService.class);
-    UserController userController = new UserController(userRepository);
+    UserService userService = Mockito.mock(UserService.class);
+    UserController userController = new UserController(userService);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
     User testingUser = createTestUser(TESTING_ID);
-    Mockito.when(userRepository.addUser(testingUser)).thenReturn(TESTING_ID);
+    Mockito.when(userService.addUser(testingUser)).thenReturn(TESTING_ID);
 
     // WHEN
     // @formatter:off
@@ -63,20 +63,20 @@ public class UserControllerTest {
     int httpStatus = mvcResult.getResponse().getStatus();
     assertEquals(httpStatus, HttpStatus.CREATED.value());
 
-    Mockito.verify(userRepository).addUser(testingUser);
-    Mockito.verifyNoMoreInteractions(userRepository);
+    Mockito.verify(userService).addUser(testingUser);
+    Mockito.verifyNoMoreInteractions(userService);
   }
 
   @Test
   public void testSingleGet() throws Exception {
     // @formatter:off
     // GIVEN
-    UserService userRepository = Mockito.mock(UserService.class);
-    UserController userController = new UserController(userRepository);
+    UserService userService = Mockito.mock(UserService.class);
+    UserController userController = new UserController(userService);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
     User testingUser = createTestUser(TESTING_ID);
-    Mockito.when(userRepository.getUser(TESTING_ID)).thenReturn(testingUser);
+    Mockito.when(userService.getUser(TESTING_ID)).thenReturn(testingUser);
 
     // WHEN
     mockMvc.perform(get(FULL_USER_URL + "/{id}", 0)
@@ -96,14 +96,14 @@ public class UserControllerTest {
   public void testMultiGet() throws Exception {
     // @formatter:off
     // GIVEN
-    UserService userRepository = Mockito.mock(UserService.class);
-    UserController userController = new UserController(userRepository);
+    UserService userService = Mockito.mock(UserService.class);
+    UserController userController = new UserController(userService);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
     Collection<User> testingUsers = new ArrayList<>(); 
     testingUsers.add(createTestUser(TESTING_ID));
     testingUsers.add(createTestUser(1));
-    Mockito.when(userRepository.getAllUsers()).thenReturn(testingUsers);
+    Mockito.when(userService.getAllUsers()).thenReturn(testingUsers);
     
     // WHEN
     mockMvc.perform(get(FULL_USER_URL).accept(MediaType.APPLICATION_JSON))
@@ -120,15 +120,15 @@ public class UserControllerTest {
   @Test
   public void testDeleteUser() throws Exception{
     //GIVEN
-    UserService userRepository = Mockito.mock(UserService.class);
-    UserController userController = new UserController(userRepository);
+    UserService userService = Mockito.mock(UserService.class);
+    UserController userController = new UserController(userService);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
     //WHEN
     mockMvc.perform(delete(FULL_USER_URL + "/{id}", 0));
     
     //THEN
-    Mockito.verify(userRepository).deleteUser(TESTING_ID);
-    Mockito.verifyNoMoreInteractions(userRepository);
+    Mockito.verify(userService).deleteUser(TESTING_ID);
+    Mockito.verifyNoMoreInteractions(userService);
   }
 }

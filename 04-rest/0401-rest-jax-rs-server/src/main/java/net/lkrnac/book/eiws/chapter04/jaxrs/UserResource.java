@@ -25,31 +25,31 @@ import org.springframework.stereotype.Component;
 @Path(UrlConstants.USERS_URL)
 @Component
 public class UserResource {
-  private final UserService userRepository;
+  private final UserService userService;
 
   @Autowired
-  public UserResource(UserService userRepository) {
+  public UserResource(UserService userService) {
     super();
-    this.userRepository = userRepository;
+    this.userService = userService;
   }
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Collection<User> getUsers() {
-    return userRepository.getAllUsers();
+    return userService.getAllUsers();
   }
 
   @GET
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public User getUser(@PathParam("id") int identifier) {
-    return userRepository.getUser(identifier);
+    return userService.getUser(identifier);
   }
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   public Response postUser(User user) throws URISyntaxException {
-    int identifier = userRepository.addUser(user);
+    int identifier = userService.addUser(user);
     URI uri = new URI(UrlConstants.USERS_URL + "/" + identifier);
     return Response.created(uri).build();
   }
@@ -59,13 +59,13 @@ public class UserResource {
   @Consumes(MediaType.APPLICATION_JSON)
   public void putUser(@PathParam("id") int identifier, User user)
       throws URISyntaxException {
-    userRepository.updateOrAddUser(identifier, user);
+    userService.updateOrAddUser(identifier, user);
   }
 
   @DELETE
   @Path("/{id}")
   public Response deleteUser(@PathParam("id") int identifier) {
-    userRepository.deleteUser(identifier);
+    userService.deleteUser(identifier);
     return Response.ok().build();
   }
 }
