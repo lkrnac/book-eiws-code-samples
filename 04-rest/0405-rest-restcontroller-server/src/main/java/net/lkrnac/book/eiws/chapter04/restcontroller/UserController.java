@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,5 +64,11 @@ public class UserController {
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
   public void deleteUser(@PathVariable("id") int identifier) {
     userService.deleteUser(identifier);
+  }
+
+  @ExceptionHandler(UnsupportedOperationException.class)
+  public ResponseEntity<String> handleUnsupportedOperation(
+      UnsupportedOperationException uoe) {
+    return new ResponseEntity<String>(uoe.getMessage(), HttpStatus.BAD_REQUEST);
   }
 }
