@@ -23,31 +23,31 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 @RequestMapping(UrlConstants.USERS_URL)
 public class UserController {
-  private final UserService userRepository;
+  private final UserService userService;
 
   @Autowired
-  public UserController(UserService userRepository) {
+  public UserController(UserService userService) {
     super();
-    this.userRepository = userRepository;
+    this.userService = userService;
   }
 
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
   public Collection<User> getUsers() {
-    return userRepository.getAllUsers();
+    return userService.getAllUsers();
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   @ResponseBody
   public User getUser(@PathVariable("id") int identifier) {
-    return userRepository.getUser(identifier);
+    return userService.getUser(identifier);
   }
 
   @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<Void> postUser(@RequestBody User user,
       UriComponentsBuilder uriBuilder) {
-    int identifier = userRepository.addUser(user);
+    int identifier = userService.addUser(user);
 
     HttpHeaders httpHeaders = new HttpHeaders();
     String uri = UrlConstants.USERS_URL + "/{id}";
@@ -57,8 +57,14 @@ public class UserController {
     return new ResponseEntity<Void>(httpHeaders, HttpStatus.CREATED);
   }
 
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+  @ResponseStatus(HttpStatus.OK)
+  public void putUser(@PathVariable("id") int identifier, @RequestBody User user) {
+    userService.updateOrAddUser(identifier, user);
+  }
+
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
   public void deleteUser(@PathVariable("id") int identifier) {
-    userRepository.deleteUser(identifier);
+    userService.deleteUser(identifier);
   }
 }
