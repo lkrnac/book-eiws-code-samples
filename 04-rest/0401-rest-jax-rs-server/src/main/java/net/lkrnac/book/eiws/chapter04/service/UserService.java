@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter04.persistence;
+package net.lkrnac.book.eiws.chapter04.service;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -7,11 +7,11 @@ import java.util.Map;
 
 import net.lkrnac.book.eiws.chapter04.model.User;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 @SuppressWarnings("PMD.AvoidSynchronizedAtMethodLevel")
-public class UserRepository {
+public class UserService {
   @SuppressWarnings("PMD.UseConcurrentHashMap")
   private final Map<Integer, User> users = new HashMap<>();
   private int userSequence;

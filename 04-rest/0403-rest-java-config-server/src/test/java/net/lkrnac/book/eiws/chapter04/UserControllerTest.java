@@ -13,7 +13,7 @@ import java.util.Collection;
 
 import net.lkrnac.book.eiws.chapter04.javaconfig.UserController;
 import net.lkrnac.book.eiws.chapter04.model.User;
-import net.lkrnac.book.eiws.chapter04.persistence.UserRepository;
+import net.lkrnac.book.eiws.chapter04.service.UserService;
 
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
@@ -45,7 +45,7 @@ public class UserControllerTest {
   @Test
   public void testPost() throws Exception {
     // GIVEN
-    UserRepository userRepository = Mockito.mock(UserRepository.class);
+    UserService userRepository = Mockito.mock(UserService.class);
     UserController userController = new UserController(userRepository);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
@@ -72,7 +72,7 @@ public class UserControllerTest {
   public void testSingleGet() throws Exception {
     // @formatter:off
     // GIVEN
-    UserRepository userRepository = Mockito.mock(UserRepository.class);
+    UserService userRepository = Mockito.mock(UserService.class);
     UserController userController = new UserController(userRepository);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
@@ -98,7 +98,7 @@ public class UserControllerTest {
   public void testMultiGet() throws Exception {
     // @formatter:off
     // GIVEN
-    UserRepository userRepository = Mockito.mock(UserRepository.class);
+    UserService userRepository = Mockito.mock(UserService.class);
     UserController userController = new UserController(userRepository);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
@@ -124,7 +124,7 @@ public class UserControllerTest {
   @Test
   public void testDeleteUser() throws Exception{
     //GIVEN
-    UserRepository userRepository = Mockito.mock(UserRepository.class);
+    UserService userRepository = Mockito.mock(UserService.class);
     UserController userController = new UserController(userRepository);
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 

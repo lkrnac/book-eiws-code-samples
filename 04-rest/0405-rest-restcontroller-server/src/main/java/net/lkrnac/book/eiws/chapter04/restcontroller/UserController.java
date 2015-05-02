@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import net.lkrnac.book.eiws.chapter04.UrlConstants;
 import net.lkrnac.book.eiws.chapter04.model.User;
-import net.lkrnac.book.eiws.chapter04.persistence.UserRepository;
+import net.lkrnac.book.eiws.chapter04.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,10 +22,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping(UrlConstants.USERS_URL)
 public class UserController {
-  private final UserRepository userRepository;
+  private final UserService userRepository;
 
   @Autowired
-  public UserController(UserRepository userRepository) {
+  public UserController(UserService userRepository) {
     super();
     this.userRepository = userRepository;
   }

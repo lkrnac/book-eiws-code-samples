@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 
 import net.lkrnac.book.eiws.chapter04.UrlConstants;
 import net.lkrnac.book.eiws.chapter04.model.User;
-import net.lkrnac.book.eiws.chapter04.persistence.UserRepository;
+import net.lkrnac.book.eiws.chapter04.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,10 +24,10 @@ import org.springframework.stereotype.Component;
 @Path(UrlConstants.USERS_URL)
 @Component
 public class UserResource {
-  private final UserRepository userRepository;
+  private final UserService userRepository;
 
   @Autowired
-  public UserResource(UserRepository userRepository) {
+  public UserResource(UserService userRepository) {
     super();
     this.userRepository = userRepository;
   }
