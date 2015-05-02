@@ -34,7 +34,12 @@ public class UsersClient {
     return Arrays.asList(usersArray);
   }
 
+  public void updateOrCreateUser(int identifier, User user) {
+    restTemplate.put(URL + "/" + identifier, user);
+  }
+
   public void deleteUser(int identifier) {
     restTemplate.delete(URL + "/" + identifier);
   }
+
 }

@@ -113,6 +113,28 @@ public class RestClientBootApplicationTest extends
   }
 
   @Test
+  public void testPut() throws Exception {
+    // GIVEN
+    //@formatter:off
+    mockServer.expect(requestTo(USERS_URL + "/0"))
+      .andExpect(method(HttpMethod.PUT))
+      .andExpect(jsonPath("$.email", is(USER0_EMAIL)))
+      .andExpect(jsonPath("$.name", is(USER0_NAME)))
+      .andRespond(withSuccess());;
+    //@formatter:on
+
+    User user = new User();
+    user.setName(USER0_NAME);
+    user.setEmail(USER0_EMAIL);
+
+    // WHEN
+    usersClient.updateOrCreateUser(0, user);
+
+    // THEN
+    mockServer.verify();
+  }
+
+  @Test
   public void testDeleteUser() throws Exception {
     // GIVEN
     //@formatter:off
