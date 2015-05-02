@@ -30,6 +30,11 @@
       <artifactId>jackson-databind</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.4</version>
+    </dependency>
+    <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
       <artifactId>0000-common-library</artifactId>
       <version>0.0.1-SNAPSHOT</version>

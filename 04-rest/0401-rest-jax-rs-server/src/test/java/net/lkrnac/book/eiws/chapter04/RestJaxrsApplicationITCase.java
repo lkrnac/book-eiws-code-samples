@@ -25,10 +25,10 @@ import org.testng.annotations.Test;
 @WebAppConfiguration
 public class RestJaxrsApplicationITCase extends
     AbstractTestNGSpringContextTests {
+  private static final String USER_UPDATED = "User Updated";
+  private static final String USER_UPDATED_GMAIL_COM = "user.updated@gmail.com";
   private static final String MAVENTESTS = "maventests";
-
   private static final String FULL_USERS_URL = "http://localhost:10401/users";
-
   private static final int RETRY_TIMEOUT = 10000;
 
   private final RestTemplate restTemplate = new RestTemplate();
@@ -80,7 +80,6 @@ public class RestJaxrsApplicationITCase extends
     User actualUser = restTemplate.getForObject(url, User.class);
 
     // THEN
-    assertEquals(actualUser.getIdentifier(), testingIdentifier);
     assertEquals(actualUser.getEmail(), expectedUser.getEmail());
     assertEquals(actualUser.getName(), expectedUser.getName());
   }
@@ -116,18 +115,36 @@ public class RestJaxrsApplicationITCase extends
         restTemplate.getForObject(FULL_USERS_URL, User[].class);
 
     // THEN
-    assertEquals(actualUsers[0].getIdentifier(), expectedUser1.getIdentifier());
     assertEquals(actualUsers[0].getEmail(), expectedUser1.getEmail());
     assertEquals(actualUsers[0].getName(), expectedUser1.getName());
-    assertEquals(actualUsers[1].getIdentifier(), expectedUser2.getIdentifier());
     assertEquals(actualUsers[1].getEmail(), expectedUser2.getEmail());
     assertEquals(actualUsers[1].getName(), expectedUser2.getName());
   }
 
   @Test(groups = MAVENTESTS, dependsOnMethods = "testMultiGet")
+  public void testPutUser() {
+    // GIVEN
+    int testingIdentifier = 1;
+    User user = new User();
+    user.setEmail(USER_UPDATED_GMAIL_COM);
+    user.setName(USER_UPDATED);
+
+    String url = FULL_USERS_URL + "/" + testingIdentifier;
+
+    // WHEN
+    restTemplate.put(url, user);
+
+    // THEN
+    User actualUser = restTemplate.getForObject(url, User.class);
+    assertEquals(actualUser.getEmail(), USER_UPDATED_GMAIL_COM);
+    assertEquals(actualUser.getName(), USER_UPDATED);
+
+  }
+
+  @Test(groups = MAVENTESTS, dependsOnMethods = "testPutUser")
   public void testDeleteUser() {
     // GIVEN
-    int testinIdentifier = 4;
+    int testinIdentifier = 1;
     User expectedUser = createTestingRecord(testinIdentifier);
     restTemplate.postForEntity(FULL_USERS_URL, expectedUser, String.class);
     String url = FULL_USERS_URL + "/" + testinIdentifier;
@@ -142,7 +159,6 @@ public class RestJaxrsApplicationITCase extends
 
   private User createTestingRecord(int idx) {
     User user = new User();
-    user.setIdentifier(idx);
     user.setEmail("user" + idx + "@gmail.com");
     user.setName("User" + idx);
     return user;

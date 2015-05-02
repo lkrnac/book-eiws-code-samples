@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -51,6 +52,14 @@ public class UserResource {
     int identifier = userRepository.addUser(user);
     URI uri = new URI(UrlConstants.USERS_URL + "/" + identifier);
     return Response.created(uri).build();
+  }
+
+  @PUT
+  @Path("/{id}")
+  @Consumes(MediaType.APPLICATION_JSON)
+  public void putUser(@PathParam("id") int identifier, User user)
+      throws URISyntaxException {
+    userRepository.updateOrAddUser(identifier, user);
   }
 
   @DELETE
