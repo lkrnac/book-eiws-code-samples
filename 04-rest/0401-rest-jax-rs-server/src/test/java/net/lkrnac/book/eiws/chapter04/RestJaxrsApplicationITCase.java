@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -162,5 +163,16 @@ public class RestJaxrsApplicationITCase extends
     user.setEmail("user" + idx + "@gmail.com");
     user.setName("User" + idx);
     return user;
+  }
+
+  @Test(groups = MAVENTESTS, expectedExceptions = HttpClientErrorException.class)
+  public void testClientError() {
+    // GIVEN
+    String url = FULL_USERS_URL + "/-1";
+
+    // WHEN
+    restTemplate.getForObject(url, User.class);
+
+    // THEN - expected exception in test annotation
   }
 }
