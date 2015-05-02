@@ -1,10 +1,12 @@
 package net.lkrnac.book.eiws.chapter04;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.testng.Assert.assertEquals;
@@ -25,6 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.testng.annotations.Test;
 
 public class UserControllerTest {
+  private static final String DUMMY_ERROR_TEXT = "dummyErrorText";
   private static final int TESTING_ID = 0;
   private static final String FULL_USER_URL = "http://localhost:10403/users";
 
@@ -156,5 +159,26 @@ public class UserControllerTest {
     // THEN
     Mockito.verify(userService).deleteUser(TESTING_ID);
     Mockito.verifyNoMoreInteractions(userService);
+  }
+
+  @Test
+  public void testClientError() throws Exception {
+    // @formatter:off
+    // GIVEN
+    UserService userService = Mockito.mock(UserService.class);
+    UserController userController = new UserController(userService);
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+    
+    when(userService.getUser(-1)).thenThrow(new UnsupportedOperationException(DUMMY_ERROR_TEXT));
+    
+    // WHEN
+    mockMvc.perform(get(FULL_USER_URL + "/{id}", -1)
+        .accept(MediaType.APPLICATION_JSON)
+      )
+
+    // THEN
+      .andExpect(status().isBadRequest())
+      .andExpect(content().string(DUMMY_ERROR_TEXT));
+    // @formatter:off
   }
 }
