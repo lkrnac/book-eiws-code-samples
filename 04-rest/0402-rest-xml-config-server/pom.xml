@@ -45,11 +45,10 @@
     </dependency>
     
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.16.4</version>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0400-model-service</artifactId>
+      <version>${project.version}</version>
     </dependency>
-    
     
     <!-- Test -->
     <dependency>
