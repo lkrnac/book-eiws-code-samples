@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withBadRequest;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withCreatedEntity;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 import static org.testng.Assert.assertEquals;
@@ -16,6 +17,7 @@ import net.lkrnac.book.eiws.chapter04.model.User;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -137,6 +139,26 @@ public class UserClientUnitTest {
 
     // WHEN
     usersClient.deleteUser(testingIdentifier);
+
+    // THEN
+    mockServer.verify();
+  }
+
+  @Test(expectedExceptions = HttpClientErrorException.class)
+  public void testClientError() throws Exception {
+    // GIVEN
+    //@formatter:off
+    int testingIdentifier = -1;
+    mockServer.expect(requestTo(USERS_URL + "/" + testingIdentifier))
+      .andExpect(method(HttpMethod.GET))
+      .andRespond(
+          withBadRequest()
+          .body("Identifier -1 is not supported.")
+       );
+    //@formatter:on
+
+    // WHEN
+    usersClient.getUser(testingIdentifier);
 
     // THEN
     mockServer.verify();
