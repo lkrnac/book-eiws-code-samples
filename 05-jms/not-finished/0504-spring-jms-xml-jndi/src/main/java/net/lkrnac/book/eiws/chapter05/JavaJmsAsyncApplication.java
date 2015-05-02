@@ -5,30 +5,42 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
 import org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor;
 
-@SpringBootApplication
+@ImportResource("classpath:spring-jndi.xml")
+// @SpringBootApplication
 public class JavaJmsAsyncApplication {
 
-  @Autowired
-  private ConnectionFactory connectionFactory;
+  // @Autowired
+  // private ConnectionFactory connectionFactory;
 
   @Bean
   public ScheduledAnnotationBeanPostProcessor scheduledAnnotationBeanPostProcessor() {
     return new ScheduledAnnotationBeanPostProcessor();
   }
 
+  // @Bean
+  // public JmsTemplate jmsTemplate() {
+  // return new JmsTemplate();
+  // };
+
   @Bean
-  public DefaultMessageListenerContainer messageListener() {
+  public DefaultMessageListenerContainer messageListener()
+      throws NamingException {
     DefaultMessageListenerContainer container =
         new DefaultMessageListenerContainer();
-    container.setConnectionFactory(this.connectionFactory);
+    ConnectionFactory connectionFactory =
+        (ConnectionFactory) new InitialContext()
+            .lookup("jms:jms/ConnectionFactory");
+
+    container.setConnectionFactory(connectionFactory);
     container.setDestinationName("messageQueue");
     container.setMessageListener(new MessageListener() {
       @Override

@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>net.lkrnac.book.eiws</groupId>
-  <artifactId>0504-jmstemplate</artifactId>
+  <artifactId>050x-jmstemplate</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 

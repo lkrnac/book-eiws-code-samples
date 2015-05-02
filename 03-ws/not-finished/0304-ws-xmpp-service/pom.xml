@@ -45,7 +45,7 @@
         <artifactId>jaxb2-maven-plugin</artifactId>
         <version>1.6</version>
         <executions>
-          <execution>
+          <execution> 
             <id>xjc</id>
             <goals>
               <goal>xjc</goal>

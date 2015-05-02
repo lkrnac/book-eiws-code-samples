@@ -3,6 +3,7 @@ package net.lkrnac.book.eiws.chapter04;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -94,7 +95,23 @@ public class RestBootApplicationTest extends AbstractTestNGSpringContextTests {
     }
     
     @Test
-    public void testDeleteUser() throws Exception{
+    public void testPut() throws Exception {
+      // GIVEN: TEST_RECORD1
+
+      // WHEN
+      // @formatter:off
+      mockMvc.perform(put(FULL_USER_URL + "/0")
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(createTestRecord(0)))
+           
+      // THEN
+        .andExpect(status().isOk());
+      // @formatter:on  
+  }
+
+  @Test
+  public void testDeleteUser() throws Exception {
+    //@formatter:off
       //GIVEN
       mockMvc.perform(post(FULL_USER_URL)
           .contentType(MediaType.APPLICATION_JSON)
@@ -109,11 +126,13 @@ public class RestBootApplicationTest extends AbstractTestNGSpringContextTests {
         )
         .andExpect(status().isOk())
         .andExpect(content().string(""));
-    }
-    
-    private static String createTestRecord(int identifier) {
-      String testingRecordString =
-          "{\"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
-      return String.format(testingRecordString, identifier, identifier, identifier);
-    }
+      //@formatter:on
   }
+
+  private static String createTestRecord(int identifier) {
+    String testingRecordString =
+        "{\"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
+    return String.format(testingRecordString, identifier, identifier,
+        identifier);
+  }
+}
