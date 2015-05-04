@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 @SuppressWarnings("PMD.AvoidSynchronizedAtMethodLevel")
 public class UserService {
-  public static int SIMULATE_ERROR_ID = -1;
-
   @SuppressWarnings("PMD.UseConcurrentHashMap")
   private final Map<Integer, User> users = new HashMap<>();
   private int userSequence;
@@ -23,9 +21,8 @@ public class UserService {
   }
 
   public synchronized User getUser(int identifier) {
-    if (identifier == SIMULATE_ERROR_ID) {
-      throw new UnsupportedOperationException("Identifier " + SIMULATE_ERROR_ID
-          + " is not supported.");
+    if (identifier == -1) {
+      throw new UnsupportedOperationException("Identifier -1 is not supported.");
     }
     return users.get(identifier);
   }
