@@ -22,7 +22,6 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -70,7 +69,7 @@ public class RestClientBootApplicationTest extends
     URI location = usersClient.createUser(user);
 
     // THEN
-    Assert.assertEquals(location, expectedUri);
+    assertEquals(location, expectedUri);
     mockServer.verify();
   }
 
@@ -122,7 +121,7 @@ public class RestClientBootApplicationTest extends
       .andExpect(method(HttpMethod.PUT))
       .andExpect(jsonPath("$.email", is(USER0_EMAIL)))
       .andExpect(jsonPath("$.name", is(USER0_NAME)))
-      .andRespond(withSuccess());;
+      .andRespond(withSuccess());
     //@formatter:on
 
     User user = new User();

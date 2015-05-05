@@ -24,7 +24,7 @@
 
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>0400-model-service</artifactId>
+      <artifactId>0400-rest-common</artifactId>
       <version>${project.version}</version>
     </dependency>
 
