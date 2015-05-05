@@ -7,9 +7,9 @@ import java.util.Map;
 
 import net.lkrnac.book.eiws.chapter04.model.User;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service
+@Repository
 @SuppressWarnings("PMD.AvoidSynchronizedAtMethodLevel")
 public class UserRepository {
   @SuppressWarnings("PMD.UseConcurrentHashMap")
