@@ -62,9 +62,10 @@ public class UserResource {
   @PUT
   @Path("/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
-  public void putUser(@PathParam("id") int identifier, User user)
+  public Response putUser(@PathParam("id") int identifier, User user)
       throws URISyntaxException {
     userService.updateOrAddUser(identifier, user);
+    return Response.ok().build();
   }
 
   @DELETE
