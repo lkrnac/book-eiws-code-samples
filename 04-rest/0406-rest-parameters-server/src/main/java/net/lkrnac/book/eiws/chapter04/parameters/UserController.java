@@ -9,6 +9,7 @@ import net.lkrnac.book.eiws.chapter04.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +43,7 @@ public class UserController {
     return userService.getUser(identifier);
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseStatus(HttpStatus.CREATED)
   public ResponseEntity<Void> postUser(@RequestBody User user,
       UriComponentsBuilder uriBuilder) {
@@ -67,7 +68,7 @@ public class UserController {
     userService.deleteUser(identifier);
   }
 
-  @RequestMapping(method = RequestMethod.GET, params = "lowerId")
+  @RequestMapping(method = RequestMethod.GET, params = "lowerId", produces = MediaType.APPLICATION_JSON_VALUE)
   public Collection<User> getUsersInterval(@RequestParam int lowerId,
       @RequestParam("upperId") int upId) {
     return userService.getUsersInterval(lowerId, upId);
