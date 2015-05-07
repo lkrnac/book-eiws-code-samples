@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import net.lkrnac.book.eiws.chapter04.model.User;
 
@@ -38,5 +39,16 @@ public class UserRepository {
 
   public synchronized User deleteUser(int identifier) {
     return users.remove(identifier);
+  }
+
+  @SuppressWarnings("PMD.ShortVariable")
+  public synchronized Collection<User> getUsersInterval(int lowerId, int upperId) {
+    //@formatter:off
+    Collection<User> usersInIdInterval = users.entrySet().stream()
+        .filter(p -> p.getKey() >= lowerId && p.getKey() <= upperId)
+        .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue()))
+        .values();
+    //@formatter:on
+    return Collections.unmodifiableCollection(usersInIdInterval);
   }
 }

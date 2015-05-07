@@ -19,23 +19,28 @@ public class UserService {
     this.userRepository = userRepository;
   }
 
-  public synchronized Collection<User> getAllUsers() {
+  public Collection<User> getAllUsers() {
     return userRepository.getAllUsers();
   }
 
-  public synchronized User getUser(int identifier) {
+  public User getUser(int identifier) {
     return userRepository.getUser(identifier);
   }
 
-  public synchronized int addUser(User user) {
+  public int addUser(User user) {
     return userRepository.addUser(user);
   }
 
-  public synchronized void updateOrAddUser(int identifier, User user) {
+  public void updateOrAddUser(int identifier, User user) {
     userRepository.updateOrAddUser(identifier, user);
   }
 
-  public synchronized User deleteUser(int identifier) {
+  public User deleteUser(int identifier) {
     return userRepository.deleteUser(identifier);
   }
+
+  public Collection<User> getUsersInterval(int lowerId, int upperId) {
+    return userRepository.getUsersInterval(lowerId, upperId);
+  }
+
 }

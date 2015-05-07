@@ -21,12 +21,12 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-@SpringApplicationConfiguration(classes = RestRestcontrollerApplication.class)
+@SpringApplicationConfiguration(classes = RestParametersApplication.class)
 @WebAppConfiguration
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class RestRestcontrollerApplicationTest extends
+public class RestParametersApplicationTest extends
     AbstractTestNGSpringContextTests {
-  private static final String FULL_USER_URL = "http://localhost:10405/users";
+  private static final String FULL_USER_URL = "http://localhost:10406/users";
   private MockMvc mockMvc;
 
   @Autowired
@@ -47,7 +47,7 @@ public class RestRestcontrollerApplicationTest extends
           .contentType(MediaType.APPLICATION_JSON)
           .content(createTestRecord(0)))
            
-      // THEN 
+      // THEN
         .andExpect(status().isCreated());
       // @formatter:on
   }
@@ -139,11 +139,39 @@ public class RestRestcontrollerApplicationTest extends
     // THEN
       .andExpect(status().isBadRequest())
       .andExpect(content().string("Identifier -1 is not supported."));
-    // @formatter:off 
+    // @formatter:off
   }  
+
+  @Test
+  public void testMultiGetInterval() throws Exception {
+    // GIVEN
+    for (int idx = 0; idx < 10; idx++){
+      mockMvc.perform(post(FULL_USER_URL)
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(createTestRecord(idx)));
+    }
+
+    // WHEN
+    mockMvc.perform(get(FULL_USER_URL)
+        .param("lowerId", "2")
+        .param("upperId", "5")
+        .accept(MediaType.APPLICATION_JSON))
+
+    // THEN
+      .andExpect(status().isOk())
+      .andExpect(jsonPath("$[0].email").value("user2@gmail.com"))
+      .andExpect(jsonPath("$[0].name").value("User2"))
+      .andExpect(jsonPath("$[1].email").value("user3@gmail.com"))
+      .andExpect(jsonPath("$[1].name").value("User3"))
+      .andExpect(jsonPath("$[2].email").value("user4@gmail.com"))
+      .andExpect(jsonPath("$[2].name").value("User4"))
+      .andExpect(jsonPath("$[3].email").value("user5@gmail.com"))
+      .andExpect(jsonPath("$[3].name").value("User5"));   
+  }
+  
   
   private static String createTestRecord(int identifier) {
-    String testingRecordString = 
+    String testingRecordString =
         "{\"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
     return String.format(testingRecordString, identifier, identifier,
         identifier);
