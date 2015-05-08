@@ -106,7 +106,7 @@ public class RestParametersApplicationTest extends
           .contentType(MediaType.APPLICATION_JSON)
           .content(createTestRecord(0)))
             
-      // THEN
+      // THEN 
         .andExpect(status().isOk());
       // @formatter:on  
   }
@@ -121,7 +121,7 @@ public class RestParametersApplicationTest extends
             .contentType(MediaType.APPLICATION_JSON)
             .content(createTestRecord(0)))
               
-        // THEN
+        // THEN 
           .andExpect(status().isBadRequest())
           .andExpect(content().string("Expected version is 1!"));
         // @formatter:on  

@@ -1,6 +1,7 @@
 package net.lkrnac.book.eiws.chapter04.parameters;
 
 import java.util.Collection;
+import java.util.List;
 
 import net.lkrnac.book.eiws.chapter04.UrlConstants;
 import net.lkrnac.book.eiws.chapter04.model.User;
@@ -61,7 +62,10 @@ public class UserController {
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
   public ResponseEntity<String> putUser(@PathVariable("id") int identifier,
       RequestEntity<User> request) {
-    if ("1".equals(request.getHeaders().get("version").get(0))) {
+    List<String> versions = request.getHeaders().get("version");
+    boolean versionIsCorrect =
+        versions != null && "1".equals(versions.get(0));
+    if (versionIsCorrect) {
       userService.updateOrAddUser(identifier, request.getBody());
       return ResponseEntity.ok("");
     } else {
