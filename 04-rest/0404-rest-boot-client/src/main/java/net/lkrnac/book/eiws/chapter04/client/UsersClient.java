@@ -1,12 +1,16 @@
 package net.lkrnac.book.eiws.chapter04.client;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
 import net.lkrnac.book.eiws.chapter04.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -42,4 +46,10 @@ public class UsersClient {
     restTemplate.delete(URL + "/" + identifier);
   }
 
+  public User getUserExchange(int identifier) throws URISyntaxException {
+    RequestEntity<Void> request =
+        new RequestEntity<Void>(HttpMethod.GET, new URI(URL + "/" + identifier));
+    ResponseEntity<User> response = restTemplate.exchange(request, User.class);
+    return response.getBody();
+  }
 }

@@ -163,4 +163,23 @@ public class UserClientUnitTest {
     // THEN
     mockServer.verify();
   }
+
+  @Test
+  public void testSingleGetExchange() throws Exception {
+    // GIVEN
+    //@formatter:off
+    int testingIdentifier = 0;
+    mockServer.expect(requestTo(USERS_URL + "/" + testingIdentifier))
+      .andExpect(method(HttpMethod.GET))
+      .andRespond(withSuccess(TEST_RECORD0, MediaType.APPLICATION_JSON));
+    //@formatter:on
+
+    // WHEN
+    User user = usersClient.getUserExchange(testingIdentifier);
+
+    // THEN
+    mockServer.verify();
+    assertEquals(user.getName(), USER0_NAME);
+    assertEquals(user.getEmail(), USER0_EMAIL);
+  }
 }
