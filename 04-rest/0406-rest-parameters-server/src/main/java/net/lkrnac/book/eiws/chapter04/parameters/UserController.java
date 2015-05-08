@@ -16,10 +16,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -35,47 +35,40 @@ public class UserController {
     this.userService = userService;
   }
 
-  @RequestMapping(method = RequestMethod.GET)
-  public Collection<User> getUsers() {
-    return userService.getAllUsers();
-  }
-
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   public User getUser(@PathVariable("id") int identifier) {
     return userService.getUser(identifier);
   }
 
-  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<Void> postUser(@RequestBody User user,
-      UriComponentsBuilder uriBuilder) {
-    int identifier = userService.addUser(user);
+  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, headers = "version=1")
+  public ResponseEntity<String> postUser(@RequestBody User user,
+      UriComponentsBuilder uriBuilder,
+      @RequestHeader(required = false) String version) {
+    if ("1".equals(version)) {
+      int identifier = userService.addUser(user);
 
-    HttpHeaders httpHeaders = new HttpHeaders();
-    String uri = UrlConstants.USERS_URL + "/{id}";
-    UriComponents uriComponents =
-        uriBuilder.path(uri).buildAndExpand(identifier);
-    httpHeaders.setLocation(uriComponents.toUri());
-    return new ResponseEntity<Void>(httpHeaders, HttpStatus.CREATED);
+      HttpHeaders httpHeaders = new HttpHeaders();
+      String uri = UrlConstants.USERS_URL + "/{id}";
+      UriComponents uriComponents =
+          uriBuilder.path(uri).buildAndExpand(identifier);
+      httpHeaders.setLocation(uriComponents.toUri());
+      return new ResponseEntity<String>(httpHeaders, HttpStatus.CREATED);
+    } else {
+      return ResponseEntity.badRequest().body("Expected version is 1!");
+    }
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
   public ResponseEntity<String> putUser(@PathVariable("id") int identifier,
       RequestEntity<User> request) {
     List<String> versions = request.getHeaders().get("version");
-    boolean versionIsCorrect =
-        versions != null && "1".equals(versions.get(0));
+    boolean versionIsCorrect = versions != null && "1".equals(versions.get(0));
     if (versionIsCorrect) {
       userService.updateOrAddUser(identifier, request.getBody());
       return ResponseEntity.ok("");
     } else {
       return ResponseEntity.badRequest().body("Expected version is 1!");
     }
-  }
-
-  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-  public void deleteUser(@PathVariable("id") int identifier) {
-    userService.deleteUser(identifier);
   }
 
   @RequestMapping(method = RequestMethod.GET, params = "lowerId", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -26,6 +26,8 @@ import org.testng.annotations.Test;
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class RestParametersApplicationTest extends
     AbstractTestNGSpringContextTests {
+  private static final String VERSION_HEADER = "version";
+  private static final String EXPECTED_VERSION_IS_1 = "Expected version is 1!";
   private static final String FULL_USER_URL = "http://localhost:10406/users";
   private MockMvc mockMvc;
 
@@ -38,12 +40,13 @@ public class RestParametersApplicationTest extends
   }
 
   @Test
-  public void testPost() throws Exception {
+  public void testPost_Success() throws Exception {
     // GIVEN: TEST_RECORD1
 
     // WHEN
     // @formatter:off
       mockMvc.perform(post(FULL_USER_URL)
+          .header(VERSION_HEADER, "1")
           .contentType(MediaType.APPLICATION_JSON)
           .content(createTestRecord(0)))
            
@@ -53,56 +56,44 @@ public class RestParametersApplicationTest extends
   }
 
   @Test
-  public void testSingleGet() throws Exception {
+  public void testPost_FailNoVersion() throws Exception {
+    // GIVEN: TEST_RECORD1
+
+    // WHEN
     // @formatter:off
-      // GIVEN
       mockMvc.perform(post(FULL_USER_URL)
           .contentType(MediaType.APPLICATION_JSON)
-          .content(createTestRecord(0)));
-
-      // WHEN
-      mockMvc.perform(get(FULL_USER_URL + "/{id}", 0)
-          .accept(MediaType.APPLICATION_JSON)
-        )
-
+          .content(createTestRecord(0)))
+            
       // THEN
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.email").value("user0@gmail.com"))
-        .andExpect(jsonPath("$.name").value("User0"));
-      // @formatter:off
-    }
+          .andExpect(status().isMethodNotAllowed());
+      // @formatter:on
+  }
 
-    @Test
-    public void testMultiGet() throws Exception {
-      // @formatter:off
-      // GIVEN
+  @Test
+  public void testPost_FailWrongVersion() throws Exception {
+    // GIVEN: TEST_RECORD1
+
+    // WHEN
+    // @formatter:off
       mockMvc.perform(post(FULL_USER_URL)
+          .header(VERSION_HEADER, "2")
           .contentType(MediaType.APPLICATION_JSON)
-          .content(createTestRecord(0)));
-      mockMvc.perform(post(FULL_USER_URL)
-          .contentType(MediaType.APPLICATION_JSON)
-          .content(createTestRecord(1)));
-
-      // WHEN
-      mockMvc.perform(get(FULL_USER_URL).accept(MediaType.APPLICATION_JSON))
-
+          .content(createTestRecord(0)))
+           
       // THEN
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$[0].email").value("user0@gmail.com"))
-        .andExpect(jsonPath("$[0].name").value("User0"))
-        .andExpect(jsonPath("$[1].email").value("user1@gmail.com"))
-        .andExpect(jsonPath("$[1].name").value("User1"));
-      // @formatter:off
-    }
-    
-    @Test
-    public void testPut() throws Exception {
-      // GIVEN: TEST_RECORD1
+          .andExpect(status().isMethodNotAllowed());
+      // @formatter:on
+  }
 
-      // WHEN
-      // @formatter:off
+  @Test
+  public void testPut_Success() throws Exception {
+    // GIVEN: TEST_RECORD1
+
+    // WHEN
+    // @formatter:off
       mockMvc.perform(put(FULL_USER_URL + "/0")
-          .header("version", "1")
+          .header(VERSION_HEADER, "1")
           .contentType(MediaType.APPLICATION_JSON)
           .content(createTestRecord(0)))
             
@@ -123,7 +114,7 @@ public class RestParametersApplicationTest extends
               
         // THEN 
           .andExpect(status().isBadRequest())
-          .andExpect(content().string("Expected version is 1!"));
+          .andExpect(content().string(EXPECTED_VERSION_IS_1));
         // @formatter:on  
   }
 
@@ -134,13 +125,13 @@ public class RestParametersApplicationTest extends
     // WHEN
     // @formatter:off
       mockMvc.perform(put(FULL_USER_URL + "/0")
-          .header("version", "2")
+          .header(VERSION_HEADER, "2")
           .contentType(MediaType.APPLICATION_JSON)
           .content(createTestRecord(0)))
             
       // THEN
         .andExpect(status().isBadRequest())
-        .andExpect(content().string("Expected version is 1!"));
+        .andExpect(content().string(EXPECTED_VERSION_IS_1));
       // @formatter:on  
   }
 
@@ -154,10 +145,13 @@ public class RestParametersApplicationTest extends
     mockMvc.perform(delete(FULL_USER_URL + "/{id}", 0));
 
     // THEN
+    // @formatter:off
     mockMvc
-        .perform(
-            get(FULL_USER_URL + "/{id}", 0).accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk()).andExpect(content().string(""));
+        .perform(get(FULL_USER_URL + "/{id}", 0)
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().string(""));
+    // @formatter:on
   }
 
   @Test
@@ -170,7 +164,7 @@ public class RestParametersApplicationTest extends
         .accept(MediaType.APPLICATION_JSON)
       )
  
-    // THEN
+    // THEN 
       .andExpect(status().isBadRequest())
       .andExpect(content().string("Identifier -1 is not supported."));
     // @formatter:off
@@ -181,6 +175,7 @@ public class RestParametersApplicationTest extends
     // GIVEN
     for (int idx = 0; idx < 10; idx++){
       mockMvc.perform(post(FULL_USER_URL)
+          .header(VERSION_HEADER, "1")
           .contentType(MediaType.APPLICATION_JSON)
           .content(createTestRecord(idx)));
     }
@@ -192,7 +187,7 @@ public class RestParametersApplicationTest extends
         .accept(MediaType.APPLICATION_JSON))
 
     // THEN
-      .andExpect(status().isOk())
+      .andExpect(status().isOk()) 
       .andExpect(jsonPath("$[0].email").value("user2@gmail.com"))
       .andExpect(jsonPath("$[0].name").value("User2"))
       .andExpect(jsonPath("$[1].email").value("user3@gmail.com"))
