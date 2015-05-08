@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,9 +59,14 @@ public class UserController {
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  @ResponseStatus(HttpStatus.OK)
-  public void putUser(@PathVariable("id") int identifier, @RequestBody User user) {
-    userService.updateOrAddUser(identifier, user);
+  public ResponseEntity<String> putUser(@PathVariable("id") int identifier,
+      RequestEntity<User> request) {
+    if ("1".equals(request.getHeaders().get("version").get(0))) {
+      userService.updateOrAddUser(identifier, request.getBody());
+      return ResponseEntity.ok("");
+    } else {
+      return ResponseEntity.badRequest().body("Expected version is 1!");
+    }
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

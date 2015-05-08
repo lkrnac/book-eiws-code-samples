@@ -102,11 +102,45 @@ public class RestParametersApplicationTest extends
       // WHEN
       // @formatter:off
       mockMvc.perform(put(FULL_USER_URL + "/0")
+          .header("version", "1")
           .contentType(MediaType.APPLICATION_JSON)
           .content(createTestRecord(0)))
             
       // THEN
         .andExpect(status().isOk());
+      // @formatter:on  
+  }
+
+  @Test
+  public void testPut_FailNoVersion() throws Exception {
+    // GIVEN: TEST_RECORD1
+
+    // WHEN
+    // @formatter:off
+        mockMvc.perform(put(FULL_USER_URL + "/0")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(createTestRecord(0)))
+              
+        // THEN
+          .andExpect(status().isBadRequest())
+          .andExpect(content().string("Expected version is 1!"));
+        // @formatter:on  
+  }
+
+  @Test
+  public void testPut_FailWrongVersion() throws Exception {
+    // GIVEN: TEST_RECORD1
+
+    // WHEN
+    // @formatter:off
+      mockMvc.perform(put(FULL_USER_URL + "/0")
+          .header("version", "2")
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(createTestRecord(0)))
+            
+      // THEN
+        .andExpect(status().isBadRequest())
+        .andExpect(content().string("Expected version is 1!"));
       // @formatter:on  
   }
 
@@ -130,7 +164,7 @@ public class RestParametersApplicationTest extends
   public void testClientError() throws Exception {
     // @formatter:off
     // GIVEN
-
+ 
     // WHEN
     mockMvc.perform(get(FULL_USER_URL + "/{id}", -1)
         .accept(MediaType.APPLICATION_JSON)
