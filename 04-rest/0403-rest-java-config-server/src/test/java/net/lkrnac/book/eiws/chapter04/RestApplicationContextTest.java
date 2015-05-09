@@ -42,6 +42,13 @@ public class RestApplicationContextTest extends
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
 
+  private static String createTestRecord(int identifier) {
+    String testingRecordString =
+        "{\"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
+    return String.format(testingRecordString, identifier, identifier,
+        identifier);
+  }
+
   @Test
   public void testPost() throws Exception {
     // GIVEN
@@ -106,7 +113,7 @@ public class RestApplicationContextTest extends
   
   @Test
   public void testPut() throws Exception {
-    // GIVEN: TEST_RECORD1
+    // GIVEN: test record
 
     // WHEN
     // @formatter:off
@@ -121,8 +128,10 @@ public class RestApplicationContextTest extends
 
   @Test
   public void testDeleteUser() throws Exception {
+    //@formatter:off
     // GIVEN
-    mockMvc.perform(post(FULL_USER_URL).contentType(MediaType.APPLICATION_JSON)
+    mockMvc.perform(post(FULL_USER_URL)
+        .contentType(MediaType.APPLICATION_JSON)
         .content(createTestRecord(0)));
 
     // WHEN
@@ -131,8 +140,11 @@ public class RestApplicationContextTest extends
     // THEN
     mockMvc
         .perform(
-            get(FULL_USER_URL + "/{id}", 0).accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk()).andExpect(content().string(""));
+            get(FULL_USER_URL + "/{id}", 0)
+            .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().string(""));
+    //@formatter:on
   }
 
   @Test
@@ -149,12 +161,5 @@ public class RestApplicationContextTest extends
       .andExpect(status().isBadRequest())
       .andExpect(content().string("Identifier -1 is not supported."));
     // @formatter:off
-  }
-  
-  private static String createTestRecord(int identifier) {
-    String testingRecordString =
-        "{\"email\": \"user%d@gmail.com\", \"name\": \"User%d\"}";
-    return String.format(testingRecordString, identifier, identifier,
-        identifier);
   }
 }
