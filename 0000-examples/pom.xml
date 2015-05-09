@@ -46,9 +46,10 @@
     <module>../04-rest/0403-rest-java-config-server</module>    
     <module>../04-rest/0404-rest-boot-server</module>    
     <module>../04-rest/0404-rest-boot-client</module>
-    <module>../04-rest/0405-rest-async-client</module>
     <module>../04-rest/0405-rest-restcontroller-server</module>    
+    <module>../04-rest/0405-rest-async-client</module>
     <module>../04-rest/0406-rest-parameters-server</module>    
+    <module>../04-rest/0406-rest-errorhandler-client</module>    
     <module>../05-jms/0501-jms11-jndi</module>    
     <module>../05-jms/0502-jms2-jndi</module>    
     <module>../05-jms/0503-async-jndi</module>
