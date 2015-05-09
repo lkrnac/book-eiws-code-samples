@@ -53,7 +53,7 @@ public class UserControllerTest {
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
     User testingUser = createTestUser(TESTING_ID);
-    Mockito.when(userService.addUser(testingUser)).thenReturn(TESTING_ID);
+    when(userService.addUser(testingUser)).thenReturn(TESTING_ID);
 
     // WHEN
     // @formatter:off
@@ -80,7 +80,7 @@ public class UserControllerTest {
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 
     User testingUser = createTestUser(TESTING_ID);
-    Mockito.when(userService.getUser(TESTING_ID)).thenReturn(testingUser);
+    when(userService.getUser(TESTING_ID)).thenReturn(testingUser);
 
     // WHEN
     mockMvc.perform(get(FULL_USER_URL + "/{id}", 0)
@@ -93,7 +93,6 @@ public class UserControllerTest {
       .andExpect(jsonPath("$.email").value("user0@gmail.com"))
       .andExpect(jsonPath("$.name").value("User0"));
     // @formatter:off
-    Mockito.verifyNoMoreInteractions(userService);
   }
 
   @Test
@@ -107,7 +106,7 @@ public class UserControllerTest {
     Collection<User> testingUsers = new ArrayList<>(); 
     testingUsers.add(createTestUser(TESTING_ID));
     testingUsers.add(createTestUser(1));
-    Mockito.when(userService.getAllUsers()).thenReturn(testingUsers);
+    when(userService.getAllUsers()).thenReturn(testingUsers);
     
     // WHEN
     mockMvc.perform(get(FULL_USER_URL).accept(MediaType.APPLICATION_JSON))
@@ -119,7 +118,6 @@ public class UserControllerTest {
       .andExpect(jsonPath("$[1].email").value("user1@gmail.com"))
       .andExpect(jsonPath("$[1].name").value("User1"));
     // @formatter:off
-    Mockito.verifyNoMoreInteractions(userService);
   }
 
   @Test
