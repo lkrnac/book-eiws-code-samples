@@ -37,6 +37,7 @@ public class UserController {
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
   public User getUser(@PathVariable("id") int identifier) {
     return userService.getUser(identifier);
   }
