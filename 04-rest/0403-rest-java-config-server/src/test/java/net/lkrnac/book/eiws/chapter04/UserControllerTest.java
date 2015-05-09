@@ -93,7 +93,7 @@ public class UserControllerTest {
       .andExpect(jsonPath("$.email").value("user0@gmail.com"))
       .andExpect(jsonPath("$.name").value("User0"));
     // @formatter:off
-    
+    Mockito.verifyNoMoreInteractions(userService);
   }
 
   @Test
@@ -119,6 +119,7 @@ public class UserControllerTest {
       .andExpect(jsonPath("$[1].email").value("user1@gmail.com"))
       .andExpect(jsonPath("$[1].name").value("User1"));
     // @formatter:off
+    Mockito.verifyNoMoreInteractions(userService);
   }
 
   @Test
