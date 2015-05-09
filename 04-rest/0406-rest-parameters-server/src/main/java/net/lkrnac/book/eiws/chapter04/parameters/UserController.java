@@ -58,7 +58,7 @@ public class UserController {
     }
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT, headers = "version=1")
   public ResponseEntity<String> putUser(@PathVariable("id") int identifier,
       RequestEntity<User> request) {
     List<String> versions = request.getHeaders().get("version");

@@ -27,7 +27,6 @@ import org.testng.annotations.Test;
 public class RestParametersApplicationTest extends
     AbstractTestNGSpringContextTests {
   private static final String VERSION_HEADER = "version";
-  private static final String EXPECTED_VERSION_IS_1 = "Expected version is 1!";
   private static final String FULL_USER_URL = "http://localhost:10406/users";
   private MockMvc mockMvc;
 
@@ -113,8 +112,7 @@ public class RestParametersApplicationTest extends
             .content(createTestRecord(0)))
               
         // THEN 
-          .andExpect(status().isBadRequest())
-          .andExpect(content().string(EXPECTED_VERSION_IS_1));
+            .andExpect(status().isMethodNotAllowed());
         // @formatter:on  
   }
 
@@ -130,8 +128,7 @@ public class RestParametersApplicationTest extends
           .content(createTestRecord(0)))
             
       // THEN
-        .andExpect(status().isBadRequest())
-        .andExpect(content().string(EXPECTED_VERSION_IS_1));
+          .andExpect(status().isMethodNotAllowed());
       // @formatter:on  
   }
 
