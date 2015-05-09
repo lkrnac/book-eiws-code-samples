@@ -35,7 +35,7 @@ public class UserController {
     this.userService = userService;
   }
 
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   public User getUser(@PathVariable("id") int identifier) {
     return userService.getUser(identifier);
   }
