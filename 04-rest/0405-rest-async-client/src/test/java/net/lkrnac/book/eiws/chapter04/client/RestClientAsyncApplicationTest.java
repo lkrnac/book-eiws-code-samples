@@ -15,13 +15,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.AsyncRestTemplate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-@WebAppConfiguration
 @ContextConfiguration(classes = ClientConfiguration.class)
 public class RestClientAsyncApplicationTest extends
     AbstractTestNGSpringContextTests {
@@ -37,9 +35,6 @@ public class RestClientAsyncApplicationTest extends
 
   @Autowired
   private AsyncRestTemplate asyncRestTemplate;
-
-  // @Autowired
-  // private WebApplicationContext webApplicationContext;
 
   private MockRestServiceServer mockServer;
 

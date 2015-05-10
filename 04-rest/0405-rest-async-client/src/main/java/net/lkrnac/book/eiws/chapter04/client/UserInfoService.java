@@ -9,12 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 
-@Component
+@Service
 public class UserInfoService {
   private static final Logger LOGGER = LoggerFactory
       .getLogger(UserInfoService.class);
@@ -31,25 +31,9 @@ public class UserInfoService {
     this.userActionsRepository = userActionsRepository;
   }
 
-  public UserInfo getUserInfo(int identifier) {
-    final long start = System.currentTimeMillis();
-
-    ListenableFuture<ResponseEntity<User>> futureResult =
-        getUserAsync(identifier, start);
-
-    Collection<String> userActions =
-        userActionsRepository.getUserActions(identifier);
-    logElapsedTime("User Actions repository", start);
-
-    User user = null;
-    try {
-      user = futureResult.get().getBody();
-    } catch (Exception e) {
-      throw new IllegalStateException(e);
-    }
-
-    logElapsedTime("Overall", start);
-    return new UserInfo(user, userActions);
+  private void logElapsedTime(String messagePrefix, long start) {
+    LOGGER.info("{} call took {} ms.", messagePrefix,
+        System.currentTimeMillis() - start);
   }
 
   private ListenableFuture<ResponseEntity<User>> getUserAsync(int identifier,
@@ -72,8 +56,24 @@ public class UserInfoService {
     return futureResult;
   }
 
-  private void logElapsedTime(String messagePrefix, long start) {
-    LOGGER.info("{} call took {} ms.", messagePrefix,
-        System.currentTimeMillis() - start);
+  public UserInfo getUserInfo(int identifier) {
+    final long start = System.currentTimeMillis();
+
+    ListenableFuture<ResponseEntity<User>> futureResult =
+        getUserAsync(identifier, start);
+
+    Collection<String> userActions =
+        userActionsRepository.getUserActions(identifier);
+    logElapsedTime("User Actions repository", start);
+
+    User user = null;
+    try {
+      user = futureResult.get().getBody();
+    } catch (Exception e) {
+      throw new IllegalStateException(e);
+    }
+
+    logElapsedTime("Overall", start);
+    return new UserInfo(user, userActions);
   }
 }
