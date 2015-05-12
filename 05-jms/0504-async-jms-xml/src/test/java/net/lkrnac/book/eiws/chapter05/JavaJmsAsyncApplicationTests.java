@@ -9,8 +9,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringApplicationConfiguration(classes = JavaJmsAsyncApplication.class)
 public class JavaJmsAsyncApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+  @Test
+  public void contextLoads() throws InterruptedException {
+    Thread.sleep(5000);
+  }
 
 }
