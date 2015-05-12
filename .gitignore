@@ -24,3 +24,4 @@
 /03-ws/0304-ws-xmpp-service/src/main/java/xmpp/*
 /03-ws/0308-ws-object-factory-service/src/main/java/localhost/*
 /03-ws/0308-ws-objectfactory-service/src/main/java/localhost/*
+/05-jms/0504-async-jms-xml/activemq-data/localhost/KahaDB/*
