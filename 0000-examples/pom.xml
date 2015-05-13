@@ -50,6 +50,7 @@
     <module>../04-rest/0405-rest-async-client</module>
     <module>../04-rest/0406-rest-parameters-server</module>    
     <module>../04-rest/0406-rest-errorhandler-client</module>    
+    <module>../05-jms/0500-jms-common</module>    
     <module>../05-jms/0501-jms11-jndi</module>    
     <module>../05-jms/0502-jms2-jndi</module>    
     <module>../05-jms/0503-async-jndi</module>

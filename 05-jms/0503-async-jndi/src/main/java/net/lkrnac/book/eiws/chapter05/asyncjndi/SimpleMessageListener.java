@@ -4,6 +4,8 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
+import net.lkrnac.book.eiws.chapter05.test.SimpleMessageHandler;
+
 public class SimpleMessageListener implements MessageListener {
   private SimpleMessageHandler simpleMessageHandler;
 

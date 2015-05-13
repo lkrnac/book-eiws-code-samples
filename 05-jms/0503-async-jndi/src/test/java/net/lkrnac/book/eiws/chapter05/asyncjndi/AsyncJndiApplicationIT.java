@@ -3,6 +3,8 @@ package net.lkrnac.book.eiws.chapter05.asyncjndi;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 
+import net.lkrnac.book.eiws.chapter05.test.TestingMessageHandler;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -25,21 +27,7 @@ public class AsyncJndiApplicationIT {
       messageSender.sendMessage(MESSAGE_TEXT);
 
       // THEN
-      Thread.sleep(100);
       Assert.assertEquals(messageHandler.getMessage(), MESSAGE_TEXT);
-    }
-  }
-
-  private static class TestingMessageHandler implements SimpleMessageHandler {
-    private String message;
-
-    @Override
-    public void handleMessage(String message) {
-      this.message = message;
-    }
-
-    public String getMessage() {
-      return message;
     }
   }
 }
