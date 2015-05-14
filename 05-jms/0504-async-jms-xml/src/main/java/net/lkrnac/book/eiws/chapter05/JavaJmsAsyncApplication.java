@@ -1,8 +1,5 @@
 package net.lkrnac.book.eiws.chapter05;
 
-import javax.jms.ConnectionFactory;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,12 +12,20 @@ import org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProc
 @ImportResource("classpath:spring-jms.xml")
 @ComponentScan
 public class JavaJmsAsyncApplication {
-  @Autowired
-  private ConnectionFactory connectionFactory;
-
   @Bean
   public ScheduledAnnotationBeanPostProcessor scheduledAnnotationBeanPostProcessor() {
     return new ScheduledAnnotationBeanPostProcessor();
+  }
+
+  @Bean
+  public SimpleMessageHandler simpleMessageHandler() {
+    return new SimpleMessageHandler() {
+
+      @Override
+      public void handleMessage(String message) {
+        System.out.println(message);
+      }
+    };
   }
 
   public static void main(String[] args) {
