@@ -5,7 +5,7 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
 
-import net.lkrnac.book.eiws.chapter05.test.SimpleMessageHandler;
+import net.lkrnac.book.eiws.chapter05.SimpleMessageHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

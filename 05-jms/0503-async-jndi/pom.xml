@@ -52,11 +52,11 @@
       <version>${jnpserver.version}</version>
     </dependency>
     <dependency>
-  <groupId>net.lkrnac.book.eiws</groupId>
-  <artifactId>0500-jms-common</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0500-jms-common</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
-    
+
   </dependencies>
 
   <build>
