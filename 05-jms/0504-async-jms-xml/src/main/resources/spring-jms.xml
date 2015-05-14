@@ -20,6 +20,14 @@
   <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
     <constructor-arg ref="connectionFactory"/>
   </bean>
+
+  <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="connectionFactory" ref="connectionFactory"/>
+    <property name="destinationName" value="messageQueue" />
+    <property name="messageListener">
+      <bean class="net.lkrnac.book.eiws.chapter05.SimpleMessageListener"/>
+    </property>
+  </bean>
   
    
   <!--  lets create an embedded ActiveMQ Broker -->
