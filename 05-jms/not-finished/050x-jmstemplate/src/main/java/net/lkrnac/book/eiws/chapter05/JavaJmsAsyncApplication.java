@@ -4,6 +4,7 @@ import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.jms.TextMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -33,7 +34,8 @@ public class JavaJmsAsyncApplication {
       @Override
       public void onMessage(Message message) {
         try {
-          System.out.println(message.getBody(Object.class));
+          TextMessage textMessage = (TextMessage) message;
+          System.out.println(textMessage.getText());
         } catch (JMSException ex) {
           ex.printStackTrace();
         }
