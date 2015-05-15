@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:jee="http://www.springframework.org/schema/jee"
+  xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate">
+    <property name="environment">
+      <props>
+        <prop key="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</prop>
+        <prop key="java.naming.provider.url">vm://localhost:10504</prop>
+        <prop key="queue.messageQueue">example.messageQueue</prop>
+      </props>
+    </property>
+  </bean>
+
+    <bean id="jmsTemplate" 
+              class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="defaultDestinationName">
+            <jee:jndi-lookup jndi-name="java:comp/env/jms/messageQueue"/>
+        </property>
+<!--         <property name="pubSubDomain" value="true" /> -->
+    </bean>
+ 
+    <bean id="connectionFactory" 
+             class="org.springframework.jndi.JndiObjectFactoryBean">
+       <property name="jndiTemplate" ref="jndiTemplate"/>
+       <property name="jndiName" value="FTTopicConnectionFactory"/>
+    </bean>
+
+  <!-- look up the JMS ConnectionFactory in JNDI -->
+<!--   <bean id="jmsConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+<!--     <property name="jndiTemplate" ref="jndiTemplate"/> -->
+<!--     <property name="jndiName" value="ConnectionFactory" /> -->
+<!--   </bean> -->
+
+  <!-- look up the Destination in JNDI -->
+<!--   <bean id="myDestination" class="org.springframework.jndi.JndiObjectFactoryBean"> -->
+<!--     <property name="jndiTemplate" ref="jndiTemplate"/> -->
+<!--     <property name="jndiName" value="MyTopic" /> -->
+<!--   </bean> -->
+
+<!--   <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory"> -->
+<!--     <property name="brokerURL" value="tcp://localhost:10504"/>     -->
+<!--   </bean>   -->
+<!--   <jee:jndi-lookup jndi-name="java:comp/env/jms/ConnectionFactory" id="jmsConnectionFactory" /> -->
+  
+<!--   <bean id="messageQueue" class="org.apache.activemq.command.ActiveMQQueue"> -->
+<!--     <constructor-arg value="queue.messageQueue" /> -->
+<!--   </bean> -->
+  <jee:jndi-lookup id="messageQueue" jndi-name="java:comp/env/jms/messageQueue" />
+  
+
+</beans>
