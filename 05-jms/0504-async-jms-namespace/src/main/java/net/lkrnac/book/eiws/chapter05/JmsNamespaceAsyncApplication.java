@@ -15,13 +15,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 @ComponentScan
 @ImportResource("classpath:spring-jms.xml")
 @EnableScheduling
-public class JavaJmsAsyncApplication {
+public class JmsNamespaceAsyncApplication {
   private static final String SIMPLE_MESSAGE = "simple message";
   private static final Logger LOG = LoggerFactory
-      .getLogger(JavaJmsAsyncApplication.class);
+      .getLogger(JmsNamespaceAsyncApplication.class);
 
   public static void main(String[] args) throws InterruptedException {
-    SpringApplication.run(JavaJmsAsyncApplication.class, args);
+    SpringApplication.run(JmsNamespaceAsyncApplication.class, args);
   }
 
   @Bean

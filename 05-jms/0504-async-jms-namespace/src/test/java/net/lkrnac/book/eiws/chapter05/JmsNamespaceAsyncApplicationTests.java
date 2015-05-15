@@ -5,7 +5,7 @@ import net.lkrnac.book.eiws.chapter05.test.CommonJmsTest.TestConfiguration;
 
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
-@SpringApplicationConfiguration(classes = { JavaJmsAsyncApplication.class,
+@SpringApplicationConfiguration(classes = { JmsNamespaceAsyncApplication.class,
     TestConfiguration.class })
-public class JavaJmsAsyncApplicationTests extends CommonJmsTest {
+public class JmsNamespaceAsyncApplicationTests extends CommonJmsTest {
 }
