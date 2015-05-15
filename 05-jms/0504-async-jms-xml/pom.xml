@@ -12,12 +12,6 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <start-class>net.lkrnac.book.eiws.chapter05.JavaJmsAsyncApplication</start-class>
-    <java.version>1.8</java.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
