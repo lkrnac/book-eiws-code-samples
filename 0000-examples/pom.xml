@@ -56,6 +56,7 @@
     <module>../05-jms/0503-async-jndi</module>
     <module>../05-jms/0504-async-jms-namespace</module>
     <module>../05-jms/0505-async-jms-xml</module>
+    <module>../05-jms/0506-async-jms-java-config</module>
 <!--     <module>../05-jms/0505-jmstemplate</module>     -->
   </modules>
 </project>
