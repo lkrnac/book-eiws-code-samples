@@ -37,7 +37,7 @@ public class JmsNamespaceAsyncApplication {
   @Autowired
   private SimpleMessageSender messageSender;
 
-  @Scheduled(initialDelay = 1000, fixedRate = 1000L)
+  @Scheduled(fixedRate = 1000L)
   public void sendMessage() throws InterruptedException {
     LOG.info("Sending message: {}", SIMPLE_MESSAGE);
     messageSender.send(SIMPLE_MESSAGE);
