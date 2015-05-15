@@ -15,7 +15,6 @@ public class SimpleMessageListener implements MessageListener {
 
   @Override
   public void onMessage(Message message) {
-
     try {
       TextMessage textMessage = (TextMessage) message;
       simpleMessageHandler.handleMessage(textMessage.getText());

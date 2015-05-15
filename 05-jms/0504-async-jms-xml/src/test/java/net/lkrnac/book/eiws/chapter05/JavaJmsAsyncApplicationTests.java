@@ -1,38 +1,33 @@
 package net.lkrnac.book.eiws.chapter05;
 
-import net.lkrnac.book.eiws.chapter05.JavaJmsAsyncApplicationTests.TestConfiguration;
 import net.lkrnac.book.eiws.chapter05.test.TestingMessageHandler;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { JavaJmsAsyncApplication.class,
-    TestConfiguration.class })
-public class JavaJmsAsyncApplicationTests {
-  private static final String MESSAGE_TEXT = "Hello";
+//@SpringApplicationConfiguration(locations = "classpath:spring-jms.xml", classes = TestConfiguration.class)
+public class JavaJmsAsyncApplicationTests extends
+    AbstractTestNGSpringContextTests {
+  private static final String MESSAGE_TEXT = "simple message";
 
   @Autowired
   private SimpleMessageHandler simpleMessageHandler;
 
-  @BeforeClass
-  public static void init() {
+  @Autowired
+  private SimpleMessageSender simpleMessageSender;
+
+  {
     System.setProperty("spring.profiles.active", "integration-test");
   }
 
   @Configuration
   public static class TestConfiguration {
     @Bean
-    @Primary
     @Profile("integration-test")
     public SimpleMessageHandler simpleMessageHandler() {
       return new TestingMessageHandler();
@@ -41,9 +36,10 @@ public class JavaJmsAsyncApplicationTests {
 
   @Test
   public void contextLoads() throws InterruptedException {
-    // GIVEN
+    // GIVEN: Spring configuration
 
     // WHEN
+    simpleMessageSender.send(MESSAGE_TEXT);
 
     // THEN
     TestingMessageHandler testingMessageHandler =

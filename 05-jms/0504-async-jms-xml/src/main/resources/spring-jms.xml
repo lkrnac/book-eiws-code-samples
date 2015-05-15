@@ -12,9 +12,9 @@
     <property name="brokerURL" value="tcp://localhost:61616" />
   </bean>
 
-  <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
-    <constructor-arg value="mmm" />
-  </bean>
+<!--   <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue"> -->
+<!--     <constructor-arg value="messageQueue" /> -->
+<!--   </bean> -->
 
   <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
     <constructor-arg ref="connectionFactory" />
@@ -31,6 +31,9 @@
     </property>
   </bean>
 
+  <bean class="net.lkrnac.book.eiws.chapter05.SimpleMessageSender">
+    <constructor-arg ref="jmsTemplate"/>
+  </bean>
 
   <!-- lets create an embedded ActiveMQ Broker -->
   <amq:broker>
@@ -40,5 +43,5 @@
   </amq:broker>
 
   <!-- ActiveMQ destinations to use -->
-  <amq:queue id="destination" physicalName="mm" />
+<!--   <amq:queue id="destination" physicalName="messageQueue" /> -->
 </beans>
