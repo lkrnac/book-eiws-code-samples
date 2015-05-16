@@ -57,6 +57,8 @@
     <module>../05-jms/0504-async-jms-namespace</module>
     <module>../05-jms/0505-async-jms-xml</module>
     <module>../05-jms/0506-async-jms-java-config</module>
-<!--     <module>../05-jms/0505-jmstemplate</module>     -->
+    <module>../05-jms/0507-sync-jms-java-config</module>
+    <module>../05-jms/0508-async-listener-annotation</module>
+    <module>../05-jms/0509-jms-message-converter</module>
   </modules>
 </project>

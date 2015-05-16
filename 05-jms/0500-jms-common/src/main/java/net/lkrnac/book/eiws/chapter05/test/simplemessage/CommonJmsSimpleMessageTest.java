@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter05.test;
+package net.lkrnac.book.eiws.chapter05.test.simplemessage;
 
 import net.lkrnac.book.eiws.chapter05.SimpleMessageHandler;
 
@@ -11,7 +11,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CommonJmsTest extends AbstractTestNGSpringContextTests {
+public class CommonJmsSimpleMessageTest extends
+    AbstractTestNGSpringContextTests {
   private static final String MESSAGE_TEXT = "simple message";
 
   @Autowired
@@ -22,12 +23,12 @@ public class CommonJmsTest extends AbstractTestNGSpringContextTests {
   }
 
   @Configuration
-  public static class TestConfiguration {
+  public static class TestSimpleMessageConfiguration {
     @Bean
     @Primary
     @Profile("integration-test")
     public SimpleMessageHandler simpleMessageHandler() {
-      return new TestingMessageHandler();
+      return new TestingSimpleMessageHandler();
     }
   }
 
@@ -38,8 +39,8 @@ public class CommonJmsTest extends AbstractTestNGSpringContextTests {
     // WHEN
 
     // THEN
-    TestingMessageHandler testingMessageHandler =
-        (TestingMessageHandler) simpleMessageHandler;
+    TestingSimpleMessageHandler testingMessageHandler =
+        (TestingSimpleMessageHandler) simpleMessageHandler;
     Assert.assertEquals(testingMessageHandler.getMessage(), MESSAGE_TEXT);
     Assert.assertEquals(testingMessageHandler.getMessage(), MESSAGE_TEXT);
   }

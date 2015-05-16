@@ -1,11 +1,11 @@
-package net.lkrnac.book.eiws.chapter05.test;
+package net.lkrnac.book.eiws.chapter05.test.simplemessage;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import net.lkrnac.book.eiws.chapter05.SimpleMessageHandler;
 
-public class TestingMessageHandler implements SimpleMessageHandler {
+public class TestingSimpleMessageHandler implements SimpleMessageHandler {
   private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(10);
 
   @Override
