@@ -1,15 +1,11 @@
 package net.lkrnac.book.eiws.chapter05;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.TextMessage;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SimpleMessageListener implements MessageListener {
+public class SimpleMessageListener {
   private SimpleMessageHandler simpleMessageHandler;
 
   @Autowired
@@ -18,13 +14,8 @@ public class SimpleMessageListener implements MessageListener {
     this.simpleMessageHandler = simpleMessageHandler;
   }
 
-  @Override
-  public void onMessage(Message message) {
-    try {
-      TextMessage textMessage = (TextMessage) message;
-      simpleMessageHandler.handleMessage(textMessage.getText());
-    } catch (JMSException ex) {
-      ex.printStackTrace();
-    }
+  @JmsListener(destination = "messageQueue")
+  public void readMessage(String message) {
+    simpleMessageHandler.handleMessage(message);
   }
 }
