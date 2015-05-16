@@ -21,7 +21,7 @@
   </bean>
   
   <jms:listener-container>
-    <jms:listener destination="messageQueue" ref="simpleMessageListener"/>
+    <jms:listener destination="messageQueue" ref="simpleService" method="handleMessage"/>
   </jms:listener-container>
   
   <!-- lets create an embedded ActiveMQ Broker -->
