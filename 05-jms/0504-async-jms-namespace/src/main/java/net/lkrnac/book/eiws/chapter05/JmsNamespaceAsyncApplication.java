@@ -1,7 +1,7 @@
 package net.lkrnac.book.eiws.chapter05;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,14 +9,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+@Slf4j
 @Configuration
 @ComponentScan
 @EnableScheduling
 @ImportResource("classpath:spring-jms.xml")
 public class JmsNamespaceAsyncApplication {
-  private static final Logger LOG = LoggerFactory
-      .getLogger(JmsNamespaceAsyncApplication.class);
-
   public static void main(String[] args) throws InterruptedException {
     SpringApplication.run(JmsNamespaceAsyncApplication.class, args);
   }
@@ -26,7 +24,7 @@ public class JmsNamespaceAsyncApplication {
     return new SimpleMessageHandler() {
       @Override
       public void handleMessage(String message) {
-        LOG.info("Message Received: {}", message);
+        log.info("Message Received: {}", message);
       }
     };
   }
