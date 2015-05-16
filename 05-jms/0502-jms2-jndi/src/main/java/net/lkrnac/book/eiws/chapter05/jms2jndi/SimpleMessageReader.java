@@ -3,8 +3,8 @@ package net.lkrnac.book.eiws.chapter05.jms2jndi;
 import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
+import javax.jms.Message;
 import javax.jms.Queue;
-import javax.jms.TextMessage;
 
 public class SimpleMessageReader {
   private JMSContext jmsContext;
@@ -18,7 +18,7 @@ public class SimpleMessageReader {
 
   public String readMessage() throws JMSException {
     JMSConsumer jmsConsumer = jmsContext.createConsumer(queue);
-    TextMessage messageReceived = (TextMessage) jmsConsumer.receive(5000);
-    return messageReceived.getText();
+    Message message = jmsConsumer.receive(5000);
+    return message.getBody(String.class);
   }
 }
