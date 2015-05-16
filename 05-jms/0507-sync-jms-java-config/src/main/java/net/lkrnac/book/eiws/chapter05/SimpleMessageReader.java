@@ -19,7 +19,7 @@ public class SimpleMessageReader {
     this.jmsTemplate = jmsTemplate;
   }
 
-  @Scheduled(initialDelay = 1000L, fixedRate = 1300L)
+  @Scheduled(fixedRate = 1000L)
   public void readMessage() {
     String message = (String) jmsTemplate.receiveAndConvert("messageQueue");
     LOG.info("Received message: {}", message);
