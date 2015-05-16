@@ -2,30 +2,27 @@ package net.lkrnac.book.eiws.chapter03.ws.xmlconfig.config;
 
 import javax.annotation.PostConstruct;
 
+import lombok.extern.slf4j.Slf4j;
 import net.lkrnac.book.eiws.chapter03.ws.xmlconfig.client.WebServiceClient;
 import net.lkrnac.book.eiws.chapter03.ws.xmlconfig.model.UserDetailsResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
+@Slf4j
 @Configuration
 @ImportResource("classpath:ws-client-config.xml")
 @EnableAutoConfiguration
 public class WsXmlconfigClientApplication {
-  private static final Logger log = LoggerFactory
-      .getLogger(WebServiceClient.class);
+  @Autowired
+  private WebServiceClient wsClient;
 
   public static void main(String[] args) {
     SpringApplication.run(WsXmlconfigClientApplication.class, args);
   }
-
-  @Autowired
-  private WebServiceClient wsClient;
 
   @PostConstruct
   public void test() {

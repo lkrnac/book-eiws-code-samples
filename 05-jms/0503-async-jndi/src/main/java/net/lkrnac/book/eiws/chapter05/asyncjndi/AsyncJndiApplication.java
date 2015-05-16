@@ -5,10 +5,8 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
 
+import lombok.extern.slf4j.Slf4j;
 import net.lkrnac.book.eiws.chapter05.SimpleMessageHandler;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class AsyncJndiApplication {
   public static void main(String[] args) throws JMSException, NamingException {
@@ -25,13 +23,11 @@ public class AsyncJndiApplication {
     }
   }
 
+  @Slf4j
   private static class MessageHandler implements SimpleMessageHandler {
-    private static final Logger LOG = LoggerFactory
-        .getLogger(MessageHandler.class);
-
     @Override
     public void handleMessage(String message) {
-      LOG.info("Message received: {}", message);
+      log.info("Message received: {}", message);
     }
   }
 }
