@@ -9,7 +9,7 @@
   <jms:annotation-driven />
 
   <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-    <property name="brokerURL" value="tcp://localhost:61616" />
+    <property name="brokerURL" value="tcp://localhost:10504" />
   </bean>
 
   <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
@@ -24,18 +24,10 @@
     <jms:listener destination="messageQueue" ref="simpleMessageListener"/>
   </jms:listener-container>
   
-  <bean id="simpleMessageListener" class="net.lkrnac.book.eiws.chapter05.SimpleMessageListener">
-    <constructor-arg ref="simpleMessageHandler" />
-  </bean>
-
-  <bean class="net.lkrnac.book.eiws.chapter05.SimpleMessageSender">
-    <constructor-arg ref="jmsTemplate"/>
-  </bean>
-
   <!-- lets create an embedded ActiveMQ Broker -->
   <amq:broker>
     <amq:transportConnectors>
-      <amq:transportConnector uri="tcp://localhost:61616" />
+      <amq:transportConnector uri="tcp://localhost:10504" />
     </amq:transportConnectors>
   </amq:broker>
 

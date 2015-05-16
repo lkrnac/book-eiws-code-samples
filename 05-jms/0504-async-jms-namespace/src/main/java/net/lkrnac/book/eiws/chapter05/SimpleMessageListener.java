@@ -5,9 +5,14 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SimpleMessageListener implements MessageListener {
   private SimpleMessageHandler simpleMessageHandler;
 
+  @Autowired
   public SimpleMessageListener(SimpleMessageHandler simpleMessageHandler) {
     super();
     this.simpleMessageHandler = simpleMessageHandler;
