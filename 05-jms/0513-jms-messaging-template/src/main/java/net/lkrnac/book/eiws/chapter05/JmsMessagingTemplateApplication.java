@@ -10,9 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Slf4j
 @SpringBootApplication
 @EnableScheduling
-public class JmsMessageAbstrationsApplication {
+public class JmsMessagingTemplateApplication {
   public static void main(String[] args) throws InterruptedException {
-    SpringApplication.run(JmsMessageAbstrationsApplication.class, args);
+    SpringApplication.run(JmsMessagingTemplateApplication.class, args);
   }
 
   @Bean

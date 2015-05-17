@@ -6,7 +6,7 @@ import net.lkrnac.book.eiws.chapter05.test.user.CommonJmsUserMessageTest.TestUse
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
 @SpringApplicationConfiguration(classes = {
-    JmsMessageAbstrationsApplication.class, TestUserConfiguration.class })
-public class JmsMessageAbstrationsApplicationTests extends
+    JmsMessagingTemplateApplication.class, TestUserConfiguration.class })
+public class JmsMessagingTemplateApplicationTests extends
     CommonJmsUserMessageTest {
 }
