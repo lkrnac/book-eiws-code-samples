@@ -22,6 +22,6 @@ public class SimpleMessageSender {
   @Scheduled(fixedRate = 1000L)
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
-    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
+    jmsTemplate.convertAndSend("simpleTopic", SIMPLE_MESSAGE);
   }
 }
