@@ -5,11 +5,11 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SimpleMessageListener {
+public class SimpleMessageListener1 {
   private SimpleMessageHandler simpleMessageHandler;
 
   @Autowired
-  public SimpleMessageListener(SimpleMessageHandler simpleMessageHandler) {
+  public SimpleMessageListener1(SimpleMessageHandler simpleMessageHandler) {
     super();
     this.simpleMessageHandler = simpleMessageHandler;
   }

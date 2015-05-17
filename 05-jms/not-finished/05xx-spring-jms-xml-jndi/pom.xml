@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>net.lkrnac.book.eiws</groupId>
-  <artifactId>050x-spring-jms-standalone-xml</artifactId>
+  <artifactId>05xx-spring-jms-xml-jndi</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
