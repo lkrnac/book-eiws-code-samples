@@ -9,19 +9,22 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class SimpleMessageSender {
-  private static final String SIMPLE_MESSAGE = "simple message";
+public class UserMessageSender {
   private JmsTemplate jmsTemplate;
 
   @Autowired
-  public SimpleMessageSender(JmsTemplate jmsTemplate) {
+  public UserMessageSender(JmsTemplate jmsTemplate) {
     super();
     this.jmsTemplate = jmsTemplate;
   }
 
   @Scheduled(fixedRate = 1000L)
   public void send() {
-    log.info("Sending message: {}", SIMPLE_MESSAGE);
-    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
+    User user = new User();
+    user.setEmail("lubos.krnac@gmail.com");
+    user.setName("Lubos Krnac");
+
+    log.info("Sending message: {}", user);
+    jmsTemplate.convertAndSend("messageQueue", user);
   }
 }
