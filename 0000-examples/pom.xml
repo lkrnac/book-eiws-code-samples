@@ -64,5 +64,7 @@
     <module>../05-jms/0511-jms-caching-connection-factory</module>
     <module>../05-jms/0512-jms-message-creator</module>
     <module>../05-jms/0513-jms-messaging-template</module>
+    <module>../05-jms/0514-jms-message-annotations</module>
+    <module>../05-jms/0515-publish-subscribe</module>
   </modules>
 </project>
