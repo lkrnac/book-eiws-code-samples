@@ -1,9 +1,14 @@
 package net.lkrnac.book.eiws.chapter05;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +27,11 @@ public class SimpleMessageSender {
   @Scheduled(fixedRate = 1000L)
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
-    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
+    jmsTemplate.send("messageQueue", new MessageCreator() {
+      @Override
+      public Message createMessage(Session session) throws JMSException {
+        return session.createTextMessage(SIMPLE_MESSAGE);
+      }
+    });
   }
 }
