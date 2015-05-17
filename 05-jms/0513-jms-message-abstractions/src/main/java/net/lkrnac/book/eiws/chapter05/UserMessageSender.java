@@ -3,19 +3,22 @@ package net.lkrnac.book.eiws.chapter05;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
 public class UserMessageSender {
-  private JmsTemplate jmsTemplate;
+  private static final String ADMIN = "admin";
+  private JmsMessagingTemplate jmsMessagingTemplate;
 
   @Autowired
-  public UserMessageSender(JmsTemplate jmsTemplate) {
+  public UserMessageSender(JmsMessagingTemplate jmsMessagingTemplate) {
     super();
-    this.jmsTemplate = jmsTemplate;
+    this.jmsMessagingTemplate = jmsMessagingTemplate;
   }
 
   @Scheduled(fixedRate = 1000L)
@@ -24,7 +27,14 @@ public class UserMessageSender {
     user.setEmail("lubos.krnac@gmail.com");
     user.setName("Lubos Krnac");
 
-    log.info("Sending message: {}", user);
-    jmsTemplate.convertAndSend("messageQueue", user);
+    log.info("Sending User: {} in role {}", user, ADMIN);
+    //@formatter:off
+    Message<User> userMessage = MessageBuilder
+     .withPayload(user)
+     .setHeader("role", ADMIN)
+     .build();
+    //@formatter:on
+
+    jmsMessagingTemplate.send("messageQueue", userMessage);
   }
 }
