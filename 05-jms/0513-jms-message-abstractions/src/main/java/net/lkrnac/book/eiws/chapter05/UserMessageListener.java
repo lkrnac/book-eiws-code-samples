@@ -19,10 +19,4 @@ public class UserMessageListener {
   public void readMessage(Message<User> userMessage) {
     userHandler.handleUser(userMessage.getPayload());
   }
-
-  // @JmsListener(destination = "messageQueue")
-  // public void readMessage(User user) {
-  // userHandler.handleUser(user);
-  // }
-
 }
