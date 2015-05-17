@@ -30,7 +30,7 @@ public class CommonJmsUserMessageTest extends AbstractTestNGSpringContextTests {
     }
   }
 
-  @Test
+  @Test(timeOut = 3000)
   public void contextLoads() throws InterruptedException {
     // GIVEN: Spring configuration
 
