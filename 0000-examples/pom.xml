@@ -60,5 +60,7 @@
     <module>../05-jms/0507-sync-jms-java-config</module>
     <module>../05-jms/0508-async-listener-annotation</module>
     <module>../05-jms/0509-jms-message-converter</module>
+    <module>../05-jms/0510-jms-custom-converter</module>
+    <module>../05-jms/0511-jms-caching-connection-factory</module>
   </modules>
 </project>
