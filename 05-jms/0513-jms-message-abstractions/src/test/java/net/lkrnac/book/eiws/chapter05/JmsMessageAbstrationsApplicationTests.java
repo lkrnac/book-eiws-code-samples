@@ -5,7 +5,7 @@ import net.lkrnac.book.eiws.chapter05.test.simplemessage.CommonJmsSimpleMessageT
 
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
-@SpringApplicationConfiguration(classes = { JmsMessagingTemplateAsyncApplication.class,
+@SpringApplicationConfiguration(classes = { JmsMessageAbstrationsAsyncApplication.class,
     TestSimpleMessageConfiguration.class })
-public class JmsAsyncMessagingTemplateApplicationTests extends CommonJmsSimpleMessageTest {
+public class JmsMessageAbstrationsApplicationTests extends CommonJmsSimpleMessageTest {
 }
