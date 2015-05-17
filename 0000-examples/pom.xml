@@ -62,5 +62,6 @@
     <module>../05-jms/0509-jms-message-converter</module>
     <module>../05-jms/0510-jms-custom-converter</module>
     <module>../05-jms/0511-jms-caching-connection-factory</module>
+    <module>../05-jms/0512-jms-message-creator</module>
   </modules>
 </project>
