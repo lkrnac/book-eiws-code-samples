@@ -46,10 +46,10 @@ public class JmsPublishSubscribeApplicationTests extends
     TestingPubSubHandler testingPubSubHandler =
         (TestingPubSubHandler) pubSubHandler;
     PubSubTuple pubSubTuple1 = testingPubSubHandler.getPubSubTuple();
-    Assert.assertEquals(pubSubTuple1.getListenerId(), 1);
     Assert.assertEquals(pubSubTuple1.getMessage(), MESSAGE_TEXT);
     PubSubTuple pubSubTuple2 = testingPubSubHandler.getPubSubTuple();
-    Assert.assertEquals(pubSubTuple2.getListenerId(), 2);
     Assert.assertEquals(pubSubTuple2.getMessage(), MESSAGE_TEXT);
+    Assert.assertNotEquals(pubSubTuple1.getListenerId(),
+        pubSubTuple2.getListenerId());
   }
 }
