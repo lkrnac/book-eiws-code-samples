@@ -23,7 +23,6 @@ public class JmsConfiguration implements AutoCloseable {
     env.put("java.naming.provider.url", "jnp://localhost:1099");
     initialContext = new InitialContext(env);
 
-    // queue = (Queue) initialContext.lookup("queue/messageQueue");
     queue = (Queue) initialContext.lookup("queue/ExpiryQueue");
     ConnectionFactory connectionFactory =
         (ConnectionFactory) initialContext.lookup("/ConnectionFactory");
