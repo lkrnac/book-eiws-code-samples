@@ -15,12 +15,12 @@ public class Jms2JndiApplication {
       JMSContext jmsContext = jmsConfiguration.getJmsContext();
       Queue queue = jmsConfiguration.getQueue();
 
-      SimpleMessageSender messageSender = new SimpleMessageSender();
-      messageSender.init(jmsContext, queue);
+      SimpleMessageSender messageSender =
+          new SimpleMessageSender(jmsContext, queue);
       messageSender.sendMessage("simple message");
 
-      SimpleMessageReader messageConsumer = new SimpleMessageReader();
-      messageConsumer.init(jmsContext, queue);
+      SimpleMessageReader messageConsumer =
+          new SimpleMessageReader(jmsContext, queue);
       String message = messageConsumer.readMessage();
 
       log.info("Message Received: {}", message);

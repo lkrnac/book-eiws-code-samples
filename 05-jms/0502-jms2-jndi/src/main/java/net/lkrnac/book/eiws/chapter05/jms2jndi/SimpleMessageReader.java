@@ -10,7 +10,7 @@ public class SimpleMessageReader {
   private JMSContext jmsContext;
   private Queue queue;
 
-  public void init(JMSContext jmsContext, Queue queue) {
+  public SimpleMessageReader(JMSContext jmsContext, Queue queue) {
     this.jmsContext = jmsContext;
     this.queue = queue;
   }
