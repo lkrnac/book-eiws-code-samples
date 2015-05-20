@@ -5,6 +5,9 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Jms11JndiApplication {
   public static void main(String[] args) throws JMSException, NamingException {
     try (JmsConfiguration jmsConfiguration = new JmsConfiguration()) {
@@ -15,13 +18,13 @@ public class Jms11JndiApplication {
 
       SimpleMessageSender messageSender = new SimpleMessageSender();
       messageSender.init(connection, queue);
-      messageSender.sendMessage("Hello World!");
+      messageSender.sendMessage("simple message");
 
       SimpleMessageReader messageReader = new SimpleMessageReader();
       messageReader.init(connection, queue);
       String message = messageReader.readMessage();
 
-      System.out.println("Message Received: " + message);
+      log.info("Message Received: {}", message);
     }
   }
 }
