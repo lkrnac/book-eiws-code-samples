@@ -7,8 +7,7 @@ public class SimpleMessageSender {
   private JMSContext jmsContext;
   private Queue queue;
 
-  public SimpleMessageSender(JMSContext jmsContext, Queue queue) {
-    super();
+  public void init(JMSContext jmsContext, Queue queue) {
     this.jmsContext = jmsContext;
     this.queue = queue;
   }
