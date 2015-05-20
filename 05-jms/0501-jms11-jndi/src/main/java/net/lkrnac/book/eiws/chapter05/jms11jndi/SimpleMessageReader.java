@@ -10,9 +10,7 @@ import javax.jms.TextMessage;
 public class SimpleMessageReader {
   private MessageConsumer messageConsumer;
 
-  public SimpleMessageReader(Connection connection, Queue queue)
-      throws JMSException {
-    super();
+  public void init(Connection connection, Queue queue) throws JMSException {
     Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
     messageConsumer = session.createConsumer(queue);
   }

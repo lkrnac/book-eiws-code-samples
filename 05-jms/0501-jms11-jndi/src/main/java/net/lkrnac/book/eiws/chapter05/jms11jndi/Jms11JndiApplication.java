@@ -17,8 +17,8 @@ public class Jms11JndiApplication {
       messageSender.init(connection, queue);
       messageSender.sendMessage("Hello World!");
 
-      SimpleMessageReader messageReader =
-          new SimpleMessageReader(connection, queue);
+      SimpleMessageReader messageReader = new SimpleMessageReader();
+      messageReader.init(connection, queue);
       String message = messageReader.readMessage();
 
       System.out.println("Message Received: " + message);

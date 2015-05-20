@@ -25,8 +25,8 @@ public class Jms11JndiApplicationIT {
       messageSender.init(connection, queue);
       messageSender.sendMessage(MESSAGE_TEXT);
 
-      SimpleMessageReader messageReader =
-          new SimpleMessageReader(connection, queue);
+      SimpleMessageReader messageReader = new SimpleMessageReader();
+      messageReader.init(connection, queue);
       String actualMessage = messageReader.readMessage();
 
       // THEN
