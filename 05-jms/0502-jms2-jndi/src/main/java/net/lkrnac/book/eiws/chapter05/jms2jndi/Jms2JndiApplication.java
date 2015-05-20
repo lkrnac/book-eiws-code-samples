@@ -5,8 +5,8 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
 
-import net.lkrnac.book.eiws.chapter05.JmsConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import net.lkrnac.book.eiws.chapter05.JmsConfiguration;
 
 @Slf4j
 public class Jms2JndiApplication {
@@ -18,7 +18,7 @@ public class Jms2JndiApplication {
 
       SimpleMessageSender messageSender = new SimpleMessageSender();
       messageSender.init(jmsContext, queue);
-      messageSender.sendMessage("Hello World!");
+      messageSender.sendMessage("simple message");
 
       SimpleMessageReader messageConsumer = new SimpleMessageReader();
       messageConsumer.init(jmsContext, queue);
