@@ -23,6 +23,7 @@ public class Jms2JndiApplicationIT {
 
       // WHEN
       SimpleMessageSender messageSender = new SimpleMessageSender();
+      messageSender.init(jmsContext, queue);
       messageSender.sendMessage(MESSAGE_TEXT);
 
       SimpleMessageReader messageConsumer = new SimpleMessageReader();
