@@ -13,8 +13,8 @@ public class Jms11JndiApplication {
       Connection connection = jmsConfiguration.getConnection();
       connection.start();
 
-      SimpleMessageSender messageSender =
-          new SimpleMessageSender(connection, queue);
+      SimpleMessageSender messageSender = new SimpleMessageSender();
+      messageSender.init(connection, queue);
       messageSender.sendMessage("Hello World!");
 
       SimpleMessageReader messageReader =

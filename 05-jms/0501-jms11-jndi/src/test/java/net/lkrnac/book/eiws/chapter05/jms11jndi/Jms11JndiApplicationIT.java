@@ -21,8 +21,8 @@ public class Jms11JndiApplicationIT {
       connection.start();
 
       // WHEN
-      SimpleMessageSender messageSender =
-          new SimpleMessageSender(connection, queue);
+      SimpleMessageSender messageSender = new SimpleMessageSender();
+      messageSender.init(connection, queue);
       messageSender.sendMessage(MESSAGE_TEXT);
 
       SimpleMessageReader messageReader =
