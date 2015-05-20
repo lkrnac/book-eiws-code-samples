@@ -19,7 +19,7 @@ public class AsyncJndiApplication {
 
       SimpleMessageSender messageSender =
           new SimpleMessageSender(jmsContext, queue);
-      messageSender.sendMessage("Hello World!");
+      messageSender.sendMessage("simple message");
     }
   }
 
