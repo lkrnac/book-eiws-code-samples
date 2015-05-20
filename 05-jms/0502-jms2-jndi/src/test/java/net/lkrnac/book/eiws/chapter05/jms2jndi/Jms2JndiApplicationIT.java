@@ -5,6 +5,8 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
 
+import net.lkrnac.book.eiws.chapter05.JmsConfiguration;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
