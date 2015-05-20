@@ -1,19 +1,20 @@
-package net.lkrnac.book.eiws.chapter05;
+package net.lkrnac.book.eiws.chapter05.jms11jndi;
 
 import java.util.Hashtable;
 
+import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
-import javax.jms.JMSContext;
+import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 public class JmsConfiguration implements AutoCloseable {
   private InitialContext initialContext;
-  private JMSContext jmsContext;
   private Queue queue;
+  private Connection connection;
 
-  public void init() throws NamingException {
+  public void init() throws NamingException, JMSException {
     Hashtable<Object, Object> env = new Hashtable<Object, Object>();
     env.put("java.naming.factory.initial",
         "org.jnp.interfaces.NamingContextFactory");
@@ -22,18 +23,18 @@ public class JmsConfiguration implements AutoCloseable {
     env.put("java.naming.provider.url", "jnp://localhost:1099");
     initialContext = new InitialContext(env);
 
-    queue = (Queue) initialContext.lookup("queue/messageQueue");
-    ConnectionFactory cf =
+    queue = (Queue) initialContext.lookup("queue/ExpiryQueue");
+    ConnectionFactory connectionFactory =
         (ConnectionFactory) initialContext.lookup("/ConnectionFactory");
-    jmsContext = cf.createContext();
+    connection = connectionFactory.createConnection();
   }
 
-  public void close() throws NamingException {
+  public void close() throws NamingException, JMSException {
     if (initialContext != null) {
       initialContext.close();
     }
-    if (jmsContext != null) {
-      jmsContext.close();
+    if (connection != null) {
+      connection.close();
     }
   }
 
@@ -41,8 +42,7 @@ public class JmsConfiguration implements AutoCloseable {
     return queue;
   }
 
-  public JMSContext getJmsContext() {
-    return jmsContext;
+  public Connection getConnection() {
+    return connection;
   }
-
 }

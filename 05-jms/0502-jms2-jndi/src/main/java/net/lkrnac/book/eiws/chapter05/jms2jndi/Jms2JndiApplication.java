@@ -6,7 +6,6 @@ import javax.jms.Queue;
 import javax.naming.NamingException;
 
 import lombok.extern.slf4j.Slf4j;
-import net.lkrnac.book.eiws.chapter05.JmsConfiguration;
 
 @Slf4j
 public class Jms2JndiApplication {
