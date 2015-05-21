@@ -2,10 +2,11 @@ package net.lkrnac.book.eiws.chapter05.asyncjndi;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
-import javax.jms.TextMessage;
 
+import lombok.extern.slf4j.Slf4j;
 import net.lkrnac.book.eiws.chapter05.SimpleMessageHandler;
 
+@Slf4j
 public class SimpleMessageListener implements MessageListener {
   private SimpleMessageHandler simpleMessageHandler;
 
@@ -17,11 +18,9 @@ public class SimpleMessageListener implements MessageListener {
   @Override
   public void onMessage(Message message) {
     try {
-      TextMessage textMessage = (TextMessage) message;
-      simpleMessageHandler.handleMessage(textMessage.getText());
-    } catch (Exception e) {
-      e.printStackTrace();
+      simpleMessageHandler.handleMessage(message.getBody(String.class));
+    } catch (Throwable t) {
+      log.error("Error during message reception", t);
     }
   }
-
 }

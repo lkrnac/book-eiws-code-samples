@@ -32,13 +32,13 @@ public class JmsConfiguration implements AutoCloseable {
     env.put("java.naming.provider.url", "jnp://localhost:1099");
     initialContext = new InitialContext(env);
 
-    queue = (Queue) initialContext.lookup("queue/messageQueue");
+    queue = (Queue) initialContext.lookup("queue/ExpiryQueue");
     ConnectionFactory cf =
         (ConnectionFactory) initialContext.lookup("/ConnectionFactory");
     jmsContext = cf.createContext();
 
-    JMSContext consumerContext = cf.createContext();
-    JMSConsumer jmsConsumer = consumerContext.createConsumer(queue);
+    JMSContext jmsContext = cf.createContext();
+    JMSConsumer jmsConsumer = jmsContext.createConsumer(queue);
     MessageListener messageListener = new SimpleMessageListener(messageHandler);
     jmsConsumer.setMessageListener(messageListener);
   }
@@ -59,5 +59,4 @@ public class JmsConfiguration implements AutoCloseable {
   public JMSContext getJmsContext() {
     return jmsContext;
   }
-
 }
