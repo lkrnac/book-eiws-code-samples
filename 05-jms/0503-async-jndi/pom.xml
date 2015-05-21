@@ -23,18 +23,15 @@
       <groupId>org.hornetq</groupId>
       <artifactId>hornetq-core-client</artifactId>
       <version>${hornetq.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.hornetq</groupId>
       <artifactId>hornetq-jms-client</artifactId>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.jboss.netty</groupId>
       <artifactId>netty</artifactId>
       <version>${netty.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.jboss</groupId>
