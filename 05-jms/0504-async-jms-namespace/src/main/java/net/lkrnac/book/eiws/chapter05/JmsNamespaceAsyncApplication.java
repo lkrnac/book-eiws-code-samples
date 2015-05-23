@@ -13,7 +13,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @ComponentScan
 @EnableScheduling
-@ImportResource("classpath:spring-jms.xml")
+@ImportResource({ "classpath:spring-jms-config.xml",
+    "classpath:spring-jms-listener.xml" })
 public class JmsNamespaceAsyncApplication {
   public static void main(String[] args) throws InterruptedException {
     SpringApplication.run(JmsNamespaceAsyncApplication.class, args);
