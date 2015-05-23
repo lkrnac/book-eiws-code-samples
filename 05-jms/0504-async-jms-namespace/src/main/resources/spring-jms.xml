@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://www.springframework.org/schema/jms"
-  xmlns:amq="http://activemq.apache.org/schema/core"
+  xmlns:amq="http://activemq.apache.org/schema/core" xmlns:jee="http://www.springframework.org/schema/jee"
+  xmlns:util="http://www.springframework.org/schema/util"
   xsi:schemaLocation="http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
   <jms:annotation-driven />
 
-  <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-    <property name="brokerURL" value="tcp://localhost:10504" />
-  </bean>
+  <util:map id="jndiProperties" map-class="java.util.Properties">
+    <entry key="java.naming.factory.initial" value="org.jnp.interfaces.NamingContextFactory" />
+    <entry key="java.naming.factory.url.pkgs" value="org.jboss.naming:org.jnp.interfaces" />
+    <entry key="java.naming.provider.url" value="jnp://localhost:1099" />
+  </util:map>
 
-  <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
-    <constructor-arg value="messageQueue" />
-  </bean>
+  <jee:jndi-lookup id="connectionFactory" jndi-name="/ConnectionFactory"
+    environment-ref="jndiProperties" />
+  <jee:jndi-lookup id="queue" jndi-name="queue/ExpiryQueue"
+    environment-ref="jndiProperties" />
 
   <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
     <constructor-arg ref="connectionFactory" />
   </bean>
-  
-  <jms:listener-container>
-    <jms:listener destination="messageQueue" ref="simpleService" method="handleMessage"/>
-  </jms:listener-container>
-  
-  <!-- lets create an embedded ActiveMQ Broker -->
-  <amq:broker>
-    <amq:transportConnectors>
-      <amq:transportConnector uri="tcp://localhost:10504" />
-    </amq:transportConnectors>
-  </amq:broker>
 
-  <!-- ActiveMQ destinations to use -->
-  <amq:queue id="destination" physicalName="messageQueue" />
+  <bean id="destinationResolver"
+    class="org.springframework.jms.support.destination.JndiDestinationResolver">
+    <property name="jndiEnvironment" ref="jndiProperties" />
+    <property name="cache" value="true" />
+    <property name="fallbackToDynamicDestination" value="false" />
+  </bean>
+
+  <jms:listener-container destination-resolver="destinationResolver">
+    <jms:listener destination="queue/ExpiryQueue" ref="simpleService"
+      method="handleMessage" />
+  </jms:listener-container>
 </beans>
