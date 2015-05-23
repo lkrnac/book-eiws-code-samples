@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xmlns:jee="http://www.springframework.org/schema/jee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
   xmlns:util="http://www.springframework.org/schema/util"
   xsi:schemaLocation="http://www.springframework.org/schema/jee 
     http://www.springframework.org/schema/jee/spring-jee.xsd
@@ -11,8 +10,10 @@
     http://www.springframework.org/schema/util/spring-util.xsd">
 
   <util:map id="jndiProperties" map-class="java.util.Properties">
-    <entry key="java.naming.factory.initial" value="org.jnp.interfaces.NamingContextFactory" />
-    <entry key="java.naming.factory.url.pkgs" value="org.jboss.naming:org.jnp.interfaces" />
+    <entry key="java.naming.factory.initial" 
+      value="org.jnp.interfaces.NamingContextFactory" />
+    <entry key="java.naming.factory.url.pkgs" 
+      value="org.jboss.naming:org.jnp.interfaces" />
     <entry key="java.naming.provider.url" value="jnp://localhost:1099" />
   </util:map>
 
@@ -28,7 +29,5 @@
   <bean id="destinationResolver"
     class="org.springframework.jms.support.destination.JndiDestinationResolver">
     <property name="jndiEnvironment" ref="jndiProperties" />
-    <property name="cache" value="true" />
-    <property name="fallbackToDynamicDestination" value="false" />
   </bean>
 </beans>
