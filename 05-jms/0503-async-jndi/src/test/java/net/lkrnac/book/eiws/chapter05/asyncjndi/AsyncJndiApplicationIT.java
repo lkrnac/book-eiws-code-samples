@@ -8,13 +8,18 @@ import net.lkrnac.book.eiws.chapter05.test.simplemessage.TestingSimpleMessageHan
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * This test is relies on separate HornetQ server. During build Maven runs it
+ * via hornetq-maven-plugin.
+ */
 public class AsyncJndiApplicationIT {
   private static final String MESSAGE_TEXT = "dummyMessage";
 
   @Test(groups = "maventests")
   public void queueTest() throws Exception {
     // GIVEN
-    TestingSimpleMessageHandler messageHandler = new TestingSimpleMessageHandler();
+    TestingSimpleMessageHandler messageHandler =
+        new TestingSimpleMessageHandler();
     try (JmsConfiguration jmsConfiguration =
         new JmsConfiguration(messageHandler)) {
       jmsConfiguration.init();

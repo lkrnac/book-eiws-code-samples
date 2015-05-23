@@ -8,6 +8,10 @@ import javax.naming.NamingException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * This test is relies on separate HornetQ server. During build Maven runs it
+ * via hornetq-maven-plugin.
+ */
 public class Jms11JndiApplicationIT {
   private static final String MESSAGE_TEXT = "dummyMessage";
 
