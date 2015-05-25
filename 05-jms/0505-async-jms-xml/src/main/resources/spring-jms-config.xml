@@ -20,13 +20,6 @@
     <constructor-arg ref="connectionFactory" />
   </bean>
 
-  <bean
-    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-    <property name="connectionFactory" ref="connectionFactory" />
-    <property name="destinationName" value="messageQueue" />
-    <property name="messageListener" ref="simpleMessageListener" />
-  </bean>
-
   <!-- lets create an embedded ActiveMQ Broker -->
   <amq:broker>
     <amq:transportConnectors>
