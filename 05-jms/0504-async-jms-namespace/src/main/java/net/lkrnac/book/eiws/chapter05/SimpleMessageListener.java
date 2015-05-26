@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SimpleService {
+public class SimpleMessageListener {
   private SimpleMessageHandler simpleMessageHandler;
 
   @Autowired
-  public SimpleService(SimpleMessageHandler simpleMessageHandler) {
+  public SimpleMessageListener(SimpleMessageHandler simpleMessageHandler) {
     super();
     this.simpleMessageHandler = simpleMessageHandler;
   }
