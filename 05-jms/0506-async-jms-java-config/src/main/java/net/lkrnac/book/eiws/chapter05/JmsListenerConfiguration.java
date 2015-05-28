@@ -16,7 +16,6 @@ public class JmsListenerConfiguration {
     DefaultMessageListenerContainer listenerContainer =
         new DefaultMessageListenerContainer();
     listenerContainer.setConnectionFactory(connectionFactory);
-    listenerContainer.setDestinationName("messageQueue");
     listenerContainer.setDestination(queue);
     listenerContainer.setMessageListener(simpleMessageListener);
     return listenerContainer;

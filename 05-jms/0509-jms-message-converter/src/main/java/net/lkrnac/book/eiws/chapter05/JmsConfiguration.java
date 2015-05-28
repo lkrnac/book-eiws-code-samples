@@ -15,20 +15,20 @@ import org.springframework.jms.support.converter.MessageType;
 @EnableJms
 public class JmsConfiguration {
   @Bean
-  public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory,
-      MessageConverter messageConverter) {
-    JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
-    jmsTemplate.setMessageConverter(messageConverter);
-    return jmsTemplate;
-  }
-
-  @Bean
   public MessageConverter messageConverter() {
     MappingJackson2MessageConverter messageConverter =
         new MappingJackson2MessageConverter();
     messageConverter.setTargetType(MessageType.TEXT);
     messageConverter.setTypeIdPropertyName("__type");
     return messageConverter;
+  }
+
+  @Bean
+  public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory,
+      MessageConverter messageConverter) {
+    JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
+    jmsTemplate.setMessageConverter(messageConverter);
+    return jmsTemplate;
   }
 
   @Bean
