@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
-import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
@@ -16,12 +16,11 @@ import org.springframework.jms.support.converter.MessagingMessageConverter;
 @EnableJms
 public class JmsConfiguration {
   @Bean
-  public JmsMessagingTemplate jmsMessagingTemplate(
-      ConnectionFactory connectionFactory, MessageConverter messageConverter) {
-    JmsMessagingTemplate jmsMessagingTemplate =
-        new JmsMessagingTemplate(connectionFactory);
-    jmsMessagingTemplate.setJmsMessageConverter(messageConverter);
-    return jmsMessagingTemplate;
+  public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory,
+      MessageConverter messageConverter) {
+    JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
+    jmsTemplate.setMessageConverter(messageConverter);
+    return jmsTemplate;
   }
 
   @Bean

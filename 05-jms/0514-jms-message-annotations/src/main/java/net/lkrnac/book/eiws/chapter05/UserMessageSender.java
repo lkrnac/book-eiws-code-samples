@@ -3,7 +3,7 @@ package net.lkrnac.book.eiws.chapter05;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMessageSender {
   private static final String ADMIN = "admin";
-  private JmsMessagingTemplate jmsMessagingTemplate;
+  private JmsTemplate jmsTemplate;
 
   @Autowired
-  public UserMessageSender(JmsMessagingTemplate jmsMessagingTemplate) {
+  public UserMessageSender(JmsTemplate jmsTemplate) {
     super();
-    this.jmsMessagingTemplate = jmsMessagingTemplate;
+    this.jmsTemplate = jmsTemplate;
   }
 
   @Scheduled(fixedRate = 1000L)
@@ -35,6 +35,6 @@ public class UserMessageSender {
      .build();
     //@formatter:on
 
-    jmsMessagingTemplate.send("messageQueue", userMessage);
+    jmsTemplate.convertAndSend("messageQueue", userMessage);
   }
 }
