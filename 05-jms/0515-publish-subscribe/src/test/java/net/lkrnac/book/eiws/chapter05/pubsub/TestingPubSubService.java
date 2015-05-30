@@ -1,12 +1,19 @@
-package net.lkrnac.book.eiws.chapter05.text;
+package net.lkrnac.book.eiws.chapter05.pubsub;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import net.lkrnac.book.eiws.chapter05.text.PubSubHandler;
 import lombok.Value;
+import net.lkrnac.book.eiws.chapter05.pubsub.PubSubService;
 
-public class TestingPubSubHandler implements PubSubHandler {
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
+
+@Profile("integration-test")
+@Primary
+@Service
+public class TestingPubSubService extends PubSubService {
   private final BlockingQueue<PubSubTuple> queue = new ArrayBlockingQueue<>(10);
 
   @Value

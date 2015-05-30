@@ -21,16 +21,5 @@
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-broker</artifactId>
     </dependency>
-<!--     <dependency> -->
-<!--       <groupId>org.apache.activemq</groupId> -->
-<!--       <artifactId>activemq-kahadb-store</artifactId> -->
-<!--       <version>${activemq.version}</version> -->
-<!--     </dependency> -->
-    
-    <dependency>
-      <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>0500-jms-common</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
   </dependencies>
 </project>

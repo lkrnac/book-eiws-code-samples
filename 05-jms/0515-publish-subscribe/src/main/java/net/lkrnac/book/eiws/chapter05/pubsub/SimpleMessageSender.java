@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter05.text;
+package net.lkrnac.book.eiws.chapter05.pubsub;
 
 import lombok.extern.slf4j.Slf4j;
 
