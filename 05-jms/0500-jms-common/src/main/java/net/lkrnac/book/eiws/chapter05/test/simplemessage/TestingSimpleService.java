@@ -5,7 +5,7 @@ import java.util.concurrent.BlockingQueue;
 
 import net.lkrnac.book.eiws.chapter05.SimpleService;
 
-public class TestingSimpleService implements SimpleService {
+public class TestingSimpleService extends SimpleService {
   private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(10);
 
   @Override

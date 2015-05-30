@@ -6,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 import net.lkrnac.book.eiws.chapter05.User;
 import net.lkrnac.book.eiws.chapter05.UserService;
 
-public class TestingUserService implements UserService {
+public class TestingUserService extends UserService {
   private final BlockingQueue<User> queue = new ArrayBlockingQueue<>(10);
 
   @Override

@@ -7,7 +7,7 @@ import lombok.Value;
 import net.lkrnac.book.eiws.chapter05.User;
 import net.lkrnac.book.eiws.chapter05.UserWithRoleService;
 
-public class TestingUserWithRoleService implements UserWithRoleService {
+public class TestingUserWithRoleService extends UserWithRoleService {
   private final BlockingQueue<UserWithRoleTuple> queue =
       new ArrayBlockingQueue<>(10);
 

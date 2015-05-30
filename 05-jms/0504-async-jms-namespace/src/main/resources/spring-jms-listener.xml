@@ -8,7 +8,7 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <jms:listener-container destination-resolver="destinationResolver">
-    <jms:listener destination="queue/ExpiryQueue" ref="simpleMessageHandler"
-      method="handleMessage" />
+    <jms:listener destination="queue/ExpiryQueue" ref="simpleService"
+      method="processText" />
   </jms:listener-container>
 </beans>
