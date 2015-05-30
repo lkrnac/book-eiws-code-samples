@@ -22,7 +22,7 @@ public class UserMessageSender {
     this.jmsMessagingTemplate = jmsMessagingTemplate;
   }
 
-  @Scheduled(fixedRate = 1000L)
+  @Scheduled(fixedRate = 1000)
   public void send() {
     User user = new User();
     user.setEmail("lubos.krnac@gmail.com");

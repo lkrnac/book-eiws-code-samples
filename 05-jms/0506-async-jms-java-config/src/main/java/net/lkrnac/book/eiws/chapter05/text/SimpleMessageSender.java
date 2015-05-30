@@ -23,7 +23,7 @@ public class SimpleMessageSender {
     this.queue = queue;
   }
 
-  @Scheduled(fixedRate = 1000L)
+  @Scheduled(fixedRate = 1000)
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
     jmsTemplate.convertAndSend(queue, SIMPLE_MESSAGE);
