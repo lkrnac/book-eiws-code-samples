@@ -1,7 +1,6 @@
 package net.lkrnac.book.eiws.chapter05;
 
 import net.lkrnac.book.eiws.chapter05.test.simplemessage.CommonJmsSimpleMessageTest;
-import net.lkrnac.book.eiws.chapter05.test.simplemessage.CommonJmsSimpleMessageTest.TestSimpleMessageConfiguration;
 
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
@@ -12,7 +11,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
  * @author Lubos Krnac
  *
  */
-@SpringApplicationConfiguration(classes = { JmsNamespaceAsyncApplication.class,
-    TestSimpleMessageConfiguration.class })
+@SpringApplicationConfiguration(classes = JmsNamespaceAsyncApplication.class)
 public class JmsNamespaceAsyncApplicationIT extends CommonJmsSimpleMessageTest {
 }

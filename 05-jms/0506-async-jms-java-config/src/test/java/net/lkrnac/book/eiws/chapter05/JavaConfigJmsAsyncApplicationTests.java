@@ -1,13 +1,11 @@
 package net.lkrnac.book.eiws.chapter05;
 
 import net.lkrnac.book.eiws.chapter05.test.simplemessage.CommonJmsSimpleMessageTest;
-import net.lkrnac.book.eiws.chapter05.test.simplemessage.CommonJmsSimpleMessageTest.TestSimpleMessageConfiguration;
 
 import org.apache.activemq.broker.BrokerService;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
-@SpringApplicationConfiguration(classes = {
-    JavaConfigJmsAsyncApplication.class, TestSimpleMessageConfiguration.class })
+@SpringApplicationConfiguration(classes = JavaConfigJmsAsyncApplication.class)
 public class JavaConfigJmsAsyncApplicationTests extends
     CommonJmsSimpleMessageTest {
   {

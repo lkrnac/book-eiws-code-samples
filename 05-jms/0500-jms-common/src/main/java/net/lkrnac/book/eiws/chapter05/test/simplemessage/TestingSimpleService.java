@@ -5,6 +5,13 @@ import java.util.concurrent.BlockingQueue;
 
 import net.lkrnac.book.eiws.chapter05.SimpleService;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
+
+@Profile("integration-test")
+@Primary
+@Component
 public class TestingSimpleService extends SimpleService {
   private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(10);
 

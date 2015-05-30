@@ -7,6 +7,13 @@ import lombok.Value;
 import net.lkrnac.book.eiws.chapter05.User;
 import net.lkrnac.book.eiws.chapter05.UserWithRoleService;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
+
+@Profile("integration-test")
+@Primary
+@Component
 public class TestingUserWithRoleService extends UserWithRoleService {
   private final BlockingQueue<UserWithRoleTuple> queue =
       new ArrayBlockingQueue<>(10);
