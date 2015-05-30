@@ -19,7 +19,7 @@ public class CommonJmsSimpleMessageTest extends
   }
 
   @Test(timeOut = 3000)
-  public void contextLoads() throws InterruptedException {
+  public void testJms() throws InterruptedException {
     // GIVEN: Spring configuration
 
     // WHEN
