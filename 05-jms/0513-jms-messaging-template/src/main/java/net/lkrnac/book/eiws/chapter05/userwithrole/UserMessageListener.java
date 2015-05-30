@@ -10,17 +10,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMessageListener {
-  private UserWithRoleService userService;
+  private UserWithRoleService userWithRoleService;
 
   @Autowired
-  public UserMessageListener(UserWithRoleService userService) {
+  public UserMessageListener(UserWithRoleService userWithRoleService) {
     super();
-    this.userService = userService;
+    this.userWithRoleService = userWithRoleService;
   }
 
   @JmsListener(destination = "messageQueue")
   public void readMessage(Message<User> userMessage) {
     String role = userMessage.getHeaders().get("role", String.class);
-    userService.processUser(userMessage.getPayload(), role);
+    userWithRoleService.processUser(userMessage.getPayload(), role);
   }
 }
