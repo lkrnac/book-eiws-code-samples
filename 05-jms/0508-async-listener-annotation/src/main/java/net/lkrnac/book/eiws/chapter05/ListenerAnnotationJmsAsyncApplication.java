@@ -16,7 +16,7 @@ public class ListenerAnnotationJmsAsyncApplication {
   }
 
   @Bean
-  public SimpleService simpleMessageHandler() {
+  public SimpleService simpleService() {
     return new SimpleService() {
       @Override
       public void processText(String message) {

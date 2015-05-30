@@ -10,19 +10,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SimpleMessageListener implements MessageListener {
-  private SimpleService simpleMessageHandler;
+  private SimpleService simpleService;
 
   @Autowired
-  public SimpleMessageListener(SimpleService simpleMessageHandler) {
+  public SimpleMessageListener(SimpleService simpleService) {
     super();
-    this.simpleMessageHandler = simpleMessageHandler;
+    this.simpleService = simpleService;
   }
 
   @Override
   public void onMessage(Message message) {
     try {
       TextMessage textMessage = (TextMessage) message;
-      simpleMessageHandler.processText(textMessage.getText());
+      simpleService.processText(textMessage.getText());
     } catch (JMSException ex) {
       ex.printStackTrace();
     }

@@ -8,17 +8,17 @@ import net.lkrnac.book.eiws.chapter05.SimpleService;
 
 @Slf4j
 public class SimpleMessageListener implements MessageListener {
-  private SimpleService simpleMessageHandler;
+  private SimpleService simpleService;
 
-  public SimpleMessageListener(SimpleService simpleMessageHandler) {
+  public SimpleMessageListener(SimpleService simpleService) {
     super();
-    this.simpleMessageHandler = simpleMessageHandler;
+    this.simpleService = simpleService;
   }
 
   @Override
   public void onMessage(Message message) {
     try {
-      simpleMessageHandler.processText(message.getBody(String.class));
+      simpleService.processText(message.getBody(String.class));
     } catch (Throwable t) {
       log.error("Error during message reception", t);
     }

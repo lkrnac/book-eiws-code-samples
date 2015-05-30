@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MessageHandlerConfiguration {
   @Bean
-  public SimpleService simpleMessageHandler() {
+  public SimpleService simpleService() {
     return new SimpleService() {
       @Override
       public void processText(String message) {

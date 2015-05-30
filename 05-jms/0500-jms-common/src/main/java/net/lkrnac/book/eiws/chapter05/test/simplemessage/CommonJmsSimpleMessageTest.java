@@ -16,7 +16,7 @@ public class CommonJmsSimpleMessageTest extends
   private static final String MESSAGE_TEXT = "simple message";
 
   @Autowired
-  private SimpleService simpleMessageHandler;
+  private SimpleService simpleService;
 
   {
     System.setProperty("spring.profiles.active", "integration-test");
@@ -27,7 +27,7 @@ public class CommonJmsSimpleMessageTest extends
     @Bean
     @Primary
     @Profile("integration-test")
-    public SimpleService simpleMessageHandler() {
+    public SimpleService simpleService() {
       return new TestingSimpleService();
     }
   }
@@ -40,7 +40,7 @@ public class CommonJmsSimpleMessageTest extends
 
     // THEN
     TestingSimpleService testingMessageHandler =
-        (TestingSimpleService) simpleMessageHandler;
+        (TestingSimpleService) simpleService;
     Assert.assertEquals(testingMessageHandler.getMessage(), MESSAGE_TEXT);
     Assert.assertEquals(testingMessageHandler.getMessage(), MESSAGE_TEXT);
   }
