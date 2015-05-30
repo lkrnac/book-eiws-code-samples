@@ -12,7 +12,7 @@
   <parent>
     <groupId>net.lkrnac.book.eiws</groupId>
     <artifactId>0000-examples-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
   </parent>
 
   <dependencies>
@@ -47,13 +47,13 @@
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
       <artifactId>0000-common-library</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.2-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
       <artifactId>0307-ws-soapaction-service</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.2-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
