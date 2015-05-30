@@ -1,7 +1,5 @@
 package net.lkrnac.book.eiws.chapter05.text;
 
-import net.lkrnac.book.eiws.chapter05.text.SimpleService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -20,7 +18,7 @@ public class SimpleMessageReader {
     this.simpleService = simpleService;
   }
 
-  @Scheduled(fixedRate = 1200L)
+  @Scheduled(initialDelay = 1000, fixedRate = 1200L)
   public void readMessage() {
     String message = (String) jmsTemplate.receiveAndConvert("messageQueue");
     simpleService.processText(message);
