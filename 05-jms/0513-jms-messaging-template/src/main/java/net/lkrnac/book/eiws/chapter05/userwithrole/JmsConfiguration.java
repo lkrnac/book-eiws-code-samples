@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter05.user;
+package net.lkrnac.book.eiws.chapter05.userwithrole;
 
 import javax.jms.ConnectionFactory;
 

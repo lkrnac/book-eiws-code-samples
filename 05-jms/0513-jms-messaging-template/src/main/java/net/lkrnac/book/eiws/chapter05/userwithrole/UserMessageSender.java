@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter05.user;
+package net.lkrnac.book.eiws.chapter05.userwithrole;
 
 import lombok.extern.slf4j.Slf4j;
 import net.lkrnac.book.eiws.chapter05.user.User;

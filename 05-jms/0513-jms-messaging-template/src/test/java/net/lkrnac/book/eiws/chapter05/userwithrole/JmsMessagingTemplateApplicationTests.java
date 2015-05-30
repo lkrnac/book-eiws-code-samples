@@ -1,6 +1,6 @@
-package net.lkrnac.book.eiws.chapter05.user;
+package net.lkrnac.book.eiws.chapter05.userwithrole;
 
-import net.lkrnac.book.eiws.chapter05.user.JmsMessagingTemplateApplication;
+import net.lkrnac.book.eiws.chapter05.userwithrole.JmsMessagingTemplateApplication;
 import net.lkrnac.book.eiws.chapter05.userwithrole.test.CommonJmsUserWithRoleTest;
 
 import org.springframework.boot.test.SpringApplicationConfiguration;

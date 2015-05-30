@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter05.user;
+package net.lkrnac.book.eiws.chapter05.userwithrole;
 
 import net.lkrnac.book.eiws.chapter05.user.User;
 import net.lkrnac.book.eiws.chapter05.userwithrole.UserWithRoleService;
