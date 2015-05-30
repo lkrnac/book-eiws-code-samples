@@ -18,8 +18,7 @@ public class CommonJmsSimpleMessageTest extends
     System.setProperty("spring.profiles.active", "integration-test");
   }
 
-  @Test
-  // (timeOut = 3000)
+  @Test(timeOut = 3000)
   public void contextLoads() throws InterruptedException {
     // GIVEN: Spring configuration
 
