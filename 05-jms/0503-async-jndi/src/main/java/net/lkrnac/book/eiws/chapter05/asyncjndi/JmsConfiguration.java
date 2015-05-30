@@ -10,7 +10,7 @@ import javax.jms.Queue;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import net.lkrnac.book.eiws.chapter05.SimpleService;
+import net.lkrnac.book.eiws.chapter05.text.SimpleService;
 
 public class JmsConfiguration implements AutoCloseable {
   private InitialContext initialContext;

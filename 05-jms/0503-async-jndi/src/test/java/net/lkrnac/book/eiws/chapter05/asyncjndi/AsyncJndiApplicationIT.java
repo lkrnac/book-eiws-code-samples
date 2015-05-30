@@ -3,7 +3,7 @@ package net.lkrnac.book.eiws.chapter05.asyncjndi;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 
-import net.lkrnac.book.eiws.chapter05.test.simplemessage.TestingSimpleService;
+import net.lkrnac.book.eiws.chapter05.text.test.TestingSimpleService;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

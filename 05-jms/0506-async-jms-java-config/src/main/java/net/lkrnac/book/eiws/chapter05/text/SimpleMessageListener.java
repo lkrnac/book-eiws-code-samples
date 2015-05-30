@@ -1,15 +1,20 @@
-package net.lkrnac.book.eiws.chapter05.asyncjndi;
+package net.lkrnac.book.eiws.chapter05.text;
 
+import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.jms.TextMessage;
 
-import lombok.extern.slf4j.Slf4j;
 import net.lkrnac.book.eiws.chapter05.text.SimpleService;
 
-@Slf4j
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SimpleMessageListener implements MessageListener {
   private SimpleService simpleService;
 
+  @Autowired
   public SimpleMessageListener(SimpleService simpleService) {
     super();
     this.simpleService = simpleService;
@@ -18,9 +23,10 @@ public class SimpleMessageListener implements MessageListener {
   @Override
   public void onMessage(Message message) {
     try {
-      simpleService.processText(message.getBody(String.class));
-    } catch (Throwable t) {
-      log.error("Error during message reception", t);
+      TextMessage textMessage = (TextMessage) message;
+      simpleService.processText(textMessage.getText());
+    } catch (JMSException ex) {
+      ex.printStackTrace();
     }
   }
 }
