@@ -14,8 +14,8 @@ public class SimpleMessageListener1 {
     this.pubSubService = pubSubService;
   }
 
-  @JmsListener(destination = "simpleTopic", subscription = "simpleTopic")
+  @JmsListener(destination = "simpleTopic")
   public void readMessage(String message) {
-    pubSubService.handleMessage(1, message);
+    pubSubService.processText(1, message);
   }
 }

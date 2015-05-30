@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class PubSubService {
-  public void handleMessage(int listenerId, String message) {
+  public void processText(int listenerId, String message) {
     log.info("Message Received: {} via listener {}", message, listenerId);
   }
 }

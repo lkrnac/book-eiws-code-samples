@@ -23,7 +23,7 @@ public class TestingPubSubService extends PubSubService {
   }
 
   @Override
-  public void handleMessage(int listenerId, String message) {
+  public void processText(int listenerId, String message) {
     queue.add(new PubSubTuple(listenerId, message));
   }
 
