@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 public class CommonJmsUserMessageTest extends AbstractTestNGSpringContextTests {
   @Autowired
-  private UserService userHandler;
+  private UserService userService;
 
   {
     System.setProperty("spring.profiles.active", "integration-test");
@@ -25,7 +25,7 @@ public class CommonJmsUserMessageTest extends AbstractTestNGSpringContextTests {
     @Bean
     @Primary
     @Profile("integration-test")
-    public UserService userHandler() {
+    public UserService userService() {
       return new TestingUserService();
     }
   }
@@ -35,13 +35,13 @@ public class CommonJmsUserMessageTest extends AbstractTestNGSpringContextTests {
     // GIVEN: Spring configuration
 
     // WHEN
-    TestingUserService testingUserHandler = (TestingUserService) userHandler;
+    TestingUserService testinguserService = (TestingUserService) userService;
 
     // THEN
-    User user = testingUserHandler.getUser();
+    User user = testinguserService.getUser();
     Assert.assertEquals(user.getEmail(), "lubos.krnac@gmail.com");
     Assert.assertEquals(user.getName(), "Lubos Krnac");
-    User user1 = testingUserHandler.getUser();
+    User user1 = testinguserService.getUser();
     Assert.assertEquals(user1.getEmail(), "lubos.krnac@gmail.com");
     Assert.assertEquals(user1.getName(), "Lubos Krnac");
   }

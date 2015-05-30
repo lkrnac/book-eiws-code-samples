@@ -16,7 +16,7 @@ public class JmsMessagingTemplateApplication {
   }
 
   @Bean
-  public UserWithRoleService userHandler() {
+  public UserWithRoleService userService() {
     return new UserWithRoleService() {
       @Override
       public void processUser(User user, String role) {

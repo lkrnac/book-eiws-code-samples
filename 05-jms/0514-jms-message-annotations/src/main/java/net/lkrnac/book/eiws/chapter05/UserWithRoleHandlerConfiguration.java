@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UserWithRoleHandlerConfiguration {
   @Bean
-  public UserWithRoleService userHandler() {
+  public UserWithRoleService userService() {
     return new UserWithRoleService() {
       @Override
       public void processUser(User user, String role) {

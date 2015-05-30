@@ -16,7 +16,7 @@ public class JmsCustomConverterApplication {
   }
 
   @Bean
-  public UserService userHandler() {
+  public UserService userService() {
     return new UserService() {
       @Override
       public void processUser(User user) {

@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Slf4j
 @Configuration
-public class UserHandlerConfiguration {
+public class userServiceConfiguration {
   @Bean
-  public UserService userHandler() {
+  public UserService userService() {
     return new UserService() {
       @Override
       public void processUser(User user) {

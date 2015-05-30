@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 public class CommonJmsUserWithRoleTest extends AbstractTestNGSpringContextTests {
   @Autowired
-  private UserWithRoleService userHandler;
+  private UserWithRoleService userService;
 
   {
     System.setProperty("spring.profiles.active", "integration-test");
@@ -26,7 +26,7 @@ public class CommonJmsUserWithRoleTest extends AbstractTestNGSpringContextTests 
     @Bean
     @Primary
     @Profile("integration-test")
-    public UserWithRoleService userHandler() {
+    public UserWithRoleService userService() {
       return new TestingUserWithRoleService();
     }
   }
@@ -36,16 +36,16 @@ public class CommonJmsUserWithRoleTest extends AbstractTestNGSpringContextTests 
     // GIVEN: Spring configuration
 
     // WHEN
-    TestingUserWithRoleService testingUserHandler =
-        (TestingUserWithRoleService) userHandler;
+    TestingUserWithRoleService testinguserService =
+        (TestingUserWithRoleService) userService;
 
     // THEN
     UserWithRoleTuple userWithRoleTuple =
-        testingUserHandler.getUserWithRoleTuple();
+        testinguserService.getUserWithRoleTuple();
     verifyTuple(userWithRoleTuple);
 
     UserWithRoleTuple userWithRoleTuple1 =
-        testingUserHandler.getUserWithRoleTuple();
+        testinguserService.getUserWithRoleTuple();
     verifyTuple(userWithRoleTuple1);
   }
 
