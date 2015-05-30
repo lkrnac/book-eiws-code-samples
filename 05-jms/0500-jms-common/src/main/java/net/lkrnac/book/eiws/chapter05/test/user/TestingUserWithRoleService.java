@@ -5,9 +5,9 @@ import java.util.concurrent.BlockingQueue;
 
 import lombok.Value;
 import net.lkrnac.book.eiws.chapter05.User;
-import net.lkrnac.book.eiws.chapter05.UserWithRoleHandler;
+import net.lkrnac.book.eiws.chapter05.UserWithRoleService;
 
-public class TestingUserWithRoleHandler implements UserWithRoleHandler {
+public class TestingUserWithRoleService implements UserWithRoleService {
   private final BlockingQueue<UserWithRoleTuple> queue =
       new ArrayBlockingQueue<>(10);
 
@@ -18,7 +18,7 @@ public class TestingUserWithRoleHandler implements UserWithRoleHandler {
   }
 
   @Override
-  public void handleUser(User user, String role) {
+  public void processUser(User user, String role) {
     queue.add(new UserWithRoleTuple(user, role));
   }
 

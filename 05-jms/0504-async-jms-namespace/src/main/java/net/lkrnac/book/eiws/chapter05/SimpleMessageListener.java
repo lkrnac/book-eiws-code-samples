@@ -5,15 +5,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SimpleMessageListener {
-  private SimpleMessageHandler simpleMessageHandler;
+  private SimpleService simpleMessageHandler;
 
   @Autowired
-  public SimpleMessageListener(SimpleMessageHandler simpleMessageHandler) {
+  public SimpleMessageListener(SimpleService simpleMessageHandler) {
     super();
     this.simpleMessageHandler = simpleMessageHandler;
   }
 
   public void handleMessage(String message) {
-    simpleMessageHandler.handleMessage(message);
+    simpleMessageHandler.processText(message);
   }
 }

@@ -4,13 +4,13 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import net.lkrnac.book.eiws.chapter05.User;
-import net.lkrnac.book.eiws.chapter05.UserHandler;
+import net.lkrnac.book.eiws.chapter05.UserService;
 
-public class TestingUserHandler implements UserHandler {
+public class TestingUserService implements UserService {
   private final BlockingQueue<User> queue = new ArrayBlockingQueue<>(10);
 
   @Override
-  public void handleUser(User user) {
+  public void processUser(User user) {
     queue.add(user);
   }
 

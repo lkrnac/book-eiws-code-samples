@@ -3,7 +3,7 @@ package net.lkrnac.book.eiws.chapter05.asyncjndi;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 
-import net.lkrnac.book.eiws.chapter05.test.simplemessage.TestingSimpleMessageHandler;
+import net.lkrnac.book.eiws.chapter05.test.simplemessage.TestingSimpleService;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -18,8 +18,8 @@ public class AsyncJndiApplicationIT {
   @Test(groups = "maventests")
   public void queueTest() throws Exception {
     // GIVEN
-    TestingSimpleMessageHandler messageHandler =
-        new TestingSimpleMessageHandler();
+    TestingSimpleService messageHandler =
+        new TestingSimpleService();
     try (JmsConfiguration jmsConfiguration =
         new JmsConfiguration(messageHandler)) {
       jmsConfiguration.init();

@@ -4,13 +4,13 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 
 import lombok.extern.slf4j.Slf4j;
-import net.lkrnac.book.eiws.chapter05.SimpleMessageHandler;
+import net.lkrnac.book.eiws.chapter05.SimpleService;
 
 @Slf4j
 public class SimpleMessageListener implements MessageListener {
-  private SimpleMessageHandler simpleMessageHandler;
+  private SimpleService simpleMessageHandler;
 
-  public SimpleMessageListener(SimpleMessageHandler simpleMessageHandler) {
+  public SimpleMessageListener(SimpleService simpleMessageHandler) {
     super();
     this.simpleMessageHandler = simpleMessageHandler;
   }
@@ -18,7 +18,7 @@ public class SimpleMessageListener implements MessageListener {
   @Override
   public void onMessage(Message message) {
     try {
-      simpleMessageHandler.handleMessage(message.getBody(String.class));
+      simpleMessageHandler.processText(message.getBody(String.class));
     } catch (Throwable t) {
       log.error("Error during message reception", t);
     }

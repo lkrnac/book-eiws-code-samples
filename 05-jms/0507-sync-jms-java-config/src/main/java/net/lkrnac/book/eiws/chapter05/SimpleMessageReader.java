@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleMessageReader {
   private JmsTemplate jmsTemplate;
-  private SimpleMessageHandler simpleMessageHandler;
+  private SimpleService simpleMessageHandler;
 
   @Autowired
   public SimpleMessageReader(JmsTemplate jmsTemplate,
-      SimpleMessageHandler simpleMessageHandler) {
+      SimpleService simpleMessageHandler) {
     super();
     this.jmsTemplate = jmsTemplate;
     this.simpleMessageHandler = simpleMessageHandler;
@@ -21,6 +21,6 @@ public class SimpleMessageReader {
   @Scheduled(fixedRate = 1200L)
   public void readMessage() {
     String message = (String) jmsTemplate.receiveAndConvert("messageQueue");
-    simpleMessageHandler.handleMessage(message);
+    simpleMessageHandler.processText(message);
   }
 }

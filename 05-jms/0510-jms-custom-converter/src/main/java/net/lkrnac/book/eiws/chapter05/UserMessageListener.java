@@ -6,16 +6,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMessageListener {
-  private UserHandler userHandler;
+  private UserService userHandler;
 
   @Autowired
-  public UserMessageListener(UserHandler userHandler) {
+  public UserMessageListener(UserService userHandler) {
     super();
     this.userHandler = userHandler;
   }
 
   @JmsListener(destination = "messageQueue")
   public void readMessage(User user) {
-    userHandler.handleUser(user);
+    userHandler.processUser(user);
   }
 }

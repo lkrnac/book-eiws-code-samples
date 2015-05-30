@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MessageHandlerConfiguration {
   @Bean
-  public SimpleMessageHandler simpleMessageHandler() {
-    return new SimpleMessageHandler() {
+  public SimpleService simpleMessageHandler() {
+    return new SimpleService() {
       @Override
-      public void handleMessage(String message) {
+      public void processText(String message) {
         log.info("Message Received: {}", message);
       }
     };

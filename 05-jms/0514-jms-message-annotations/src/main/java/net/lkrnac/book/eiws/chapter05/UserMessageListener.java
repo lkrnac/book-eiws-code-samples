@@ -8,16 +8,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMessageListener {
-  private UserWithRoleHandler userHandler;
+  private UserWithRoleService userHandler;
 
   @Autowired
-  public UserMessageListener(UserWithRoleHandler userHandler) {
+  public UserMessageListener(UserWithRoleService userHandler) {
     super();
     this.userHandler = userHandler;
   }
 
   @JmsListener(destination = "messageQueue")
   public void readMessage(@Payload User user, @Header String role) {
-    userHandler.handleUser(user, role);
+    userHandler.processUser(user, role);
   }
 }

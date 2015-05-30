@@ -1,8 +1,8 @@
 package net.lkrnac.book.eiws.chapter05.test.user;
 
 import net.lkrnac.book.eiws.chapter05.User;
-import net.lkrnac.book.eiws.chapter05.UserWithRoleHandler;
-import net.lkrnac.book.eiws.chapter05.test.user.TestingUserWithRoleHandler.UserWithRoleTuple;
+import net.lkrnac.book.eiws.chapter05.UserWithRoleService;
+import net.lkrnac.book.eiws.chapter05.test.user.TestingUserWithRoleService.UserWithRoleTuple;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 public class CommonJmsUserWithRoleTest extends AbstractTestNGSpringContextTests {
   @Autowired
-  private UserWithRoleHandler userHandler;
+  private UserWithRoleService userHandler;
 
   {
     System.setProperty("spring.profiles.active", "integration-test");
@@ -26,8 +26,8 @@ public class CommonJmsUserWithRoleTest extends AbstractTestNGSpringContextTests 
     @Bean
     @Primary
     @Profile("integration-test")
-    public UserWithRoleHandler userHandler() {
-      return new TestingUserWithRoleHandler();
+    public UserWithRoleService userHandler() {
+      return new TestingUserWithRoleService();
     }
   }
 
@@ -36,8 +36,8 @@ public class CommonJmsUserWithRoleTest extends AbstractTestNGSpringContextTests 
     // GIVEN: Spring configuration
 
     // WHEN
-    TestingUserWithRoleHandler testingUserHandler =
-        (TestingUserWithRoleHandler) userHandler;
+    TestingUserWithRoleService testingUserHandler =
+        (TestingUserWithRoleService) userHandler;
 
     // THEN
     UserWithRoleTuple userWithRoleTuple =

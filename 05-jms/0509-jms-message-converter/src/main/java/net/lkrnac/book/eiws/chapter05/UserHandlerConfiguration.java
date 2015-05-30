@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UserHandlerConfiguration {
   @Bean
-  public UserHandler userHandler() {
-    return new UserHandler() {
+  public UserService userHandler() {
+    return new UserService() {
       @Override
-      public void handleUser(User user) {
+      public void processUser(User user) {
         log.info("User object Received: {}", user);
       }
     };

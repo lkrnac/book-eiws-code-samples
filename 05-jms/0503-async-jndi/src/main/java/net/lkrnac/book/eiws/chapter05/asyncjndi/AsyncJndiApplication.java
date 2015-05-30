@@ -6,7 +6,7 @@ import javax.jms.Queue;
 import javax.naming.NamingException;
 
 import lombok.extern.slf4j.Slf4j;
-import net.lkrnac.book.eiws.chapter05.SimpleMessageHandler;
+import net.lkrnac.book.eiws.chapter05.SimpleService;
 
 public class AsyncJndiApplication {
   public static void main(String[] args) throws JMSException, NamingException {
@@ -24,9 +24,9 @@ public class AsyncJndiApplication {
   }
 
   @Slf4j
-  private static class MessageHandler implements SimpleMessageHandler {
+  private static class MessageHandler implements SimpleService {
     @Override
-    public void handleMessage(String message) {
+    public void processText(String message) {
       log.info("Message received: {}", message);
     }
   }

@@ -1,7 +1,7 @@
 package net.lkrnac.book.eiws.chapter05.test.user;
 
 import net.lkrnac.book.eiws.chapter05.User;
-import net.lkrnac.book.eiws.chapter05.UserHandler;
+import net.lkrnac.book.eiws.chapter05.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 public class CommonJmsUserMessageTest extends AbstractTestNGSpringContextTests {
   @Autowired
-  private UserHandler userHandler;
+  private UserService userHandler;
 
   {
     System.setProperty("spring.profiles.active", "integration-test");
@@ -25,8 +25,8 @@ public class CommonJmsUserMessageTest extends AbstractTestNGSpringContextTests {
     @Bean
     @Primary
     @Profile("integration-test")
-    public UserHandler userHandler() {
-      return new TestingUserHandler();
+    public UserService userHandler() {
+      return new TestingUserService();
     }
   }
 
@@ -35,7 +35,7 @@ public class CommonJmsUserMessageTest extends AbstractTestNGSpringContextTests {
     // GIVEN: Spring configuration
 
     // WHEN
-    TestingUserHandler testingUserHandler = (TestingUserHandler) userHandler;
+    TestingUserService testingUserHandler = (TestingUserService) userHandler;
 
     // THEN
     User user = testingUserHandler.getUser();

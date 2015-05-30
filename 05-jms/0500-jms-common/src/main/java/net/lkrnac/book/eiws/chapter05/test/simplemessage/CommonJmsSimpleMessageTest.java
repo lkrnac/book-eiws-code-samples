@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter05.test.simplemessage;
 
-import net.lkrnac.book.eiws.chapter05.SimpleMessageHandler;
+import net.lkrnac.book.eiws.chapter05.SimpleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ public class CommonJmsSimpleMessageTest extends
   private static final String MESSAGE_TEXT = "simple message";
 
   @Autowired
-  private SimpleMessageHandler simpleMessageHandler;
+  private SimpleService simpleMessageHandler;
 
   {
     System.setProperty("spring.profiles.active", "integration-test");
@@ -27,8 +27,8 @@ public class CommonJmsSimpleMessageTest extends
     @Bean
     @Primary
     @Profile("integration-test")
-    public SimpleMessageHandler simpleMessageHandler() {
-      return new TestingSimpleMessageHandler();
+    public SimpleService simpleMessageHandler() {
+      return new TestingSimpleService();
     }
   }
 
@@ -39,8 +39,8 @@ public class CommonJmsSimpleMessageTest extends
     // WHEN
 
     // THEN
-    TestingSimpleMessageHandler testingMessageHandler =
-        (TestingSimpleMessageHandler) simpleMessageHandler;
+    TestingSimpleService testingMessageHandler =
+        (TestingSimpleService) simpleMessageHandler;
     Assert.assertEquals(testingMessageHandler.getMessage(), MESSAGE_TEXT);
     Assert.assertEquals(testingMessageHandler.getMessage(), MESSAGE_TEXT);
   }
