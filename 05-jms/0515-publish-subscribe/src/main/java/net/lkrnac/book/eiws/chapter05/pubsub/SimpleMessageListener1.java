@@ -6,16 +6,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SimpleMessageListener1 {
-  private PubSubService pubSubHandler;
+  private PubSubService pubSubService;
 
   @Autowired
-  public SimpleMessageListener1(PubSubService pubSubHandler) {
+  public SimpleMessageListener1(PubSubService pubSubService) {
     super();
-    this.pubSubHandler = pubSubHandler;
+    this.pubSubService = pubSubService;
   }
 
   @JmsListener(destination = "simpleTopic", subscription = "simpleTopic")
   public void readMessage(String message) {
-    pubSubHandler.handleMessage(1, message);
+    pubSubService.handleMessage(1, message);
   }
 }

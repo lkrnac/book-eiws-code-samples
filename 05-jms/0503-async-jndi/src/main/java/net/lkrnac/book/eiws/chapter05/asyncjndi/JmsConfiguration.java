@@ -16,11 +16,11 @@ public class JmsConfiguration implements AutoCloseable {
   private InitialContext initialContext;
   private JMSContext jmsContext;
   private Queue queue;
-  private SimpleService messageHandler;
+  private SimpleService simpleService;
 
-  public JmsConfiguration(SimpleService messageHandler) {
+  public JmsConfiguration(SimpleService simpleService) {
     super();
-    this.messageHandler = messageHandler;
+    this.simpleService = simpleService;
   }
 
   public void init() throws NamingException {
@@ -39,7 +39,7 @@ public class JmsConfiguration implements AutoCloseable {
 
     JMSContext jmsContext = cf.createContext();
     JMSConsumer jmsConsumer = jmsContext.createConsumer(queue);
-    MessageListener messageListener = new SimpleMessageListener(messageHandler);
+    MessageListener messageListener = new SimpleMessageListener(simpleService);
     jmsConsumer.setMessageListener(messageListener);
   }
 

@@ -18,10 +18,10 @@ public class AsyncJndiApplicationIT {
   @Test(groups = "maventests")
   public void queueTest() throws Exception {
     // GIVEN
-    TestingSimpleService messageHandler =
+    TestingSimpleService simpleService =
         new TestingSimpleService();
     try (JmsConfiguration jmsConfiguration =
-        new JmsConfiguration(messageHandler)) {
+        new JmsConfiguration(simpleService)) {
       jmsConfiguration.init();
       JMSContext jmsContext = jmsConfiguration.getJmsContext();
       Queue queue = jmsConfiguration.getQueue();
@@ -32,7 +32,7 @@ public class AsyncJndiApplicationIT {
       messageSender.sendMessage(MESSAGE_TEXT);
 
       // THEN
-      Assert.assertEquals(messageHandler.getMessage(), MESSAGE_TEXT);
+      Assert.assertEquals(simpleService.getMessage(), MESSAGE_TEXT);
     }
   }
 }

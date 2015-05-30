@@ -29,11 +29,11 @@ public class JmsPublishSubscribeApplicationTests extends
     // WHEN
 
     // THEN
-    TestingPubSubService testingPubSubHandler =
+    TestingPubSubService testingPubSubService =
         (TestingPubSubService) pubSubService;
-    PubSubTuple pubSubTuple1 = testingPubSubHandler.getPubSubTuple();
+    PubSubTuple pubSubTuple1 = testingPubSubService.getPubSubTuple();
     Assert.assertEquals(pubSubTuple1.getMessage(), MESSAGE_TEXT);
-    PubSubTuple pubSubTuple2 = testingPubSubHandler.getPubSubTuple();
+    PubSubTuple pubSubTuple2 = testingPubSubService.getPubSubTuple();
     Assert.assertEquals(pubSubTuple2.getMessage(), MESSAGE_TEXT);
     Assert.assertNotEquals(pubSubTuple1.getListenerId(),
         pubSubTuple2.getListenerId());
