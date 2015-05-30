@@ -16,9 +16,10 @@ public class SimpleMessageReader {
     super();
     this.jmsTemplate = jmsTemplate;
     this.simpleService = simpleService;
+    jmsTemplate.setReceiveTimeout(1000);
   }
 
-  @Scheduled(initialDelay = 1000, fixedRate = 1200L)
+  @Scheduled(fixedRate = 1200)
   public void readMessage() {
     String message = (String) jmsTemplate.receiveAndConvert("messageQueue");
     simpleService.processText(message);
