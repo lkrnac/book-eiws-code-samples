@@ -39,9 +39,9 @@ public class CommonJmsSimpleMessageTest extends
     // WHEN
 
     // THEN
-    TestingSimpleService testingMessageHandler =
+    TestingSimpleService testingSimpleService =
         (TestingSimpleService) simpleService;
-    Assert.assertEquals(testingMessageHandler.getMessage(), MESSAGE_TEXT);
-    Assert.assertEquals(testingMessageHandler.getMessage(), MESSAGE_TEXT);
+    Assert.assertEquals(testingSimpleService.getMessage(), MESSAGE_TEXT);
+    Assert.assertEquals(testingSimpleService.getMessage(), MESSAGE_TEXT);
   }
 }
