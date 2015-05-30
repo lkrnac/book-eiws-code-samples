@@ -50,13 +50,13 @@
 <!--     <module>../04-rest/0405-rest-async-client</module> -->
 <!--     <module>../04-rest/0406-rest-parameters-server</module>     -->
 <!--     <module>../04-rest/0406-rest-errorhandler-client</module>     -->
-    <module>../05-jms/0500-jms-common</module>    
-    <module>../05-jms/0501-jms11-jndi</module>    
-    <module>../05-jms/0502-jms2-jndi</module>    
-    <module>../05-jms/0503-async-jndi</module>
-    <module>../05-jms/0504-async-jms-namespace</module>
-    <module>../05-jms/0505-async-jms-xml</module>
-    <module>../05-jms/0506-async-jms-java-config</module>
+<!--     <module>../05-jms/0500-jms-common</module>     -->
+<!--     <module>../05-jms/0501-jms11-jndi</module>     -->
+<!--     <module>../05-jms/0502-jms2-jndi</module>     -->
+<!--     <module>../05-jms/0503-async-jndi</module> -->
+<!--     <module>../05-jms/0504-async-jms-namespace</module> -->
+<!--     <module>../05-jms/0505-async-jms-xml</module> -->
+<!--     <module>../05-jms/0506-async-jms-java-config</module> -->
     <module>../05-jms/0507-sync-jms-java-config</module>
     <module>../05-jms/0508-async-listener-annotation</module>
     <module>../05-jms/0509-jms-message-converter</module>
