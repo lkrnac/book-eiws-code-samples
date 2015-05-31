@@ -37,7 +37,6 @@ public class JmsConfiguration implements AutoCloseable {
         (ConnectionFactory) initialContext.lookup("/ConnectionFactory");
     jmsContext = cf.createContext();
 
-    JMSContext jmsContext = cf.createContext();
     JMSConsumer jmsConsumer = jmsContext.createConsumer(queue);
     MessageListener messageListener = new SimpleMessageListener(simpleService);
     jmsConsumer.setMessageListener(messageListener);
