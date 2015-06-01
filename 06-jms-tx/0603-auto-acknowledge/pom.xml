@@ -23,14 +23,8 @@
     </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>0500-jms-common</artifactId>
+      <artifactId>0600-jms-tx-common</artifactId>
       <version>0.0.2-SNAPSHOT</version>
     </dependency>
-
-    <!-- db -->
-    <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-    </dependency>    
   </dependencies>
 </project>

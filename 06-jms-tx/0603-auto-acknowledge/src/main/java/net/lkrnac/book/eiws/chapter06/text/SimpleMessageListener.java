@@ -1,6 +1,6 @@
-package net.lkrnac.book.eiws.chapter05.text;
+package net.lkrnac.book.eiws.chapter06.text;
 
-import net.lkrnac.book.eiws.chapter05.text.SimpleService;
+import net.lkrnac.book.eiws.chapter06.text.SimpleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;

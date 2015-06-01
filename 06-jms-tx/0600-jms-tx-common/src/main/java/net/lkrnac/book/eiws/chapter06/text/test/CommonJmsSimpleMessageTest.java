@@ -1,33 +1,32 @@
 package net.lkrnac.book.eiws.chapter06.text.test;
 
-import net.lkrnac.book.eiws.chapter06.text.SimpleService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CommonJmsSimpleMessageTest extends
     AbstractTestNGSpringContextTests {
+  private static final String SELECT_COUNT =
+      "select count(*) from TEXT_TABLE where text = ?";
+
   private static final String MESSAGE_TEXT = "simple message";
 
   @Autowired
-  private SimpleService simpleService;
+  private JdbcTemplate jdbcTemplate;
 
-  {
-    System.setProperty("spring.profiles.active", "integration-test");
-  }
-
-  @Test(timeOut = 3000)
+  @Test
+  // (timeOut = 3000)
   public void testJms() throws InterruptedException {
     // GIVEN: Spring configuration
 
     // WHEN
+    Thread.sleep(3000);
 
     // THEN
-    TestingSimpleService testingSimpleService =
-        (TestingSimpleService) simpleService;
-    Assert.assertEquals(testingSimpleService.getMessage(), MESSAGE_TEXT);
-    Assert.assertEquals(testingSimpleService.getMessage(), MESSAGE_TEXT);
+    long count =
+        jdbcTemplate.queryForObject(SELECT_COUNT, Long.class, MESSAGE_TEXT);
+    Assert.assertTrue(count > 0);
   }
 }
