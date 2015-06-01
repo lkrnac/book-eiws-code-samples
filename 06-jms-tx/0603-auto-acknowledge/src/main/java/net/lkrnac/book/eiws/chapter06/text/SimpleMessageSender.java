@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleMessageSender {
   private static final String SIMPLE_MESSAGE = "simple message";
+  private static final String SIMPLE_MESSAGE_CORRUTPED =
+      "simple message corrupted";
   private JmsTemplate jmsTemplate;
 
   @Autowired
@@ -23,5 +25,11 @@ public class SimpleMessageSender {
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
     jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
+  }
+
+  @Scheduled(fixedRate = 1000)
+  public void sendCorrupted() {
+    log.info("Sending message: {}", SIMPLE_MESSAGE_CORRUTPED);
+    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE_CORRUTPED);
   }
 }

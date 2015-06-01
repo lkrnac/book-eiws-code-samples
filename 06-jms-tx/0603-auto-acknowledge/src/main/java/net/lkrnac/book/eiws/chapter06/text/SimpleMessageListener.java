@@ -1,7 +1,5 @@
 package net.lkrnac.book.eiws.chapter06.text;
 
-import net.lkrnac.book.eiws.chapter06.text.SimpleService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -18,6 +16,9 @@ public class SimpleMessageListener {
 
   @JmsListener(destination = "messageQueue")
   public void readMessage(String message) {
+    if ("simple message corrupted".equals(message)) {
+      throw new IllegalArgumentException(message);
+    }
     simpleService.processText(message);
   }
 }

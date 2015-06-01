@@ -12,6 +12,8 @@ public class CommonJmsSimpleMessageTest extends
       "select count(*) from TEXT_TABLE where text = ?";
 
   private static final String MESSAGE_TEXT = "simple message";
+  private static final String MESSAGE_TEXT_CORRUPTED =
+      "simple message corrupted";
 
   @Autowired
   private JdbcTemplate jdbcTemplate;
@@ -21,11 +23,16 @@ public class CommonJmsSimpleMessageTest extends
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(500);
+    Thread.sleep(1000);
 
     // THEN
     long count =
         jdbcTemplate.queryForObject(SELECT_COUNT, Long.class, MESSAGE_TEXT);
     Assert.assertTrue(count > 0);
+
+    long countCorrupted =
+        jdbcTemplate.queryForObject(SELECT_COUNT, Long.class,
+            MESSAGE_TEXT_CORRUPTED);
+    Assert.assertEquals(countCorrupted, 0);
   }
 }
