@@ -2,10 +2,10 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="urn:hornetq /schema/hornetq-configuration.xsd">
 
-   <bindings-directory>target/data/messaging/bindings</bindings-directory>
-   <journal-directory>target/data/messaging/journal</journal-directory>
-   <large-messages-directory>target/data/messaging/largemessages</large-messages-directory>
-   <paging-directory>target/data/messaging/paging</paging-directory>
+   <bindings-directory>target/data0504/messaging/bindings</bindings-directory>
+   <journal-directory>target/data0504/messaging/journal</journal-directory>
+   <large-messages-directory>target/data0504/messaging/largemessages</large-messages-directory>
+   <paging-directory>target/data0504/messaging/paging</paging-directory>
 
    <connectors>
       <connector name="netty">
