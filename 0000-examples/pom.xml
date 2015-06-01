@@ -72,5 +72,6 @@
     <module>../06-jms-tx/0603-auto-acknowledge</module>
     <module>../06-jms-tx/0604-client-acknowledge</module>
     <module>../06-jms-tx/0605-dups-ok-acknowledge</module>
+    <module>../06-jms-tx/0606-transacted</module>
   </modules>
 </project>
