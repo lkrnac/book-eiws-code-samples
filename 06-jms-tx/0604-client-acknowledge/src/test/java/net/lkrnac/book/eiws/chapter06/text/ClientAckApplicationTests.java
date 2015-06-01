@@ -19,8 +19,7 @@ public class ClientAckApplicationTests extends AbstractTestNGSpringContextTests 
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @Test
-  // (timeOut = 3000)
+  @Test(timeOut = 3000)
   public void testJms() throws InterruptedException {
     // GIVEN: Spring configuration
 
