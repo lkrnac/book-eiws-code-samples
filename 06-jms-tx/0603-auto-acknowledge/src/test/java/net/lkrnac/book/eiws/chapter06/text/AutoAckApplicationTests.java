@@ -13,8 +13,7 @@ public class AutoAckApplicationTests extends AbstractTestNGSpringContextTests {
       "select count(*) from TEXT_TABLE where text = ?";
 
   private static final String MESSAGE_TEXT = "simple message";
-  private static final String MESSAGE_TEXT_CORRUPTED =
-      "simple message corrupted";
+  private static final String MESSAGE_TEXT_LOST = "simple message lost";
 
   @Autowired
   private JdbcTemplate jdbcTemplate;
@@ -24,7 +23,7 @@ public class AutoAckApplicationTests extends AbstractTestNGSpringContextTests {
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(1000);
+    Thread.sleep(2000);
 
     // THEN
     long count =
@@ -32,8 +31,8 @@ public class AutoAckApplicationTests extends AbstractTestNGSpringContextTests {
     Assert.assertTrue(count > 0);
 
     long countCorrupted =
-        jdbcTemplate.queryForObject(SELECT_COUNT, Long.class,
-            MESSAGE_TEXT_CORRUPTED);
+        jdbcTemplate
+            .queryForObject(SELECT_COUNT, Long.class, MESSAGE_TEXT_LOST);
     Assert.assertEquals(countCorrupted, 0);
   }
 }

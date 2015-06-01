@@ -19,12 +19,12 @@ public class ClientAckApplicationTests extends AbstractTestNGSpringContextTests 
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @Test(timeOut = 3000)
+  @Test(timeOut = 5000)
   public void testJms() throws InterruptedException {
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(2000);
+    Thread.sleep(3000);
 
     // THEN
     long count =

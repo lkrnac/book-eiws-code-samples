@@ -22,7 +22,7 @@ public class DupsOkAckApplicationTests extends AbstractTestNGSpringContextTests 
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(500);
+    Thread.sleep(2000);
 
     // THEN
     long count =
