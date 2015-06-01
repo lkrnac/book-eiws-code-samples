@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter05.jms11jndi;
+package net.lkrnac.book.eiws.chapter06.javasynctx;
 
 import javax.jms.Connection;
 import javax.jms.JMSException;
@@ -12,13 +12,12 @@ public class SimpleMessageSender {
   private Session session;
 
   public void init(Connection connection, Queue queue) throws JMSException {
-    session = connection.createSession(true, Session.SESSION_TRANSACTED);
+    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
     messageProducer = session.createProducer(queue);
   }
 
   public void sendMessage(String message) throws JMSException {
     TextMessage textMessage = session.createTextMessage(message);
     messageProducer.send(textMessage);
-    session.commit();
   }
 }

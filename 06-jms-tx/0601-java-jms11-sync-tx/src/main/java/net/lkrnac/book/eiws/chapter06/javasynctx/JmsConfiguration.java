@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter05.jms11jndi;
+package net.lkrnac.book.eiws.chapter06.javasynctx;
 
 import java.util.Hashtable;
 
