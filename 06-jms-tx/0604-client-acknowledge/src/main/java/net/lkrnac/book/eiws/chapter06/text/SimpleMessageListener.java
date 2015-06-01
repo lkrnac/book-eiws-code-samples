@@ -1,9 +1,15 @@
 package net.lkrnac.book.eiws.chapter06.text;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class SimpleMessageListener {
   private SimpleService simpleService;
@@ -15,10 +21,13 @@ public class SimpleMessageListener {
   }
 
   @JmsListener(destination = "messageQueue")
-  public void readMessage(String message) {
-    if ("simple message corrupted".equals(message)) {
-      throw new IllegalArgumentException(message);
+  public void readMessage(String messageText, Message message)
+      throws JMSException {
+    simpleService.processText(messageText);
+    if ("simple message duplicate".equals(messageText)) {
+      throw new IllegalArgumentException(messageText);
     }
-    simpleService.processText(message);
+    log.info("Acknowledging reception: " + messageText);
+    message.acknowledge();
   }
 }

@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Configuration
 public class PersistenceConfiguration {
   @Bean
-  JdbcTemplate jdbcTemplate(DataSource dataSource) {
+  public JdbcTemplate jdbcTemplate(DataSource dataSource) {
     JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
     log.info("Creating table TEXT_TABLE");
     jdbcTemplate.execute("drop table TEXT_TABLE if exists");

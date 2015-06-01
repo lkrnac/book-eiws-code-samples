@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleMessageSender {
   private static final String SIMPLE_MESSAGE = "simple message";
-  private static final String SIMPLE_MESSAGE_CORRUTPED =
-      "simple message corrupted";
+  private static final String SIMPLE_MESSAGE_DUPLICATE =
+      "simple message duplicate";
   private JmsTemplate jmsTemplate;
 
   @Autowired
@@ -24,12 +24,14 @@ public class SimpleMessageSender {
   @Scheduled(fixedRate = 1000)
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
-    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
+    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE,
+        new AcknowledgePostProcessor());
   }
 
-  @Scheduled(fixedRate = 1000)
-  public void sendCorrupted() {
-    log.info("Sending message: {}", SIMPLE_MESSAGE_CORRUTPED);
-    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE_CORRUTPED);
+  @Scheduled(fixedDelay = Long.MAX_VALUE)
+  public void sendDuplicate() {
+    log.info("Sending message: {}", SIMPLE_MESSAGE_DUPLICATE);
+    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE_DUPLICATE,
+        new AcknowledgePostProcessor());
   }
 }
