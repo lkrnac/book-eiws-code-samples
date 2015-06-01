@@ -13,7 +13,7 @@ public class SimpleMessageSender {
   private static final String SIMPLE_MESSAGE = "simple message";
   private static final String SIMPLE_MESSAGE_DUPLICATE =
       "simple message duplicate";
-  private static final String SIMPLE_MESSAGE_CORRUTPED =
+  private static final String SIMPLE_MESSAGE_LOST =
       "simple message lost";
   private JmsTemplate jmsTemplate;
 
@@ -30,10 +30,10 @@ public class SimpleMessageSender {
   }
 
   @Scheduled(fixedRate = Long.MAX_VALUE)
-  public void sendCorrupted() {
-    log.info("Sending message: {}", SIMPLE_MESSAGE_CORRUTPED);
-    jmsTemplate.convertAndSend("messageQueueCorrupted",
-        SIMPLE_MESSAGE_CORRUTPED);
+  public void sendLost() {
+    log.info("Sending message: {}", SIMPLE_MESSAGE_LOST);
+    jmsTemplate.convertAndSend("messageQueueLost",
+        SIMPLE_MESSAGE_LOST);
   }
 
   @Scheduled(fixedDelay = Long.MAX_VALUE)

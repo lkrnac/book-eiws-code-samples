@@ -27,7 +27,7 @@ public class SimpleMessageSender {
   }
 
   @Scheduled(fixedRate = 1000)
-  public void sendCorrupted() {
+  public void sendLost() {
     log.info("Sending message: {}", SIMPLE_MESSAGE_LOST);
     jmsTemplate.convertAndSend("messageQueueLost", SIMPLE_MESSAGE_LOST);
   }
