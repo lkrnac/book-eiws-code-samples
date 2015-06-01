@@ -16,13 +16,12 @@ public class CommonJmsSimpleMessageTest extends
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @Test
-  // (timeOut = 3000)
+  @Test(timeOut = 3000)
   public void testJms() throws InterruptedException {
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(3000);
+    Thread.sleep(500);
 
     // THEN
     long count =
