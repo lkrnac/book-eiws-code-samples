@@ -23,7 +23,7 @@ public class SimpleMessageListener {
 
   @JmsListener(destination = "messageQueueCorrupted")
   public void readMessageCorrupted(String message) throws JMSException {
-    if ("simple message corrupted".equals(message)) {
+    if ("simple message lost".equals(message)) {
       throw new IllegalArgumentException(message);
     }
     simpleService.processText(message);

@@ -16,9 +16,15 @@ public class SimpleMessageListener {
 
   @JmsListener(destination = "messageQueue")
   public void readMessage(String message) {
-    if ("simple message corrupted".equals(message)) {
+    simpleService.processText(message);
+  }
+
+  @JmsListener(destination = "messageQueueLost")
+  public void readMessageLost(String message) {
+    if ("simple message lost".equals(message)) {
       throw new IllegalArgumentException(message);
     }
     simpleService.processText(message);
   }
+
 }

@@ -14,7 +14,7 @@ public class SimpleMessageSender {
   private static final String SIMPLE_MESSAGE_DUPLICATE =
       "simple message duplicate";
   private static final String SIMPLE_MESSAGE_CORRUTPED =
-      "simple message corrupted";
+      "simple message lost";
   private JmsTemplate jmsTemplate;
 
   @Autowired

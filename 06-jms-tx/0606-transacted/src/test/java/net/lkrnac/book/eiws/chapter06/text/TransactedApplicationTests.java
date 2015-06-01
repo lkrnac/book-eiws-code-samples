@@ -14,8 +14,8 @@ public class TransactedApplicationTests extends
       "select count(*) from TEXT_TABLE where text = ?";
 
   private static final String MESSAGE_TEXT = "simple message";
-  private static final String MESSAGE_TEXT_CORRUPTED =
-      "simple message corrupted";
+  private static final String MESSAGE_TEXT_LOST =
+      "simple message lost";
   private static final String MESSAGE_TEXT_DUPLICATE =
       "simple message duplicate";
 
@@ -36,7 +36,7 @@ public class TransactedApplicationTests extends
 
     long countCorrupted =
         jdbcTemplate.queryForObject(SELECT_COUNT, Long.class,
-            MESSAGE_TEXT_CORRUPTED);
+            MESSAGE_TEXT_LOST);
     Assert.assertEquals(countCorrupted, 0);
 
     long countDuplicate =

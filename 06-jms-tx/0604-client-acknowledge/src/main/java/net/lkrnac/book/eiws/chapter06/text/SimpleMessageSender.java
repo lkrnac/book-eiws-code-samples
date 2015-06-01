@@ -31,7 +31,7 @@ public class SimpleMessageSender {
   @Scheduled(fixedDelay = Long.MAX_VALUE)
   public void sendDuplicate() {
     log.info("Sending message: {}", SIMPLE_MESSAGE_DUPLICATE);
-    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE_DUPLICATE,
-        new AcknowledgePostProcessor());
+    jmsTemplate.convertAndSend("messageQueueDuplicate",
+        SIMPLE_MESSAGE_DUPLICATE, new AcknowledgePostProcessor());
   }
 }
