@@ -16,7 +16,7 @@ public class SimpleMessageSender {
     messageProducer = session.createProducer(queue);
   }
 
-  public void sendMessage(String message1, String message2) throws JMSException {
+  public void sendMessages(String message1, String message2) throws JMSException {
     TextMessage textMessage1 = session.createTextMessage(message1);
     messageProducer.send(textMessage1);
     TextMessage textMessage2 = session.createTextMessage(message2);

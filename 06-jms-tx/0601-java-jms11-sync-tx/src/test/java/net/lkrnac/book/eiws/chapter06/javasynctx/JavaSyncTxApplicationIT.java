@@ -28,7 +28,7 @@ public class JavaSyncTxApplicationIT {
       // WHEN
       SimpleMessageSender messageSender = new SimpleMessageSender();
       messageSender.init(connection, queue);
-      messageSender.sendMessage(MESSAGE_TEXT1, MESSAGE_TEXT2);
+      messageSender.sendMessages(MESSAGE_TEXT1, MESSAGE_TEXT2);
 
       SimpleMessageReader messageReader = new SimpleMessageReader();
       messageReader.init(connection, queue);
