@@ -12,12 +12,15 @@ public class SimpleMessageSender {
   private Session session;
 
   public void init(Connection connection, Queue queue) throws JMSException {
-    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+    session = connection.createSession(true, Session.SESSION_TRANSACTED);
     messageProducer = session.createProducer(queue);
   }
 
-  public void sendMessage(String message) throws JMSException {
-    TextMessage textMessage = session.createTextMessage(message);
-    messageProducer.send(textMessage);
+  public void sendMessage(String message1, String message2) throws JMSException {
+    TextMessage textMessage1 = session.createTextMessage(message1);
+    messageProducer.send(textMessage1);
+    TextMessage textMessage2 = session.createTextMessage(message2);
+    messageProducer.send(textMessage2);
+    session.commit();
   }
 }

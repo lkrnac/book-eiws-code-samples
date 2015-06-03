@@ -18,13 +18,23 @@ public class JavaSyncTxApplication {
 
       SimpleMessageSender messageSender = new SimpleMessageSender();
       messageSender.init(connection, queue);
-      messageSender.sendMessage("simple message");
+      messageSender.sendMessage("simple message1", "simple message2");
 
       SimpleMessageReader messageReader = new SimpleMessageReader();
       messageReader.init(connection, queue);
-      String message = messageReader.readMessage();
+      String message1 = messageReader.readMessage();
+      log.info("Message Received: {}", message1);
+      String message2 = messageReader.readMessage();
+      log.info("Message Received: {}", message2);
 
-      log.info("Message Received: {}", message);
+      messageReader.rollbackReading();
+
+      String message3 = messageReader.readMessage();
+      log.info("Message Received: {}", message3);
+      String message4 = messageReader.readMessage();
+      log.info("Message Received: {}", message4);
+
+      messageReader.finishReading();
     }
   }
 }

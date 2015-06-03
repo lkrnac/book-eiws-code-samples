@@ -5,10 +5,6 @@ import javax.jms.JMSException;
 import javax.jms.Queue;
 import javax.naming.NamingException;
 
-import net.lkrnac.book.eiws.chapter06.javasynctx.JmsConfiguration;
-import net.lkrnac.book.eiws.chapter06.javasynctx.SimpleMessageReader;
-import net.lkrnac.book.eiws.chapter06.javasynctx.SimpleMessageSender;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,7 +13,8 @@ import org.testng.annotations.Test;
  * via hornetq-maven-plugin.
  */
 public class JavaSyncTxApplicationIT {
-  private static final String MESSAGE_TEXT = "dummyMessage";
+  private static final String MESSAGE_TEXT1 = "dummyMessage1";
+  private static final String MESSAGE_TEXT2 = "dummyMessage2";
 
   @Test(groups = "maventests")
   public void queueTest() throws NamingException, JMSException {
@@ -31,14 +28,17 @@ public class JavaSyncTxApplicationIT {
       // WHEN
       SimpleMessageSender messageSender = new SimpleMessageSender();
       messageSender.init(connection, queue);
-      messageSender.sendMessage(MESSAGE_TEXT);
+      messageSender.sendMessage(MESSAGE_TEXT1, MESSAGE_TEXT2);
 
       SimpleMessageReader messageReader = new SimpleMessageReader();
       messageReader.init(connection, queue);
-      String actualMessage = messageReader.readMessage();
+      String actualMessage1 = messageReader.readMessage();
+      String actualMessage2 = messageReader.readMessage();
+      messageReader.finishReading();
 
       // THEN
-      Assert.assertEquals(MESSAGE_TEXT, actualMessage);
+      Assert.assertEquals(MESSAGE_TEXT1, actualMessage1);
+      Assert.assertEquals(MESSAGE_TEXT2, actualMessage2);
     }
   }
 }
