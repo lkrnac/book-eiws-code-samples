@@ -1,5 +1,7 @@
 package net.lkrnac.book.eiws.chapter06.text;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,12 @@ public class SimpleRepository {
   public SimpleRepository(JdbcTemplate jdbcTemplate) {
     super();
     this.jdbcTemplate = jdbcTemplate;
+  }
+
+  @PostConstruct
+  public void initDbTable() {
+    jdbcTemplate.execute("drop table TEXT_TABLE if exists");
+    jdbcTemplate.execute("create table TEXT_TABLE(TEXT varchar(30))");
   }
 
   public void persistText(String text) {
