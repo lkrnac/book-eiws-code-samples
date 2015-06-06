@@ -18,10 +18,7 @@ public class JavaAsyncTxApplication {
 
       SimpleMessageSender messageSender =
           new SimpleMessageSender(jmsContext, queue);
-      for (int idx = 0; idx < 10; idx++) {
-        messageSender.sendMessage("simple message");
-        Thread.sleep(1000);
-      }
+      messageSender.sendMessage("simple message");
     }
   }
 }
