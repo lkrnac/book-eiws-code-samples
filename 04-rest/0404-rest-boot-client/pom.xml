@@ -35,10 +35,10 @@
       <artifactId>0400-rest-common</artifactId>
       <version>${project.version}</version>
     </dependency>
-<!--     <dependency> -->
-<!--       <groupId>org.apache.httpcomponents</groupId> -->
-<!--       <artifactId>httpclient</artifactId> -->
-<!--     </dependency>     -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>org.hamcrest</groupId>
