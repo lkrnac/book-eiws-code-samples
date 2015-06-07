@@ -22,7 +22,7 @@ public class JmsApplicationTests extends AbstractTestNGSpringContextTests {
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(500);
+    Thread.sleep(1000);
 
     // THEN
     long count =
