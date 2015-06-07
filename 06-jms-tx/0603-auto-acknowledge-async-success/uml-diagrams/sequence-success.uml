@@ -1,0 +1,23 @@
+@startuml
+skinparam monochrome true
+
+
+participant "messageQueue" as mq
+participant "SimpleMessageListener" as sml
+participant "SimplService" as ss
+participant "SimpleRepository" as sr
+participant "TEXT_TABLE" as tt
+
+mq -> sml : message
+activate sml
+
+sml -> ss : processText
+activate ss
+
+sml <- ss : processText
+deactivate ss
+
+mq <- sml : acknowledge
+deactivate sml
+
+@enduml

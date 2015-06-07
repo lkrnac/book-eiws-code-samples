@@ -18,15 +18,4 @@ public class SimpleMessageListener {
   public void readMessage(String message) {
     simpleService.processText(message);
   }
-
-  @JmsListener(destination = "messageQueueLost")
-  public void readMessageLost(String message) {
-    // simulate error
-    if ("simple message lost".equals(message)) {
-      throw new IllegalArgumentException(message);
-    }
-
-    simpleService.processText(message);
-  }
-
 }

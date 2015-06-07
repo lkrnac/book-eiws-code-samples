@@ -6,8 +6,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-public class AutoAckApplication {
+public class JmsApplication {
   public static void main(String[] args) throws Exception {
-    SpringApplication.run(AutoAckApplication.class, args);
+    SpringApplication.run(JmsApplication.class, args);
   }
 }

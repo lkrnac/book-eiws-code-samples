@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleMessageSender {
   private static final String SIMPLE_MESSAGE = "simple message";
-  private static final String SIMPLE_MESSAGE_LOST = "simple message lost";
   private JmsTemplate jmsTemplate;
 
   @Autowired
@@ -20,15 +19,9 @@ public class SimpleMessageSender {
     this.jmsTemplate = jmsTemplate;
   }
 
-  @Scheduled(fixedRate = 1000)
+  @Scheduled(fixedRate = Long.MAX_VALUE)
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
     jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
-  }
-
-  @Scheduled(fixedRate = 1000)
-  public void sendLost() {
-    log.info("Sending message: {}", SIMPLE_MESSAGE_LOST);
-    jmsTemplate.convertAndSend("messageQueueLost", SIMPLE_MESSAGE_LOST);
   }
 }
