@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+
+participant "messageQueue" as mq
+participant "SimpleMessageListener" as sml1
+
+mq <- sml1 : readMessage
+activate sml1
+
+sml1 -> sml1 : preprocess
+activate sml1
+
+sml1 <- sml1 : exception
+destroy sml1
+sml1 <- sml1 : catch exception
+
+mq <- sml1 : auto acknowledgement
+deactivate sml1
+
+note over sml1
+  Message is lost 
+end note
+
+@enduml
