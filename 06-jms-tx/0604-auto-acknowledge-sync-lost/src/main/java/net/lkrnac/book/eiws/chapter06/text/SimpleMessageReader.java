@@ -23,16 +23,18 @@ public class SimpleMessageReader {
 
   @Scheduled(fixedRate = Long.MAX_VALUE)
   public void readMessage() {
-    log.info("Message read start");
     String message = (String) jmsTemplate.receiveAndConvert("messageQueue");
     log.info("Message read: {}", message);
 
+    preprocess(message);
+    simpleService.processText(message);
+  }
+
+  private void preprocess(String message) {
     // simulate error
     if ("simple message".equals(message)) {
       log.info("Simulate error!");
       throw new IllegalArgumentException(message);
     }
-
-    simpleService.processText(message);
   }
 }
