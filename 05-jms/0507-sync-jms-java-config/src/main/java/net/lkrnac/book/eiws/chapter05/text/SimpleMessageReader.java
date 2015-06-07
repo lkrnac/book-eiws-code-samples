@@ -16,7 +16,6 @@ public class SimpleMessageReader {
     super();
     this.jmsTemplate = jmsTemplate;
     this.simpleService = simpleService;
-    jmsTemplate.setReceiveTimeout(1000);
   }
 
   @Scheduled(fixedRate = 1200)
