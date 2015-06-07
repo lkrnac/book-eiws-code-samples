@@ -17,16 +17,22 @@ public class JmsApplicationTests extends AbstractTestNGSpringContextTests {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
+  @Autowired
+  private SimpleService simpleService;
+
   @Test(timeOut = 3000)
-  public void testJms() throws InterruptedException {
+  public void testJms() throws Exception {
     // GIVEN: Spring configuration
+    // BrokerService broker = new BrokerService();
+    // broker.addConnector("vm://localhost");
+    // broker.start();
 
     // WHEN
-    Thread.sleep(1000);
+    Thread.sleep(2000);
 
     // THEN
     long count =
         jdbcTemplate.queryForObject(SELECT_COUNT, Long.class, MESSAGE_TEXT);
-    Assert.assertTrue(count > 0);
+    Assert.assertEquals(count, 2);
   }
 }

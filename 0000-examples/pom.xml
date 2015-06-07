@@ -71,7 +71,7 @@
     <module>../06-jms-tx/0602-java-jms20-async-tx</module>
     <module>../06-jms-tx/0603-auto-acknowledge-async-success</module>
     <module>../06-jms-tx/0604-auto-acknowledge-sync-lost</module>
-    <module>../06-jms-tx/0605-auto-acknowledge-async-lost</module>
+    <module>../06-jms-tx/0605-auto-acknowledge-async-duplicate</module>
 
     <module>../06-jms-tx/0604-client-acknowledge</module>
     <module>../06-jms-tx/0605-dups-ok-acknowledge</module>
