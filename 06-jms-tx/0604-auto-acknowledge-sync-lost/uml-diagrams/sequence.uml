@@ -1,0 +1,22 @@
+@startuml
+skinparam monochrome true
+
+participant "messageQueue" as mq
+participant "SimpleMessageReader" as smr1
+
+mq <- smr1 : readMessage
+activate smr1
+mq <- smr1 : auto acknowledgement
+
+smr1 -> smr1 : preprocess
+activate smr1
+
+smr1 <- smr1 : exception
+destroy smr1
+
+deactivate smr1
+note over smr1
+  Message is lost 
+end note
+
+@enduml
