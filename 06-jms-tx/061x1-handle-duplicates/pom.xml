@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>0606-transacted</artifactId>
+  <artifactId>061x1-handle-duplicates</artifactId>
   <packaging>jar</packaging>
 
   <parent>
@@ -25,11 +25,6 @@
       <groupId>net.lkrnac.book.eiws</groupId>
       <artifactId>0600-jms-tx-common</artifactId>
       <version>0.0.2-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.scala-lang</groupId>
-      <artifactId>scala-library</artifactId>
-      <version>2.10.4</version>
     </dependency>
   </dependencies>
 </project>
