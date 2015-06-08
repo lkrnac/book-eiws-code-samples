@@ -1,5 +1,6 @@
 package net.lkrnac.book.eiws.chapter06.text;
 
+import org.apache.activemq.broker.BrokerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,9 +24,6 @@ public class JmsApplicationTests extends AbstractTestNGSpringContextTests {
   @Test(timeOut = 3000)
   public void testJms() throws Exception {
     // GIVEN: Spring configuration
-    // BrokerService broker = new BrokerService();
-    // broker.addConnector("vm://localhost");
-    // broker.start();
 
     // WHEN
     Thread.sleep(2000);
