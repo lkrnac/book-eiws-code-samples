@@ -2,22 +2,20 @@
 skinparam monochrome true
 
 participant "messageQueue" as mq
-participant "SimpleMessageListener" as sml1
+participant "SimpleMessageListener" as sml
 
-mq <- sml1 : readMessage
-activate sml1
+mq <- sml : readMessage
+activate sml
+mq <- sml : auto acknowledgement
 
-sml1 -> sml1 : preprocess
-activate sml1
+sml -> sml : preprocess
+activate sml
 
-sml1 <- sml1 : exception
-destroy sml1
-sml1 <- sml1 : catch exception
+sml <- sml : exception
+destroy sml
 
-mq <- sml1 : auto acknowledgement
-deactivate sml1
-
-note over sml1
+deactivate sml
+note over sml
   Message is lost 
 end note
 
