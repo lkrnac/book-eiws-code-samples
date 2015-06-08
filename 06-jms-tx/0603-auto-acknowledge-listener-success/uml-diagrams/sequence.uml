@@ -32,8 +32,7 @@ deactivate ss
 mq <- sml : auto acknowledgement
 deactivate sml
 note over sml
-  Successful
-  completion of
-  readMessage call
+  Message persisted
+  and acknowledged 
 end note
 @enduml
