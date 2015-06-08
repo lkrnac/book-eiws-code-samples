@@ -34,7 +34,7 @@ public class SimpleMessageReader {
   private void preprocess(String message) {
     // simulate error
     if (!errorSimulated) {
-      log.info("Simulate error!");
+      errorSimulated = true;
       throw new IllegalArgumentException(message);
     }
   }
