@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleMessageListener {
   private SimpleService simpleService;
+  private boolean errorSimulated = false;
 
   @Autowired
   public SimpleMessageListener(SimpleService simpleService) {
@@ -21,22 +22,14 @@ public class SimpleMessageListener {
   }
 
   @JmsListener(destination = "messageQueue")
-  public void readMessage(String messageText, Message message)
-      throws JMSException {
-    simpleService.processText(messageText);
-    log.info("Acknowledging reception: " + messageText);
-    message.acknowledge();
-  }
-
-  @JmsListener(destination = "messageQueueDuplicate")
   public void readMessageDuplicate(String messageText, Message message)
       throws JMSException {
     simpleService.processText(messageText);
-    if ("simple message duplicate".equals(messageText)) {
+    if (!errorSimulated) {
+      errorSimulated = true;
       throw new IllegalArgumentException(messageText);
     }
     log.info("Acknowledging reception: " + messageText);
     message.acknowledge();
   }
-
 }
