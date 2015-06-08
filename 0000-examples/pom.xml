@@ -72,6 +72,7 @@
     <module>../06-jms-tx/0603-auto-acknowledge-async-success</module>
     <module>../06-jms-tx/0604-auto-acknowledge-sync-lost</module>
     <module>../06-jms-tx/0605-auto-acknowledge-listener-duplicate</module>
+    <module>../06-jms-tx/0606-auto-acknowledge-listener-lost</module>
 
     <module>../06-jms-tx/0604-client-acknowledge</module>
     <module>../06-jms-tx/0605-dups-ok-acknowledge</module>
