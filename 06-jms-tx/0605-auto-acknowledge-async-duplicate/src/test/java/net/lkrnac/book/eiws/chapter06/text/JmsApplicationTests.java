@@ -1,6 +1,5 @@
 package net.lkrnac.book.eiws.chapter06.text;
 
-import org.apache.activemq.broker.BrokerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
