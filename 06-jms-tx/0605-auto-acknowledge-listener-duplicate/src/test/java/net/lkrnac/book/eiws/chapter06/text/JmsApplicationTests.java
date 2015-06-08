@@ -17,15 +17,12 @@ public class JmsApplicationTests extends AbstractTestNGSpringContextTests {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @Autowired
-  private SimpleService simpleService;
-
   @Test(timeOut = 3000)
   public void testJms() throws Exception {
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(2000);
+    Thread.sleep(1000);
 
     // THEN
     long count =
