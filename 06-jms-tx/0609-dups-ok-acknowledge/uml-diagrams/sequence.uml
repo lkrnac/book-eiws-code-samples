@@ -3,7 +3,7 @@ skinparam monochrome true
 
 participant "messageQueue" as mq
 participant "SimpleMessageListener" as sml
-participant "SimplService" as ss
+participant "SimpleService" as ss
 participant "SimpleRepository" as sr
 participant "TEXT_TABLE" as tt
 
@@ -26,12 +26,14 @@ deactivate tt
 ss <- sr : persistText
 deactivate sr
 
-mq -> mq : auto acknowledgement
+
 
 sml <- ss : processText
 deactivate ss
 
+mq <- sml : readMessage
 deactivate sml
+mq -> mq : auto acknowledgement
 note over sml
   Message persisted
   and acknowledged 
