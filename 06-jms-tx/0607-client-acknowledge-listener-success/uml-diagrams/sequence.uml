@@ -3,7 +3,7 @@ skinparam monochrome true
 
 participant "messageQueue" as mq
 participant "SimpleMessageListener" as sml
-participant "SimplService" as ss
+participant "SimpleService" as ss
 participant "SimpleRepository" as sr
 participant "TEXT_TABLE" as tt
 
