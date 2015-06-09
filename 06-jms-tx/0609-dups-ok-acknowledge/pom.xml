@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>060x8-dups-ok-acknowledge</artifactId>
+  <artifactId>0609-dups-ok-acknowledge</artifactId>
   <packaging>jar</packaging>
 
   <parent>
@@ -14,12 +14,12 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jms</artifactId>
+      <groupId>org.hornetq</groupId>
+      <artifactId>hornetq-jms-server</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-broker</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-hornetq</artifactId>
     </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>

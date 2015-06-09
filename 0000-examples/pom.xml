@@ -75,8 +75,8 @@
     <module>../06-jms-tx/0606-auto-acknowledge-listener-lost</module>
     <module>../06-jms-tx/0607-client-acknowledge-listener-success</module>
     <module>../06-jms-tx/0608-client-acknowledge-listener-duplicate</module>
+    <module>../06-jms-tx/0609-dups-ok-acknowledge</module>
 
-    <module>../06-jms-tx/060x8-dups-ok-acknowledge</module>
     <module>../06-jms-tx/060x9-transacted</module>
     <module>../06-jms-tx/061x0-transacted-xml</module>
     <module>../06-jms-tx/061x1-handle-duplicates</module>
