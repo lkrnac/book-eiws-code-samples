@@ -20,7 +20,7 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
-  @JmsListener(destination = "messageQueueDuplicate")
+  @JmsListener(destination = "messageQueue")
   public void readMessageDuplicate(String messageText, Message message)
       throws JMSException {
     if (message.getJMSRedelivered()) {
@@ -29,12 +29,14 @@ public class SimpleMessageListener {
       }
     } else {
       simpleService.processText(messageText);
-
-      // simulate error
-      throw new IllegalArgumentException(messageText);
+      postprocess(messageText);
     }
     log.info("Acknowledging reception: " + messageText);
     message.acknowledge();
   }
 
+  private void postprocess(String messageText) {
+    // simulate error
+    throw new IllegalArgumentException(messageText);
+  }
 }

@@ -79,7 +79,6 @@
     <module>../06-jms-tx/0610-transacted-listener-success</module>
     <module>../06-jms-tx/0611-transacted-listener-duplicate</module>
     <module>../06-jms-tx/0612-transacted-xml</module>
-
-    <module>../06-jms-tx/061x1-handle-duplicates</module>
+    <module>../06-jms-tx/0613-handle-duplicates</module>
   </modules>
 </project>

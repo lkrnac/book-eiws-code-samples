@@ -7,29 +7,26 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@SpringApplicationConfiguration(classes = HandleDuplicatesApplication.class)
-public class HandleDuplicatesApplicationTests extends
-    AbstractTestNGSpringContextTests {
+@SpringApplicationConfiguration(classes = JmsApplication.class)
+public class JmsApplicationTests extends AbstractTestNGSpringContextTests {
   private static final String SELECT_COUNT =
       "select count(*) from TEXT_TABLE where text = ?";
 
-  private static final String MESSAGE_TEXT_DUPLICATE =
-      "simple message duplicate";
+  private static final String MESSAGE_TEXT = "simple message";
 
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @Test(timeOut = 5000)
+  @Test(timeOut = 3000)
   public void testJms() throws InterruptedException {
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(2000);
+    Thread.sleep(1000);
 
     // THEN
-    long countDuplicate =
-        jdbcTemplate.queryForObject(SELECT_COUNT, Long.class,
-            MESSAGE_TEXT_DUPLICATE);
-    Assert.assertEquals(countDuplicate, 1);
+    long count =
+        jdbcTemplate.queryForObject(SELECT_COUNT, Long.class, MESSAGE_TEXT);
+    Assert.assertEquals(count, 1);
   }
 }
