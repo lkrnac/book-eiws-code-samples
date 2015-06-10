@@ -76,8 +76,9 @@
     <module>../06-jms-tx/0607-client-acknowledge-listener-success</module>
     <module>../06-jms-tx/0608-client-acknowledge-listener-duplicate</module>
     <module>../06-jms-tx/0609-dups-ok-acknowledge</module>
+    <module>../06-jms-tx/0610-transacted-listener-success</module>
+    <module>../06-jms-tx/0611-transacted-listener-duplicate</module>
 
-    <module>../06-jms-tx/060x9-transacted</module>
     <module>../06-jms-tx/061x0-transacted-xml</module>
     <module>../06-jms-tx/061x1-handle-duplicates</module>
   </modules>

@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter06.text;
 
-import javax.jms.Session;
+import javax.jms.JMSException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
@@ -18,7 +18,7 @@ public class SimpleMessageListener {
   }
 
   @JmsListener(destination = "messageQueue")
-  public void readMessage(String message, Session session) {
+  public void readMessage(String message) throws JMSException {
     simpleService.processText(message);
     postprocess(message);
   }
