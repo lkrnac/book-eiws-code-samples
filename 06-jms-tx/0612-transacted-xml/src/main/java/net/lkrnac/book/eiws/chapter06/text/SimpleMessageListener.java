@@ -18,18 +18,4 @@ public class SimpleMessageListener {
   public void readMessage(String message) throws JMSException {
     simpleService.processText(message);
   }
-
-  public void readMessageLost(String message) throws JMSException {
-    if ("simple message lost".equals(message)) {
-      throw new IllegalArgumentException(message);
-    }
-    simpleService.processText(message);
-  }
-
-  public void readMessageDuplicate(String message) throws JMSException {
-    simpleService.processText(message);
-    if ("simple message duplicate".equals(message)) {
-      throw new IllegalArgumentException(message);
-    }
-  }
 }

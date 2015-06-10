@@ -14,12 +14,12 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jms</artifactId>
+      <groupId>org.hornetq</groupId>
+      <artifactId>hornetq-jms-server</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-broker</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-hornetq</artifactId>
     </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
