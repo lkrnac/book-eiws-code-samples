@@ -10,6 +10,7 @@ participant "TEXT_TABLE" as tt
 mq -> sml : readMessage
 activate sml
 
+mq <- sml : auto acknowledgement
 sml -> ss : processText
 activate ss
 
@@ -29,7 +30,6 @@ deactivate sr
 sml <- ss : processText
 deactivate ss
 
-mq <- sml : auto acknowledgement
 deactivate sml
 note over sml
   Message persisted
