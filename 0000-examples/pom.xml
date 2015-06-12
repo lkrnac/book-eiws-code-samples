@@ -70,9 +70,9 @@
     <module>../06-jms-tx/0601-java-jms11-sync-tx</module>
     <module>../06-jms-tx/0602-java-jms20-async-tx</module>
     <module>../06-jms-tx/0603-auto-acknowledge-listener-success</module>
-    <module>../06-jms-tx/0604-auto-acknowledge-sync-lost</module>
+    <module>../06-jms-tx/0604-auto-acknowledge-listener-duplicate</module>
     <module>../06-jms-tx/0605-auto-acknowledge-listener-lost</module>
-    <module>../06-jms-tx/0606-auto-acknowledge-listener-duplicate</module>
+    <module>../06-jms-tx/0606-auto-acknowledge-sync-lost</module>
     <module>../06-jms-tx/0607-client-acknowledge-listener-success</module>
     <module>../06-jms-tx/0608-client-acknowledge-listener-duplicate</module>
     <module>../06-jms-tx/0609-dups-ok-acknowledge</module>
