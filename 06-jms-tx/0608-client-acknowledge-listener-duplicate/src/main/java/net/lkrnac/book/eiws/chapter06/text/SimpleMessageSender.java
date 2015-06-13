@@ -21,7 +21,7 @@ public class SimpleMessageSender {
   }
 
   @PostConstruct
-  public void sendDuplicate() {
+  public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
     jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
   }

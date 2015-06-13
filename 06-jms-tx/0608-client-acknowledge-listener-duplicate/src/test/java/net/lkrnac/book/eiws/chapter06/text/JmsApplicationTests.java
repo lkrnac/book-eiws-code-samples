@@ -29,5 +29,4 @@ public class JmsApplicationTests extends AbstractTestNGSpringContextTests {
         jdbcTemplate.queryForObject(SELECT_COUNT, Long.class, MESSAGE_TEXT);
     Assert.assertEquals(count, 2);
   }
-
 }
