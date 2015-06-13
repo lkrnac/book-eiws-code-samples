@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleMessageListener {
   private SimpleService simpleService;
-  private boolean errorSimulated = false;
 
   @Autowired
   public SimpleMessageListener(SimpleService simpleService) {
@@ -25,10 +24,7 @@ public class SimpleMessageListener {
 
   private void preprocess(String message) {
     // simulate error
-    if (!errorSimulated) {
-      errorSimulated = true;
-      throw new IllegalArgumentException(message);
-    }
+    throw new IllegalArgumentException(message);
   }
 
 }

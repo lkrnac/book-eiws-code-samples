@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 public class SimpleMessageReader {
   private JmsTemplate jmsTemplate;
   private SimpleService simpleService;
-  private boolean errorSimulated = false;
 
   @Autowired
   public SimpleMessageReader(JmsTemplate jmsTemplate,
@@ -33,9 +32,6 @@ public class SimpleMessageReader {
 
   private void preprocess(String message) {
     // simulate error
-    if (!errorSimulated) {
-      errorSimulated = true;
-      throw new IllegalArgumentException(message);
-    }
+    throw new IllegalArgumentException(message);
   }
 }
