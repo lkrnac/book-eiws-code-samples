@@ -22,14 +22,21 @@ public class SimpleMessageListener {
   }
 
   @JmsListener(destination = "messageQueue")
-  public void readMessageDuplicate(String messageText, Message message)
+  public void readMessage(String messageText, Message message)
       throws JMSException {
     simpleService.processText(messageText);
-    if (!errorSimulated) {
-      errorSimulated = true;
-      throw new IllegalArgumentException(messageText);
-    }
+
+    postprocess(messageText);
+
     log.info("Acknowledging reception: " + messageText);
     message.acknowledge();
+  }
+
+  private void postprocess(String message) {
+    // simualte error
+    if (!errorSimulated) {
+      errorSimulated = true;
+      throw new IllegalArgumentException(message);
+    }
   }
 }
