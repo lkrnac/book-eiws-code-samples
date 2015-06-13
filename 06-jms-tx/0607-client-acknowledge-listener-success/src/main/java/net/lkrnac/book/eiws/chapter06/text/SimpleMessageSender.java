@@ -23,7 +23,6 @@ public class SimpleMessageSender {
   @PostConstruct
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
-    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE,
-        new AcknowledgePostProcessor());
+    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
   }
 }
