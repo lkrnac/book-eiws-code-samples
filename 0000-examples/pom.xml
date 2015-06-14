@@ -81,5 +81,6 @@
     <module>../06-jms-tx/0612-transacted-xml</module>
     <module>../06-jms-tx/0613-jms-transaction-manager</module>
     <module>../06-jms-tx/0614-handle-duplicates-error-after</module>
+    <module>../06-jms-tx/0615-handle-duplicates-error-before</module>
   </modules>
 </project>
