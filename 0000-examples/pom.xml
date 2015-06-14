@@ -80,6 +80,6 @@
     <module>../06-jms-tx/0611-transacted-listener-duplicate</module>
     <module>../06-jms-tx/0612-transacted-xml</module>
     <module>../06-jms-tx/0613-jms-transaction-manager</module>
-    <module>../06-jms-tx/0614-handle-duplicates</module>
+    <module>../06-jms-tx/0614-handle-duplicates-error-after</module>
   </modules>
 </project>

@@ -3,13 +3,11 @@ package net.lkrnac.book.eiws.chapter06.text;
 import javax.jms.JMSException;
 import javax.jms.Message;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-@Slf4j
 @Component
 public class SimpleMessageListener {
   private SimpleService simpleService;
@@ -20,8 +18,9 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
+  @Transactional
   @JmsListener(destination = "messageQueue")
-  public void readMessageDuplicate(String messageText, Message message)
+  public void readMessage(String messageText, Message message)
       throws JMSException {
     if (message.getJMSRedelivered()) {
       if (!simpleService.isProcessed(messageText)) {
@@ -31,8 +30,6 @@ public class SimpleMessageListener {
       simpleService.processText(messageText);
       postprocess(messageText);
     }
-    log.info("Acknowledging reception: " + messageText);
-    message.acknowledge();
   }
 
   private void postprocess(String messageText) {
