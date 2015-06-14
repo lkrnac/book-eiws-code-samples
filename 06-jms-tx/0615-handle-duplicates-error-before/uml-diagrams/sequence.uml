@@ -1,0 +1,59 @@
+@startuml
+skinparam monochrome true
+
+participant "messageQueue" as mq
+participant "SimpleMessageListener" as sml
+participant "SimpleService" as ss
+participant "SimpleRepository" as sr
+participant "TEXT_TABLE" as tt
+
+mq -> sml : readMessage
+activate sml
+
+sml -> sml : preprocess
+activate sml
+destroy sml
+deactivate sml
+
+note over sml
+  Message not persisted,
+  nor commited
+end note
+
+mq -> sml : readMessage
+activate sml
+
+sml -> sml : processIfNeeded
+activate sml
+
+sml -> ss : processText
+activate ss
+
+ss -> sr : persistText
+activate sr
+
+sr -> tt : insert text
+activate tt
+
+sr <- tt : insert text
+deactivate tt
+
+
+ss <- sr : persistText
+deactivate sr
+
+sml <- ss : processText
+deactivate ss
+
+sml -> sml : processIfNeeded
+deactivate sml
+
+mq <- sml : commit
+deactivate sml
+
+note over sml
+  Message stored
+  and commited
+end note
+
+@enduml

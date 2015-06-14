@@ -23,12 +23,16 @@ public class SimpleMessageListener {
   public void readMessage(String messageText, Message message)
       throws JMSException {
     if (message.getJMSRedelivered()) {
-      if (!simpleService.isProcessed(messageText)) {
-        simpleService.processText(messageText);
-      }
+      processIfNeeded(messageText);
     } else {
       simpleService.processText(messageText);
       postprocess(messageText);
+    }
+  }
+
+  private void processIfNeeded(String messageText) {
+    if (!simpleService.isProcessed(messageText)) {
+      simpleService.processText(messageText);
     }
   }
 
