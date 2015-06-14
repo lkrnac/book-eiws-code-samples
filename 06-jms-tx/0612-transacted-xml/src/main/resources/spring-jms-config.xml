@@ -7,18 +7,8 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-    <property name="connectionFactory" ref="jmsConnectionFactory" />
-    <property name="sessionTransacted" value="true"/>
-    <property name="sessionAcknowledgeModeName" value="SESSION_TRANSACTED"/>
-  </bean>
-
   <jms:listener-container acknowledge="transacted" connection-factory="jmsConnectionFactory">
     <jms:listener destination="messageQueue" ref="simpleMessageListener"
       method="readMessage" />
-    <jms:listener destination="messageQueueLost" ref="simpleMessageListener"
-      method="readMessageLost" />
-    <jms:listener destination="messageQueueDuplicate" ref="simpleMessageListener"
-      method="readMessageDuplicate" />
   </jms:listener-container>
 </beans>
