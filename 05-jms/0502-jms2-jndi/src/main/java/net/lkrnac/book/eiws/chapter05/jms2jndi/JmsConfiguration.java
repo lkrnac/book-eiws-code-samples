@@ -8,9 +8,14 @@ import javax.jms.Queue;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import lombok.Getter;
+
 public class JmsConfiguration implements AutoCloseable {
   private InitialContext initialContext;
+
+  @Getter
   private JMSContext jmsContext;
+  @Getter
   private Queue queue;
 
   public void init() throws NamingException {
@@ -28,6 +33,7 @@ public class JmsConfiguration implements AutoCloseable {
     jmsContext = cf.createContext();
   }
 
+  @Override
   public void close() throws NamingException {
     if (initialContext != null) {
       initialContext.close();
@@ -36,13 +42,4 @@ public class JmsConfiguration implements AutoCloseable {
       jmsContext.close();
     }
   }
-
-  public Queue getQueue() {
-    return queue;
-  }
-
-  public JMSContext getJmsContext() {
-    return jmsContext;
-  }
-
 }

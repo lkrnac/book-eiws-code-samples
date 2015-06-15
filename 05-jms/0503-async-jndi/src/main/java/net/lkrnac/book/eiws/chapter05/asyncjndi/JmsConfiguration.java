@@ -10,13 +10,17 @@ import javax.jms.Queue;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import lombok.Getter;
 import net.lkrnac.book.eiws.chapter05.text.SimpleService;
 
 public class JmsConfiguration implements AutoCloseable {
   private InitialContext initialContext;
-  private JMSContext jmsContext;
-  private Queue queue;
   private SimpleService simpleService;
+
+  @Getter
+  private JMSContext jmsContext;
+  @Getter
+  private Queue queue;
 
   public JmsConfiguration(SimpleService simpleService) {
     super();
@@ -42,6 +46,7 @@ public class JmsConfiguration implements AutoCloseable {
     jmsConsumer.setMessageListener(messageListener);
   }
 
+  @Override
   public void close() throws NamingException {
     if (initialContext != null) {
       initialContext.close();
@@ -49,13 +54,5 @@ public class JmsConfiguration implements AutoCloseable {
     if (jmsContext != null) {
       jmsContext.close();
     }
-  }
-
-  public Queue getQueue() {
-    return queue;
-  }
-
-  public JMSContext getJmsContext() {
-    return jmsContext;
   }
 }
