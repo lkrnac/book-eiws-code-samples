@@ -2,10 +2,7 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="urn:hornetq /schema/hornetq-configuration.xsd">
 
-   <bindings-directory>target/data0504/messaging/bindings</bindings-directory>
-   <journal-directory>target/data0504/messaging/journal</journal-directory>
-   <large-messages-directory>target/data0504/messaging/largemessages</large-messages-directory>
-   <paging-directory>target/data0504/messaging/paging</paging-directory>
+   <persistence-enabled>false</persistence-enabled>
 
    <connectors>
       <connector name="netty">
