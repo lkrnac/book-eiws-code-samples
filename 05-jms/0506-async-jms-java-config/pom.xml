@@ -12,24 +12,109 @@
     <version>0.0.2-SNAPSHOT</version>
   </parent>
 
+  <properties>
+    <hornetq.version>2.4.7.Final</hornetq.version>
+    <netty.version>3.2.10.Final</netty.version>
+    <jnpserver.version>5.0.3.GA</jnpserver.version>
+    <jboss-jms-api.version>1.0.0.Final</jboss-jms-api.version>
+  </properties>
+
   <dependencies>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jms</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-broker</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-kahadb-store</artifactId>
-      <version>${activemq.version}</version>
-    </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
       <artifactId>0500-jms-common</artifactId>
       <version>0.0.2-SNAPSHOT</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.hornetq</groupId>
+      <artifactId>hornetq-jms-server</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-hornetq</artifactId>
+    </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.hornetq</groupId>
+        <artifactId>hornetq-maven-plugin</artifactId>
+        <version>1.2.0</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.hornetq</groupId>
+            <artifactId>hornetq-server</artifactId>
+            <version>${hornetq.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.hornetq</groupId>
+            <artifactId>hornetq-jms-server</artifactId>
+            <version>${hornetq.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jboss.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>${netty.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jboss.spec.javax.jms</groupId>
+            <artifactId>jboss-jms-api_2.0_spec</artifactId>
+            <version>${jboss-jms-api.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jboss.naming</groupId>
+            <artifactId>jnpserver</artifactId>
+            <version>${jnpserver.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>start</id>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <phase>pre-integration-test</phase>
+          </execution>
+          <execution>
+            <id>stop</id>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+            <phase>post-integration-test</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <waitOnStart>false</waitOnStart>
+          <hornetqConfigurationDir>${basedir}/target/test-classes/hornetq/</hornetqConfigurationDir>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>integration-test</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>verify</id>
+            <goals>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>jboss-public</id>
+      <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
 </project>
