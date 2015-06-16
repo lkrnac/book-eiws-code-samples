@@ -6,7 +6,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <hornetq.version>2.3.25.Final</hornetq.version>
+    <hornetq.version>2.4.7.Final</hornetq.version>
     <netty.version>3.10.1.Final</netty.version>
     <jnpserver.version>5.0.3.GA</jnpserver.version>
   </properties>
