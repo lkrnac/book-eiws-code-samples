@@ -20,7 +20,7 @@
 
   <jee:jndi-lookup id="connectionFactory" jndi-name="/ConnectionFactory"
     environment-ref="jndiProperties" />
-  <jee:jndi-lookup id="queue" jndi-name="queue/ExpiryQueue"
+  <jee:jndi-lookup id="queue" jndi-name="/queue/ExpiryQueue"
     environment-ref="jndiProperties" />
 
   <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
