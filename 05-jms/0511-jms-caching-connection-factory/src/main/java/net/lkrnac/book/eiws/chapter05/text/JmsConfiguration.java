@@ -19,6 +19,7 @@ public class JmsConfiguration {
 
     CachingConnectionFactory connectionFactory =
         new CachingConnectionFactory(activeMqConnectionFactory);
+    connectionFactory.setSessionCacheSize(10);
     return connectionFactory;
   }
 }
