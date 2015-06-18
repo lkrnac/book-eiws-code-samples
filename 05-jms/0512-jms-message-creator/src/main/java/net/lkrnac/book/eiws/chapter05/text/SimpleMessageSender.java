@@ -27,7 +27,7 @@ public class SimpleMessageSender {
   @Scheduled(fixedRate = 1000)
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
-    jmsTemplate.send("messageQueue", new MessageCreator() {
+    jmsTemplate.send("queue/ExpiryQueue", new MessageCreator() {
       @Override
       public Message createMessage(Session session) throws JMSException {
         return session.createTextMessage(SIMPLE_MESSAGE);

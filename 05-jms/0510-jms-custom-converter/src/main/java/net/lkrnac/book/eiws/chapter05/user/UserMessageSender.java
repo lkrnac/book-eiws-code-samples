@@ -1,7 +1,6 @@
 package net.lkrnac.book.eiws.chapter05.user;
 
 import lombok.extern.slf4j.Slf4j;
-import net.lkrnac.book.eiws.chapter05.user.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
@@ -26,6 +25,6 @@ public class UserMessageSender {
     user.setName("Lubos Krnac");
 
     log.info("Sending message: {}", user);
-    jmsTemplate.convertAndSend("messageQueue", user);
+    jmsTemplate.convertAndSend("queue/ExpiryQueue", user);
   }
 }

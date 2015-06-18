@@ -20,7 +20,8 @@ public class SimpleMessageReader {
 
   @Scheduled(fixedRate = 1200)
   public void readMessage() {
-    String message = (String) jmsTemplate.receiveAndConvert("messageQueue");
+    String message =
+        (String) jmsTemplate.receiveAndConvert("queue/ExpiryQueue");
     simpleService.processText(message);
   }
 }

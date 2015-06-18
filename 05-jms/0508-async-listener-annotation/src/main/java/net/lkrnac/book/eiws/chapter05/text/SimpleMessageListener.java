@@ -1,7 +1,5 @@
 package net.lkrnac.book.eiws.chapter05.text;
 
-import net.lkrnac.book.eiws.chapter05.text.SimpleService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -16,7 +14,7 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
-  @JmsListener(destination = "messageQueue")
+  @JmsListener(destination = "queue/ExpiryQueue")
   public void readMessage(String message) {
     simpleService.processText(message);
   }

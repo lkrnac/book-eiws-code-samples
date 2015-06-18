@@ -7,7 +7,7 @@
   <bean
     class="org.springframework.jms.listener.DefaultMessageListenerContainer">
     <property name="connectionFactory" ref="connectionFactory" />
-    <property name="destinationName" value="messageQueue" />
+    <property name="destinationName" value="queue/ExpiryQueue" />
     <property name="messageListener" ref="simpleMessageListener" />
   </bean>
 </beans>

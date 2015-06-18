@@ -36,6 +36,6 @@ public class UserMessageSender {
      .build();
     //@formatter:on
 
-    jmsTemplate.convertAndSend("messageQueue", userMessage);
+    jmsTemplate.convertAndSend("queue/ExpiryQueue", userMessage);
   }
 }

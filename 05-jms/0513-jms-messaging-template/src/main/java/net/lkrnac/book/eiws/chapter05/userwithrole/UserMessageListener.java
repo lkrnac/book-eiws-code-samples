@@ -1,7 +1,6 @@
 package net.lkrnac.book.eiws.chapter05.userwithrole;
 
 import net.lkrnac.book.eiws.chapter05.user.User;
-import net.lkrnac.book.eiws.chapter05.userwithrole.UserWithRoleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
@@ -18,7 +17,7 @@ public class UserMessageListener {
     this.userWithRoleService = userWithRoleService;
   }
 
-  @JmsListener(destination = "messageQueue")
+  @JmsListener(destination = "queue/ExpiryQueue")
   public void readMessage(Message<User> userMessage) {
     String role = userMessage.getHeaders().get("role", String.class);
     userWithRoleService.processUser(userMessage.getPayload(), role);

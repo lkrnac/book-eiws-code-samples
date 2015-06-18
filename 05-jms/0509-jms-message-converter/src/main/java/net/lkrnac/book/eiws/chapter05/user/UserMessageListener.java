@@ -1,8 +1,5 @@
 package net.lkrnac.book.eiws.chapter05.user;
 
-import net.lkrnac.book.eiws.chapter05.user.User;
-import net.lkrnac.book.eiws.chapter05.user.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -17,7 +14,7 @@ public class UserMessageListener {
     this.userService = userService;
   }
 
-  @JmsListener(destination = "messageQueue")
+  @JmsListener(destination = "queue/ExpiryQueue")
   public void readMessage(User user) {
     userService.processUser(user);
   }
