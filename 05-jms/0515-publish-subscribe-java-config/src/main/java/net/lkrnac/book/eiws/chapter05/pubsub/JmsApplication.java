@@ -6,8 +6,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-public class JmsPublishSubscribeApplication {
+public class JmsApplication {
   public static void main(String[] args) throws InterruptedException {
-    SpringApplication.run(JmsPublishSubscribeApplication.class, args);
+    SpringApplication.run(JmsApplication.class, args);
   }
 }

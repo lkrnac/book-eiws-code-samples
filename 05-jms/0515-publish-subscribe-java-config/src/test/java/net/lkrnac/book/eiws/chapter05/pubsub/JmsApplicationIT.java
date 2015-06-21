@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter05.pubsub;
 
-import net.lkrnac.book.eiws.chapter05.pubsub.JmsPublishSubscribeApplication;
+import net.lkrnac.book.eiws.chapter05.pubsub.JmsApplication;
 import net.lkrnac.book.eiws.chapter05.pubsub.PubSubService;
 import net.lkrnac.book.eiws.chapter05.pubsub.TestingPubSubService.PubSubTuple;
 
@@ -10,8 +10,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@ContextConfiguration(classes = JmsPublishSubscribeApplication.class)
-public class JmsPublishSubscribeApplicationTests extends
+@ContextConfiguration(classes = JmsApplication.class)
+public class JmsApplicationIT extends
     AbstractTestNGSpringContextTests {
   private static final String MESSAGE_TEXT = "simple message";
 

@@ -65,7 +65,8 @@
     <module>../05-jms/0512-jms-message-creator</module>
     <module>../05-jms/0513-jms-messaging-template</module>
     <module>../05-jms/0514-jms-message-annotations</module>
-    <module>../05-jms/0515-publish-subscribe</module>
+    <module>../05-jms/0515-publish-subscribe-java-config</module>
+    <module>../05-jms/0516-publish-subscribe-spring-boot</module>
     <module>../06-jms-tx/0600-jms-tx-common</module>
     <module>../06-jms-tx/0601-java-jms11-sync-tx</module>
     <module>../06-jms-tx/0602-java-jms20-async-tx</module>
