@@ -3,7 +3,6 @@ package net.lkrnac.book.eiws.chapter05.pubsub;
 import java.util.Hashtable;
 
 import javax.jms.ConnectionFactory;
-import javax.jms.Queue;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -32,11 +31,6 @@ public class JmsConfiguration {
       throws NamingException {
     return (ConnectionFactory) initialContext.lookup("/ConnectionFactory");
   }
-
-//  @Bean
-//  public Queue queue(InitialContext initialContext) throws NamingException {
-//    return (Queue) initialContext.lookup("/queue/ExpiryQueue");
-//  }
 
   @Bean
   public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
