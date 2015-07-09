@@ -27,7 +27,7 @@
     </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>0600-jms-tx-common</artifactId>
+      <artifactId>0700-xa-common</artifactId>
       <version>0.0.2-SNAPSHOT</version>
     </dependency>
   </dependencies>
