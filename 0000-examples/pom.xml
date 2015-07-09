@@ -83,5 +83,7 @@
     <module>../06-jms-tx/0613-jms-transaction-manager</module>
     <module>../06-jms-tx/0614-handle-duplicates-error-after</module>
     <module>../06-jms-tx/0615-handle-duplicates-error-before</module>
+    <module>../07-xa/0700-xa-common</module>
+    <module>../07-xa/0701-xa-spring-boot</module>
   </modules>
 </project>
