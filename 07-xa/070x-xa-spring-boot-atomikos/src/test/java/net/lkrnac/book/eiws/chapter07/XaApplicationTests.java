@@ -17,12 +17,13 @@ public class XaApplicationTests extends AbstractTestNGSpringContextTests {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @Test(timeOut = 3000)
+  @Test
+  // (timeOut = 3000)
   public void testJms() throws Exception {
     // GIVEN: Spring configuration
 
     // WHEN
-    Thread.sleep(1000);
+    Thread.sleep(2000);
 
     // THEN
     long count =
