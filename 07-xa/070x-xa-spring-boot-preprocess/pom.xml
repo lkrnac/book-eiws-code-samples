@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>0701-xa-spring-boot</artifactId>
+  <artifactId>070x-xa-spring-boot-preprocess</artifactId>
   <packaging>jar</packaging>
 
   <parent>
