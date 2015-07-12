@@ -21,11 +21,11 @@ public class SimpleMessageListener {
 
   @JmsListener(destination = "messageQueue")
   public void readMessage(String message, Session session) {
+    preprocess(message);
     simpleService.processText(message);
-    postprocess(message);
   }
 
-  private void postprocess(String message) {
+  private void preprocess(String message) {
     // simulate error
     if (!errorSimulated) {
       errorSimulated = true;
