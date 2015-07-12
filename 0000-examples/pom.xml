@@ -86,5 +86,6 @@
     <module>../07-xa/0700-xa-common</module>
     <module>../07-xa/070x-xa-spring-boot-postprocess</module>
     <module>../07-xa/070x-xa-spring-boot-preprocess</module>
+    <module>../07-xa/070x-xa-java-config</module>
   </modules>
 </project>

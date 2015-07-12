@@ -19,7 +19,7 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
-  @JmsListener(destination = "messageQueue")
+  @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String message, Session session) {
     preprocess(message);
     simpleService.processText(message);

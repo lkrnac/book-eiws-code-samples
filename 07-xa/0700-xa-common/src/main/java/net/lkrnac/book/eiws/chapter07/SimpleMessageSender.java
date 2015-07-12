@@ -24,6 +24,6 @@ public class SimpleMessageSender {
   @Scheduled(initialDelay = 1000, fixedRate = Long.MAX_VALUE)
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
-    jmsTemplate.convertAndSend("messageQueue", SIMPLE_MESSAGE);
+    jmsTemplate.convertAndSend("ExpiryQueue", SIMPLE_MESSAGE);
   }
 }

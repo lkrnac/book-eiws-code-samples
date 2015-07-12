@@ -21,8 +21,8 @@ public class SimpleMessageListener {
 
   @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String message, Session session) {
-    postprocess(message);
     simpleService.processText(message);
+    postprocess(message);
   }
 
   private void postprocess(String message) {
