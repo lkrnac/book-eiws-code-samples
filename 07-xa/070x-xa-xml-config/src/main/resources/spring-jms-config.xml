@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:jee="http://www.springframework.org/schema/jee"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xmlns:jms="http://www.springframework.org/schema/jms"
+  xsi:schemaLocation="http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+  <util:map id="jndiProperties" map-class="java.util.Properties">
+    <entry key="java.naming.factory.initial"
+      value="org.jnp.interfaces.NamingContextFactory" />
+    <entry key="java.naming.factory.url.pkgs"
+      value="org.jboss.naming:org.jnp.interfaces" />
+    <entry key="java.naming.provider.url" value="jnp://localhost:1099" />
+  </util:map>
+
+  <jee:jndi-lookup id="connectionFactory" jndi-name="/XAConnectionFactory"
+    environment-ref="jndiProperties" />
+  <jee:jndi-lookup id="queue" jndi-name="/queue/ExpiryQueue"
+    environment-ref="jndiProperties" />
+
+  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <constructor-arg ref="connectionFactory" />
+  </bean>
+
+  <bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
+    <property name="connectionFactory" ref="connectionFactory"/>
+    <property name="sessionTransacted" value="true"/>
+  </bean>
+</beans>

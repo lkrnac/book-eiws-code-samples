@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="transactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
+      init-method="init" destroy-method="close">
+    <property name="forceShutdown" value="true"/>
+  </bean>
+
+  <bean class="org.springframework.transaction.jta.JtaTransactionManager">
+    <property name="transactionManager" ref="transactionManager"/>
+    <property name="userTransaction" >
+      <bean class="com.atomikos.icatch.jta.UserTransactionImp"/>
+    </property>
+  </bean>
+</beans>
