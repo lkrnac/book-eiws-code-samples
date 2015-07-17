@@ -26,8 +26,14 @@
     <constructor-arg ref="connectionFactory" />
   </bean>
 
-  <bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
-    <property name="connectionFactory" ref="connectionFactory"/>
-    <property name="sessionTransacted" value="true"/>
+  <bean id="destinationResolver"
+    class="org.springframework.jms.support.destination.JndiDestinationResolver">
+    <property name="jndiEnvironment" ref="jndiProperties" />
   </bean>
+
+  <jms:listener-container transaction-manager="transactionManager" acknowledge="transacted"
+      destination-resolver="destinationResolver">
+    <jms:listener destination="/queue/ExpiryQueue" ref="simpleMessageListener"
+      method="readMessage" />
+  </jms:listener-container>
 </beans>
