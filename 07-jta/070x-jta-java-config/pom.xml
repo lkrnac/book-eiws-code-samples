@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>070x-xa-java-config</artifactId>
+  <artifactId>070x-jta-java-config</artifactId>
   <packaging>jar</packaging>
 
   <parent>
@@ -35,7 +35,7 @@
     </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>0700-xa-common</artifactId>
+      <artifactId>0700-jta-common</artifactId>
       <version>0.0.2-SNAPSHOT</version>
     </dependency>
   </dependencies>
