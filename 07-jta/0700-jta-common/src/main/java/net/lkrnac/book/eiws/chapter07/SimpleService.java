@@ -20,8 +20,4 @@ public class SimpleService {
     log.info("Process Message: {}", text);
     simpleRepository.persistText(text);
   }
-
-  public boolean isProcessed(String text) {
-    return simpleRepository.containsText(text);
-  }
 }
