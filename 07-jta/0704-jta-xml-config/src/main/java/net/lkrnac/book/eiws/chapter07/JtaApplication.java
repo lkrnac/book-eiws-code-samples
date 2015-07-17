@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement(proxyTargetClass = false)
 @ImportResource(value = { "classpath:spring-jdbc-config.xml",
     "classpath:spring-jta-config.xml", "classpath:spring-jms-config.xml" })
-public class XaApplication {
+public class JtaApplication {
   public static void main(String[] args) throws Exception {
-    SpringApplication.run(XaApplication.class, args);
+    SpringApplication.run(JtaApplication.class, args);
   }
 }

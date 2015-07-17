@@ -7,8 +7,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@SpringApplicationConfiguration(classes = XaConfiguration.class)
-public class XaApplicationIT extends AbstractTestNGSpringContextTests {
+@SpringApplicationConfiguration(classes = JtaConfiguration.class)
+public class JtaApplicationIT extends AbstractTestNGSpringContextTests {
   private static final String SELECT_COUNT =
       "select count(*) from TEXT_TABLE where text = ?";
 

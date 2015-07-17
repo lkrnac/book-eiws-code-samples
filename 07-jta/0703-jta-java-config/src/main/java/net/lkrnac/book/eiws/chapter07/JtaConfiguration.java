@@ -29,7 +29,7 @@ import com.atomikos.icatch.jta.UserTransactionManager;
 @EnableJms
 @EnableScheduling
 @EnableTransactionManagement(proxyTargetClass = false)
-public class XaConfiguration {
+public class JtaConfiguration {
   @Bean
   public InitialContext initialContext() throws NamingException {
     Hashtable<Object, Object> env = new Hashtable<Object, Object>();
