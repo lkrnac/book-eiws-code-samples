@@ -1,7 +1,5 @@
 package net.lkrnac.book.eiws.chapter07;
 
-import javax.jms.Session;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -20,7 +18,7 @@ public class SimpleMessageListener {
   }
 
   @JmsListener(destination = "ExpiryQueue")
-  public void readMessage(String message, Session session) {
+  public void readMessage(String message) {
     simpleService.processText(message);
     postprocess(message);
   }

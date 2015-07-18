@@ -20,7 +20,7 @@ public class SimpleMessageListener {
 
   @Transactional
   @JmsListener(destination = "ExpiryQueue")
-  public void readMessage(String message, Session session) {
+  public void readMessage(String message) {
     postprocess(message);
     simpleService.processText(message);
   }
