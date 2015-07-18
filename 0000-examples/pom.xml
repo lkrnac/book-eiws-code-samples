@@ -84,9 +84,8 @@
     <module>../06-jms-tx/0614-handle-duplicates-error-after</module>
     <module>../06-jms-tx/0615-handle-duplicates-error-before</module>
     <module>../07-jta/0700-jta-common</module>
-    <module>../07-jta/0701-jta-spring-boot-preprocess</module>
-    <module>../07-jta/0702-jta-spring-boot-postprocess</module>
-    <module>../07-jta/0703-jta-java-config</module>
-    <module>../07-jta/0704-jta-xml-config</module>
+    <module>../07-jta/0701-jta-xml-config</module>
+    <module>../07-jta/0702-jta-java-config</module>
+    <module>../07-jta/0703-jta-spring-boot</module>
   </modules>
 </project>
