@@ -17,17 +17,6 @@ end note
 jtm -> sml : readMessage
 activate sml
 
-sml -> sml : preprocess
-activate sml
-
-sml <- sml : exception
-destroy sml
-sml -> jtm : rollback
-deactivate sml
-
-jtm -> sml : readMessage
-activate sml
-
 sml -> ss : processText
 activate ss
 
@@ -47,12 +36,65 @@ deactivate sr
 sml <- ss : processText
 deactivate ss
 
-sml -> jtm : commit
+
+jtm -> sml : readMessage
+activate sml
+
+sml -> sml : postprocess
+
+sml <- sml : exception
+destroy sml
+sml -> jtm : exception
 deactivate sml
-jtm -> mq : commit
+
+jtm -> tt: rollback
+jtm -> mq: rollback
+deactivate jtm
 note over jtm
   End of global transaction 
 end note
+
+mq -> jtm : readMessage
+activate jtm
+note over jtm
+  Start of global transaction 
+end note
+
+jtm -> sml : readMessage
+
+activate sml
+
+sml -> ss : processText
+activate ss
+
+ss -> sr : persistText
+activate sr
+
+sr -> tt : insert text
+activate tt
+
+sr <- tt : insert text
+deactivate tt
+
+ss <- sr : persistText
+deactivate sr
+
+sml <- ss : processText
+deactivate ss
+
+sml -> sml : postprocess
+activate sml
+sml <- sml : postprocess
+deactivate sml
+sml -> jtm : readMessage
+deactivate sml
+jtm -> tt : commit
+jtm -> mq : commit
+deactivate jtm
+note over jtm
+  End of global transaction 
+end note
+
 deactivate jtm
 
 @enduml
