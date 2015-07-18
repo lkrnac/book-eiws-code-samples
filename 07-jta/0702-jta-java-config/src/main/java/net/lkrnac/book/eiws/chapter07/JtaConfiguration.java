@@ -9,15 +9,11 @@ import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 
 @Configuration
-@EnableTransactionManagement(proxyTargetClass = false)
+@EnableTransactionManagement
 public class JtaConfiguration {
   @Bean(initMethod = "init", destroyMethod = "close")
   public UserTransactionManager atomikosTransactionManager() {
-    UserTransactionManager atomikosTransationManager =
-        new UserTransactionManager();
-    atomikosTransationManager.setForceShutdown(true);
-    // atomikosTransationManager.setTransactionTimeout(600);
-    return atomikosTransationManager;
+    return new UserTransactionManager();
   }
 
   @Bean
