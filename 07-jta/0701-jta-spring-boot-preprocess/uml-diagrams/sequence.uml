@@ -1,0 +1,58 @@
+@startuml
+skinparam monochrome true
+
+participant "ExpiryQueue" as mq
+participant "JtaTransactionManager" as jtm
+participant "SimpleMessageListener" as sml
+participant "SimpleService" as ss
+participant "SimpleRepository" as sr
+participant "TEXT_TABLE" as tt
+
+mq -> jtm : readMessage
+activate jtm
+note over jtm
+  Start of global transaction 
+end note
+
+jtm -> sml : readMessage
+activate sml
+
+sml -> sml : preprocess
+activate sml
+
+sml <- sml : exception
+destroy sml
+sml -> jtm : rollback
+deactivate sml
+
+jtm -> sml : readMessage
+activate sml
+
+sml -> ss : processText
+activate ss
+
+ss -> sr : persistText
+activate sr
+
+sr -> tt : insert text
+activate tt
+
+sr <- tt : insert text
+deactivate tt
+
+
+ss <- sr : persistText
+deactivate sr
+
+sml <- ss : processText
+deactivate ss
+
+sml -> jtm : commit
+deactivate sml
+jtm -> mq : commit
+note over jtm
+  End of global transaction 
+end note
+deactivate jtm
+
+@enduml
