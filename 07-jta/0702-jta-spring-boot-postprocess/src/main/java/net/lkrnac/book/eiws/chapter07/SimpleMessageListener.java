@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-@Transactional
 public class SimpleMessageListener {
   private SimpleService simpleService;
   private boolean errorSimulated = false;
@@ -19,6 +18,7 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
+  @Transactional
   @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String message, Session session) {
     postprocess(message);
