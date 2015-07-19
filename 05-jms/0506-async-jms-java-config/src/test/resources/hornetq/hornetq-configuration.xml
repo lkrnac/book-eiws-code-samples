@@ -17,7 +17,7 @@
    </acceptors>
 
    <security-settings>
-      <security-setting match="jms.queue.messageQueue">
+      <security-setting match="jms.queue.ExpiryQueue">
          <permission type="createDurableQueue" roles="guest"/>
          <permission type="deleteDurableQueue" roles="guest"/>
          <permission type="createNonDurableQueue" roles="guest"/>

@@ -11,7 +11,7 @@
       </entries>
    </connection-factory>
 
-   <queue name="messageQueue">
+   <queue name="ExpiryQueue">
       <entry name="/queue/ExpiryQueue"/>
    </queue>
 </configuration>
