@@ -14,7 +14,7 @@ public class UserMessageListener {
     this.userService = userService;
   }
 
-  @JmsListener(destination = "queue/ExpiryQueue")
+  @JmsListener(destination = "ExpiryQueue")
   public void readMessage(User user) {
     userService.processUser(user);
   }

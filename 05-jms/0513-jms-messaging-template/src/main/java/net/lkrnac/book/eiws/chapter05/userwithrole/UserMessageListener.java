@@ -17,7 +17,7 @@ public class UserMessageListener {
     this.userWithRoleService = userWithRoleService;
   }
 
-  @JmsListener(destination = "queue/ExpiryQueue")
+  @JmsListener(destination = "ExpiryQueue")
   public void readMessage(Message<User> userMessage) {
     String role = userMessage.getHeaders().get("role", String.class);
     userWithRoleService.processUser(userMessage.getPayload(), role);

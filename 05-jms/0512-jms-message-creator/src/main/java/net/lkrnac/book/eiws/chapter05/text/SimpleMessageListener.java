@@ -14,7 +14,7 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
-  @JmsListener(destination = "queue/ExpiryQueue")
+  @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String message) {
     simpleService.processText(message);
   }

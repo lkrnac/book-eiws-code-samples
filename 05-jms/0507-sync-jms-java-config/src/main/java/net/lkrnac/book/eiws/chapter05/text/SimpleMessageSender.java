@@ -22,6 +22,6 @@ public class SimpleMessageSender {
   @Scheduled(fixedRate = 1000)
   public void send() {
     log.info("Sending message: {}", SIMPLE_MESSAGE);
-    this.jmsTemplate.convertAndSend("queue/ExpiryQueue", SIMPLE_MESSAGE);
+    this.jmsTemplate.convertAndSend("ExpiryQueue", SIMPLE_MESSAGE);
   }
 }

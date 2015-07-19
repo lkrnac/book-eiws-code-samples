@@ -23,7 +23,7 @@ public class UserMessageListener {
     this.userWithRoleService = userWithRoleService;
   }
 
-  @JmsListener(destination = "queue/ExpiryQueue")
+  @JmsListener(destination = "ExpiryQueue")
   public void readMessage(@Payload User user, @Header String role,
       @Headers Map<String, Object> headers) {
     log.info("Message with ID " + headers.get("id") + " received");

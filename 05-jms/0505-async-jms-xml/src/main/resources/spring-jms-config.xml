@@ -13,7 +13,7 @@
   </bean>
 
   <bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
-    <constructor-arg value="queue/ExpiryQueue" />
+    <constructor-arg value="ExpiryQueue" />
   </bean>
 
   <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
@@ -28,5 +28,5 @@
   </amq:broker>
 
   <!-- ActiveMQ destinations to use -->
-  <amq:queue id="destination" physicalName="queue/ExpiryQueue" />
+  <amq:queue id="destination" physicalName="ExpiryQueue" />
 </beans>

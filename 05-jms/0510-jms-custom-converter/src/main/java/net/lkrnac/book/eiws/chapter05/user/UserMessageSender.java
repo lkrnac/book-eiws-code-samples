@@ -25,6 +25,6 @@ public class UserMessageSender {
     user.setName("Lubos Krnac");
 
     log.info("Sending message: {}", user);
-    jmsTemplate.convertAndSend("queue/ExpiryQueue", user);
+    jmsTemplate.convertAndSend("ExpiryQueue", user);
   }
 }
