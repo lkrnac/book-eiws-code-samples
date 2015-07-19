@@ -17,7 +17,7 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
-  @JmsListener(destination = "messageQueue")
+  @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String message) throws JMSException {
     simpleService.processText(message);
     postprocess(message);

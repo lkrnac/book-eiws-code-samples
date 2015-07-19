@@ -23,7 +23,7 @@ public class SimpleMessageReader {
 
   @Scheduled(fixedRate = Long.MAX_VALUE)
   public void readMessage() {
-    String message = (String) jmsTemplate.receiveAndConvert("messageQueue");
+    String message = (String) jmsTemplate.receiveAndConvert("ExpiryQueue");
     log.info("Message read: {}", message);
 
     preprocess(message);

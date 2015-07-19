@@ -1,7 +1,7 @@
 @startuml
 skinparam monochrome true
 
-participant "messageQueue" as mq
+participant "ExpiryQueue" as mq
 participant "SimpleMessageReader" as smr
 
 mq <- smr : readMessage

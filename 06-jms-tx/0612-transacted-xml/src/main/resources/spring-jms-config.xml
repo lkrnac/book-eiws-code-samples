@@ -8,7 +8,7 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <jms:listener-container acknowledge="transacted" connection-factory="jmsConnectionFactory">
-    <jms:listener destination="messageQueue" ref="simpleMessageListener"
+    <jms:listener destination="ExpiryQueue" ref="simpleMessageListener"
       method="readMessage" />
   </jms:listener-container>
 </beans>

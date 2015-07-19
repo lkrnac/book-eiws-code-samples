@@ -20,7 +20,7 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
-  @JmsListener(destination = "messageQueue")
+  @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String messageText, Message message)
       throws JMSException {
     simpleService.processText(messageText);

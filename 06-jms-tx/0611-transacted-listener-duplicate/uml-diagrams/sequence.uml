@@ -1,7 +1,7 @@
 @startuml
 skinparam monochrome true
 
-participant "messageQueue" as mq
+participant "ExpiryQueue" as mq
 participant "SimpleMessageListener" as sml
 participant "SimpleService" as ss
 participant "SimpleRepository" as sr

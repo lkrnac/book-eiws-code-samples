@@ -19,7 +19,7 @@ public class SimpleMessageListener {
   }
 
   @Transactional
-  @JmsListener(destination = "messageQueue")
+  @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String messageText) throws JMSException {
     preprocess(messageText);
     simpleService.processText(messageText);
