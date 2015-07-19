@@ -20,7 +20,7 @@ public class JmsConfiguration implements AutoCloseable {
   private Connection connection;
 
   public void init() throws NamingException, JMSException {
-    Hashtable<Object, Object> env = new Hashtable<Object, Object>();
+    Hashtable<Object, Object> env = new Hashtable<>();
     env.put("java.naming.factory.initial",
         "org.jnp.interfaces.NamingContextFactory");
     env.put("java.naming.factory.url.pkgs",
