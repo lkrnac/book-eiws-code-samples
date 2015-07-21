@@ -26,8 +26,6 @@ deactivate tt
 ss <- sr : persistText
 deactivate sr
 
-
-
 sml <- ss : processText
 deactivate ss
 

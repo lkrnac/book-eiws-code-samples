@@ -3,6 +3,9 @@ package net.lkrnac.book.eiws.chapter06.javaasynctx;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SimpleMessageSender {
   private JMSContext jmsContext;
   private Queue queue;
@@ -14,7 +17,12 @@ public class SimpleMessageSender {
   }
 
   public void sendMessage(String message) {
-    jmsContext.createProducer().send(queue, message);
-    jmsContext.commit();
+    log.info("Sending message: {}", message);
+    try {
+      jmsContext.createProducer().send(queue, message);
+      jmsContext.commit();
+    } catch (Throwable throwable) {
+      jmsContext.rollback();
+    }
   }
 }

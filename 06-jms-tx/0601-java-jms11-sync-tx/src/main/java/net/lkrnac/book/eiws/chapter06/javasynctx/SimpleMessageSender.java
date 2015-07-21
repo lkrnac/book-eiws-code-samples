@@ -16,11 +16,16 @@ public class SimpleMessageSender {
     messageProducer = session.createProducer(queue);
   }
 
-  public void sendMessages(String message1, String message2) throws JMSException {
-    TextMessage textMessage1 = session.createTextMessage(message1);
-    messageProducer.send(textMessage1);
-    TextMessage textMessage2 = session.createTextMessage(message2);
-    messageProducer.send(textMessage2);
-    session.commit();
+  public void sendMessages(String message1, String message2)
+      throws JMSException {
+    try {
+      TextMessage textMessage1 = session.createTextMessage(message1);
+      messageProducer.send(textMessage1);
+      TextMessage textMessage2 = session.createTextMessage(message2);
+      messageProducer.send(textMessage2);
+      session.commit();
+    } catch (Throwable throwable) {
+      session.rollback();
+    }
   }
 }

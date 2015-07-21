@@ -1,7 +1,6 @@
 package net.lkrnac.book.eiws.chapter06.javaasynctx;
 
 import javax.jms.JMSContext;
-import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 
@@ -24,10 +23,12 @@ public class SimpleMessageListener implements MessageListener {
   public void onMessage(Message message) {
     try {
       String textMessage = message.getBody(String.class);
+      log.info("Message received: {}", textMessage);
       simpleService.processText(textMessage);
       jmsContext.commit();
-    } catch (JMSException jmse) {
-      log.error("Error during message reception", jmse);
+    } catch (Throwable throwable) {
+      jmsContext.rollback();
+      log.error("Error during message reception", throwable);
     }
   }
 }

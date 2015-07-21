@@ -3,7 +3,11 @@
   <include resource="org/springframework/boot/logging/logback/defaults.xml" />
   <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
-  <root level="info">
+  <root level="INFO">
     <appender-ref ref="CONSOLE" />
   </root>
+
+  <logger name="org.springframework.jms.listener" level="DEBUG"/>
+  <logger name="org.springframework.jdbc" level="DEBUG"/>
+  <logger name="org.hornetq.core.client" level="DEBUG"/>
 </configuration>

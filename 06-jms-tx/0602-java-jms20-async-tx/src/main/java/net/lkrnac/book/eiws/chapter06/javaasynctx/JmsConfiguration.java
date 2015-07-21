@@ -49,6 +49,7 @@ public class JmsConfiguration implements AutoCloseable {
     jmsConsumer.setMessageListener(messageListener);
   }
 
+  @Override
   public void close() throws NamingException {
     if (initialContext != null) {
       initialContext.close();
