@@ -87,5 +87,6 @@
     <module>../07-jta/0701-jta-xml-config</module>
     <module>../07-jta/0702-jta-java-config</module>
     <module>../07-jta/0703-jta-spring-boot</module>
+    <module>../08-integration/080x-channel-adapter-generic-xml</module>
   </modules>
 </project>
