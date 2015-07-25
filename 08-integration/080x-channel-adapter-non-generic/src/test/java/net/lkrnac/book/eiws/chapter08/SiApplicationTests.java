@@ -3,11 +3,11 @@ package net.lkrnac.book.eiws.chapter08;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.web.client.RestTemplate;
 import org.testng.Assert;
@@ -17,11 +17,16 @@ import org.testng.annotations.Test;
 @SpringApplicationConfiguration(classes = SiApplication.class)
 public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   private static final String LOCALHOST = "http://localhost:";
+  private static final String SELECT_COUNT =
+      "select count(*) from TEXT_TABLE where text = ?";
 
   private static final String MESSAGE_TEXT = "simple message";
 
   @Value("${local.server.port}")
   private int serverPort;
+
+  @Autowired
+  private JdbcTemplate jdbcTemplate;
 
   @Test
   public void testSi() throws InterruptedException, IOException {
@@ -31,13 +36,12 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
     file.delete();
 
     // WHEN
-    restTemplate.postForLocation(LOCALHOST + serverPort, "simple message 1");
-    restTemplate.postForLocation(LOCALHOST + serverPort, "simple message 2");
+    restTemplate.postForLocation(LOCALHOST + serverPort, "simple message");
+    restTemplate.postForLocation(LOCALHOST + serverPort, "simple message");
 
     // THEN
-    String[] actualMessages =
-        StringUtils.split(FileUtils.readFileToString(file), "\n");
-    Assert.assertEquals(actualMessages[0], MESSAGE_TEXT + " 1");
-    Assert.assertEquals(actualMessages[1], MESSAGE_TEXT + " 2");
+    long count =
+        jdbcTemplate.queryForObject(SELECT_COUNT, Long.class, MESSAGE_TEXT);
+    Assert.assertEquals(count, 2);
   }
 }

@@ -90,5 +90,6 @@
     <module>../08-integration/0800-integration-common</module>
     <module>../08-integration/080x-channel-adapter-generic-xml</module>
     <module>../08-integration/080x-channel-adapter-generic-javaconfig</module>
+    <module>../08-integration/080x-channel-adapter-non-generic</module>
   </modules>
 </project>
