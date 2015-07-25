@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:int="http://www.springframework.org/schema/integration"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:int-http="http://www.springframework.org/schema/integration/http"
+  xmlns:int-file="http://www.springframework.org/schema/integration/file"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+  <int-http:inbound-channel-adapter
+    path="/" channel="inChannel" supported-methods="POST" />
+  <int:channel id="inChannel" />
+
+  <int:header-enricher input-channel="inChannel" output-channel="fileNamedChannel" >
+    <int:header name="file_name" value="output.txt"/>
+  </int:header-enricher>
+  <int:channel id="fileNamedChannel" />
+
+  <int-file:outbound-channel-adapter
+    channel="fileNamedChannel"
+    directory="file:output-files"
+    auto-create-directory="true"
+    mode="APPEND">
+  </int-file:outbound-channel-adapter>
+</beans>
