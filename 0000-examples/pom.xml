@@ -91,5 +91,6 @@
     <module>../08-integration/080x-channel-adapter-generic-xml</module>
     <module>../08-integration/080x-channel-adapter-generic-javaconfig</module>
     <module>../08-integration/080x-channel-adapter-non-generic</module>
+    <module>../08-integration/080x-service-activator-xml</module>
   </modules>
 </project>
