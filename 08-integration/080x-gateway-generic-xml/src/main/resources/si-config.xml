@@ -11,6 +11,6 @@
   <int:channel id="inChannel" />
 
   <int:service-activator input-channel="inChannel" ref="writeService"
-    method="write">
+    method="writeAndIndicateSuccess">
   </int:service-activator>
 </beans>

@@ -15,7 +15,7 @@ public class WriteService {
   }
 
   @ServiceActivator(inputChannel = "gatewayChannel")
-  public boolean write(String message) {
+  public boolean writeAndIndicateSuccess(String message) {
     return writeRepository.write(message) == 1;
   }
 }
