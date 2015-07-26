@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:int="http://www.springframework.org/schema/integration"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:int-http="http://www.springframework.org/schema/integration/http"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+  <int-http:inbound-channel-adapter
+    path="/" channel="inChannel" supported-methods="POST" />
+  <int:channel id="inChannel"/>
+
+  <int:filter input-channel="inChannel" output-channel="filteredChannel"
+    expression="!payload.contains('corrupt')" />
+  <int:channel id="filteredChannel"/>
+
+  <int:outbound-channel-adapter channel="filteredChannel" ref="writeService"
+    method="write">
+  </int:outbound-channel-adapter>
+</beans>
