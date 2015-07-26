@@ -98,5 +98,6 @@
     <module>../08-integration/080x-gateway-non-generic</module>
     <module>../08-integration/080x-filter-xml-ref</module>
     <module>../08-integration/080x-filter-xml-spel</module>
+    <module>../08-integration/080x-filter-javaconfig</module>
   </modules>
 </project>
