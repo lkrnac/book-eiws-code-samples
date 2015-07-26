@@ -9,15 +9,13 @@
 		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-  <int-http:inbound-channel-adapter
-    path="/" channel="inChannel" supported-methods="POST" />
+  <int-http:inbound-gateway path="/" request-channel="inChannel" supported-methods="POST"/>
   <int:channel id="inChannel"/>
 
   <int:filter input-channel="inChannel" output-channel="filteredChannel"
     ref="simpleFilter" />
   <int:channel id="filteredChannel"/>
 
-  <int:outbound-channel-adapter channel="filteredChannel" ref="writeService"
-    method="write">
-  </int:outbound-channel-adapter>
+  <int:service-activator input-channel="filteredChannel" ref="writeService"
+    method="writeAndIndicateSuccess"/>
 </beans>

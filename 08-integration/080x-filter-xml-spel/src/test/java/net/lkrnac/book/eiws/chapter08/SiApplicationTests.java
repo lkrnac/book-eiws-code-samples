@@ -34,14 +34,21 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
     String url = LOCALHOST + serverPort;
 
     // WHEN
-    restTemplate.postForLocation(url, MESSAGE_TEXT);
-    restTemplate.postForLocation(url, "corruptedMessage");
-    restTemplate.postForLocation(url, MESSAGE_TEXT);
+    String response1 =
+        restTemplate.postForObject(url, MESSAGE_TEXT, String.class);
+    String response2 =
+        restTemplate.postForObject(url, "corruptedMessage", String.class);
+    String response3 =
+        restTemplate.postForObject(url, MESSAGE_TEXT, String.class);
 
     // THEN
     TestWriteRepository testWriteService =
         (TestWriteRepository) writeRepository;
     Assert.assertEquals(testWriteService.getMessage(), MESSAGE_TEXT);
     Assert.assertEquals(testWriteService.getMessage(), MESSAGE_TEXT);
+    Assert.assertEquals(response1, "true");
+    Assert.assertEquals(response2, null);
+    Assert.assertEquals(response3, "true");
+    // THEN
   }
 }
