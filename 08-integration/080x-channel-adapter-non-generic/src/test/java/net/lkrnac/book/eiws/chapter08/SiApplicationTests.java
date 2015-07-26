@@ -1,6 +1,5 @@
 package net.lkrnac.book.eiws.chapter08;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,6 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   public void testSi() throws InterruptedException, IOException {
     // GIVEN
     RestTemplate restTemplate = new RestTemplate();
-    File file = new File("output-files/output.txt");
-    file.delete();
 
     // WHEN
     restTemplate.postForLocation(LOCALHOST + serverPort, "simple message");
