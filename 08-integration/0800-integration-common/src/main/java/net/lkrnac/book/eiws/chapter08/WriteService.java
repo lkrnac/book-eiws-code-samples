@@ -13,7 +13,7 @@ public class WriteService {
     this.writeRepository = writeRepository;
   }
 
-  public void write(String message) {
-    writeRepository.write(message);
+  public boolean write(String message) {
+    return writeRepository.write(message) == 1;
   }
 }

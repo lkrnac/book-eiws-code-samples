@@ -4,16 +4,19 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+@Profile("integration-test")
 @Primary
 @Component
 public class TestWriteRepository extends WriteRepository {
   private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(10);
 
   @Override
-  public void write(String message) {
+  public int write(String message) {
     queue.add(message);
+    return 1;
   }
 
   public String getMessage() {

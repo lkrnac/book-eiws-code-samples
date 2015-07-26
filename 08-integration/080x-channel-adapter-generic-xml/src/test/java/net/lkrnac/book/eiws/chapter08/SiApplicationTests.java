@@ -10,6 +10,10 @@ import org.testng.annotations.Test;
 public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   private static final String MESSAGE_TEXT = "simple message";
 
+  {
+    System.setProperty("spring.profiles.active", "integration-test");
+  }
+
   @Autowired
   private WriteRepository writeRepository;
 
