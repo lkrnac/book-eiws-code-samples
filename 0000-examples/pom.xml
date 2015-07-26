@@ -95,5 +95,6 @@
     <module>../08-integration/080x-service-activator-javaconfig</module>
     <module>../08-integration/080x-gateway-generic-xml</module>
     <module>../08-integration/080x-gateway-generic-javaconfig</module>
+    <module>../08-integration/080x-gateway-non-generic</module>
   </modules>
 </project>
