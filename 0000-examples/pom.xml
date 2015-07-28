@@ -101,5 +101,6 @@
     <module>../08-integration/080x-filter-javaconfig</module>
     <module>../08-integration/080x-message-transformer-json</module>
     <module>../08-integration/080x-message-transformer-generic-xml</module>
+    <module>../08-integration/080x-message-transformer-generic-javaconfig</module>
   </modules>
 </project>
