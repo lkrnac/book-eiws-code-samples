@@ -106,5 +106,6 @@
     <module>../08-integration/080x-splitter-javaconfig</module>
     <module>../08-integration/080x-aggregator-xml</module>
     <module>../08-integration/080x-aggregator-javaconfig</module>
+    <module>../08-integration/080x-aggregator-default-headers</module>
   </modules>
 </project>
