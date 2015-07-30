@@ -105,5 +105,6 @@
     <module>../08-integration/080x-splitter-delimiters-xml</module>
     <module>../08-integration/080x-splitter-javaconfig</module>
     <module>../08-integration/080x-aggregator-xml</module>
+    <module>../08-integration/080x-aggregator-javaconfig</module>
   </modules>
 </project>
