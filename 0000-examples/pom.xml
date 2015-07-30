@@ -104,5 +104,6 @@
     <module>../08-integration/080x-message-transformer-generic-javaconfig</module>
     <module>../08-integration/080x-splitter-delimiters-xml</module>
     <module>../08-integration/080x-splitter-javaconfig</module>
+    <module>../08-integration/080x-aggregator-xml</module>
   </modules>
 </project>
