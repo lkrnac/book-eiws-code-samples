@@ -18,7 +18,7 @@ public class WriteService {
   }
 
   @ServiceActivator(inputChannel = "route1Channel")
-  public boolean writeRouter1(String message) {
+  public boolean writeRoute1(String message) {
     log.info("Route 1 hit with message: " + message);
     return writeRepository.write(message) == 1;
   }
