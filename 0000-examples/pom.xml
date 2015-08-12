@@ -108,5 +108,6 @@
     <module>../08-integration/080x-aggregator-javaconfig</module>
     <module>../08-integration/080x-aggregator-default-headers</module>
     <module>../08-integration/080x-router-javaconfig</module>
+    <module>../08-integration/080x-router-xml-generic</module>
   </modules>
 </project>
