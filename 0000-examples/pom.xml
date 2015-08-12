@@ -109,5 +109,6 @@
     <module>../08-integration/080x-aggregator-default-headers</module>
     <module>../08-integration/080x-router-javaconfig</module>
     <module>../08-integration/080x-router-xml-generic</module>
+    <module>../08-integration/080x-router-xml-message-type</module>
   </modules>
 </project>
