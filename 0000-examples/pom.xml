@@ -111,5 +111,6 @@
     <module>../08-integration/080x-router-xml-generic</module>
     <module>../08-integration/080x-router-xml-message-type</module>
     <module>../08-integration/080x-channel-queue-xml</module>
+    <module>../08-integration/080x-channel-priority-xml</module>
   </modules>
 </project>
