@@ -117,5 +117,6 @@
     <module>../08-integration/080x-channel-pub-sub-xml</module>
     <module>../08-integration/080x-channel-wire-tap-xml</module>
     <module>../08-integration/080x-channel-interceptor-xml</module>
+    <module>../08-integration/080x-long-polling-xml</module>
   </modules>
 </project>
