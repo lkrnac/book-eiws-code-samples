@@ -115,5 +115,6 @@
     <module>../08-integration/080x-channel-rendezvuous-xml</module>
     <module>../08-integration/080x-channel-executor-xml</module>
     <module>../08-integration/080x-channel-pub-sub-xml</module>
+    <module>../08-integration/080x-channel-wire-tap-xml</module>
   </modules>
 </project>
