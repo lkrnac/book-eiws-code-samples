@@ -1,14 +1,10 @@
 package net.lkrnac.book.eiws.chapter08;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
 @Slf4j
@@ -26,10 +22,5 @@ public class SiApplication {
     log.info(MESSAGE1 + " sent");
     simpleService.processText(MESSAGE2);
     log.info(MESSAGE2 + " sent");
-  }
-
-  @Bean
-  public Executor executor() {
-    return Executors.newFixedThreadPool(10);
   }
 }
