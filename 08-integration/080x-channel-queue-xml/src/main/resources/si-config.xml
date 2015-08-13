@@ -6,10 +6,8 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-  <int:inbound-channel-adapter ref="readService"
-    method="read" channel="inChannel">
-     <int:poller fixed-rate="1000"/>
-  </int:inbound-channel-adapter>
+  <int:gateway default-request-channel="inChannel"
+    service-interface="net.lkrnac.book.eiws.chapter08.SimpleService" />
 
   <int:channel id="inChannel">
     <int:queue capacity="10"/>

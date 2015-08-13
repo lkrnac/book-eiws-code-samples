@@ -8,8 +8,6 @@ import org.testng.annotations.Test;
 
 @SpringApplicationConfiguration(classes = SiApplication.class)
 public class SiApplicationTests extends AbstractTestNGSpringContextTests {
-  private static final String MESSAGE_TEXT = "simple message";
-
   {
     System.setProperty("spring.profiles.active", "integration-test");
   }
@@ -17,16 +15,21 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   @Autowired
   private WriteRepository writeRepository;
 
-  @Test(timeOut = 3000)
-  public void testSi() throws InterruptedException {
-    // GIVEN: Spring configuration
+  @Autowired
+  private SimpleService simpleService;
+
+  @Test
+  public void testSi() {
+    // GIVEN
 
     // WHEN
+    simpleService.processText("message1");
+    simpleService.processText("message2");
 
     // THEN
     TestWriteRepository testWriteService =
         (TestWriteRepository) writeRepository;
-    Assert.assertEquals(testWriteService.getMessage(), MESSAGE_TEXT);
-    Assert.assertEquals(testWriteService.getMessage(), MESSAGE_TEXT);
+    Assert.assertEquals(testWriteService.getMessage(), "message1");
+    Assert.assertEquals(testWriteService.getMessage(), "message2");
   }
 }
