@@ -124,5 +124,6 @@
     <module>../08-integration/080x-bridge-xml</module>
     <module>../08-integration/080x-bridge-from-javaconfig</module>
     <module>../08-integration/080x-bridge-to-javaconfig</module>
+    <module>../08-integration/080x-error-handling-sync</module>
   </modules>
 </project>
