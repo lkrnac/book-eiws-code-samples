@@ -120,5 +120,6 @@
     <module>../08-integration/080x-long-polling-xml</module>
     <module>../08-integration/080x-header-enricher-xml</module>
     <module>../08-integration/080x-programmatic-message-creation</module>
+    <module>../08-integration/080x-chain-xml</module>
   </modules>
 </project>
