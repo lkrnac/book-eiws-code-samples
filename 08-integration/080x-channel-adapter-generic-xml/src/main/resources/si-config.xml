@@ -14,6 +14,5 @@
   <int:channel id="inChannel"/>
 
   <int:outbound-channel-adapter channel="inChannel" ref="writeService"
-    method="write">
-  </int:outbound-channel-adapter>
+    method="write" />
 </beans>
