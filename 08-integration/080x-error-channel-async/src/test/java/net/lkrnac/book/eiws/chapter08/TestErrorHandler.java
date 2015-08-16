@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class TestErrorHandler extends ErrorHandler {
   private Throwable lastError;
 
-  @ServiceActivator(inputChannel = "errorChannel")
+  @ServiceActivator(inputChannel = "customErrorChannel")
   public void handleException(Throwable throwable) {
     lastError = throwable;
   }

@@ -14,7 +14,7 @@
 
   <int:service-activator input-channel="inChannel" ref="writeServiceWithError"
     method="write">
-    <int:poller fixed-delay="100" error-channel="errorChannel"/>
+    <int:poller fixed-delay="100" error-channel="customErrorChannel"/>
   </int:service-activator>
-  <int:channel id="errorChannel"/>
+  <int:channel id="customErrorChannel"/>
 </beans>

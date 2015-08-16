@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ErrorHandler {
-  @ServiceActivator(inputChannel = "errorChannel")
+  @ServiceActivator(inputChannel = "customErrorChannel")
   public void handleException(Throwable throwable) {
     log.error("Error occured: ", throwable);
   }
