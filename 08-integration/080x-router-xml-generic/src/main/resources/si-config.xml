@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
   <int:gateway default-request-channel="inChannel"
-    service-interface="net.lkrnac.book.eiws.chapter08.SimpleService" />
+    service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperService" />
   <int:channel id="inChannel"/>
 
   <int:router input-channel="inChannel" expression="payload">
