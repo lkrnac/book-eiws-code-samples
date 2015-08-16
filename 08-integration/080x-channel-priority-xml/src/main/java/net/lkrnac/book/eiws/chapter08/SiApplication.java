@@ -1,6 +1,7 @@
 package net.lkrnac.book.eiws.chapter08;
 
 import lombok.extern.slf4j.Slf4j;
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceVoid;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,10 +18,11 @@ public class SiApplication {
   public static void main(String[] args) throws InterruptedException {
     ApplicationContext ctx = SpringApplication.run(SiApplication.class, args);
 
-    SimpleService simpleService = ctx.getBean(SimpleService.class);
-    simpleService.processText(MESSAGE1);
+    SiWrapperServiceVoid wrapperService =
+        ctx.getBean(SiWrapperServiceVoid.class);
+    wrapperService.processText(MESSAGE1);
     log.info(MESSAGE1 + " sent");
-    simpleService.processText(MESSAGE2);
+    wrapperService.processText(MESSAGE2);
     log.info(MESSAGE2 + " sent");
   }
 }

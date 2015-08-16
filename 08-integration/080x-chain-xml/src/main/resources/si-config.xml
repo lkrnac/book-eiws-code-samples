@@ -6,12 +6,12 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-  <int:gateway default-request-channel="inChannel" service-interface="net.lkrnac.book.eiws.chapter08.SimpleService" />
+  <int:gateway default-request-channel="inChannel" service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceVoid" />
   <int:chain input-channel="inChannel">
     <int:header-enricher>
       <int:header name="simpleHeader" ref="simpleHeaderEnricher" method="addHeader"/>
     </int:header-enricher>
-    <int:outbound-channel-adapter ref="writeService" method="write"/>
+    <int:outbound-channel-adapter ref="writeServiceWithHeaders" method="write"/>
   </int:chain>
   <int:channel id="inChannel"/>
 </beans>

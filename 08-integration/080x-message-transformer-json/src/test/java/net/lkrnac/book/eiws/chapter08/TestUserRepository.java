@@ -3,6 +3,9 @@ package net.lkrnac.book.eiws.chapter08;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import net.lkrnac.book.eiws.chapter08.model.User;
+import net.lkrnac.book.eiws.chapter08.out.UserRepository;
+
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 

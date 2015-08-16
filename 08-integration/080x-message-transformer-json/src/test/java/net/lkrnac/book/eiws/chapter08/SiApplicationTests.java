@@ -2,6 +2,9 @@ package net.lkrnac.book.eiws.chapter08;
 
 import java.io.IOException;
 
+import net.lkrnac.book.eiws.chapter08.model.User;
+import net.lkrnac.book.eiws.chapter08.out.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;

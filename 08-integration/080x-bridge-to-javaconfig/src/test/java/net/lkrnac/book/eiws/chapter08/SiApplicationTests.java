@@ -1,5 +1,9 @@
 package net.lkrnac.book.eiws.chapter08;
 
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceAnnotated;
+import net.lkrnac.book.eiws.chapter08.out.TestWriteRepository;
+import net.lkrnac.book.eiws.chapter08.out.WriteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -18,20 +22,20 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   private WriteRepository writeRepository;
 
   @Autowired
-  private SimpleService simpleService;
+  private SiWrapperServiceAnnotated wrapperService;
 
   @Test
   public void testSi() {
     // GIVEN
 
     // WHEN
-    simpleService.processText(MESSAGE_TEXT);
-    simpleService.processText(MESSAGE_TEXT);
+    wrapperService.processText(MESSAGE_TEXT);
+    wrapperService.processText(MESSAGE_TEXT);
 
     // THEN
-    TestWriteRepository testWriteService =
+    TestWriteRepository testWriteRepository =
         (TestWriteRepository) writeRepository;
-    Assert.assertEquals(testWriteService.getMessage(), MESSAGE_TEXT);
-    Assert.assertEquals(testWriteService.getMessage(), MESSAGE_TEXT);
+    Assert.assertEquals(testWriteRepository.getMessage(), MESSAGE_TEXT);
+    Assert.assertEquals(testWriteRepository.getMessage(), MESSAGE_TEXT);
   }
 }

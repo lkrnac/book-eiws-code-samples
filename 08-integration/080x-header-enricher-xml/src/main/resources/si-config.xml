@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
   <int:gateway default-request-channel="inChannel"
-    service-interface="net.lkrnac.book.eiws.chapter08.SimpleService" />
+    service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceVoid" />
   <int:channel id="inChannel"/>
 
   <int:header-enricher input-channel="inChannel" output-channel="enrichedChannel">
@@ -15,6 +15,6 @@
   </int:header-enricher>
   <int:channel id="enrichedChannel"/>
 
-  <int:outbound-channel-adapter channel="enrichedChannel" ref="writeService"
+  <int:outbound-channel-adapter channel="enrichedChannel" ref="writeServiceWithHeaders"
     method="write"/>
 </beans>

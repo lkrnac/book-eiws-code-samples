@@ -1,5 +1,7 @@
 package net.lkrnac.book.eiws.chapter08;
 
+import net.lkrnac.book.eiws.chapter08.out.WriteRepositoryWithHeaders;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.integration.support.MessageBuilder;
@@ -15,10 +17,10 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   }
 
   @Autowired
-  private WriteRepository writeRepository;
+  private WriteRepositoryWithHeaders writeRepository;
 
   @Autowired
-  private SimpleService simpleService;
+  private SiWrapperServiceWithHeaders wrapperService;
 
   @Test
   public void testSi() {
@@ -28,11 +30,11 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
             .setHeader("simpleHeader", "simple header").build();
 
     // WHEN
-    simpleService.processMessage(message);
+    wrapperService.processMessage(message);
 
     // THEN
-    TestWriteRepository testWriteRepository =
-        (TestWriteRepository) writeRepository;
+    TestWriteRepositoryWithHeaders testWriteRepository =
+        (TestWriteRepositoryWithHeaders) writeRepository;
     Assert.assertEquals(testWriteRepository.getMessage(), new String[] {
         "simple message", "simple header" });
   }

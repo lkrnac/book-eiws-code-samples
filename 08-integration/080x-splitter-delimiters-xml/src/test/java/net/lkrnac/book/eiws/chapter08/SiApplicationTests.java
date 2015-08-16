@@ -2,6 +2,10 @@ package net.lkrnac.book.eiws.chapter08;
 
 import java.io.IOException;
 
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperService;
+import net.lkrnac.book.eiws.chapter08.out.TestWriteRepository;
+import net.lkrnac.book.eiws.chapter08.out.WriteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -18,7 +22,7 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   private WriteRepository writeRepository;
 
   @Autowired
-  private SimpleService simpleService;
+  private SiWrapperService wrapperService;
 
   @Test
   public void testSi() throws InterruptedException, IOException {
@@ -26,20 +30,20 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
 
     // WHEN
     boolean resultSuccess =
-        simpleService.processText("messageSuccess;messageFail;messageSuccess");
+        wrapperService.processText("messageSuccess;messageFail;messageSuccess");
     boolean resultFail =
-        simpleService.processText("messageSuccess;messageFail");
+        wrapperService.processText("messageSuccess;messageFail");
 
     // THEN
-    TestWriteRepository testWriteService =
+    TestWriteRepository testWriteRepository =
         (TestWriteRepository) writeRepository;
-    Assert.assertEquals(testWriteService.getMessage(), "messageSuccess");
-    Assert.assertEquals(testWriteService.getMessage(), "messageFail");
-    Assert.assertEquals(testWriteService.getMessage(), "messageSuccess");
+    Assert.assertEquals(testWriteRepository.getMessage(), "messageSuccess");
+    Assert.assertEquals(testWriteRepository.getMessage(), "messageFail");
+    Assert.assertEquals(testWriteRepository.getMessage(), "messageSuccess");
     Assert.assertEquals(resultSuccess, true);
 
-    Assert.assertEquals(testWriteService.getMessage(), "messageSuccess");
-    Assert.assertEquals(testWriteService.getMessage(), "messageFail");
+    Assert.assertEquals(testWriteRepository.getMessage(), "messageSuccess");
+    Assert.assertEquals(testWriteRepository.getMessage(), "messageFail");
     Assert.assertEquals(resultFail, false);
   }
 }

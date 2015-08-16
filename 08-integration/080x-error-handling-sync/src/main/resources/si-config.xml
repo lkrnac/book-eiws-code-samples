@@ -10,7 +10,7 @@
 
   <int:channel id="inChannel" />
 
-  <int:service-activator input-channel="inChannel" ref="writeService"
+  <int:service-activator input-channel="inChannel" ref="writeServiceWithError"
     method="writeAndIndicateSuccess">
   </int:service-activator>
 </beans>

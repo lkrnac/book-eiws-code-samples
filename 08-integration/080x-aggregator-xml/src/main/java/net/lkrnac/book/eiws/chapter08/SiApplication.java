@@ -2,6 +2,8 @@ package net.lkrnac.book.eiws.chapter08;
 
 import java.util.concurrent.Executor;
 
+import net.lkrnac.book.eiws.chapter08.in.AsyncMessageSender;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -10,9 +12,9 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+@EnableAsync
 @SpringBootApplication
 @ImportResource("classpath:si-config.xml")
-@EnableAsync
 public class SiApplication {
   private static final int EXEC_COUNT = 10;
 

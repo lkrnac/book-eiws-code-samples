@@ -1,5 +1,8 @@
 package net.lkrnac.book.eiws.chapter08;
 
+import net.lkrnac.book.eiws.chapter08.out.TestWriteRepository;
+import net.lkrnac.book.eiws.chapter08.out.WriteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -24,9 +27,9 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
     // WHEN
 
     // THEN
-    TestWriteRepository testWriteService =
+    TestWriteRepository testWriteRepository =
         (TestWriteRepository) writeRepository;
-    Assert.assertEquals(testWriteService.getMessage(), MESSAGE_TEXT);
-    Assert.assertEquals(testWriteService.getMessage(), MESSAGE_TEXT);
+    Assert.assertEquals(testWriteRepository.getMessage(), MESSAGE_TEXT);
+    Assert.assertEquals(testWriteRepository.getMessage(), MESSAGE_TEXT);
   }
 }

@@ -11,7 +11,7 @@
   <int:channel id="jsonChannel" />
 
   <int:json-to-object-transformer input-channel="jsonChannel" output-channel="objectChannel"
-    type="net.lkrnac.book.eiws.chapter08.User"/>
+    type="net.lkrnac.book.eiws.chapter08.model.User"/>
   <int:channel id="objectChannel" />
 
   <int:service-activator input-channel="objectChannel" ref="userService"

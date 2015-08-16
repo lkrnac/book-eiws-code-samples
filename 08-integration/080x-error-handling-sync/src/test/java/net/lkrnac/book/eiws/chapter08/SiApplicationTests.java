@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter08;
 
-import java.io.IOException;
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -12,14 +12,14 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   private static final String MESSAGE_TEXT = "simple message";
 
   @Autowired
-  private SimpleService simpleService;
+  private SiWrapperService wrapperService;
 
   @Test(expectedExceptions = IllegalStateException.class)
-  public void testSi() throws InterruptedException, IOException {
+  public void testSi() {
     // GIVEN
 
     // WHEN
-    simpleService.processText(MESSAGE_TEXT);
+    wrapperService.processText(MESSAGE_TEXT);
 
     // THEN - see test annotation
   }

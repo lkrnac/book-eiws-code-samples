@@ -20,8 +20,9 @@ public class SiApplication {
         MessageBuilder.withPayload("simple message")
             .setHeader("simpleHeader", "simple header").build();
 
-    SimpleService simpleService = ctx.getBean(SimpleService.class);
-    simpleService.processMessage(message);
+    SiWrapperServiceWithHeaders wrapperService =
+        ctx.getBean(SiWrapperServiceWithHeaders.class);
+    wrapperService.processMessage(message);
     log.info(message + " sent");
   }
 }
