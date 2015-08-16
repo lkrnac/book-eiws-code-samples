@@ -10,6 +10,6 @@
     service-interface="net.lkrnac.book.eiws.chapter08.SiWrapperServiceWithHeaders" />
   <int:channel id="inChannel"/>
 
-  <int:outbound-channel-adapter channel="inChannel" ref="writeService"
+  <int:outbound-channel-adapter channel="inChannel" ref="writeServiceWithHeaders"
     method="write"/>
 </beans>
