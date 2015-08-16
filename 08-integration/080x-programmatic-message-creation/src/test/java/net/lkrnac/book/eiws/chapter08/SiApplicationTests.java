@@ -1,5 +1,6 @@
 package net.lkrnac.book.eiws.chapter08;
 
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceWithHeaders;
 import net.lkrnac.book.eiws.chapter08.out.WriteRepositoryWithHeaders;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
 package net.lkrnac.book.eiws.chapter08;
 
 import lombok.extern.slf4j.Slf4j;
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceWithHeaders;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
