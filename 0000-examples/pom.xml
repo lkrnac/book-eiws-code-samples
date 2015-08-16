@@ -125,5 +125,6 @@
     <module>../08-integration/080x-bridge-from-javaconfig</module>
     <module>../08-integration/080x-bridge-to-javaconfig</module>
     <module>../08-integration/080x-error-handling-sync</module>
+    <module>../08-integration/080x-error-propagated-async</module>
   </modules>
 </project>
