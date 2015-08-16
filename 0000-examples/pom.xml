@@ -127,5 +127,6 @@
     <module>../08-integration/080x-error-handling-sync</module>
     <module>../08-integration/080x-error-propagated-async</module>
     <module>../08-integration/080x-error-not-propagated-async</module>
+    <module>../08-integration/080x-error-channel-async</module>
   </modules>
 </project>
