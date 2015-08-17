@@ -130,5 +130,6 @@
     <module>../08-integration/080x-error-channel-async</module>
     <module>../08-integration/080x-error-channel-global</module>
     <module>../08-integration/080x-transaction-propagation</module>
+    <module>../08-integration/080x-transacted-polling</module>
   </modules>
 </project>
