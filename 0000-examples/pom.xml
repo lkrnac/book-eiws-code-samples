@@ -129,5 +129,6 @@
     <module>../08-integration/080x-error-not-propagated-async</module>
     <module>../08-integration/080x-error-channel-async</module>
     <module>../08-integration/080x-error-channel-global</module>
+    <module>../08-integration/080x-transaction-propagation</module>
   </modules>
 </project>
