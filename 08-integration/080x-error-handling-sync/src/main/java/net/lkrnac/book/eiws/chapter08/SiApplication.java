@@ -16,7 +16,7 @@ public class SiApplication {
     ApplicationContext ctx = SpringApplication.run(SiApplication.class, args);
 
     SiWrapperService wrapperService = ctx.getBean(SiWrapperService.class);
-    boolean result = wrapperService.processText("Hi, Spring Integration");
+    boolean result = wrapperService.processText("simple message");
     log.info("Result: " + result);
   }
 }

@@ -15,7 +15,7 @@ public class SiApplication {
 
     SiWrapperServiceAnnotated wrapperService =
         ctx.getBean(SiWrapperServiceAnnotated.class);
-    boolean result = wrapperService.processText("Hi, Spring Integration");
+    boolean result = wrapperService.processText("simple message");
     log.info("Result: " + result);
   }
 }

@@ -12,6 +12,6 @@ public class SiApplication {
     ApplicationContext ctx = SpringApplication.run(SiApplication.class, args);
 
     SiWrapperServiceAnnotated wrapperService = ctx.getBean(SiWrapperServiceAnnotated.class);
-    wrapperService.processText("Hi, Spring Integration");
+    wrapperService.processText("simple message");
   }
 }

@@ -15,6 +15,6 @@ public class SiApplication {
 
     SiWrapperServiceVoid wrapperService =
         ctx.getBean(SiWrapperServiceVoid.class);
-    wrapperService.processText("Hi, Spring Integration");
+    wrapperService.processText("simple message");
   }
 }
