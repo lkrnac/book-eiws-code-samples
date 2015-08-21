@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter08;
 
-import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceWithHeaders;
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceMessage;
 import net.lkrnac.book.eiws.chapter08.out.WriteRepositoryWithHeaders;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   private WriteRepositoryWithHeaders writeRepository;
 
   @Autowired
-  private SiWrapperServiceWithHeaders wrapperService;
+  private SiWrapperServiceMessage wrapperService;
 
   @Test
   public void testSi() {

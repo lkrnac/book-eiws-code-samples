@@ -7,9 +7,9 @@
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
   <int:gateway default-request-channel="inChannel"
-    service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceWithHeaders" />
+    service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceMessage" />
   <int:channel id="inChannel"/>
 
-  <int:outbound-channel-adapter channel="inChannel" ref="writeServiceWithHeaders"
+  <int:outbound-channel-adapter channel="inChannel" ref="writeServiceMessage"
     method="write"/>
 </beans>
