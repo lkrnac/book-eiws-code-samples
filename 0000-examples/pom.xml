@@ -88,6 +88,7 @@
     <module>../07-jta/0702-jta-java-config</module>
     <module>../07-jta/0703-jta-spring-boot</module>
     <module>../08-integration/0800-integration-common</module>
+    <module>../08-integration/0801-programmatic-message-creation</module>
     <module>../08-integration/080x-channel-adapter-generic-xml</module>
     <module>../08-integration/080x-channel-adapter-generic-javaconfig</module>
     <module>../08-integration/080x-channel-adapter-non-generic</module>
@@ -119,7 +120,6 @@
     <module>../08-integration/080x-channel-interceptor-xml</module>
     <module>../08-integration/080x-long-polling-xml</module>
     <module>../08-integration/080x-header-enricher-xml</module>
-    <module>../08-integration/080x-programmatic-message-creation</module>
     <module>../08-integration/080x-chain-xml</module>
     <module>../08-integration/080x-bridge-xml</module>
     <module>../08-integration/080x-bridge-from-javaconfig</module>
