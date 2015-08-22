@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReadServiceAnnotated {
-  @InboundChannelAdapter(value = "inChannel", poller = @Poller(fixedRate = "1000"))
+  //@formatter:off
+  @InboundChannelAdapter(value = "inChannel", 
+      poller = @Poller(fixedRate = "1000", maxMessagesPerPoll = "1"))
+  //@formatter:on
   public String read() {
     return "simple message";
   }

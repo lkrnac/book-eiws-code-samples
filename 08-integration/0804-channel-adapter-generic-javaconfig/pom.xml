@@ -3,20 +3,58 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <groupId>net.lkrnac.book.eiws</groupId>
   <artifactId>0804-channel-adapter-generic-javaconfig</artifactId>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
-
-  <parent>
-    <groupId>net.lkrnac.book.eiws</groupId>
-    <artifactId>0000-examples-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
-  </parent>
 
   <dependencies>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
       <artifactId>0800-integration-common</artifactId>
       <version>0.0.2-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-integration</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.integration</groupId>
+      <artifactId>spring-integration-core</artifactId>
+      <version>4.1.6.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>4.1.6.RELEASE</version>
+    </dependency>
+
+    <!-- test -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.8.8</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.10.8</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- logging -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.7.12</version>
     </dependency>
   </dependencies>
 </project>
