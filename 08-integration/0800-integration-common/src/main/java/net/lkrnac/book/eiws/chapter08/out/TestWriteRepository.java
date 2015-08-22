@@ -14,7 +14,7 @@ public class TestWriteRepository extends WriteRepository {
   private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(10);
 
   @Override
-  public int write(String message) {
+  public int persist(String message) {
     queue.add(message);
     return 1;
   }

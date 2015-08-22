@@ -22,6 +22,6 @@ public class WriteServiceWithHeaders {
 
   public void write(String message, @Headers Map<String, Object> defaultHeaders) {
     log.info("Message " + message + " received with headers: " + defaultHeaders);
-    writeRepository.write(message);
+    writeRepository.persist(message);
   }
 }

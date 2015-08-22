@@ -21,12 +21,12 @@ public class WriteServiceAnnotated {
   @ServiceActivator(inputChannel = "route1Channel")
   public boolean writeRoute1(String message) {
     log.info("Route 1 hit with message: " + message);
-    return writeRepository.write(message) == 1;
+    return writeRepository.persist(message) == 1;
   }
 
   @ServiceActivator(inputChannel = "route2Channel")
   public boolean writeRoute2(String message) {
     log.info("Route 2 hit with message: " + message);
-    return writeRepository.write(message) == 1;
+    return writeRepository.persist(message) == 1;
   }
 }

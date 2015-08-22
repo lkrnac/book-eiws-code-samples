@@ -18,6 +18,6 @@ public class WriteServiceAnnotated {
 
   @ServiceActivator(inputChannel = "aggregatedChannel")
   public boolean writeAndIndicateSuccess(String message) {
-    return writeRepository.write(message) == 1;
+    return writeRepository.persist(message) == 1;
   }
 }

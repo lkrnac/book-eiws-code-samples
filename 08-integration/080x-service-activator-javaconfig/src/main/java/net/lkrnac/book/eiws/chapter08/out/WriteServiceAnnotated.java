@@ -18,6 +18,6 @@ public class WriteServiceAnnotated {
 
   @ServiceActivator(inputChannel = "inChannel")
   public void write(String message) {
-    writeRepository.write(message);
+    writeRepository.persist(message);
   }
 }

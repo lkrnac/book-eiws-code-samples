@@ -16,7 +16,7 @@ public class WriteService {
   }
 
   public boolean writeAndIndicateSuccess(String message) {
-    boolean result = writeRepository.write(message) == 1;
+    boolean result = writeRepository.persist(message) == 1;
     if ("messageFail".equals(message)) {
       return false;
     }

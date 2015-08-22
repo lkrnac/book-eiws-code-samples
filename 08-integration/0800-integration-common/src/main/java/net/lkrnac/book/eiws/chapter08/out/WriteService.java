@@ -14,10 +14,10 @@ public class WriteService {
   }
 
   public void write(String message) {
-    writeRepository.write(message);
+    writeRepository.persist(message);
   }
 
   public boolean writeAndIndicateSuccess(String message) {
-    return writeRepository.write(message) == 1;
+    return writeRepository.persist(message) == 1;
   }
 }

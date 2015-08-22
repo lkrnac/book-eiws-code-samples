@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 public class WriteRepository {
-  public int write(String message) {
-    log.info("Message persisted: " + message);
+  public int persist(String text) {
+    log.info("Text persisted: " + text);
     return 1;
   }
 }

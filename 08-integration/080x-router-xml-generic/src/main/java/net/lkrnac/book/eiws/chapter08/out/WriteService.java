@@ -19,11 +19,11 @@ public class WriteService {
 
   public boolean writeRoute1(String message) {
     log.info("Route 1 hit with message: " + message);
-    return writeRepository.write(message) == 1;
+    return writeRepository.persist(message) == 1;
   }
 
   public boolean writeRoute2(String message) {
     log.info("Route 2 hit with message: " + message);
-    return writeRepository.write(message) == 1;
+    return writeRepository.persist(message) == 1;
   }
 }
