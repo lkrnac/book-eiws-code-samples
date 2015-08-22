@@ -91,7 +91,7 @@
     <module>../08-integration/0801-programmatic-message-creation</module>
     <module>../08-integration/0802-parsing-headers</module>
     <module>../08-integration/0803-channel-adapter-generic-xml</module>
-    <module>../08-integration/080x-channel-adapter-generic-javaconfig</module>
+    <module>../08-integration/0804-channel-adapter-generic-javaconfig</module>
     <module>../08-integration/080x-channel-adapter-non-generic</module>
     <module>../08-integration/080x-service-activator-xml</module>
     <module>../08-integration/080x-service-activator-javaconfig</module>
