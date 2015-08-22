@@ -89,6 +89,7 @@
     <module>../07-jta/0703-jta-spring-boot</module>
     <module>../08-integration/0800-integration-common</module>
     <module>../08-integration/0801-programmatic-message-creation</module>
+    <module>../08-integration/0802-parsing-headers</module>
     <module>../08-integration/080x-channel-adapter-generic-xml</module>
     <module>../08-integration/080x-channel-adapter-generic-javaconfig</module>
     <module>../08-integration/080x-channel-adapter-non-generic</module>
