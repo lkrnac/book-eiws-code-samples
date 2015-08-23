@@ -95,7 +95,7 @@
     <module>../08-integration/0805-channel-adapter-non-generic</module>
     <module>../08-integration/0806-service-activator-xml</module>
     <module>../08-integration/0807-service-activator-javaconfig</module>
-    <module>../08-integration/080x-gateway-generic-xml</module>
+    <module>../08-integration/0808-gateway-generic-xml</module>
     <module>../08-integration/080x-gateway-generic-javaconfig</module>
     <module>../08-integration/080x-gateway-non-generic</module>
     <module>../08-integration/080x-filter-xml-ref</module>
