@@ -10,7 +10,7 @@ import org.springframework.messaging.MessageChannel;
 @IntegrationComponentScan
 public class SiConfiguration {
   @Bean
-  public MessageChannel gatewayChannel() {
+  public MessageChannel inChannel() {
     return new DirectChannel();
   }
 }

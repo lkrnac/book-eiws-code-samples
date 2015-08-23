@@ -96,8 +96,8 @@
     <module>../08-integration/0806-service-activator-xml</module>
     <module>../08-integration/0807-service-activator-javaconfig</module>
     <module>../08-integration/0808-gateway-generic-xml</module>
-    <module>../08-integration/080x-gateway-generic-javaconfig</module>
-    <module>../08-integration/080x-gateway-non-generic</module>
+    <module>../08-integration/0809-gateway-generic-javaconfig</module>
+    <module>../08-integration/0810-gateway-non-generic</module>
     <module>../08-integration/080x-filter-xml-ref</module>
     <module>../08-integration/080x-filter-xml-spel</module>
     <module>../08-integration/080x-filter-javaconfig</module>

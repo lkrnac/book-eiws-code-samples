@@ -1,7 +1,5 @@
 package net.lkrnac.book.eiws.chapter08.out;
 
-import net.lkrnac.book.eiws.chapter08.out.WriteRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.stereotype.Service;
@@ -16,7 +14,7 @@ public class WriteServiceAnnotated {
     this.writeRepository = writeRepository;
   }
 
-  @ServiceActivator(inputChannel = "gatewayChannel")
+  @ServiceActivator(inputChannel = "inChannel")
   public boolean writeAndIndicateSuccess(String message) {
     return writeRepository.persist(message) == 1;
   }
