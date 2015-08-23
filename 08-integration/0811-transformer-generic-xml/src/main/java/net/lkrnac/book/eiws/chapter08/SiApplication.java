@@ -1,13 +1,24 @@
 package net.lkrnac.book.eiws.chapter08;
 
+import lombok.extern.slf4j.Slf4j;
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperService;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
+@Slf4j
 @SpringBootApplication
 @ImportResource("classpath:si-config.xml")
 public class SiApplication {
   public static void main(String[] args) throws InterruptedException {
-    SpringApplication.run(SiApplication.class, args);
+    ApplicationContext ctx = SpringApplication.run(SiApplication.class, args);
+
+    SiWrapperService wrapperService = ctx.getBean(SiWrapperService.class);
+    String text = "simple message";
+    log.info("Sending message: " + text);
+    boolean result = wrapperService.processText(text);
+    log.info("Result: " + result);
   }
 }
