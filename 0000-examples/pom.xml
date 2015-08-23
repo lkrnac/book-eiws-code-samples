@@ -98,12 +98,12 @@
     <module>../08-integration/0808-gateway-generic-xml</module>
     <module>../08-integration/0809-gateway-generic-javaconfig</module>
     <module>../08-integration/0810-gateway-non-generic</module>
+    <module>../08-integration/0811-transformer-generic-xml</module>
+    <module>../08-integration/080x-message-transformer-generic-javaconfig</module>
+    <module>../08-integration/080x-message-transformer-json</module>
     <module>../08-integration/080x-filter-xml-ref</module>
     <module>../08-integration/080x-filter-xml-spel</module>
     <module>../08-integration/080x-filter-javaconfig</module>
-    <module>../08-integration/080x-message-transformer-json</module>
-    <module>../08-integration/080x-message-transformer-generic-xml</module>
-    <module>../08-integration/080x-message-transformer-generic-javaconfig</module>
     <module>../08-integration/080x-splitter-delimiters-xml</module>
     <module>../08-integration/080x-splitter-javaconfig</module>
     <module>../08-integration/080x-aggregator-xml</module>
