@@ -7,6 +7,6 @@ import org.springframework.integration.annotation.Transformer;
 public class SimpleMessageTransformer {
   @Transformer(inputChannel = "inChannel", outputChannel = "transformedChannel")
   public String transformMessage(String message) {
-    return new String("Message: " + message);
+    return new String(message + " transformed");
   }
 }
