@@ -101,6 +101,7 @@
     <module>../08-integration/0811-transformer-generic-xml</module>
     <module>../08-integration/0812-transformer-generic-javaconfig</module>
     <module>../08-integration/0813-transformer-json</module>
+    <module>../08-integration/0814-header-enricher-xml</module>
     <module>../08-integration/080x-filter-xml-ref</module>
     <module>../08-integration/080x-filter-xml-spel</module>
     <module>../08-integration/080x-filter-javaconfig</module>
@@ -120,7 +121,6 @@
     <module>../08-integration/080x-channel-wire-tap-xml</module>
     <module>../08-integration/080x-channel-interceptor-xml</module>
     <module>../08-integration/080x-long-polling-xml</module>
-    <module>../08-integration/080x-header-enricher-xml</module>
     <module>../08-integration/080x-chain-xml</module>
     <module>../08-integration/080x-bridge-xml</module>
     <module>../08-integration/080x-bridge-from-javaconfig</module>
