@@ -15,7 +15,7 @@ public class UserService {
     this.userRepository = userRepository;
   }
 
-  public boolean processUser(User user) {
-    return userRepository.writeUser(user) == 1;
+  public void processUser(User user) {
+    userRepository.persistUser(user);
   }
 }

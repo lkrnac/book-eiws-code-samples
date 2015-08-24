@@ -15,9 +15,8 @@ public class TestUserRepository extends UserRepository {
   private final BlockingQueue<User> queue = new ArrayBlockingQueue<>(10);
 
   @Override
-  public int writeUser(User user) {
+  public void persistUser(User user) {
     queue.add(user);
-    return 1;
   }
 
   public User getUser() {

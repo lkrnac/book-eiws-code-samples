@@ -35,11 +35,10 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
     user.setName("Lubos Krnac");
 
     // WHEN
-    boolean result = restTemplate.postForObject(url, user, Boolean.class);
+    restTemplate.postForObject(url, user, Boolean.class);
 
     // THEN
     TestUserRepository testUserService = (TestUserRepository) userRepository;
     Assert.assertEquals(testUserService.getUser(), user);
-    Assert.assertEquals(result, true);
   }
 }
