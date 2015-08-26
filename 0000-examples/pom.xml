@@ -108,6 +108,10 @@
     <module>../08-integration/0818-router-xml-generic</module>
     <module>../08-integration/0819-router-javaconfig</module>
     <module>../08-integration/0820-router-xml-message-type</module>
+    <module>../08-integration/0821-bridge-xml</module>
+    <module>../08-integration/080x-bridge-from-javaconfig</module>
+    <module>../08-integration/080x-bridge-to-javaconfig</module>
+    <module>../08-integration/080x-chain-xml</module>
     <module>../08-integration/080x-splitter-delimiters-xml</module>
     <module>../08-integration/080x-splitter-javaconfig</module>
     <module>../08-integration/080x-aggregator-xml</module>
@@ -121,10 +125,6 @@
     <module>../08-integration/080x-channel-wire-tap-xml</module>
     <module>../08-integration/080x-channel-interceptor-xml</module>
     <module>../08-integration/080x-long-polling-xml</module>
-    <module>../08-integration/080x-chain-xml</module>
-    <module>../08-integration/080x-bridge-xml</module>
-    <module>../08-integration/080x-bridge-from-javaconfig</module>
-    <module>../08-integration/080x-bridge-to-javaconfig</module>
     <module>../08-integration/080x-error-handling-sync</module>
     <module>../08-integration/080x-error-propagated-async</module>
     <module>../08-integration/080x-error-not-propagated-async</module>
