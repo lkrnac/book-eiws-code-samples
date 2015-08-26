@@ -104,7 +104,7 @@
     <module>../08-integration/0814-header-enricher-xml</module>
     <module>../08-integration/0815-filter-xml-ref</module>
     <module>../08-integration/0816-filter-javaconfig</module>
-    <module>../08-integration/080x-filter-xml-spel</module>
+    <module>../08-integration/0817-filter-xml-spel</module>
     <module>../08-integration/080x-splitter-delimiters-xml</module>
     <module>../08-integration/080x-splitter-javaconfig</module>
     <module>../08-integration/080x-aggregator-xml</module>
