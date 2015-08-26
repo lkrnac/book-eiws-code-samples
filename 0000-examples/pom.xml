@@ -105,14 +105,14 @@
     <module>../08-integration/0815-filter-xml-ref</module>
     <module>../08-integration/0816-filter-javaconfig</module>
     <module>../08-integration/0817-filter-xml-spel</module>
+    <module>../08-integration/0818-router-xml-generic</module>
+    <module>../08-integration/080x-router-javaconfig</module>
+    <module>../08-integration/080x-router-xml-message-type</module>
     <module>../08-integration/080x-splitter-delimiters-xml</module>
     <module>../08-integration/080x-splitter-javaconfig</module>
     <module>../08-integration/080x-aggregator-xml</module>
     <module>../08-integration/080x-aggregator-javaconfig</module>
     <module>../08-integration/080x-aggregator-default-headers</module>
-    <module>../08-integration/080x-router-javaconfig</module>
-    <module>../08-integration/080x-router-xml-generic</module>
-    <module>../08-integration/080x-router-xml-message-type</module>
     <module>../08-integration/080x-channel-queue-xml</module>
     <module>../08-integration/080x-channel-priority-xml</module>
     <module>../08-integration/080x-channel-rendezvuous-xml</module>
