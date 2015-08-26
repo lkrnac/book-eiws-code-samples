@@ -27,8 +27,8 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
     // GIVEN
 
     // WHEN
-    wrapperService.processText("message1");
-    wrapperService.processText(2);
+    wrapperService.processMessage("message1");
+    wrapperService.processMessage(2);
 
     // THEN
     TestWriteRepository testWriteRepository =
