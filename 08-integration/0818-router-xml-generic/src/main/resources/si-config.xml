@@ -2,8 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:int="http://www.springframework.org/schema/integration"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration 
+    http://www.springframework.org/schema/integration/spring-integration.xsd">
 
   <int:gateway default-request-channel="inChannel"
     service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperService" />
@@ -20,5 +22,4 @@
     method="writeRoute1"/>
   <int:service-activator input-channel="route2Channel" ref="writeService"
     method="writeRoute2"/>
-
 </beans>
