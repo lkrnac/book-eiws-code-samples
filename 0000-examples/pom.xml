@@ -109,7 +109,7 @@
     <module>../08-integration/0819-router-javaconfig</module>
     <module>../08-integration/0820-router-xml-message-type</module>
     <module>../08-integration/0821-bridge-xml</module>
-    <module>../08-integration/080x-bridge-from-javaconfig</module>
+    <module>../08-integration/0822-bridge-from-javaconfig</module>
     <module>../08-integration/080x-bridge-to-javaconfig</module>
     <module>../08-integration/080x-chain-xml</module>
     <module>../08-integration/080x-splitter-delimiters-xml</module>
