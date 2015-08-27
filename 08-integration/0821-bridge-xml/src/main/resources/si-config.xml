@@ -11,16 +11,15 @@
   <int:gateway default-request-channel="inChannel"
     service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceVoid" />
 
-  <int:publish-subscribe-channel id="inChannel" />
-
-  <int:outbound-channel-adapter channel="inChannel" ref="writeService" method="write" />
-
-  <int:bridge input-channel="inChannel" output-channel="trottleChannel" />
-  <int:channel id="trottleChannel">
+  <int:channel id="inChannel" >
     <int:queue capacity="10" />
   </int:channel>
-  <int:outbound-channel-adapter channel="trottleChannel"
-    ref="writeService" method="write">
+
+  <int:bridge input-channel="inChannel" output-channel="outputChannelAdapter" >
     <int:poller fixed-rate="100" />
+  </int:bridge>
+  
+  <int:outbound-channel-adapter id="outputChannelAdapter"
+    ref="writeService" method="write">
   </int:outbound-channel-adapter>
 </beans>
