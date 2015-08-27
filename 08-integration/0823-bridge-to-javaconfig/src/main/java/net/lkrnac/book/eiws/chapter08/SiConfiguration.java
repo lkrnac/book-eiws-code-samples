@@ -14,13 +14,13 @@ import org.springframework.messaging.PollableChannel;
 @IntegrationComponentScan
 public class SiConfiguration {
   @Bean
-  @BridgeTo(value = "outChannel", poller = @Poller(fixedDelay = "100"))
+  @BridgeTo(value = "bridgedChannel", poller = @Poller(fixedDelay = "100"))
   public PollableChannel inChannel() {
     return new QueueChannel();
   }
 
   @Bean
-  public MessageChannel outChannel() {
+  public MessageChannel bridgedChannel() {
     return new DirectChannel();
   }
 }
