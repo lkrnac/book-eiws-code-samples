@@ -20,7 +20,7 @@ public class SiConfiguration {
 
   @Bean
   @BridgeFrom(value = "inChannel", poller = @Poller(fixedDelay = "100"))
-  public MessageChannel outChannel() {
+  public MessageChannel bridgedChannel() {
     return new DirectChannel();
   }
 }
