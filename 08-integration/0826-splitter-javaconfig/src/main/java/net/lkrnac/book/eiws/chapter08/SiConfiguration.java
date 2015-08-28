@@ -15,7 +15,7 @@ public class SiConfiguration {
   }
 
   @Bean
-  public MessageChannel splittedChannel() {
+  public MessageChannel splitChannel() {
     return new DirectChannel();
   }
 }

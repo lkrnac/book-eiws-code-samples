@@ -25,7 +25,7 @@ public class WriteServiceAnnotated {
     this.writeRepository = writeRepository;
   }
 
-  @ServiceActivator(inputChannel = "splittedChannel")
+  @ServiceActivator(inputChannel = "splitChannel")
   public boolean writeAndIndicateSuccess(String message,
       @Headers Map<String, Object> headers) {
     logHeaders(headers);
