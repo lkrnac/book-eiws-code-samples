@@ -113,7 +113,7 @@
     <module>../08-integration/0823-bridge-to-javaconfig</module>
     <module>../08-integration/0824-chain-xml</module>
     <module>../08-integration/0825-splitter-delimiters-xml</module>
-    <module>../08-integration/080x-splitter-javaconfig</module>
+    <module>../08-integration/0826-splitter-javaconfig</module>
     <module>../08-integration/080x-aggregator-xml</module>
     <module>../08-integration/080x-aggregator-javaconfig</module>
     <module>../08-integration/080x-aggregator-default-headers</module>
