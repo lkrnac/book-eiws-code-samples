@@ -11,10 +11,10 @@
     service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperService" />
   <int:channel id="inChannel" />
 
-  <int:splitter input-channel="inChannel" output-channel="splittedChannel" delimiters=";"/>
-  <int:channel id="splittedChannel" />
+  <int:splitter input-channel="inChannel" output-channel="splitChannel" delimiters=";"/>
+  <int:channel id="splitChannel" />
 
-  <int:service-activator input-channel="splittedChannel" ref="writeService"
+  <int:service-activator input-channel="splitChannel" ref="writeService"
     method="writeAndIndicateSuccess">
   </int:service-activator>
 </beans>
