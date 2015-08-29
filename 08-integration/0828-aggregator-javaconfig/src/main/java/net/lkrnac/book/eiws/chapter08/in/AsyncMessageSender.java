@@ -12,15 +12,15 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class AsyncMessageSender {
-  private SiWrapperServiceFutureAnnotated wrapperService;
+  private SiWrapperServiceFuture wrapperService;
 
   @Autowired
-  public AsyncMessageSender(SiWrapperServiceFutureAnnotated wrapperService) {
+  public AsyncMessageSender(SiWrapperServiceFuture wrapperService) {
     super();
     this.wrapperService = wrapperService;
   }
 
-  @Async("customTaskExecutor")
+  @Async("customExecutor")
   public void sendMessage(String message) throws Exception {
     Future<Boolean> resultFuture = wrapperService.processText(message);
     boolean result = resultFuture.get(1, TimeUnit.SECONDS);

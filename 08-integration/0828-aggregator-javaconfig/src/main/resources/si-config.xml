@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:int="http://www.springframework.org/schema/integration"
+  xmlns:task="http://www.springframework.org/schema/task"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration 
+    http://www.springframework.org/schema/integration/spring-integration.xsd">
+  
+  <int:annotation-config/>
+  
+  <int:gateway default-request-channel="inChannel"
+    service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceFuture" />
+  <int:channel id="inChannel" />
+
+  <int:channel id="aggregatedChannel" />
+  
+  <int:service-activator input-channel="aggregatedChannel" ref="writeService"
+    method="writeAndIndicateSuccess" />
+</beans>
