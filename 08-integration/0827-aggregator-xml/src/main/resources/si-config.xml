@@ -2,8 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:int="http://www.springframework.org/schema/integration"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+  xmlns:task="http://www.springframework.org/schema/task"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration 
+    http://www.springframework.org/schema/integration/spring-integration.xsd">
 
   <int:gateway default-request-channel="inChannel"
     service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceFuture" />
@@ -13,8 +16,7 @@
     correlation-strategy-expression="payload.substring(7)"
     release-strategy-expression="size() > 1"/>
   <int:channel id="aggregatedChannel" />
-
+  
   <int:service-activator input-channel="aggregatedChannel" ref="writeService"
-    method="writeAndIndicateSuccess">
-  </int:service-activator>
+    method="writeAndIndicateSuccess" />
 </beans>

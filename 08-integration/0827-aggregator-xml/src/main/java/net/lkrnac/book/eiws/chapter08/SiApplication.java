@@ -16,12 +16,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @SpringBootApplication
 @ImportResource("classpath:si-config.xml")
 public class SiApplication {
-  private static final int EXEC_COUNT = 10;
-
   @Bean
-  public Executor customTaskExecutor() {
+  public Executor customExecutor() {
     ThreadPoolTaskExecutor threadPool = new ThreadPoolTaskExecutor();
-    threadPool.setCorePoolSize(EXEC_COUNT);
+    threadPool.setCorePoolSize(10);
     return threadPool;
   }
 

@@ -20,7 +20,7 @@ public class AsyncMessageSender {
     this.wrapperService = wrapperService;
   }
 
-  @Async("customTaskExecutor")
+  @Async("customExecutor")
   public void sendMessage(String message) throws Exception {
     Future<Boolean> resultFuture = wrapperService.processText(message);
     boolean result = resultFuture.get(1, TimeUnit.SECONDS);
