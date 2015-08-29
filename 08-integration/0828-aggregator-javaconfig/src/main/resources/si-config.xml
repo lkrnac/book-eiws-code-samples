@@ -12,8 +12,8 @@
   
   <int:gateway default-request-channel="inChannel"
     service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceFuture" />
-  <int:channel id="inChannel" />
 
+  <int:channel id="inChannel" />
   <int:channel id="aggregatedChannel" />
   
   <int:service-activator input-channel="aggregatedChannel" ref="writeService"

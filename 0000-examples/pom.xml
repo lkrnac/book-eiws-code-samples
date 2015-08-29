@@ -116,7 +116,7 @@
     <module>../08-integration/0826-splitter-javaconfig</module>
     <module>../08-integration/0827-aggregator-xml</module>
     <module>../08-integration/0828-aggregator-javaconfig</module>
-    <module>../08-integration/080x-aggregator-default-headers</module>
+    <module>../08-integration/0829-aggregator-default-headers</module>
     <module>../08-integration/080x-channel-queue-xml</module>
     <module>../08-integration/080x-channel-priority-xml</module>
     <module>../08-integration/080x-channel-rendezvuous-xml</module>
@@ -124,12 +124,12 @@
     <module>../08-integration/080x-channel-pub-sub-xml</module>
     <module>../08-integration/080x-channel-wire-tap-xml</module>
     <module>../08-integration/080x-channel-interceptor-xml</module>
-    <module>../08-integration/080x-long-polling-xml</module>
     <module>../08-integration/080x-error-handling-sync</module>
     <module>../08-integration/080x-error-propagated-async</module>
     <module>../08-integration/080x-error-not-propagated-async</module>
     <module>../08-integration/080x-error-channel-async</module>
     <module>../08-integration/080x-error-channel-global</module>
+    <module>../08-integration/080x-long-polling-xml</module>
     <module>../08-integration/080x-transaction-propagation</module>
     <module>../08-integration/080x-transacted-polling</module>
   </modules>
