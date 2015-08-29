@@ -22,7 +22,7 @@ public class AsyncMessageSender {
     this.wrapperService = wrapperService;
   }
 
-  @Async("customTaskExecutor")
+  @Async("customExecutor")
   public void sendMessage(String stringMessage, int correlationId)
       throws Exception {
     Message<String> message =
