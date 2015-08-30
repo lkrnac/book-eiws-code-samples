@@ -119,7 +119,7 @@
     <module>../08-integration/0829-aggregator-default-headers</module>
     <module>../08-integration/0830-channel-priority-xml</module>
     <module>../08-integration/0831-channel-rendezvuous-xml</module>
-    <module>../08-integration/080x-channel-executor-xml</module>
+    <module>../08-integration/0832-channel-executor-xml</module>
     <module>../08-integration/080x-channel-pub-sub-xml</module>
     <module>../08-integration/080x-channel-wire-tap-xml</module>
     <module>../08-integration/080x-channel-interceptor-xml</module>
