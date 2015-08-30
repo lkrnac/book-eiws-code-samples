@@ -122,7 +122,7 @@
     <module>../08-integration/0832-channel-executor-xml</module>
     <module>../08-integration/0833-channel-pub-sub-xml</module>
     <module>../08-integration/0834-channel-interceptor-xml</module>
-    <module>../08-integration/080x-channel-wire-tap-xml</module>
+    <module>../08-integration/0835-channel-wire-tap-xml</module>
     <module>../08-integration/080x-error-handling-sync</module>
     <module>../08-integration/080x-error-propagated-async</module>
     <module>../08-integration/080x-error-not-propagated-async</module>
