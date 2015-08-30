@@ -20,6 +20,7 @@ public class SiApplication {
 
     SiWrapperServiceVoid wrapperService =
         ctx.getBean(SiWrapperServiceVoid.class);
+    log.info("Starting to send messages...");
     wrapperService.processText(MESSAGE1);
     log.info(MESSAGE1 + " sent");
     wrapperService.processText(MESSAGE2);
