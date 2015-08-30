@@ -17,7 +17,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @ImportResource("classpath:si-config.xml")
 public class SiApplication {
   @Bean
-  public Executor customTaskExecutor() {
+  public Executor customExecutor() {
     ThreadPoolTaskExecutor threadPool = new ThreadPoolTaskExecutor();
     threadPool.setCorePoolSize(10);
     return threadPool;
