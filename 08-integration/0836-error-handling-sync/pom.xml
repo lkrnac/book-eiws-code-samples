@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>080x-error-handling-sync</artifactId>
+  <artifactId>0836-error-handling-sync</artifactId>
   <packaging>jar</packaging>
 
   <parent>
