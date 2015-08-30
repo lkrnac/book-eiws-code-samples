@@ -34,8 +34,6 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
     TestWriteRepository testWriteRepository =
         (TestWriteRepository) writeRepository;
     Assert.assertEquals(testWriteRepository.getMessage(), "message1");
-    Assert.assertEquals(testWriteRepository.getMessage(), "message1");
-    Assert.assertEquals(testWriteRepository.getMessage(), "message2");
     Assert.assertEquals(testWriteRepository.getMessage(), "message2");
   }
 }
