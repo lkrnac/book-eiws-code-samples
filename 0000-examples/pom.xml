@@ -117,7 +117,6 @@
     <module>../08-integration/0827-aggregator-xml</module>
     <module>../08-integration/0828-aggregator-javaconfig</module>
     <module>../08-integration/0829-aggregator-default-headers</module>
-    <module>../08-integration/080x-channel-queue-xml</module>
     <module>../08-integration/080x-channel-priority-xml</module>
     <module>../08-integration/080x-channel-rendezvuous-xml</module>
     <module>../08-integration/080x-channel-executor-xml</module>
