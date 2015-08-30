@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class WriteServiceWithError {
   public void write(String message) {
-    throw new IllegalStateException("error occured");
+    throw new IllegalStateException("error occurred");
   }
 }

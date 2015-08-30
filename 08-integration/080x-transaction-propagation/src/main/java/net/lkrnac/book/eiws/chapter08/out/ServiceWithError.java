@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServiceWithError {
   public boolean handleJdbcResult(Map<String, Object> jdbcResult) {
-    throw new IllegalStateException("error occured");
+    throw new IllegalStateException("error occurred");
   }
 }

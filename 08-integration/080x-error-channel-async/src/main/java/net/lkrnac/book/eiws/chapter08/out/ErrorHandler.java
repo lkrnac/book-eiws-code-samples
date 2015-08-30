@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 public class ErrorHandler {
   @ServiceActivator(inputChannel = "customErrorChannel")
   public void handleException(Throwable throwable) {
-    log.error("Error occured: ", throwable);
+    log.error("Error occurred: ", throwable);
   }
 }
