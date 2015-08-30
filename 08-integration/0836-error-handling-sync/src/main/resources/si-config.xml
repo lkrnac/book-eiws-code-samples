@@ -12,10 +12,6 @@
 
   <int:channel id="inChannel" />
 
-<!--   <int:service-activator input-channel="inChannel" ref="writeServiceWithError" -->
-<!--     method="write"> -->
-<!--   </int:service-activator> -->
-  
   <int:outbound-channel-adapter channel="inChannel"  ref="writeServiceWithError"
     method="write" />
 </beans>
