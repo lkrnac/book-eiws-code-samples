@@ -125,7 +125,7 @@
     <module>../08-integration/0835-channel-wire-tap-xml</module>
     <module>../08-integration/0836-error-handling-sync</module>
     <module>../08-integration/0837-error-propagated-async</module>
-    <module>../08-integration/080x-error-not-propagated-async</module>
+    <module>../08-integration/0838-error-not-propagated-async</module>
     <module>../08-integration/080x-error-channel-async</module>
     <module>../08-integration/080x-error-channel-global</module>
     <module>../08-integration/080x-long-polling-xml</module>
