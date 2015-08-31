@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter08;
 
-import net.lkrnac.book.eiws.chapter08.in.SiWrapperService;
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceVoid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -12,7 +12,7 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   private static final String MESSAGE_TEXT = "simple message";
 
   @Autowired
-  private SiWrapperService wrapperService;
+  private SiWrapperServiceVoid wrapperService;
 
   @Test(expectedExceptions = IllegalStateException.class)
   public void testSi() {
