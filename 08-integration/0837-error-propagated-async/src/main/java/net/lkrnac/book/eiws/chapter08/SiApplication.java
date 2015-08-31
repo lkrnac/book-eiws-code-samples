@@ -16,7 +16,11 @@ public class SiApplication {
     ApplicationContext ctx = SpringApplication.run(SiApplication.class, args);
 
     SiWrapperService wrapperService = ctx.getBean(SiWrapperService.class);
-    boolean result = wrapperService.processText("simple message");
-    log.info("Result: " + result);
+    try {
+      boolean result = wrapperService.processText("simple message");
+      log.info("Result: " + result);
+    } catch (IllegalStateException ise) {
+      log.info("Exception thrown from SI flow", ise);
+    }
   }
 }
