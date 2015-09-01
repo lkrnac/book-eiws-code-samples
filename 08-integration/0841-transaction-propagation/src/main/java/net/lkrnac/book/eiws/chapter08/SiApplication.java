@@ -1,7 +1,7 @@
 package net.lkrnac.book.eiws.chapter08;
 
 import lombok.extern.slf4j.Slf4j;
-import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceVoidTransacted;
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceTransacted;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,8 +19,8 @@ public class SiApplication {
     ApplicationContext ctx = SpringApplication.run(SiApplication.class, args);
 
     try {
-      SiWrapperServiceVoidTransacted wrapperService =
-          ctx.getBean(SiWrapperServiceVoidTransacted.class);
+      SiWrapperServiceTransacted wrapperService =
+          ctx.getBean(SiWrapperServiceTransacted.class);
       wrapperService.processText("simple message");
     } catch (IllegalStateException ise) {
       JdbcTemplate jdbcTemplate = ctx.getBean(JdbcTemplate.class);

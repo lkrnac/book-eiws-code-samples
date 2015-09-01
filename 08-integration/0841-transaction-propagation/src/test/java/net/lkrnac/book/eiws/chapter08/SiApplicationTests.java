@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter08;
 
-import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceVoidTransacted;
+import net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceTransacted;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -17,18 +17,20 @@ public class SiApplicationTests extends AbstractTestNGSpringContextTests {
   private JdbcTemplate jdbcTemplate;
 
   @Autowired
-  private SiWrapperServiceVoidTransacted wrapperService;
+  private SiWrapperServiceTransacted wrapperService;
 
   @Test
-  public void testSi() {
+  public void testSi() throws InterruptedException {
     // GIVEN
 
     // WHEN
     try {
-      wrapperService.processText("simple message");
+      boolean result = wrapperService.processText("simple message");
     } catch (IllegalStateException ise) {
       // ignore error
     }
+
+    Thread.sleep(1000);
 
     // THEN
     int count = jdbcTemplate.queryForObject(SELECT_COUNT, Integer.class);

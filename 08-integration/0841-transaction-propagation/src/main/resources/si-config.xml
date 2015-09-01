@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:int="http://www.springframework.org/schema/integration"
   xmlns:int-http="http://www.springframework.org/schema/integration/http"
   xmlns:int-jdbc="http://www.springframework.org/schema/integration/jdbc"
-  xsi:schemaLocation="http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
-		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+  xsi:schemaLocation="http://www.springframework.org/schema/integration/jdbc 
+    http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration 
+    http://www.springframework.org/schema/integration/spring-integration.xsd">
 
   <int:gateway default-request-channel="inChannel"
-    service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceVoidTransacted" />
+    service-interface="net.lkrnac.book.eiws.chapter08.in.SiWrapperServiceTransacted" />
   <int:channel id="inChannel" />
 
   <int-jdbc:outbound-gateway
     data-source="dataSource"
     update="insert into TEXT_TABLE values (:payload)"
     request-channel="inChannel"
-    reply-channel="replyChannel" />
+    reply-channel="replyChannel" >
+  </int-jdbc:outbound-gateway>
   <int:channel id="replyChannel" />
 
   <int:service-activator input-channel="replyChannel" ref="serviceWithError"
-    method="handleJdbcResult">
-  </int:service-activator>
+    method="handleJdbcResult" />
 </beans>

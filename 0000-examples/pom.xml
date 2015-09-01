@@ -129,7 +129,7 @@
     <module>../08-integration/0839-error-channel-global</module>
     <module>../08-integration/0840-error-channel-async</module>
     <module>../08-integration/0841-transaction-propagation</module>
-    <module>../08-integration/080x-transacted-polling</module>
+    <module>../08-integration/0842-transacted-polling</module>
     <module>../08-integration/080x-long-polling-xml</module>
   </modules>
 </project>
