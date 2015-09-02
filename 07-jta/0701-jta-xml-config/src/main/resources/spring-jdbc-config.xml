@@ -5,11 +5,11 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="dataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean">
-    <property name="uniqueResourceName" value="data-source" />
+    <property name="uniqueResourceName" value="jdbcDataSource" />
     <property name="xaDataSource">
       <bean class="org.h2.jdbcx.JdbcDataSource">
         <property name="url"
-          value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false"/>
+          value="jdbc:h2:mem:testdb"/>
         <property name="user" value="sa"/>
       </bean>
     </property>
