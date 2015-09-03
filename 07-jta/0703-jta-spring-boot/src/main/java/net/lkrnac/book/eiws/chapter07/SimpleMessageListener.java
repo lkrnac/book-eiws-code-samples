@@ -1,11 +1,8 @@
 package net.lkrnac.book.eiws.chapter07;
 
-import javax.jms.Session;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class SimpleMessageListener {
@@ -18,14 +15,13 @@ public class SimpleMessageListener {
     this.simpleService = simpleService;
   }
 
-  @Transactional
   @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String message) {
-    postprocess(message);
+    preprocess(message);
     simpleService.processText(message);
   }
 
-  private void postprocess(String message) {
+  private void preprocess(String message) {
     // simulate error
     if (!errorSimulated) {
       errorSimulated = true;
