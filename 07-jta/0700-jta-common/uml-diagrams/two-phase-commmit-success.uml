@@ -24,7 +24,7 @@ dsn -> xan: data source freezed
 xan -> jta: preprared for commit
 
 note over jta
-  All XA prepared, so perform commit 
+  All XAs prepared, so perform commit 
 end note
 
 jta -> xa1: commit

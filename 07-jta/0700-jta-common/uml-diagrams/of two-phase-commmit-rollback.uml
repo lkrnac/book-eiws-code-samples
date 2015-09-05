@@ -22,6 +22,10 @@ activate dsn
 dsn -> xan: rollback
 xan -> jta: rollback
 
+note over jta
+  One of XAs rollbacked, so rollback all XAs 
+end note
+
 jta -> xa1: rollback
 xa1 -> ds1: rollback  
 ds1 -> xa1: rollback done
