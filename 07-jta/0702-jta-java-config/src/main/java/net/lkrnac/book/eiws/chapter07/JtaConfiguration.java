@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
-import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;
 
 @Configuration
@@ -21,7 +20,7 @@ public class JtaConfiguration {
       UserTransactionManager atomikosTransactionManager) {
     JtaTransactionManager transactionManager = new JtaTransactionManager();
     transactionManager.setTransactionManager(atomikosTransactionManager);
-    transactionManager.setUserTransaction(new UserTransactionImp());
+    transactionManager.setUserTransaction(atomikosTransactionManager);
     return transactionManager;
   }
 }

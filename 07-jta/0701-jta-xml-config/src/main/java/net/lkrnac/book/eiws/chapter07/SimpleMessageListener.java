@@ -2,8 +2,10 @@ package net.lkrnac.book.eiws.chapter07;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@Transactional
 public class SimpleMessageListener {
   private SimpleService simpleService;
   private boolean errorSimulated = false;

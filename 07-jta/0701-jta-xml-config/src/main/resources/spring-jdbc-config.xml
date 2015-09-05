@@ -8,8 +8,7 @@
     <property name="uniqueResourceName" value="jdbcDataSource" />
     <property name="xaDataSource">
       <bean class="org.h2.jdbcx.JdbcDataSource">
-        <property name="url"
-          value="jdbc:h2:mem:testdb"/>
+        <property name="url" value="jdbc:h2:mem:testdb"/>
         <property name="user" value="sa"/>
       </bean>
     </property>

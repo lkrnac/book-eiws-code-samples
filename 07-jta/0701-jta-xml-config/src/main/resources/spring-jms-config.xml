@@ -21,6 +21,8 @@
     <entry key="java.naming.provider.url" value="jnp://localhost:1099" />
   </util:map>
 
+  <jee:jndi-lookup id="nonXaJmsConnectionFactory" jndi-name="/ConnectionFactory"
+    environment-ref="jndiProperties" />
   <jee:jndi-lookup id="connectionFactory" jndi-name="/XAConnectionFactory"
     environment-ref="jndiProperties" />
   <jee:jndi-lookup id="queue" jndi-name="/queue/ExpiryQueue"

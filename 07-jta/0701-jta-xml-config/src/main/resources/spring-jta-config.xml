@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+  <tx:annotation-driven transaction-manager="transactionManager"/>
 
   <bean id="userTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
       init-method="init" destroy-method="close"/>
@@ -10,8 +13,6 @@
   <bean id="transactionManager"
       class="org.springframework.transaction.jta.JtaTransactionManager">
     <property name="transactionManager" ref="userTransactionManager"/>
-    <property name="userTransaction" >
-      <bean class="com.atomikos.icatch.jta.UserTransactionImp"/>
-    </property>
+    <property name="userTransaction" ref="userTransactionManager"/>
   </bean>
 </beans>

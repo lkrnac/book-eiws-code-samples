@@ -34,6 +34,12 @@ public class JmsConfiguration {
   }
 
   @Bean
+  public ConnectionFactory nonXaJmsConnectionFactory(
+      InitialContext initialContext) throws NamingException {
+    return (ConnectionFactory) initialContext.lookup("/ConnectionFactory");
+  }
+
+  @Bean
   public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
     return new JmsTemplate(connectionFactory);
   }
