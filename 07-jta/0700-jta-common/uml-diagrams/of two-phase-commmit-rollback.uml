@@ -1,0 +1,34 @@
+@startuml
+skinparam monochrome true
+
+participant "JTA Transaction Manager" as jta
+participant "XA Transaction Manager 1" as xa1
+participant "XA Transaction Manager n" as xan
+participant "Data Source 1" as ds1
+participant "Data source n" as dsn
+
+jta -> xa1: preprate transaction
+activate xa1
+jta -> xan: preprate transaction
+activate xan
+
+xa1 -> ds1: freeze data source  
+activate ds1
+ds1 -> xa1: data source freezed
+xa1 -> jta: preprared for commit
+
+xan -> dsn: freeze data source  
+activate dsn
+dsn -> xan: rollback
+xan -> jta: rollback
+
+jta -> xa1: rollback
+xa1 -> ds1: rollback  
+ds1 -> xa1: rollback done
+xa1 -> jta: rollback done
+
+note over jta
+  Transaction rollbacked 
+end note
+
+@enduml

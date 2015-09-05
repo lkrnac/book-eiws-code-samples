@@ -1,0 +1,48 @@
+@startuml
+skinparam monochrome true
+
+participant "JTA Transaction Manager" as jta
+participant "XA Transaction Manager 1" as xa1
+participant "XA Transaction Manager n" as xan
+participant "Data Source 1" as ds1
+participant "Data source n" as dsn
+
+jta -> xa1: preprate transaction
+activate xa1
+jta -> xan: preprate transaction
+activate xan
+
+xa1 -> ds1: freeze data source  
+activate ds1
+ds1 -> xa1: data source freezed
+xa1 -> jta: preprared for commit
+
+
+xan -> dsn: freeze data source  
+activate dsn
+dsn -> xan: data source freezed
+xan -> jta: preprared for commit
+
+note over jta
+  All XA prepared, so perform commit 
+end note
+
+jta -> xa1: commit
+xa1 -> ds1: commit
+ds1 -> xa1: success
+deactivate ds1
+xa1 -> jta: success
+deactivate xa1
+
+jta -> xan: commit
+xan -> dsn: commit
+dsn -> xan: success
+deactivate dsn
+xan -> jta: success
+deactivate xan
+
+note over jta
+  Transaction committed 
+end note
+
+@enduml
