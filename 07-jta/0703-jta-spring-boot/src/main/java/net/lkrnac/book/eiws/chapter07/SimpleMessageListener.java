@@ -19,11 +19,11 @@ public class SimpleMessageListener {
   @Transactional
   @JmsListener(destination = "ExpiryQueue")
   public void readMessage(String message) {
-    preprocess(message);
     simpleService.processText(message);
+    postprocess(message);
   }
 
-  private void preprocess(String message) {
+  private void postprocess(String message) {
     // simulate error
     if (!errorSimulated) {
       errorSimulated = true;
