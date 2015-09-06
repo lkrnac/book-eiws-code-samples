@@ -131,5 +131,6 @@
     <module>../08-integration/0841-transaction-propagation</module>
     <module>../08-integration/0842-transacted-polling</module>
     <module>../08-integration/08xx-long-polling-xml</module>
+    <module>../09-batch/09xx-chunk-processing-generic-xml</module>
   </modules>
 </project>
