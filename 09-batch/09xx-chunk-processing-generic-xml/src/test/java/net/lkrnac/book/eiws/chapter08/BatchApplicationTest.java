@@ -1,5 +1,7 @@
 package net.lkrnac.book.eiws.chapter08;
 
+import java.util.stream.Stream;
+
 import net.lkrnac.book.eiws.chapter09.BatchApplication;
 import net.lkrnac.book.eiws.chapter09.write.TestWriteRepository;
 import net.lkrnac.book.eiws.chapter09.write.WriteRepository;
@@ -28,7 +30,10 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // THEN
     TestWriteRepository testWriteRepository =
         (TestWriteRepository) writeRepository;
-    Assert.assertEquals(testWriteRepository.getMessage(), "simple record 0");
-    Assert.assertEquals(testWriteRepository.getMessage(), "simple record 1");
+    Stream.iterate(0, idx -> idx + 1)
+        .map(idx -> "simple record " + idx)
+        .limit(15)
+        .forEach(
+            exp -> Assert.assertEquals(testWriteRepository.getMessage(), exp));
   }
 }
