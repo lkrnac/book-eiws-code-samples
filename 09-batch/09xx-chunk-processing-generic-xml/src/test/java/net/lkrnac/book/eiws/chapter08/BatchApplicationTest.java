@@ -31,7 +31,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     TestWriteRepository testWriteRepository =
         (TestWriteRepository) writeRepository;
     Stream.iterate(0, idx -> idx + 1)
-        .map(idx -> "simple record " + idx)
+        .map(idx -> "simple record " + idx + " processed")
         .limit(15)
         .forEach(
             exp -> Assert.assertEquals(testWriteRepository.getMessage(), exp));

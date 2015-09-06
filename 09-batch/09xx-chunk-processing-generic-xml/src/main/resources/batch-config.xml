@@ -7,8 +7,8 @@
   <batch:job id="simpleRecordsJob">
     <batch:step id="simpleRecordsStep">
       <batch:tasklet>
-        <batch:chunk reader="simpleRecordReader" writer="simpleRecordWriter"
-          commit-interval="4" />
+        <batch:chunk reader="simpleRecordReader" writer="simpleRecordWriter" 
+          processor="simpleRecordProcessor" commit-interval="4" />
       </batch:tasklet>
     </batch:step>
   </batch:job>
