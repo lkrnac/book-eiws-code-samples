@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 @SpringApplicationConfiguration(classes = BatchApplication.class)
 public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   private static final String SELECT_COUNT =
-      "select count(*) from TEXT_TABLE where text like ?";
+      "select count(*) from USERS where EMAIL like ?";
 
   @Autowired
   private JdbcTemplate jdbcTemplate;
@@ -27,7 +27,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // THEN
     long count =
         jdbcTemplate.queryForObject(SELECT_COUNT, Long.class,
-            "record%");
-    Assert.assertEquals(count, 8);
+            "%@gmail.com");
+    Assert.assertEquals(count, 15);
   }
 }

@@ -8,8 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class PersistenceConfiguration {
   @Bean
   public Integer initDbTable(JdbcTemplate jdbcTemplate) {
-    jdbcTemplate.execute("drop table TEXT_TABLE if exists");
-    jdbcTemplate.execute("create table TEXT_TABLE(TEXT varchar(30))");
+    jdbcTemplate.execute("drop table USERS if exists");
+    jdbcTemplate
+        .execute("create table USERS(NAME varchar(30), EMAIL varchar(30))");
     return null;
   }
 }
