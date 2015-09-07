@@ -10,7 +10,7 @@ public class PersistenceConfiguration {
   public Integer initDbTable(JdbcTemplate jdbcTemplate) {
     jdbcTemplate.execute("drop table USERS if exists");
     jdbcTemplate
-        .execute("create table USERS(NAME varchar(30), EMAIL varchar(30))");
+        .execute("create table USERS(NAME varchar(50), EMAIL varchar(50))");
     return null;
   }
 }

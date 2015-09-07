@@ -27,7 +27,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // THEN
     long count =
         jdbcTemplate.queryForObject(SELECT_COUNT, Long.class,
-            "%@gmail.com");
+            "%@greedycompany.com");
     Assert.assertEquals(count, 15);
   }
 }
