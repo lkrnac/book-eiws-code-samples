@@ -1,39 +1,33 @@
 package net.lkrnac.book.eiws.chapter08;
 
-import java.util.stream.Stream;
-
 import net.lkrnac.book.eiws.chapter09.BatchApplication;
-import net.lkrnac.book.eiws.chapter09.write.TestWriteRepository;
-import net.lkrnac.book.eiws.chapter09.write.WriteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 @SpringApplicationConfiguration(classes = BatchApplication.class)
 public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
-  {
-    System.setProperty("spring.profiles.active", "integration-test");
-  }
+  private static final String SELECT_COUNT =
+      "select count(*) from TEXT_TABLE where text like ?";
 
   @Autowired
-  private WriteRepository writeRepository;
+  private JdbcTemplate jdbcTemplate;
 
   @Test(timeOut = 3000)
-  public void testBatch() {
+  public void testBatch() throws InterruptedException {
     // GIVEN - Spring configuration
 
     // WHEN - Spring Batch job is started automatically
+    Thread.sleep(1000);
 
     // THEN
-    TestWriteRepository testWriteRepository =
-        (TestWriteRepository) writeRepository;
-    Stream.iterate(0, idx -> idx + 1)
-        .map(idx -> "record " + idx + " processed")
-        .limit(8)
-        .forEach(
-            exp -> Assert.assertEquals(testWriteRepository.getMessage(), exp));
+    long count =
+        jdbcTemplate.queryForObject(SELECT_COUNT, Long.class,
+            "record%");
+    Assert.assertEquals(count, 8);
   }
 }

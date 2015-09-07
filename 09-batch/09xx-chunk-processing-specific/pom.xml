@@ -18,5 +18,15 @@
       <artifactId>0900-batch-common</artifactId>
       <version>0.0.2-SNAPSHOT</version>
     </dependency>
+
+    <!-- db -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+    </dependency>
   </dependencies>
 </project>
