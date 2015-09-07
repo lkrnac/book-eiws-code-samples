@@ -135,5 +135,6 @@
     <module>../09-batch/09xx-chunk-processing-generic-xml</module>
     <module>../09-batch/09xx-chunk-processing-generic-javaconfig</module>
     <module>../09-batch/09xx-chunk-processing-non-generic</module>
+    <module>../09-batch/09xx-simplejob-xml</module>
   </modules>
 </project>
