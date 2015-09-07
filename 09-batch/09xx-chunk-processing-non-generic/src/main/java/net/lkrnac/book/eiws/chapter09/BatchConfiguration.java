@@ -37,15 +37,14 @@ public class BatchConfiguration {
   @Bean
   public ItemWriter<String> jdbcItemWriter(DataSource dataSource) {
     JdbcBatchItemWriter<String> writer = new JdbcBatchItemWriter<String>();
-    writer
-        .setItemPreparedStatementSetter(new ItemPreparedStatementSetter<String>() {
+    writer.setItemPreparedStatementSetter(new ItemPreparedStatementSetter<String>() {
           @Override
           public void setValues(String item, PreparedStatement ps) throws
               SQLException {
-            ps.setString(1, item);
+            ps.setString(0, item);
           }
         });
-    writer.setSql("insert into TEXT_TABLE values (?)");
+    writer.setSql("insert into TEXT_TABLE values ?");
     writer.setDataSource(dataSource);
     return writer;
   }
