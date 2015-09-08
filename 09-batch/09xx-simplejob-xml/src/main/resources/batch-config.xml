@@ -4,12 +4,15 @@
   xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
   
-  <batch:job id="simpleRecordsJob">
-    <batch:step id="simpleRecordsStep">
-      <batch:tasklet>
-        <batch:chunk reader="simpleRecordReader" writer="simpleRecordWriter" 
-          processor="simpleRecordProcessor" commit-interval="4" />
-      </batch:tasklet>
+  <batch:job id="prepareTeaJob">
+    <batch:step id="boilWaterStep" next="addTeaStep">
+      <batch:tasklet ref="boilWater"/>
+    </batch:step>
+    <batch:step id="addTeaStep" next="addWaterStep">
+      <batch:tasklet ref="addTea"/>
+    </batch:step>
+    <batch:step id="addWaterStep">
+      <batch:tasklet ref="addWater"/>
     </batch:step>
   </batch:job>
 </beans>
