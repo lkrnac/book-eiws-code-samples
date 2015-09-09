@@ -32,7 +32,7 @@ public class BatchConfiguration {
   }
 
   @Bean
-  public Job simpleRecordsJob(JobBuilderFactory jobBuilderFactory,
+  public Job prepareTeaJob(JobBuilderFactory jobBuilderFactory,
       @Qualifier("boilWaterStep") Step boilWaterStep,
       @Qualifier("addTeaStep") Step addTeaStep,
       @Qualifier("addWaterStep") Step addWaterStep) {
