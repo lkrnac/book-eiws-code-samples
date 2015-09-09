@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter08;
+package net.lkrnac.book.eiws.chapter09;
 
 import java.util.stream.Stream;
 

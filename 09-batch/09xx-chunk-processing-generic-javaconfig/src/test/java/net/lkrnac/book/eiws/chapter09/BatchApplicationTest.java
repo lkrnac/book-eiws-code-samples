@@ -1,8 +1,10 @@
-package net.lkrnac.book.eiws.chapter08;
+package net.lkrnac.book.eiws.chapter09;
+
+import java.util.stream.Stream;
 
 import net.lkrnac.book.eiws.chapter09.BatchApplication;
-import net.lkrnac.book.eiws.chapter09.step.SimpleExecutableStep;
-import net.lkrnac.book.eiws.chapter09.step.TestExecutableStep;
+import net.lkrnac.book.eiws.chapter09.write.TestWriteRepository;
+import net.lkrnac.book.eiws.chapter09.write.WriteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -17,7 +19,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   }
 
   @Autowired
-  private SimpleExecutableStep executableStep;
+  private WriteRepository writeRepository;
 
   @Test(timeOut = 3000)
   public void testBatch() {
@@ -26,9 +28,12 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // WHEN - Spring Batch job is started automatically
 
     // THEN
-    TestExecutableStep testExecutableStep = (TestExecutableStep) executableStep;
-    Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
-    Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
-    Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
+    TestWriteRepository testWriteRepository =
+        (TestWriteRepository) writeRepository;
+    Stream.iterate(0, idx -> idx + 1)
+        .map(idx -> "simple record " + idx + " processed")
+        .limit(15)
+        .forEach(
+            exp -> Assert.assertEquals(testWriteRepository.getMessage(), exp));
   }
 }
