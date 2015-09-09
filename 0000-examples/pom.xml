@@ -139,6 +139,6 @@
     <module>../09-batch/09xx-simplejob-javaconfig</module>
     <module>../09-batch/09xx-job-launcher-xml</module>
     <module>../09-batch/09xx-job-launcher-javaconfig</module>
-    <module>../09-batch/09xx-job-paramters-javaconfig</module>
+    <module>../09-batch/09xx-job-parameters-javaconfig</module>
   </modules>
 </project>
