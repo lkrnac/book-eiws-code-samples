@@ -22,7 +22,11 @@ public class AddTea implements Tasklet {
   @Override
   public RepeatStatus execute(StepContribution contribution,
       ChunkContext chunkContext) throws Exception {
-    simpleExecutableStep.executeStep("Add Tea");
+    String sugarAmount =
+        chunkContext.getStepContext().getStepExecution().getJobParameters()
+            .getString("sugarAmount");
+    String stepSuffix = (sugarAmount == null) ? "" : " with " + sugarAmount;
+    simpleExecutableStep.executeStep("Add Tea" + stepSuffix);
     return RepeatStatus.FINISHED;
   }
 }

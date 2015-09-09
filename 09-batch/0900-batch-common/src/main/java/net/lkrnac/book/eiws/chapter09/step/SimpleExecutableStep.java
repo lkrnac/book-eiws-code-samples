@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleExecutableStep {
   public void executeStep(String stepName) {
-    log.info(stepName + " executed");
+    log.info(stepName);
   }
 }
