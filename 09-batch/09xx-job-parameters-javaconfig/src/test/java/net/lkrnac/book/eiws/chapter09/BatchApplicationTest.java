@@ -3,8 +3,8 @@ package net.lkrnac.book.eiws.chapter09;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.lkrnac.book.eiws.chapter09.step.SimpleExecutableStep;
-import net.lkrnac.book.eiws.chapter09.step.TestExecutableStep;
+import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
+import net.lkrnac.book.eiws.chapter09.step.TestExecutablePoint;
 
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
@@ -25,7 +25,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   }
 
   @Autowired
-  private SimpleExecutableStep executableStep;
+  private SimpleExecutablePoint executableStep;
 
   @Autowired
   private Job job;
@@ -44,7 +44,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     JobExecution execution = jobLauncher.run(job, jobParameters);
 
     // THEN
-    TestExecutableStep testExecutableStep = (TestExecutableStep) executableStep;
+    TestExecutablePoint testExecutableStep = (TestExecutablePoint) executableStep;
     Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
     Assert.assertEquals(testExecutableStep.getMessage(),
         "Add Tea with no sugar");

@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter09.step.tea;
 
-import net.lkrnac.book.eiws.chapter09.step.SimpleExecutableStep;
+import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AddWater implements Tasklet {
-  private SimpleExecutableStep simpleExecutableStep;
+  private SimpleExecutablePoint simpleExecutableStep;
 
   @Autowired
-  public AddWater(SimpleExecutableStep simpleExecutableStep) {
+  public AddWater(SimpleExecutablePoint simpleExecutableStep) {
     super();
     this.simpleExecutableStep = simpleExecutableStep;
   }
@@ -31,7 +31,7 @@ public class AddWater implements Tasklet {
     if (teaCount > 2) {
       message = "Add Dirty Water (you should clean kettle with citric acid)";
     }
-    simpleExecutableStep.executeStep(message);
+    simpleExecutableStep.execute(message);
     return RepeatStatus.FINISHED;
   }
 }

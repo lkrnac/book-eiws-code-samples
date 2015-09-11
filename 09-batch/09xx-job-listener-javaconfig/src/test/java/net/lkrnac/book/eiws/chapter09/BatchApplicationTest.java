@@ -1,8 +1,7 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import net.lkrnac.book.eiws.chapter09.BatchApplication;
-import net.lkrnac.book.eiws.chapter09.step.SimpleExecutableStep;
-import net.lkrnac.book.eiws.chapter09.step.TestExecutableStep;
+import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
+import net.lkrnac.book.eiws.chapter09.step.TestExecutablePoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -17,7 +16,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   }
 
   @Autowired
-  private SimpleExecutableStep executableStep;
+  private SimpleExecutablePoint executableStep;
 
   @Test(timeOut = 3000)
   public void testBatch() {
@@ -26,9 +25,12 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // WHEN - Spring Batch job is started automatically
 
     // THEN
-    TestExecutableStep testExecutableStep = (TestExecutableStep) executableStep;
+    TestExecutablePoint testExecutableStep =
+        (TestExecutablePoint) executableStep;
+    Assert.assertEquals(testExecutableStep.getMessage(), "It's tea time!");
     Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Enjoy your tea!");
   }
 }

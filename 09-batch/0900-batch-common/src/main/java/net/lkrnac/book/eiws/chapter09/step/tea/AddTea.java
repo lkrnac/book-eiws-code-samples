@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter09.step.tea;
 
-import net.lkrnac.book.eiws.chapter09.step.SimpleExecutableStep;
+import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AddTea implements Tasklet {
-  private SimpleExecutableStep simpleExecutableStep;
+  private SimpleExecutablePoint simpleExecutableStep;
 
   @Autowired
-  public AddTea(SimpleExecutableStep simpleExecutableStep) {
+  public AddTea(SimpleExecutablePoint simpleExecutableStep) {
     super();
     this.simpleExecutableStep = simpleExecutableStep;
   }
@@ -26,7 +26,7 @@ public class AddTea implements Tasklet {
         chunkContext.getStepContext().getStepExecution().getJobParameters()
             .getString("sugarAmount");
     String stepSuffix = (sugarAmount == null) ? "" : " with " + sugarAmount;
-    simpleExecutableStep.executeStep("Add Tea" + stepSuffix);
+    simpleExecutableStep.execute("Add Tea" + stepSuffix);
     return RepeatStatus.FINISHED;
   }
 }

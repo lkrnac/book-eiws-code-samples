@@ -35,8 +35,10 @@ public class BatchConfiguration {
   public Job prepareTeaJob(JobBuilderFactory jobBuilderFactory,
       @Qualifier("boilWaterStep") Step boilWaterStep,
       @Qualifier("addTeaStep") Step addTeaStep,
-      @Qualifier("addWaterStep") Step addWaterStep) {
+      @Qualifier("addWaterStep") Step addWaterStep,
+      TeaJobListener teaJobListener) {
     return jobBuilderFactory.get("prepareTeaJob")
+        .listener(teaJobListener)
         .flow(boilWaterStep)
         .next(addTeaStep)
         .next(addWaterStep)

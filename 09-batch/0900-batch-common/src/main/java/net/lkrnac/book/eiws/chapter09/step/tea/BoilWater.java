@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter09.step.tea;
 
-import net.lkrnac.book.eiws.chapter09.step.SimpleExecutableStep;
+import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BoilWater implements Tasklet {
-  private SimpleExecutableStep simpleExecutableStep;
+  private SimpleExecutablePoint simpleExecutableStep;
 
   @Autowired
-  public BoilWater(SimpleExecutableStep simpleExecutableStep) {
+  public BoilWater(SimpleExecutablePoint simpleExecutableStep) {
     super();
     this.simpleExecutableStep = simpleExecutableStep;
   }
@@ -23,7 +23,7 @@ public class BoilWater implements Tasklet {
   @Override
   public RepeatStatus execute(StepContribution contribution,
       ChunkContext chunkContext) throws Exception {
-    simpleExecutableStep.executeStep("Boil Water");
+    simpleExecutableStep.execute("Boil Water");
     ExecutionContext jobExecutionContext =
         chunkContext.getStepContext().getStepExecution().getJobExecution()
             .getExecutionContext();

@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 @Primary
 @Profile("integration-test")
 @Component
-public class TestExecutableStep extends SimpleExecutableStep {
+public class TestExecutablePoint extends SimpleExecutablePoint {
   private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(20);
 
   @Override
-  public void executeStep(String stepName) {
-    queue.add(stepName);
+  public void execute(String message) {
+    queue.add(message);
   }
 
   public String getMessage() {
