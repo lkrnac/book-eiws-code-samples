@@ -7,13 +7,13 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.GenericApplicationContext;
 
 @Slf4j
 @Configuration
-@ComponentScan
+@ImportResource("classpath:batch-config.xml")
 public class BatchApplication {
   public static void main(String[] args) throws Exception {
     GenericApplicationContext context =
