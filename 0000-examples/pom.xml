@@ -141,5 +141,6 @@
     <module>../09-batch/09xx-job-launcher-javaconfig</module>
     <module>../09-batch/09xx-job-parameters-javaconfig</module>
     <module>../09-batch/09xx-job-repository-javaconfig</module>
+    <module>../09-batch/09xx-job-repository-xml</module>
   </modules>
 </project>

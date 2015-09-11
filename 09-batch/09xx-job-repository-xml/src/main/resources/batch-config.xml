@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:batch="http://www.springframework.org/schema/batch"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:component-scan annotation-config="true"
+    base-package="net.lkrnac.book.eiws.chapter09" />
+
+  <bean id="transactionManager"
+    class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+    
+  <bean id="jobRepository"
+    class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+    <property name="transactionManager" ref="transactionManager" />
+  </bean>
+
+  <bean id="jobLauncher"
+    class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+    <property name="jobRepository" ref="jobRepository" />
+  </bean>
+      
+  <batch:job id="prepareTeaJob">
+    <batch:step id="boilWaterStep" next="addTeaStep">
+      <batch:tasklet ref="boilWater"/>
+    </batch:step>
+    <batch:step id="addTeaStep" next="addWaterStep">
+      <batch:tasklet ref="addTea"/>
+    </batch:step>
+    <batch:step id="addWaterStep">
+      <batch:tasklet ref="addWater"/>
+    </batch:step>
+  </batch:job>
+</beans>
