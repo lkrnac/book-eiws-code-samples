@@ -34,13 +34,26 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // GIVEN - Spring configuration
 
     // WHEN - Spring Batch job is started automatically
-    JobExecution execution = jobLauncher.run(job, new JobParameters());
+    JobExecution execution1 = jobLauncher.run(job, new JobParameters());
+    JobExecution execution2 = jobLauncher.run(job, new JobParameters());
+    JobExecution execution3 = jobLauncher.run(job, new JobParameters());
 
     // THEN
     TestExecutableStep testExecutableStep = (TestExecutableStep) executableStep;
     Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
-    Assert.assertEquals(execution.getStatus(), BatchStatus.COMPLETED);
+    Assert.assertEquals(execution1.getStatus(), BatchStatus.COMPLETED);
+
+    Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
+    Assert.assertEquals(execution2.getStatus(), BatchStatus.COMPLETED);
+
+    Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
+    Assert.assertEquals(testExecutableStep.getMessage(),
+        "Add Dirty Water (you should clean kettle with citric acid)");
+    Assert.assertEquals(execution3.getStatus(), BatchStatus.COMPLETED);
   }
 }
