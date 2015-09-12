@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class WriteRepository {
   public void writeRecords(List<String> records) {
-    log.info("Starting to write records...");
-    records.forEach(log::info);
+    records.stream()
+        .map(p -> "Writing record: " + p)
+        .forEach(log::info);
   }
 }
