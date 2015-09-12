@@ -148,5 +148,6 @@
     <module>../09-batch/09xx-step-listener-javaconfig</module>
     <module>../09-batch/09xx-step-listener-xml</module>
     <module>../09-batch/09xx-chunk-listener-javaconfig</module>
+    <module>../09-batch/09xx-chunk-listener-xml</module>
   </modules>
 </project>
