@@ -145,5 +145,6 @@
     <module>../09-batch/09xx-execution-context</module>
     <module>../09-batch/09xx-job-listener-javaconfig</module>
     <module>../09-batch/09xx-job-listener-xml</module>
+    <module>../09-batch/09xx-step-listener-javaconfig</module>
   </modules>
 </project>
