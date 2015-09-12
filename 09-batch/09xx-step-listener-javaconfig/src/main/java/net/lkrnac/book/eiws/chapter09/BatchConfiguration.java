@@ -17,8 +17,11 @@ import org.springframework.context.annotation.Configuration;
 @EnableBatchProcessing
 public class BatchConfiguration {
   @Bean
-  public Step boilWaterStep(StepBuilderFactory stepFactory, BoilWater boilWater) {
-    return stepFactory.get("boilWaterStep").tasklet(boilWater).build();
+  public Step boilWaterStep(StepBuilderFactory stepFactory,
+      BoilWater boilWater,
+      HotWaterStepListener hotWaterStepListener) {
+    return stepFactory.get("boilWaterStep").tasklet(boilWater)
+        .listener(hotWaterStepListener).build();
   }
 
   @Bean
@@ -27,18 +30,18 @@ public class BatchConfiguration {
   }
 
   @Bean
-  public Step addWaterStep(StepBuilderFactory stepFactory, AddWater addWater) {
-    return stepFactory.get("addWaterStep").tasklet(addWater).build();
+  public Step addWaterStep(StepBuilderFactory stepFactory, AddWater addWater,
+      HotWaterStepListener hotWaterStepListener) {
+    return stepFactory.get("addWaterStep").tasklet(addWater)
+        .listener(hotWaterStepListener).build();
   }
 
   @Bean
   public Job prepareTeaJob(JobBuilderFactory jobBuilderFactory,
       @Qualifier("boilWaterStep") Step boilWaterStep,
       @Qualifier("addTeaStep") Step addTeaStep,
-      @Qualifier("addWaterStep") Step addWaterStep,
-      TeaJobListener teaJobListener) {
+      @Qualifier("addWaterStep") Step addWaterStep) {
     return jobBuilderFactory.get("prepareTeaJob")
-        .listener(teaJobListener)
         .flow(boilWaterStep)
         .next(addTeaStep)
         .next(addWaterStep)
