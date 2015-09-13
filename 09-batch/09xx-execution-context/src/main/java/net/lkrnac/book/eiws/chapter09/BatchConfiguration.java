@@ -2,7 +2,7 @@ package net.lkrnac.book.eiws.chapter09;
 
 import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
 import net.lkrnac.book.eiws.chapter09.step.tea.AddWater;
-import net.lkrnac.book.eiws.chapter09.step.tea.BoilWater;
+import net.lkrnac.book.eiws.chapter09.step.tea.BoilWaterWithCounter;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableBatchProcessing
 public class BatchConfiguration {
   @Bean
-  public Step boilWaterStep(StepBuilderFactory stepFactory, BoilWater boilWater) {
+  public Step boilWaterStep(StepBuilderFactory stepFactory, BoilWaterWithCounter boilWater) {
     return stepFactory.get("boilWaterStep").tasklet(boilWater)
         .allowStartIfComplete(true).build();
   }
