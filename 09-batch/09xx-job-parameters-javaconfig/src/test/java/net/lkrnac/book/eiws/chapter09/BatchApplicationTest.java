@@ -33,7 +33,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   @Autowired
   private JobLauncher jobLauncher;
 
-  @Test(timeOut = 3000)
+  @Test(timeOut = 5000)
   public void testBatch() throws Exception {
     // GIVEN - Spring configuration
     Map<String, JobParameter> jobParametersMap = new HashMap<>();

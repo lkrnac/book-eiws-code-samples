@@ -19,7 +19,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   @Autowired
   private SimpleExecutablePoint executableStep;
 
-  @Test(timeOut = 3000)
+  @Test(timeOut = 5000)
   public void testBatch() {
     // GIVEN - Spring configuration
 

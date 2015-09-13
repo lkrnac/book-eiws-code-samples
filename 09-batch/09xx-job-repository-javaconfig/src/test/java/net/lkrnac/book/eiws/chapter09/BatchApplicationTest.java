@@ -29,7 +29,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   @Autowired
   private Job job;
 
-  @Test(timeOut = 3000)
+  @Test(timeOut = 5000)
   public void testBatch() throws Exception {
     // GIVEN - Spring configuration
 
