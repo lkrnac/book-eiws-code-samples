@@ -24,9 +24,9 @@ public class BatchApplication {
     JobLauncher jobLauncher = (JobLauncher) context.getBean(JobLauncher.class);
     Job job = (Job) context.getBean("combinedJob");
 
-    JobParameters jobParameters1 = createJobParameters(11);
-    JobExecution execution1 = jobLauncher.run(job, jobParameters1);
-    log.info("Exit Status : {}", execution1.getStatus());
+    JobParameters jobParameters = createJobParameters(11);
+    JobExecution execution = jobLauncher.run(job, jobParameters);
+    log.info("Exit Status : {}", execution.getStatus());
 
     context.close();
   }
