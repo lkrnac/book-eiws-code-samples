@@ -2,11 +2,14 @@ package net.lkrnac.book.eiws.chapter09;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
 import net.lkrnac.book.eiws.chapter09.step.TestExecutablePoint;
+import net.lkrnac.book.eiws.chapter09.write.TestWriteRepository;
+import net.lkrnac.book.eiws.chapter09.write.WriteRepository;
 
-import org.springframework.batch.core.BatchStatus;
+import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameter;
@@ -25,31 +28,45 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   }
 
   @Autowired
-  private SimpleExecutablePoint executableStep;
+  private WriteRepository writeRepository;
+
+  @Autowired
+  private JobLauncher jobLauncher;
 
   @Autowired
   private Job job;
 
   @Autowired
-  private JobLauncher jobLauncher;
+  private SimpleExecutablePoint executableStep;
 
   @Test(timeOut = 5000)
   public void testBatch() throws Exception {
-    // GIVEN - Spring configuration
+    // GIVEN
     Map<String, JobParameter> jobParametersMap = new HashMap<>();
-    jobParametersMap.put("sugarAmount", new JobParameter("no sugar"));
+    jobParametersMap.put("recordCountToProcess", new JobParameter(11L));
     JobParameters jobParameters = new JobParameters(jobParametersMap);
 
     // WHEN
     JobExecution execution = jobLauncher.run(job, jobParameters);
 
     // THEN
+    TestWriteRepository testWriteRepository =
+        (TestWriteRepository) writeRepository;
+    Stream.iterate(0, idx -> idx + 1)
+        .map(idx -> "simple record " + idx + " processed")
+        .limit(11)
+        .forEach(
+            exp -> Assert.assertEquals(testWriteRepository.getMessage(), exp));
+
+    Assert.assertEquals(testWriteRepository.getMessage(1000), null);
+
     TestExecutablePoint testExecutableStep =
         (TestExecutablePoint) executableStep;
-    Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
     Assert.assertEquals(testExecutableStep.getMessage(),
-        "Add Tea with no sugar");
+        "After we processed 11 records, let's have a tea");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
-    Assert.assertEquals(execution.getStatus(), BatchStatus.COMPLETED);
+    Assert.assertEquals(execution.getExitStatus(), ExitStatus.COMPLETED);
   }
 }
