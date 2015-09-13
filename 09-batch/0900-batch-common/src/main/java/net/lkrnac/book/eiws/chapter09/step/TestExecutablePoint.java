@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Profile("integration-test")
 @Component
 public class TestExecutablePoint extends SimpleExecutablePoint {
-  private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(20);
+  private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
 
   @Override
   public void execute(String message) {
