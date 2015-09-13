@@ -150,5 +150,6 @@
     <module>../09-batch/09xx-chunk-listener-javaconfig</module>
     <module>../09-batch/09xx-chunk-listener-xml</module>
     <module>../09-batch/09xx-item-stream-javaconfig</module>
+    <module>../09-batch/09xx-item-stream-xml</module>
   </modules>
 </project>
