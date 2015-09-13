@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AddTea implements Tasklet {
+public class AddTeaWithParameter implements Tasklet {
   private SimpleExecutablePoint simpleExecutableStep;
 
   @Autowired
-  public AddTea(SimpleExecutablePoint simpleExecutableStep) {
+  public AddTeaWithParameter(SimpleExecutablePoint simpleExecutableStep) {
     super();
     this.simpleExecutableStep = simpleExecutableStep;
   }
@@ -22,7 +22,11 @@ public class AddTea implements Tasklet {
   @Override
   public RepeatStatus execute(StepContribution contribution,
       ChunkContext chunkContext) throws Exception {
-    simpleExecutableStep.execute("Add Tea");
+    String sugarAmount =
+        chunkContext.getStepContext().getStepExecution().getJobParameters()
+            .getString("sugarAmount");
+    String stepSuffix = (sugarAmount == null) ? "" : " with " + sugarAmount;
+    simpleExecutableStep.execute("Add Tea" + stepSuffix);
     return RepeatStatus.FINISHED;
   }
 }

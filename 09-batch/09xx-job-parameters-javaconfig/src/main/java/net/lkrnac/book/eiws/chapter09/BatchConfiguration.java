@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
+import net.lkrnac.book.eiws.chapter09.step.tea.AddTeaWithParameter;
 import net.lkrnac.book.eiws.chapter09.step.tea.AddWater;
 import net.lkrnac.book.eiws.chapter09.step.tea.BoilWater;
 
@@ -22,7 +22,7 @@ public class BatchConfiguration {
   }
 
   @Bean
-  public Step addTeaStep(StepBuilderFactory stepFactory, AddTea addTea) {
+  public Step addTeaStep(StepBuilderFactory stepFactory, AddTeaWithParameter addTea) {
     return stepFactory.get("addTeaStep").tasklet(addTea).build();
   }
 
