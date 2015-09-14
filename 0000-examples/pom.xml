@@ -154,5 +154,6 @@
     <module>../09-batch/09xx-batch-scopes-javaconfig</module>
     <module>../09-batch/09xx-batch-scopes-xml</module>
     <module>../09-batch/09xx-retry-javaconfig</module>
+    <module>../09-batch/09xx-retry-xml</module>
   </modules>
 </project>
