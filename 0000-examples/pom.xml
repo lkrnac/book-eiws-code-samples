@@ -153,5 +153,6 @@
     <module>../09-batch/09xx-item-stream-xml</module>
     <module>../09-batch/09xx-batch-scopes-javaconfig</module>
     <module>../09-batch/09xx-batch-scopes-xml</module>
+    <module>../09-batch/09xx-retry-javaconfig</module>
   </modules>
 </project>
