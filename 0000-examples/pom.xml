@@ -156,6 +156,7 @@
     <module>../09-batch/09xx-retry-javaconfig</module>
     <module>../09-batch/09xx-retry-xml</module>
     <module>../09-batch/09xx-repeat</module>
+    <module>../09-batch/09xx-skip-javaconfig</module>
     <module>../09-batch/09xx-skip-xml</module>
   </modules>
 </project>
