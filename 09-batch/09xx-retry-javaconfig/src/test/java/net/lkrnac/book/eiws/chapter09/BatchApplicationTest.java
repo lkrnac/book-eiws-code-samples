@@ -2,7 +2,8 @@ package net.lkrnac.book.eiws.chapter09;
 
 import java.util.stream.Stream;
 
-import net.lkrnac.book.eiws.chapter09.BatchApplication;
+import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
+import net.lkrnac.book.eiws.chapter09.step.TestExecutablePoint;
 import net.lkrnac.book.eiws.chapter09.write.TestWriteRepository;
 import net.lkrnac.book.eiws.chapter09.write.WriteRepository;
 
@@ -21,6 +22,9 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   @Autowired
   private WriteRepository writeRepository;
 
+  @Autowired
+  private SimpleExecutablePoint executableStep;
+
   @Test(timeOut = 5000)
   public void testBatch() {
     // GIVEN - Spring configuration
@@ -35,5 +39,11 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
         .limit(15)
         .forEach(
             exp -> Assert.assertEquals(testWriteRepository.getMessage(), exp));
+
+    TestExecutablePoint testExecutableStep =
+        (TestExecutablePoint) executableStep;
+    Assert.assertEquals(testExecutableStep.getMessage(),
+        "Error occured, retrying write of items");
+
   }
 }

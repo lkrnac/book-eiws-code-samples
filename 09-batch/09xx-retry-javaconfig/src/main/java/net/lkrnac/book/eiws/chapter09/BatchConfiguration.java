@@ -20,7 +20,8 @@ public class BatchConfiguration {
   public Step simpleRecordsStep(StepBuilderFactory stepBuilderFactory,
       SimpleRecordReader simpleRecordReader,
       SimpleRecordProcessor simpleRecordProcessor,
-      SimpleRecordWriter simpleRecordWriter) {
+      SimpleRecordWriter simpleRecordWriter,
+      SimpleRetryListener simpleRetryListener) {
     return stepBuilderFactory.get("simpleRecordsStep")
         .<String, String> chunk(4)
         .reader(simpleRecordReader)
@@ -29,6 +30,7 @@ public class BatchConfiguration {
         .faultTolerant()
         .retry(IllegalStateException.class)
         .retryLimit(2)
+        .listener(simpleRetryListener)
         .build();
   }
 
