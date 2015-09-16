@@ -2,6 +2,8 @@ package net.lkrnac.book.eiws.chapter09;
 
 import java.util.stream.Stream;
 
+import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
+import net.lkrnac.book.eiws.chapter09.step.TestExecutablePoint;
 import net.lkrnac.book.eiws.chapter09.write.TestWriteRepository;
 import net.lkrnac.book.eiws.chapter09.write.WriteRepository;
 
@@ -20,6 +22,9 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   @Autowired
   private WriteRepository writeRepository;
 
+  @Autowired
+  private SimpleExecutablePoint executableStep;
+
   @Test(timeOut = 5000)
   public void testBatch() {
     // GIVEN - Spring configuration
@@ -29,10 +34,18 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // THEN
     TestWriteRepository testWriteRepository =
         (TestWriteRepository) writeRepository;
-    Stream.iterate(1, idx -> idx + 1)
+    Stream.iterate(2, idx -> idx + 1)
         .map(idx -> "simple record " + idx + " processed")
-        .limit(14)
+        .limit(13)
         .forEach(
             exp -> Assert.assertEquals(testWriteRepository.getMessage(), exp));
+
+    TestExecutablePoint testExecutableStep =
+        (TestExecutablePoint) executableStep;
+    Assert.assertEquals(testExecutableStep.getMessage(),
+        "Skipping processing of 'simple record 0' because of error");
+    Assert.assertEquals(testExecutableStep.getMessage(),
+        "Skipping write of 'simple record 1 processed' because of error");
+
   }
 }
