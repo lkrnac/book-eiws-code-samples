@@ -20,7 +20,8 @@ public class BatchConfiguration {
   public Step simpleRecordsStep(StepBuilderFactory stepBuilderFactory,
       SimpleRecordReader simpleRecordReader,
       SimpleRecordProcessor simpleRecordProcessor,
-      SimpleRecordWriter simpleRecordWriter) {
+      SimpleRecordWriter simpleRecordWriter,
+      SimpleSkipListener simpleSkipListener) {
     return stepBuilderFactory.get("simpleRecordsStep")
         .<String, String> chunk(4)
         .reader(simpleRecordReader)
@@ -28,7 +29,8 @@ public class BatchConfiguration {
         .writer(simpleRecordWriter)
         .faultTolerant()
         .skip(IllegalStateException.class)
-        .skipLimit(1)
+        .skipLimit(3)
+        .listener(simpleSkipListener)
         .build();
   }
 
