@@ -162,5 +162,6 @@
     <module>../09-batch/09xx-decision-xml</module>
     <module>../09-batch/09xx-job-restart-javaconfig</module>
     <module>../09-batch/09xx-job-restart-xml</module>
+    <module>../09-batch/09xx-job-inheritance</module>
   </modules>
 </project>

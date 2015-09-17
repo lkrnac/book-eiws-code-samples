@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <batch:step id="boilWaterStep">
+    <batch:tasklet ref="boilWater" />
+  </batch:step>
+  <batch:step id="addTeaStep">
+    <batch:tasklet ref="addTea" />
+  </batch:step>
+  <batch:step id="addWaterStep">
+    <batch:tasklet ref="addWater" />
+  </batch:step>
+
+  <batch:job id="prepareTeaJob">
+    <batch:step id="boilWaterStepChild" parent="boilWaterStep" next="" />
+    <batch:step id="addTeaStepChild" parent="addTeaStep" next="addWaterStepChild">
+    <batch:step id="addWaterStepChild" parent="addWaterStep">
+  </batch:job>
+</beans>
