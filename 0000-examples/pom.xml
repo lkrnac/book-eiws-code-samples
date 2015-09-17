@@ -159,5 +159,6 @@
     <module>../09-batch/09xx-skip-javaconfig</module>
     <module>../09-batch/09xx-skip-xml</module>
     <module>../09-batch/09xx-decision-javaconfig</module>
+    <module>../09-batch/09xx-decision-xml</module>
   </modules>
 </project>
