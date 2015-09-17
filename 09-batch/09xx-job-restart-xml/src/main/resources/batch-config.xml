@@ -7,22 +7,22 @@
   <batch:step id="boilWaterStep">
     <batch:tasklet ref="boilWater" allow-start-if-complete="true"/>
   </batch:step>
-  <batch:step id="addTeaStep" next="addWaterStep">
+  <batch:step id="addTeaStep">
     <batch:tasklet ref="addTea" allow-start-if-complete="true" start-limit="2"/>
   </batch:step>
-  <batch:step id="addWaterStep" next="teaIngredientDecision">
+  <batch:step id="addWaterStep">
     <batch:tasklet ref="addWater"/>
   </batch:step>
   
   <batch:job id="prepareTeaJob">
     <batch:step id="boilWaterStepChild" parent="boilWaterStep" next="addTeaStepChild"/>
-    <batch:step id="addTeaStepChild" next="addWaterStepChild" next="addWaterStepChild">
+    <batch:step id="addTeaStepChild" parent="addTeaStep" next="addWaterStepChild"/>
     <batch:step id="addWaterStepChild" parent="addWaterStep"/>
   </batch:job>
   
   <batch:job id="prepareTeaJobNotRestartable" restartable="false">
-    <batch:step id="boilWaterStepChild" parent="boilWaterStep" next="addTeaStepChild"/>
-    <batch:step id="addTeaStepChild" next="addWaterStepChild" next="addWaterStepChild">
-    <batch:step id="addWaterStepChild" parent="addWaterStep"/>
+    <batch:step id="boilWaterStepChildNR" parent="boilWaterStep" next="addTeaStepChildNR"/>
+    <batch:step id="addTeaStepChildNR" parent="addTeaStep" next="addWaterStepChildNR"/>
+    <batch:step id="addWaterStepChildNR" parent="addWaterStep"/>
   </batch:job>
 </beans>
