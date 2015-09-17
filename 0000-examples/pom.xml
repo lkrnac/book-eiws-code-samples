@@ -158,5 +158,6 @@
     <module>../09-batch/09xx-repeat</module>
     <module>../09-batch/09xx-skip-javaconfig</module>
     <module>../09-batch/09xx-skip-xml</module>
+    <module>../09-batch/09xx-decision-javaconfig</module>
   </modules>
 </project>
