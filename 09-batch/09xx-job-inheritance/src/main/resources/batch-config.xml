@@ -15,8 +15,8 @@
   </batch:step>
 
   <batch:job id="prepareTeaJob">
-    <batch:step id="boilWaterStepChild" parent="boilWaterStep" next="" />
-    <batch:step id="addTeaStepChild" parent="addTeaStep" next="addWaterStepChild">
-    <batch:step id="addWaterStepChild" parent="addWaterStep">
+    <batch:step id="boilWaterStepChild" parent="boilWaterStep" next="addTeaStepChild" />
+    <batch:step id="addTeaStepChild" parent="addTeaStep" next="addWaterStepChild"/>
+    <batch:step id="addWaterStepChild" parent="addWaterStep"/>
   </batch:job>
 </beans>
