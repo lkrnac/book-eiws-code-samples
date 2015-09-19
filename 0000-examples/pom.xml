@@ -163,5 +163,7 @@
     <module>../09-batch/09xx-job-restart-javaconfig</module>
     <module>../09-batch/09xx-job-restart-xml</module>
     <module>../09-batch/09xx-job-inheritance</module>
+    <module>../09-batch/09xx-remote-chunking-slave</module>
+    <module>../09-batch/09xx-remote-chunking-master</module>
   </modules>
 </project>
