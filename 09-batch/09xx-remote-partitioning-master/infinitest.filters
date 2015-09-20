@@ -1,0 +1,5 @@
+## TestNG Configuration
+# Tests with a group-annotation in excluded-groups are not executed:
+## excluded-groups=maventests
+
+.*
