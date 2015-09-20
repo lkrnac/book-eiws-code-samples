@@ -1,52 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:batch="http://www.springframework.org/schema/batch"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
   xmlns:int="http://www.springframework.org/schema/integration"
   xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
   xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
-  
-  <import resource="classpath:jms-config.xml"/>
-  
-  <batch:job id="simpleRecordsJob">
-    <batch:step id="simpleRecordsStep">
-      <batch:tasklet>
-        <batch:chunk reader="simpleRecordReader" writer="simpleRecordWriter" 
-          commit-interval="4" />
-      </batch:tasklet>
+
+  <import resource="classpath:jms-config.xml" />
+
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="org.h2.Driver"/>
+      <property name="url" value="jdbc:h2:tcp://localhost:8043/~/partition-test"/>
+      <property name="username" value="sa"/>
+      <property name="password" value=""/>        
+  </bean>
+
+  <batch:job id="masterJob">
+    <batch:step id="masterStep">
+        <batch:partition partitioner="partitioner" handler="partitionHandler" />
     </batch:step>
   </batch:job>
 
-  <int-jms:outbound-channel-adapter id="outMasterAdapter"  destination="masterCommands"/>
+  <bean id="partitioner"
+    class="org.springframework.batch.core.partition.support.SimplePartitioner" />
+
+  <bean id="partitionHandler"
+    class="org.springframework.batch.integration.partition.MessageChannelPartitionHandler">
+    <property name="stepName" value="simpleRecordsStep" />
+    <property name="replyChannel" ref="inMasterAggregatedChanngel"/>
+    <property name="gridSize" value="1" />
+    <property name="messagingOperations" ref="messagingTemplate">
+    </property>
+  </bean>
 
   <bean id="messagingTemplate" class="org.springframework.integration.core.MessagingTemplate">
     <property name="defaultChannel" ref="outMasterAdapter" />
-    <property name="receiveTimeout" value="2000" />
+    <property name="receiveTimeout" value="5000" />
   </bean>
 
-  <bean id="simpleRecordWriter" scope="step"
-    class="org.springframework.batch.integration.chunk.ChunkMessageChannelItemWriter">
-    <property name="messagingOperations" ref="messagingTemplate" />
-    <property name="replyChannel" ref="inMasterChannel" />
-  </bean>
+  <int-jms:outbound-channel-adapter id="outMasterAdapter"
+    destination="masterCommands" />
+    
 
-  <bean id="remoteChunkHandler"
-    class="org.springframework.batch.integration.chunk.RemoteChunkHandlerFactoryBean">
-    <property name="chunkWriter" ref="simpleRecordWriter" />
-    <property name="step" ref="simpleRecordsStep" />
-  </bean>
-
-  <int:channel id="inMasterChannel">
-    <int:queue />
-  </int:channel>
-
+  <int:channel id="inMasterChannel" />
   <int-jms:message-driven-channel-adapter
     id="inMasterAdapter" destination="slaveResponses" channel="inMasterChannel" />
-    
-  <bean class="org.springframework.batch.core.scope.StepScope">
-    <property name="proxyTargetClass" value="true"/>
-  </bean>
+
+  <int:channel id="inMasterAggregatedChanngel">
+    <int:queue />
+  </int:channel>
+  <int:aggregator ref="partitionHandler" input-channel="inMasterChannel"
+    output-channel="inMasterAggregatedChanngel" />
 </beans>

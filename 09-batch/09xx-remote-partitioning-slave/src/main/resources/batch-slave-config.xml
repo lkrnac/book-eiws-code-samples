@@ -4,38 +4,64 @@
   xmlns:batch="http://www.springframework.org/schema/batch"
   xmlns:int="http://www.springframework.org/schema/integration"
   xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
+  xmlns:jdbc="http://www.springframework.org/schema/jdbc"
   xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms-4.1.xsd
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-  <import resource="classpath:jms-config.xml"/>
+  <import resource="classpath:jms-config.xml" />
 
-  <int:channel id="inSlaveChannel" />
-  <int:channel id="outSlaveChannel" />
-
-  <int-jms:message-driven-channel-adapter id="inSlaveAdapter" 
-    destination="masterCommands" channel="inSlaveChannel" />
-
-  <int-jms:outbound-channel-adapter id="outSlaveAdapter"
-    destination="slaveResponses" channel="outSlaveChannel"/>
-
-  <bean id="slaveChunkHandler"
-    class="org.springframework.batch.integration.chunk.ChunkProcessorChunkHandler">
-    <property name="chunkProcessor" ref="slaveChunkProcessor" />
-  </bean>
-
-  <bean id="slaveChunkProcessor"
-    class="org.springframework.batch.core.step.item.SimpleChunkProcessor">
-    <property name="itemProcessor">
-      <bean
-        class="net.lkrnac.book.eiws.chapter09.process.SimpleRecordProcessor" />
-    </property>
-    <property name="itemWriter">
-      <bean class="net.lkrnac.book.eiws.chapter09.write.SimpleRecordWriter" />
-    </property>
+  <bean id="org.h2.tools.Server" class="org.h2.tools.Server" lazy-init="false"
+    factory-method="createTcpServer" init-method="start" destroy-method="stop">
+    <constructor-arg>
+      <array>
+        <value>-tcp</value>
+        <value>-tcpAllowOthers</value>
+        <value>-tcpPort</value>
+        <value>8043</value>
+        <value>-properties</value>
+        <value>"~/partition-test"</value>
+      </array>
+    </constructor-arg>
   </bean>
   
-  <int:service-activator id="slaveServiceActivator" method="handleChunk"
-    input-channel="inSlaveChannel" output-channel="outSlaveChannel" ref="slaveChunkHandler"/>
+  <jdbc:initialize-database data-source="dataSource">
+    <jdbc:script location="classpath:h2-purge.sql"/>
+  </jdbc:initialize-database>
+  
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="org.h2.Driver"/>
+      <property name="url" value="jdbc:h2:tcp://localhost:8043/~/partition-test"/>
+      <property name="username" value="sa"/>
+      <property name="password" value=""/>        
+  </bean>  
+
+  <bean id="stepExecutionRequestHandler"
+    class="org.springframework.batch.integration.partition.StepExecutionRequestHandler">
+    <property name="jobExplorer" ref="jobExplorer" />
+    <property name="stepLocator" ref="stepLocator" />
+  </bean>
+
+  <bean id="stepLocator"
+    class="org.springframework.batch.integration.partition.BeanFactoryStepLocator" />
+
+  <batch:step id="simpleRecordsStep">
+    <batch:tasklet allow-start-if-complete="true">
+      <batch:chunk reader="simpleRecordReader" writer="simpleRecordWriter"
+        processor="simpleRecordProcessor" commit-interval="4"/>
+    </batch:tasklet>
+  </batch:step>
+
+  <int:channel id="inSlaveChannel" />
+  <int-jms:message-driven-channel-adapter
+    id="inSlaveAdapter" destination="masterCommands" channel="inSlaveChannel" />
+
+  <int:service-activator ref="stepExecutionRequestHandler"
+    input-channel="inSlaveChannel" output-channel="outSlaveChannel" />
+    
+  <int:channel id="outSlaveChannel" />
+  <int-jms:outbound-channel-adapter id="outSlaveAdapter"
+    destination="slaveResponses" channel="outSlaveChannel" />
 </beans>

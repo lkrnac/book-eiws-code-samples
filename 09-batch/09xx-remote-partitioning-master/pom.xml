@@ -27,7 +27,7 @@
     </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>09xx-remote-chunking-slave</artifactId>
+      <artifactId>09xx-remote-partitioning-slave</artifactId>
       <version>0.0.2-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
@@ -77,11 +77,16 @@
       <artifactId>jnpserver</artifactId>
       <version>${jnpserver.version}</version>
     </dependency>
+
+    <!-- db -->
     <dependency>
-      <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>0500-jms-common</artifactId>
-      <version>0.0.2-SNAPSHOT</version>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+    </dependency>     
   </dependencies>
 
   <build>
