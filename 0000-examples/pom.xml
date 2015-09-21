@@ -167,5 +167,6 @@
     <module>../09-batch/09xx-remote-chunking-master</module>
     <module>../09-batch/09xx-remote-partitioning-slave</module>
     <module>../09-batch/09xx-remote-partitioning-master</module>
+    <module>../09-batch/09xx-multi-threaded-step-xml</module>
   </modules>
 </project>
