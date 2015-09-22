@@ -1,5 +1,7 @@
 package net.lkrnac.book.eiws.chapter09;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.stream.IntStream;
 
 import net.lkrnac.book.eiws.chapter09.write.TestWriteRepository;
