@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:batch="http://www.springframework.org/schema/batch"
+  xmlns:task="http://www.springframework.org/schema/task"
+  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <batch:job id="prepareTeaJob">
+    <batch:step id="boilWaterStep" next="addIngredientsSplit">
+      <batch:tasklet ref="boilWater" />
+    </batch:step>
+    <batch:split id="addIngredientsSplit" next="addWaterStep" task-executor="taskExecutor">
+      <batch:flow>
+        <batch:step id="addTeaStep">
+          <batch:tasklet ref="addTea" />
+        </batch:step>
+      </batch:flow>
+      <batch:flow>
+        <batch:step id="addSugarStep">
+          <batch:tasklet ref="addSugar" />
+        </batch:step>
+      </batch:flow>
+    </batch:split>
+    <batch:step id="addWaterStep">
+      <batch:tasklet ref="addWater" />
+    </batch:step>
+  </batch:job>
+
+  <task:executor id="taskExecutor" pool-size="10"/>
+</beans>
