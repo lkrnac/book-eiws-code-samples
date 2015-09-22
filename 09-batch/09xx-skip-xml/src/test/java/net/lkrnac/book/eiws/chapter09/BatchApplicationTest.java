@@ -1,6 +1,8 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import java.util.stream.Stream;
+import static org.testng.Assert.assertEquals;
+
+import java.util.stream.IntStream;
 
 import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
 import net.lkrnac.book.eiws.chapter09.step.TestExecutablePoint;
@@ -34,11 +36,9 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // THEN
     TestWriteRepository testWriteRepository =
         (TestWriteRepository) writeRepository;
-    Stream.iterate(2, idx -> idx + 1)
-        .map(idx -> "simple record " + idx + " processed")
-        .limit(13)
-        .forEach(
-            exp -> Assert.assertEquals(testWriteRepository.getMessage(), exp));
+    IntStream.range(2, 13)
+        .mapToObj(idx -> "simple record " + idx + " processed")
+        .forEach(exp -> assertEquals(testWriteRepository.getMessage(), exp));
 
     TestExecutablePoint testExecutableStep =
         (TestExecutablePoint) executableStep;
