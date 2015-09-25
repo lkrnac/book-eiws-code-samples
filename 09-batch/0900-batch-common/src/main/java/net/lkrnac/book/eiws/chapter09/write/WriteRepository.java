@@ -4,14 +4,14 @@ import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 @Slf4j
-@Component
+@Repository
 public class WriteRepository {
   public void writeRecords(List<String> records) {
     records.stream()
-        .map(p -> "Writing record: " + p)
+        .map(record -> "Writing record: " + record)
         .forEach(log::info);
   }
 }

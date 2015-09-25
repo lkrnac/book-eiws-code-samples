@@ -1,0 +1,36 @@
+@startuml
+skinparam monochrome true
+
+participant "Step" as s
+participant "ItemReader" as ir
+participant "ItemProcessor" as ip
+participant "ItemWriter" as iw
+
+-> s : execute   
+activate s
+
+loop until ItemReader returns not-null item
+
+loop until chunk size is reached 
+
+s -> ir : read item
+activate ir
+ir -> s : item
+deactivate ir
+
+s -> ip : process item
+activate ip
+ip -> s : processed item
+deactivate ip
+
+end
+s -> iw : write chunk (List of items)
+activate iw
+iw -> s
+deactivate iw
+
+end
+<- s : ExitStatus
+deactivate s
+
+@enduml

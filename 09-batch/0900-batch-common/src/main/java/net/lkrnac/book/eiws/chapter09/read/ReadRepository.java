@@ -18,7 +18,7 @@ public class ReadRepository {
 
   private static List<String> generateRecords(int count) {
     return IntStream.range(0, count)
-        .mapToObj(i -> "simple record " + i)
+        .mapToObj(idx -> "simple record " + idx)
         .collect(Collectors.toList());
   }
 }
