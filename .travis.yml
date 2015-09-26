@@ -1,0 +1,8 @@
+language: java
+jdk:
+    - oraclejdk8
+script:
+    - cd 0000-examples-parent
+    - mvn clean install
+    - cd ../0000-examples
+    - mvn clean install
