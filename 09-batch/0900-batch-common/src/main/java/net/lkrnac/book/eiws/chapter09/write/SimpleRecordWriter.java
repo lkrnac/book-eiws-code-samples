@@ -17,8 +17,7 @@ public class SimpleRecordWriter implements ItemWriter<String> {
   }
 
   @Override
-  @SuppressWarnings("unchecked")
   public void write(List<? extends String> items) throws Exception {
-    writeRepository.writeRecords((List<String>) items);
+    writeRepository.writeRecords(items);
   }
 }

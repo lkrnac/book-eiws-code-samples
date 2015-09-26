@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 public class WriteRepository {
-  public void writeRecords(List<String> records) {
+  public void writeRecords(List<? extends String> records) {
     records.stream()
         .map(record -> "Writing record: " + record)
         .forEach(log::info);

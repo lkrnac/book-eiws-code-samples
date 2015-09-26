@@ -16,7 +16,7 @@ public class TestWriteRepository extends WriteRepository {
   private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(20);
 
   @Override
-  public void writeRecords(List<String> message) {
+  public void writeRecords(List<? extends String> message) {
     queue.addAll(message);
   }
 

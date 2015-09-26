@@ -132,7 +132,7 @@
     <module>../08-integration/0842-transacted-polling</module>
     <module>../08-integration/08xx-long-polling-xml</module>
     <module>../09-batch/0900-batch-common</module>
-    <module>../09-batch/09xx-chunk-processing-generic-xml</module>
+    <module>../09-batch/0901-chunk-processing-generic-xml</module>
     <module>../09-batch/09xx-chunk-processing-generic-javaconfig</module>
     <module>../09-batch/09xx-chunk-processing-non-generic</module>
     <module>../09-batch/09xx-simplejob-xml</module>
