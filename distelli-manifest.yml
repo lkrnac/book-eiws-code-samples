@@ -8,7 +8,10 @@ lkrnac/book-eiws-code-samples:
   #The PreRelease section is for specifying build and pre-packaging steps: http://distel.li/prereleasesection
   PreRelease:
     - echo "Begin PreRelease"
-    #- javac -g Program.java
+    - cd 0000-examples-parent
+    - mvn clean install
+    - cd ../0000-examples
+    - mvn clean install
 
   #The PreInstall section occurs before install: distel.li/preinstallsection
   PreInstall:
@@ -16,12 +19,6 @@ lkrnac/book-eiws-code-samples:
     - echo "Installing Java"
     - 'wget -c -O jre-8u45-linux-x64.tar.gz --no-check-certificate --no-cookies--header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jre-8u45-linux-x64.tar.gz"'
     - tar -zxvf jre-8u45-linux-x64.tar.gz
-
-  Install:
-    - cd 0000-examples-parent
-    - mvn clean install
-    - cd ../0000-examples
-    - mvn clean install
 
   #The PostInstall section occurs after install: http://distel.li/postinstallsection
   PostInstall:
