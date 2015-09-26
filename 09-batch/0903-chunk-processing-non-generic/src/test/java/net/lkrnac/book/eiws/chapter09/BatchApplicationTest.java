@@ -1,7 +1,5 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import net.lkrnac.book.eiws.chapter09.BatchApplication;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,7 +25,7 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     // THEN
     long count =
         jdbcTemplate.queryForObject(SELECT_COUNT, Long.class,
-            "%@greedycompany.com");
-    Assert.assertEquals(count, 15);
+            "%@%");
+    Assert.assertEquals(count, 6);
   }
 }
