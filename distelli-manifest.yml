@@ -7,7 +7,7 @@ lkrnac/book-eiws-code-samples:
 
   #The PreRelease section is for specifying build and pre-packaging steps: http://distel.li/prereleasesection
   PreRelease:
-    - echo "Begin PreRelease Test"
+    - echo "Begin PreRelease"
     #- javac -g Program.java
 
   #The PreInstall section occurs before install: distel.li/preinstallsection
