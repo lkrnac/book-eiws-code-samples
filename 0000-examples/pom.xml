@@ -137,8 +137,8 @@
     <module>../09-batch/0903-chunk-processing-non-generic</module>
     <module>../09-batch/0904-tasklet-step-xml</module>
     <module>../09-batch/0905-tasklet-step-javaconfig</module>
-    <module>../09-batch/09xx-job-launcher-xml</module>
-    <module>../09-batch/09xx-job-launcher-javaconfig</module>
+    <module>../09-batch/0906-job-launcher-xml</module>
+    <module>../09-batch/0907-job-launcher-javaconfig</module>
     <module>../09-batch/09xx-job-parameters-javaconfig</module>
     <module>../09-batch/09xx-job-repository-javaconfig</module>
     <module>../09-batch/09xx-job-repository-xml</module>
