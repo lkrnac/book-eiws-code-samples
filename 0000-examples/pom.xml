@@ -140,8 +140,8 @@
     <module>../09-batch/0906-job-launcher-xml</module>
     <module>../09-batch/0907-job-launcher-javaconfig</module>
     <module>../09-batch/0908-job-launcher-async</module>
-    <module>../09-batch/0909-execution-context</module>
-    <module>../09-batch/0910-job-parameters</module>
+    <module>../09-batch/0909-job-parameters</module>
+    <module>../09-batch/09xx-execution-context</module>
     <module>../09-batch/09xx-job-repository-javaconfig</module>
     <module>../09-batch/09xx-job-repository-xml</module>
     <module>../09-batch/09xx-job-listener-javaconfig</module>
