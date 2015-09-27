@@ -13,13 +13,15 @@ import org.springframework.core.io.ClassPathResource;
 @Slf4j
 public class BatchApplication {
   public static void main(String[] args) throws Exception {
+    ClassPathResource batchConfig = new ClassPathResource("batch-config.xml");
+    ClassPathResource batchBeansConfig = new ClassPathResource("batch-beans-config.xml");
     GenericApplicationContext context = new GenericXmlApplicationContext(
-        new ClassPathResource("batch-config.xml"));
+        batchConfig, batchBeansConfig);
 
     JobLauncher jobLauncher = (JobLauncher) context.getBean(JobLauncher.class);
     Job job = (Job) context.getBean("prepareTeaJob");
     JobExecution execution = jobLauncher.run(job, new JobParameters());
-    log.info("Exit Status : {}", execution.getStatus());
+    log.info("Exit Status: {}", execution.getStatus());
     context.close();
   }
 }
