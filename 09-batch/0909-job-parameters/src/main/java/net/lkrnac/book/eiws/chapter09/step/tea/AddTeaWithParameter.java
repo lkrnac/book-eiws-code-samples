@@ -22,9 +22,8 @@ public class AddTeaWithParameter implements Tasklet {
   @Override
   public RepeatStatus execute(StepContribution contribution,
       ChunkContext chunkContext) throws Exception {
-    String sugarAmount =
-        chunkContext.getStepContext().getStepExecution().getJobParameters()
-            .getString("sugarAmount");
+    String sugarAmount = chunkContext.getStepContext().getStepExecution()
+        .getJobParameters().getString("sugarAmount");
     String stepSuffix = (sugarAmount == null) ? "" : " with " + sugarAmount;
     simpleExecutableStep.execute("Add Tea" + stepSuffix);
     return RepeatStatus.FINISHED;
