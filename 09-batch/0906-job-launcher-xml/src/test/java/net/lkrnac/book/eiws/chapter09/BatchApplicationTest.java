@@ -14,7 +14,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@ContextConfiguration(locations = "classpath:batch-config.xml")
+@ContextConfiguration(locations = { "classpath:batch-config.xml",
+    "classpath:batch-beans-config.xml" })
 public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   {
     System.setProperty("spring.profiles.active", "integration-test");
