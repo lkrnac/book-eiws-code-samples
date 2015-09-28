@@ -44,11 +44,11 @@ public class BatchConfiguration {
   }
 
   @Bean
-  public Job prepareTeaJobString(JobBuilderFactory jobBuilderFactory,
+  public Job prepareStrongTeaJob(JobBuilderFactory jobBuilderFactory,
       @Qualifier("boilWaterStep") Step boilWaterStep,
       @Qualifier("addTeaStep") Step addTeaStep,
       @Qualifier("addWaterStep") Step addWaterStep) {
-    return jobBuilderFactory.get("prepareTeaJobStrong")
+    return jobBuilderFactory.get("prepareStrongTeaJob")
         .start(boilWaterStep)
         .next(addTeaStep)
         .next(addTeaStep)
