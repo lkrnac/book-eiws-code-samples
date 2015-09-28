@@ -1,42 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/batch"
   xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
-		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  xsi:schemaLocation="http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <context:component-scan annotation-config="true"
-    base-package="net.lkrnac.book.eiws.chapter09" />
-
-  <bean id="transactionManager"
-    class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
-
-  <batch:job-repository id="jobRepository" data-source="dataSource"
-    transaction-manager="transactionManager" isolation-level-for-create="SERIALIZABLE"
-    table-prefix="BATCH_" max-varchar-length="1000" />
-
-  <jdbc:embedded-database id="dataSource" type="H2">
-    <jdbc:script
-      location="classpath:/org/springframework/batch/core/schema-h2.sql" />
-  </jdbc:embedded-database>
-
-  <bean id="jobLauncher"
-    class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
-    <property name="jobRepository" ref="jobRepository" />
-  </bean>
-
-  <batch:job id="prepareTeaJob">
-    <batch:step id="boilWaterStep" next="addTeaStep">
-      <batch:tasklet ref="boilWater" />
-    </batch:step>
-    <batch:step id="addTeaStep" next="addWaterStep">
-      <batch:tasklet ref="addTea" />
-    </batch:step>
-    <batch:step id="addWaterStep">
-      <batch:tasklet ref="addWater" />
-    </batch:step>
-  </batch:job>
-</beans>
+  <job id="prepareTeaJob">
+    <step id="boilWaterStep" next="addTeaStep">
+      <tasklet ref="boilWater"/>
+    </step>
+    <step id="addTeaStep" next="addWaterStep">
+      <tasklet ref="addTea"/>
+    </step>
+    <step id="addWaterStep">
+      <tasklet ref="addWater"/>
+    </step>
+  </job>
+</beans:beans>

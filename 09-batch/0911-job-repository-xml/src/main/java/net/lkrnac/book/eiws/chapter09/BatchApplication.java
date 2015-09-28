@@ -10,10 +10,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Slf4j
 @Configuration
-@ImportResource("classpath:batch-config.xml")
+@ImportResource({ "classpath:batch-config.xml", "classpath:batch-beans-config.xml" })
 public class BatchApplication {
   public static void main(String[] args) throws Exception {
     GenericApplicationContext context =
@@ -23,6 +24,12 @@ public class BatchApplication {
     Job job = (Job) context.getBean("prepareTeaJob");
     JobExecution execution = jobLauncher.run(job, new JobParameters());
     log.info("Exit Status : {}", execution.getStatus());
+
+    JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean(JdbcTemplate.class);
+    long stepExecutionCount =
+        jdbcTemplate.queryForObject("select count(*) from BATCH_STEP_EXECUTION",
+            Long.class);
+    log.info("Number of jobs executed: {}", stepExecutionCount);
     context.close();
   }
 }
