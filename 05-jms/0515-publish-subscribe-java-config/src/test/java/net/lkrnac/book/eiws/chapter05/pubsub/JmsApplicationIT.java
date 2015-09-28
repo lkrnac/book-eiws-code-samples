@@ -1,15 +1,15 @@
 package net.lkrnac.book.eiws.chapter05.pubsub;
 
-import net.lkrnac.book.eiws.chapter05.pubsub.JmsApplication;
-import net.lkrnac.book.eiws.chapter05.pubsub.PubSubService;
 import net.lkrnac.book.eiws.chapter05.pubsub.TestingPubSubService.PubSubTuple;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@ActiveProfiles("integration-test")
 @ContextConfiguration(classes = JmsApplication.class)
 public class JmsApplicationIT extends
     AbstractTestNGSpringContextTests {
@@ -17,10 +17,6 @@ public class JmsApplicationIT extends
 
   @Autowired
   private PubSubService pubSubService;
-
-  {
-    System.setProperty("spring.profiles.active", "integration-test");
-  }
 
   @Test(timeOut = 3000)
   public void testJms() throws InterruptedException {

@@ -9,16 +9,14 @@ import net.lkrnac.book.eiws.chapter09.write.WriteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
+@ActiveProfiles("integration-test")
 @SpringApplicationConfiguration(classes = BatchApplication.class,
     locations = "classpath:batch-slave-config.xml")
 public class BatchApplicationIT extends AbstractTestNGSpringContextTests {
-  {
-    System.setProperty("spring.profiles.active", "integration-test");
-  }
-
   @Autowired
   private WriteRepository writeRepository;
 

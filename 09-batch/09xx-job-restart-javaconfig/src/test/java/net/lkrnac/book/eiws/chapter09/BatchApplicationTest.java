@@ -14,17 +14,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@ActiveProfiles("integration-test")
 @SpringApplicationConfiguration(classes = BatchApplication.class)
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
-  {
-    System.setProperty("spring.profiles.active", "integration-test");
-  }
-
   @Autowired
   private SimpleExecutablePoint executableStep;
 

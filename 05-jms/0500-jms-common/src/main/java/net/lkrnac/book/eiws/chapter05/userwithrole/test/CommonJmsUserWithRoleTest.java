@@ -5,17 +5,15 @@ import net.lkrnac.book.eiws.chapter05.userwithrole.UserWithRoleService;
 import net.lkrnac.book.eiws.chapter05.userwithrole.test.TestingUserWithRoleService.UserWithRoleTuple;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@ActiveProfiles("integration-test")
 public class CommonJmsUserWithRoleTest extends AbstractTestNGSpringContextTests {
   @Autowired
   private UserWithRoleService userService;
-
-  {
-    System.setProperty("spring.profiles.active", "integration-test");
-  }
 
   @Test(timeOut = 3000)
   public void testJms() throws InterruptedException {

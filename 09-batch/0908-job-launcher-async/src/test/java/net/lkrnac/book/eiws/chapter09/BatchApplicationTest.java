@@ -9,17 +9,15 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@ActiveProfiles("integration-test")
 @ContextConfiguration(classes = BatchApplication.class)
 public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
-  {
-    System.setProperty("spring.profiles.active", "integration-test");
-  }
-
   @Autowired
   private SimpleExecutablePoint executableStep;
 
