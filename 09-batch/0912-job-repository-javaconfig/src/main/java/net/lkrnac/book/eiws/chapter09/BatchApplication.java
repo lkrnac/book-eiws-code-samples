@@ -10,6 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Slf4j
 @Configuration
@@ -22,7 +23,13 @@ public class BatchApplication {
     JobLauncher jobLauncher = (JobLauncher) context.getBean(JobLauncher.class);
     Job job = (Job) context.getBean("prepareTeaJob");
     JobExecution execution = jobLauncher.run(job, new JobParameters());
-    log.info("Exit Status : {}", execution.getStatus());
+    log.info("Exit Status: {}", execution.getStatus());
+
+    JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean(JdbcTemplate.class);
+    long stepExecutionCount =
+        jdbcTemplate.queryForObject("select count(*) from BATCH_STEP_EXECUTION",
+            Long.class);
+    log.info("Number of steps executed: {}", stepExecutionCount);
     context.close();
   }
 }

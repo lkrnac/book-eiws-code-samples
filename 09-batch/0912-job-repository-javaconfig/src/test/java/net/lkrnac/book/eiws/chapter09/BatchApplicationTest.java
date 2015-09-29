@@ -1,25 +1,21 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
-import net.lkrnac.book.eiws.chapter09.step.TestExecutablePoint;
-
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@ActiveProfiles("integration-test")
 @ContextConfiguration(classes = BatchApplication.class)
 public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
   @Autowired
-  private SimpleExecutablePoint executableStep;
+  private JdbcTemplate jdbcTemplate;
 
   @Autowired
   private JobLauncher jobLauncher;
@@ -35,10 +31,9 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
     JobExecution execution = jobLauncher.run(job, new JobParameters());
 
     // THEN
-    TestExecutablePoint testExecutableStep = (TestExecutablePoint) executableStep;
-    Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
-    Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
-    Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
     Assert.assertEquals(execution.getStatus(), BatchStatus.COMPLETED);
+    long stepExecutionCount = jdbcTemplate
+        .queryForObject("select count(*) from BATCH_STEP_EXECUTION", Long.class);
+    Assert.assertEquals(stepExecutionCount, 3);
   }
 }
