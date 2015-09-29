@@ -2,7 +2,6 @@ package net.lkrnac.book.eiws.chapter09;
 
 import javax.sql.DataSource;
 
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
@@ -16,7 +15,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.support.AbstractPlatformTransactionManager;
 
 @Configuration
-@EnableBatchProcessing
 public class BatchBeansConfiguration {
   @Bean
   public AbstractPlatformTransactionManager transactionManager() {
@@ -24,11 +22,11 @@ public class BatchBeansConfiguration {
   }
 
   @Bean
-  public DataSource db() {
-    EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-    builder.setType(EmbeddedDatabaseType.H2)
-        .addScript("classpath:/org/springframework/batch/core/schema-h2.sql");
-    return builder.build();
+  public DataSource dataSource() {
+    return new EmbeddedDatabaseBuilder()
+        .setType(EmbeddedDatabaseType.H2)
+        .addScript("classpath:/org/springframework/batch/core/schema-h2.sql")
+        .build();
   }
 
   @Bean
