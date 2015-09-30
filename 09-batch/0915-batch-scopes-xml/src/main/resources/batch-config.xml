@@ -1,46 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
-  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="http://www.springframework.org/schema/batch"
+  xsi:schemaLocation="http://www.springframework.org/schema/batch 
+  http://www.springframework.org/schema/batch/spring-batch.xsd
+  http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <batch:job id="combinedJob">
-    <batch:step id="simpleRecordsStep" next="boilWaterStep">
-      <batch:tasklet>
-        <batch:chunk reader="statefulRecordReader" writer="statefulRecordWriter"
+  <job id="combinedJob">
+    <step id="simpleRecordsStep" next="boilWaterStep">
+      <tasklet>
+        <chunk reader="statefulRecordReader" writer="statefulRecordWriter"
           processor="simpleRecordProcessor" commit-interval="4" />
-      </batch:tasklet>
-      <batch:listeners>
-        <batch:listener ref="statefulRecordWriter" />
-      </batch:listeners>
-    </batch:step>
+      </tasklet>
+    </step>
 
-    <batch:step id="boilWaterStep" next="addTeaStep">
-      <batch:tasklet ref="boilWaterStateful" />
-    </batch:step>
-
-    <batch:step id="addTeaStep" next="addWaterStep">
-      <batch:tasklet ref="addTea" />
-    </batch:step>
-
-    <batch:step id="addWaterStep">
-      <batch:tasklet ref="addWater" />
-    </batch:step>
-  </batch:job>
-
-  <bean id="readCountRestricter" class="net.lkrnac.book.eiws.chapter09.ReadCountRestricter" 
-    scope="step">
-    <constructor-arg name="countToProcess" value="#{jobParameters[recordCountToProcess]}"/>  
-  </bean>
-  
-  <bean id="processedRecordsCounter" class="net.lkrnac.book.eiws.chapter09.ProcessedRecordsCounter" 
-    scope="job"/>
-  
-  <bean class="org.springframework.batch.core.scope.StepScope">
-    <property name="proxyTargetClass" value="true"/>
-  </bean>
-  
-  <bean class="org.springframework.batch.core.scope.JobScope">
-    <property name="proxyTargetClass" value="true"/>
-  </bean>
-</beans>
+    <step id="boilWaterStep" next="addTeaStep">
+      <tasklet ref="boilWaterStateful" />
+    </step>
+    <step id="addTeaStep" next="addWaterStep">
+      <tasklet ref="addTea" />
+    </step>
+    <step id="addWaterStep">
+      <tasklet ref="addWater" />
+    </step>
+  </job> 
+</beans:beans>

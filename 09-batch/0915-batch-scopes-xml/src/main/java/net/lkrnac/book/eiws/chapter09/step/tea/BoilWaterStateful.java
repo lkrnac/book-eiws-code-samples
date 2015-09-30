@@ -1,6 +1,6 @@
 package net.lkrnac.book.eiws.chapter09.step.tea;
 
-import net.lkrnac.book.eiws.chapter09.ProcessedRecordsCounter;
+import net.lkrnac.book.eiws.chapter09.WrittenRecordsCounter;
 import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
 
 import org.springframework.batch.core.StepContribution;
@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class BoilWaterStateful implements Tasklet {
   private SimpleExecutablePoint simpleExecutableStep;
-  private ProcessedRecordsCounter recordsCounter;
+  private WrittenRecordsCounter recordsCounter;
 
   @Autowired
   public BoilWaterStateful(SimpleExecutablePoint simpleExecutableStep,
-      ProcessedRecordsCounter recordsCounter) {
+      WrittenRecordsCounter recordsCounter) {
     super();
     this.simpleExecutableStep = simpleExecutableStep;
     this.recordsCounter = recordsCounter;

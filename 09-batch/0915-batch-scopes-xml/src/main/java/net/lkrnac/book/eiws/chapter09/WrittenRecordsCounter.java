@@ -3,6 +3,6 @@ package net.lkrnac.book.eiws.chapter09;
 import lombok.Data;
 
 @Data
-public class ProcessedRecordsCounter {
+public class WrittenRecordsCounter {
   private int processedCount;
 }
