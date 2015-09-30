@@ -146,6 +146,8 @@
     <module>../09-batch/0912-job-repository-javaconfig</module>
     <module>../09-batch/0913-execution-context-tasklet</module>
     <module>../09-batch/0914-execution-context-chunk-processing</module>
+    <module>../09-batch/0915-batch-scopes-xml</module>
+    <module>../09-batch/09xx-batch-scopes-javaconfig</module>
     <module>../09-batch/09xx-job-listener-javaconfig</module>
     <module>../09-batch/09xx-job-listener-xml</module>
     <module>../09-batch/09xx-step-listener-javaconfig</module>
@@ -154,8 +156,6 @@
     <module>../09-batch/09xx-chunk-listener-xml</module>
     <module>../09-batch/09xx-item-stream-javaconfig</module>
     <module>../09-batch/09xx-item-stream-xml</module>
-    <module>../09-batch/09xx-batch-scopes-javaconfig</module>
-    <module>../09-batch/09xx-batch-scopes-xml</module>
     <module>../09-batch/09xx-retry-javaconfig</module>
     <module>../09-batch/09xx-retry-xml</module>
     <module>../09-batch/09xx-repeat</module>
