@@ -55,11 +55,10 @@ public class BatchConfiguration {
       @Qualifier("addTeaStep") Step addTeaStep,
       @Qualifier("addWaterStep") Step addWaterStep) {
     return jobBuilderFactory.get("combinedJob")
-        .flow(simpleRecordsStep)
+        .start(simpleRecordsStep)
         .next(boilWaterStep)
         .next(addTeaStep)
         .next(addWaterStep)
-        .end()
         .build();
   }
 }
