@@ -20,8 +20,10 @@ public class BatchConfiguration {
   public Step boilWaterStep(StepBuilderFactory stepFactory,
       BoilWater boilWater,
       HotWaterStepListener hotWaterStepListener) {
-    return stepFactory.get("boilWaterStep").tasklet(boilWater)
-        .listener(hotWaterStepListener).build();
+    return stepFactory.get("boilWaterStep")
+        .tasklet(boilWater)
+        .listener(hotWaterStepListener)
+        .build();
   }
 
   @Bean
@@ -32,8 +34,10 @@ public class BatchConfiguration {
   @Bean
   public Step addWaterStep(StepBuilderFactory stepFactory, AddWater addWater,
       HotWaterStepListener hotWaterStepListener) {
-    return stepFactory.get("addWaterStep").tasklet(addWater)
-        .listener(hotWaterStepListener).build();
+    return stepFactory.get("addWaterStep")
+        .tasklet(addWater)
+        .listener(hotWaterStepListener)
+        .build();
   }
 
   @Bean
@@ -42,10 +46,9 @@ public class BatchConfiguration {
       @Qualifier("addTeaStep") Step addTeaStep,
       @Qualifier("addWaterStep") Step addWaterStep) {
     return jobBuilderFactory.get("prepareTeaJob")
-        .flow(boilWaterStep)
+        .start(boilWaterStep)
         .next(addTeaStep)
         .next(addWaterStep)
-        .end()
         .build();
   }
 }
