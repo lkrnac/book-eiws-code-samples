@@ -20,12 +20,12 @@ public class HotWaterStepListener {
   }
 
   @BeforeStep
-  public void beforeStep(StepExecution stepExecution) {
+  public void beforeHotWaterStep(StepExecution stepExecution) {
     executablePoint.execute("Be carefull with hot water!");
   }
 
   @AfterStep
-  public ExitStatus afterStep(StepExecution stepExecution) {
+  public ExitStatus afterHotWaterStep(StepExecution stepExecution) {
     executablePoint.execute("Step involving hot water manipulation is done");
     return ExitStatus.COMPLETED;
   }
