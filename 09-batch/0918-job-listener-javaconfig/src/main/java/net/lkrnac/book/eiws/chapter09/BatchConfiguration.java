@@ -39,10 +39,9 @@ public class BatchConfiguration {
       TeaJobListener teaJobListener) {
     return jobBuilderFactory.get("prepareTeaJob")
         .listener(teaJobListener)
-        .flow(boilWaterStep)
+        .start(boilWaterStep)
         .next(addTeaStep)
         .next(addWaterStep)
-        .end()
         .build();
   }
 }
