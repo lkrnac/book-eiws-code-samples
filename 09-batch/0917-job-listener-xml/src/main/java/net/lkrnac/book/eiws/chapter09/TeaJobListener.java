@@ -19,12 +19,12 @@ public class TeaJobListener {
   }
 
   @BeforeJob
-  public void beforeJob(JobExecution jobExecution) {
+  public void beforeTeaJob(JobExecution jobExecution) {
     executablePoint.execute("It's tea time!");
   }
 
   @AfterJob
-  public void afterJob(JobExecution jobExecution) {
+  public void afterTeaJob(JobExecution jobExecution) {
     executablePoint.execute("Enjoy your tea!");
   }
 }
