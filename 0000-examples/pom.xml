@@ -153,7 +153,7 @@
     <module>../09-batch/0919-step-listener-xml</module>
     <module>../09-batch/0920-step-listener-javaconfig</module>
     <module>../09-batch/0921-chunk-listener-xml</module>
-    <module>../09-batch/09xx-chunk-listener-javaconfig</module>
+    <module>../09-batch/0922-chunk-listener-javaconfig</module>
     <module>../09-batch/09xx-item-stream-javaconfig</module>
     <module>../09-batch/09xx-item-stream-xml</module>
     <module>../09-batch/09xx-retry-javaconfig</module>
