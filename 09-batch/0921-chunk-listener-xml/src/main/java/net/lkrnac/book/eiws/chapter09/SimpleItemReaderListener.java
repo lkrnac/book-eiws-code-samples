@@ -2,12 +2,14 @@ package net.lkrnac.book.eiws.chapter09;
 
 import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
 
-import org.springframework.batch.core.ItemReadListener;
+import org.springframework.batch.core.annotation.AfterRead;
+import org.springframework.batch.core.annotation.BeforeRead;
+import org.springframework.batch.core.annotation.OnReadError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SimpleItemReaderListener implements ItemReadListener<String> {
+public class SimpleItemReaderListener {
   private SimpleExecutablePoint executablePoint;
 
   @Autowired
@@ -16,19 +18,18 @@ public class SimpleItemReaderListener implements ItemReadListener<String> {
     this.executablePoint = executablePoint;
   }
 
-  @Override
+  @BeforeRead
   public void beforeRead() {
     executablePoint.execute("Starting to read...");
   }
 
-  @Override
+  @AfterRead
   public void afterRead(String item) {
     executablePoint.execute("Read finished, item: " + item);
   }
 
-  @Override
+  @OnReadError
   public void onReadError(Exception ex) {
     executablePoint.execute("Error occured while reading");
   }
-
 }
