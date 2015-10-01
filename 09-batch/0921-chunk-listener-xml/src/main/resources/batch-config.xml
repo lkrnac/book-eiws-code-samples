@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/batch/spring-batch.xsd
     http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans.xsd">
-  
+
   <job id="simpleRecordsJob">
     <step id="simpleRecordsStep">
       <tasklet>
