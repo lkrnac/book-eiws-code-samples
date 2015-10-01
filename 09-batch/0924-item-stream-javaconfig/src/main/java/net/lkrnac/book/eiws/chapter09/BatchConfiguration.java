@@ -34,8 +34,7 @@ public class BatchConfiguration {
   public Job simpleRecordsJob(JobBuilderFactory jobBuilderFactory,
       Step simpleRecordsStep) {
     return jobBuilderFactory.get("simpleRecordsJob")
-        .flow(simpleRecordsStep)
-        .end()
+        .start(simpleRecordsStep)
         .build();
   }
 }
