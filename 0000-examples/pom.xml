@@ -157,8 +157,8 @@
     <module>../09-batch/0923-item-stream-xml</module>
     <module>../09-batch/0924-item-stream-javaconfig</module>
     <module>../09-batch/0925-job-inheritance</module>
-    <module>../09-batch/0926-step-restart-xml</module>
-    <module>../09-batch/09xx-job-restart-javaconfig</module>
+    <module>../09-batch/0926-restart-xml</module>
+    <module>../09-batch/0927-restart-javaconfig</module>
     <module>../09-batch/09xx-skip-xml</module>
     <module>../09-batch/09xx-skip-javaconfig</module>
     <module>../09-batch/09xx-retry-javaconfig</module>
