@@ -156,7 +156,7 @@
     <module>../09-batch/0922-chunk-listener-javaconfig</module>
     <module>../09-batch/0923-item-stream-xml</module>
     <module>../09-batch/0924-item-stream-javaconfig</module>
-    <module>../09-batch/0925-skip-xml</module>
+    <module>../09-batch/09xx-skip-xml</module>
     <module>../09-batch/09xx-skip-javaconfig</module>
     <module>../09-batch/09xx-retry-javaconfig</module>
     <module>../09-batch/09xx-retry-xml</module>
