@@ -25,9 +25,11 @@ public class AddSugar implements Tasklet {
   @Override
   public RepeatStatus execute(StepContribution contribution,
       ChunkContext chunkContext) throws Exception {
-    simpleExecutableStep.execute("Add one spoon of sugar");
-    sugarCounter.setSpoonsCount(sugarCounter.getSpoonsCount() + 1);
-    return (sugarCounter.getSpoonsCount() > 1) ? RepeatStatus.FINISHED
-        : RepeatStatus.CONTINUABLE;
+    if (sugarCounter.addSugar()) {
+      simpleExecutableStep.execute("Add one spoon of sugar");
+      return RepeatStatus.CONTINUABLE;
+    } else {
+      return RepeatStatus.FINISHED;
+    }
   }
 }

@@ -41,14 +41,13 @@ public class BatchConfiguration {
   public Job prepareTeaJob(JobBuilderFactory jobBuilderFactory,
       @Qualifier("boilWaterStep") Step boilWaterStep,
       @Qualifier("addTeaStep") Step addTeaStep,
-      @Qualifier("addSugarStep") Step addSugarStep,
-      @Qualifier("addWaterStep") Step addWaterStep) {
+      @Qualifier("addWaterStep") Step addWaterStep,
+      @Qualifier("addSugarStep") Step addSugarStep) {
     return jobBuilderFactory.get("prepareTeaJob")
-        .flow(boilWaterStep)
+        .start(boilWaterStep)
         .next(addTeaStep)
-        .next(addSugarStep)
         .next(addWaterStep)
-        .end()
+        .next(addSugarStep)
         .build();
   }
 }
