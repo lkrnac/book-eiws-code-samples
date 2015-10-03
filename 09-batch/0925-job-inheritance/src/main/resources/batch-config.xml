@@ -7,33 +7,32 @@
   http://www.springframework.org/schema/beans 
   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <step id="boilWaterStepParent" abstract="true">
+  <step id="boilWaterStep" abstract="true">
     <tasklet ref="boilWater" />
   </step>
-  <step id="addTeaStepParent" abstract="true">
+  <step id="addTeaStep" abstract="true">
     <tasklet ref="addTea" />
   </step>
-  <step id="addWaterStepParent" abstract="true">
+  <step id="addWaterStep" abstract="true">
     <tasklet ref="addWater" />
   </step>
 
-  <job id="prepareTeaJobPrent" abstract="true">
+  <job id="prepareTeaJob" abstract="true">
     <listeners>
       <listener ref="teaJobListener"/>
     </listeners>
   </job>
 
-  <job id="prepareTeaJob" parent="prepareTeaJobPrent">
-    <step id="boilWaterStepForMildTea" parent="boilWaterStepParent" next="addTeaStepForMildTea" />
-    <step id="addTeaStepForMildTea" parent="addTeaStepParent" next="addWaterStepForMildTea"/>
-    <step id="addWaterStepForMildTea" parent="addWaterStepParent"/>
+  <job id="prepareMildTeaJob" parent="prepareTeaJob">
+    <step id="boilWaterForMildTea" parent="boilWaterStep" next="addTeaForMildTea" />
+    <step id="addTeaForMildTea" parent="addTeaStep" next="addWaterForMildTea"/>
+    <step id="addWaterForMildTea" parent="addWaterStep"/>
   </job>
   
-  <job id="prepareStrongTeaJob" parent="prepareTeaJobPrent">
-    <step id="boilWaterStepForStringTea" parent="boilWaterStepParent" next="addTeaStep1ForStringTea" />
-    <step id="addTeaStep1ForStringTea" parent="addTeaStepParent" next="addTeaStep2ForStringTea"/>
-    <step id="addTeaStep2ForStringTea" parent="addTeaStepParent" next="addWaterStepForStringTea"/>
-    <step id="addWaterStepForStringTea" parent="addWaterStepParent"/>
+  <job id="prepareStrongTeaJob" parent="prepareTeaJob">
+    <step id="boilWaterForStrongTea" parent="boilWaterStep" next="addTea1ForStrongTea" />
+    <step id="addTea1ForStrongTea" parent="addTeaStep" next="addTea2ForStrongTea"/>
+    <step id="addTea2ForStrongTea" parent="addTeaStep" next="addWaterForStrongTea"/>
+    <step id="addWaterForStrongTea" parent="addWaterStep"/>
   </job>
-  
 </beans:beans>
