@@ -24,8 +24,16 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
 
     // THEN
     TestExecutablePoint testExecutableStep = (TestExecutablePoint) executableStep;
+    Assert.assertEquals(testExecutableStep.getMessage(), "It's tea time!");
     Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Enjoy your tea!");
+    Assert.assertEquals(testExecutableStep.getMessage(), "It's tea time!");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
+    Assert.assertEquals(testExecutableStep.getMessage(), "Enjoy your tea!");
   }
 }

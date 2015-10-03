@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
-  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="http://www.springframework.org/schema/batch"
+  xsi:schemaLocation="http://www.springframework.org/schema/batch 
+  http://www.springframework.org/schema/batch/spring-batch.xsd
+  http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <batch:step id="boilWaterStep">
-    <batch:tasklet ref="boilWater" />
-  </batch:step>
-  <batch:step id="addTeaStep">
-    <batch:tasklet ref="addTea" />
-  </batch:step>
-  <batch:step id="addWaterStep">
-    <batch:tasklet ref="addWater" />
-  </batch:step>
+  <step id="boilWaterStepParent" abstract="true">
+    <tasklet ref="boilWater" />
+  </step>
+  <step id="addTeaStepParent" abstract="true">
+    <tasklet ref="addTea" />
+  </step>
+  <step id="addWaterStepParent" abstract="true">
+    <tasklet ref="addWater" />
+  </step>
 
-  <batch:job id="prepareTeaJob">
-    <batch:step id="boilWaterStepChild" parent="boilWaterStep" next="addTeaStepChild" />
-    <batch:step id="addTeaStepChild" parent="addTeaStep" next="addWaterStepChild"/>
-    <batch:step id="addWaterStepChild" parent="addWaterStep"/>
-  </batch:job>
-</beans>
+  <job id="prepareTeaJobPrent" abstract="true">
+    <listeners>
+      <listener ref="teaJobListener"/>
+    </listeners>
+  </job>
+
+  <job id="prepareTeaJob" parent="prepareTeaJobPrent">
+    <step id="boilWaterStepForMildTea" parent="boilWaterStepParent" next="addTeaStepForMildTea" />
+    <step id="addTeaStepForMildTea" parent="addTeaStepParent" next="addWaterStepForMildTea"/>
+    <step id="addWaterStepForMildTea" parent="addWaterStepParent"/>
+  </job>
+  
+  <job id="prepareStrongTeaJob" parent="prepareTeaJobPrent">
+    <step id="boilWaterStepForStringTea" parent="boilWaterStepParent" next="addTeaStep1ForStringTea" />
+    <step id="addTeaStep1ForStringTea" parent="addTeaStepParent" next="addTeaStep2ForStringTea"/>
+    <step id="addTeaStep2ForStringTea" parent="addTeaStepParent" next="addWaterStepForStringTea"/>
+    <step id="addWaterStepForStringTea" parent="addWaterStepParent"/>
+  </job>
+  
+</beans:beans>
