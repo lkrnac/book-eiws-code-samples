@@ -160,7 +160,7 @@
     <module>../09-batch/0926-restart-xml</module>
     <module>../09-batch/0927-restart-javaconfig</module>
     <module>../09-batch/0928-repeat</module>
-    <module>../09-batch/09xx-skip-xml</module>
+    <module>../09-batch/0929-skip-xml</module>
     <module>../09-batch/09xx-skip-javaconfig</module>
     <module>../09-batch/09xx-retry-javaconfig</module>
     <module>../09-batch/09xx-retry-xml</module>
