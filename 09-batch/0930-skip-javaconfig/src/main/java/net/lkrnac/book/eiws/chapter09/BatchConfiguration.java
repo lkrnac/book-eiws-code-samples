@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableBatchProcessing
 public class BatchConfiguration {
-
   @Bean
   public Step simpleRecordsStep(StepBuilderFactory stepBuilderFactory,
       SimpleRecordReader simpleRecordReader,
@@ -35,11 +34,7 @@ public class BatchConfiguration {
   }
 
   @Bean
-  public Job simpleRecordsJob(JobBuilderFactory jobBuilderFactory,
-      Step simpleRecordsStep) {
-    return jobBuilderFactory.get("simpleRecordsJob")
-        .flow(simpleRecordsStep)
-        .end()
-        .build();
+  public Job simpleRecordsJob(JobBuilderFactory jobBuilderFactory, Step simpleRecordsStep) {
+    return jobBuilderFactory.get("simpleRecordsJob").start(simpleRecordsStep).build();
   }
 }
