@@ -45,10 +45,9 @@ public class BatchConfiguration {
       @Qualifier("addTeaStep") Step addTeaStep,
       @Qualifier("addWaterStep") Step addWaterStep) {
     return jobBuilderFactory.get("prepareTeaJob")
-        .flow(boilWaterStep)
+        .start(boilWaterStep)
         .next(addTeaStep)
         .next(addWaterStep)
-        .end()
         .build();
   }
 
@@ -59,13 +58,11 @@ public class BatchConfiguration {
       @Qualifier("addWaterStep") Step addWaterStep) {
     FlowJob job =
         (FlowJob) jobBuilderFactory.get("prepareTeaJobNotRestartable")
-            .flow(boilWaterStep)
+            .start(boilWaterStep)
             .next(addTeaStep)
             .next(addWaterStep)
-            .end()
             .build();
     job.setRestartable(false);
     return job;
   }
-
 }
