@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
-  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="http://www.springframework.org/schema/batch"
+  xsi:schemaLocation="http://www.springframework.org/schema/batch 
+  http://www.springframework.org/schema/batch/spring-batch.xsd
+  http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans.xsd">
   
-  <batch:step id="boilWaterStep">
-    <batch:tasklet ref="boilWater" allow-start-if-complete="true"/>
-  </batch:step>
-  <batch:step id="addTeaStep">
-    <batch:tasklet ref="addTea" allow-start-if-complete="true" start-limit="2"/>
-  </batch:step>
-  <batch:step id="addWaterStep">
-    <batch:tasklet ref="addWater"/>
-  </batch:step>
+  <step id="boilWaterStepParent">
+    <tasklet ref="boilWater" allow-start-if-complete="true"/>
+  </step>
+  <step id="addTeaStepParent">
+    <tasklet ref="addTea" allow-start-if-complete="true" start-limit="2"/>
+  </step>
+  <step id="addWaterStepParent">
+    <tasklet ref="addWater"/>
+  </step>
   
-  <batch:job id="prepareTeaJob">
-    <batch:step id="boilWaterStepChild" parent="boilWaterStep" next="addTeaStepChild"/>
-    <batch:step id="addTeaStepChild" parent="addTeaStep" next="addWaterStepChild"/>
-    <batch:step id="addWaterStepChild" parent="addWaterStep"/>
-  </batch:job>
+  <job id="prepareTeaJob">
+    <step id="boilWaterStep" parent="boilWaterStepParent" next="addTeaStep"/>
+    <step id="addTeaStep" parent="addTeaStepParent" next="addWaterStep"/>
+    <step id="addWaterStep" parent="addWaterStepParent"/>
+  </job>
   
-  <batch:job id="prepareTeaJobNotRestartable" restartable="false">
-    <batch:step id="boilWaterStepChildNR" parent="boilWaterStep" next="addTeaStepChildNR"/>
-    <batch:step id="addTeaStepChildNR" parent="addTeaStep" next="addWaterStepChildNR"/>
-    <batch:step id="addWaterStepChildNR" parent="addWaterStep"/>
-  </batch:job>
-</beans>
+  <job id="prepareTeaJobNotRestartable" restartable="false">
+    <step id="boilWaterStepNR" parent="boilWaterStepParent" next="addTeaStepNR"/>
+    <step id="addTeaStepNR" parent="addTeaStepParent" next="addWaterStepNR"/>
+    <step id="addWaterStepNR" parent="addWaterStepParent"/>
+  </job>
+</beans:beans>
