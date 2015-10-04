@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleRecordWriter implements ItemWriter<String> {
   private WriteRepository writeRepository;
-  private boolean errorSimulated = false;
+  private int errorSimulated = 0;
 
   @Autowired
   public SimpleRecordWriter(WriteRepository writeRepository) {
@@ -25,8 +25,8 @@ public class SimpleRecordWriter implements ItemWriter<String> {
   }
 
   public void preWriteHook() {
-    if (!errorSimulated) {
-      errorSimulated = true;
+    if (errorSimulated < 2) {
+      errorSimulated++;
       throw new IllegalStateException("error occured");
     }
   }
