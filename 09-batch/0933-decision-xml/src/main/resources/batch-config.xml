@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="http://www.springframework.org/schema/batch"
+  xsi:schemaLocation="http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  <job id="prepareTeaJob">
+    <step id="boilWaterStep" next="addTeaStep">
+      <tasklet ref="boilWater"/>
+    </step>
+    <step id="addTeaStep" next="addWaterStep">
+      <tasklet ref="addTea"/>
+    </step>
+    <step id="addWaterStep" next="teaIngredientDecision">
+      <tasklet ref="addWater"/>
+    </step>
+    <decision decider="teaIngredientDecider" id="teaIngredientDecision">
+      <next on="milk" to="addMilkStep"/>
+      <end on="COMPLETED"/>
+    </decision>
+    <step id="addMilkStep">
+      <tasklet ref="addMilk"/>
+    </step>
+  </job>
+</beans:beans>

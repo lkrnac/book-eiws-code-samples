@@ -45,16 +45,19 @@ public class BatchConfiguration {
       @Qualifier("addWaterStep") Step addWaterStep,
       @Qualifier("addMilkStep") Step addMilkStep,
       TeaIngredientDecider teaIngredientDecider) {
+    //@formatter:off
     return jobBuilderFactory.get("prepareTeaJob")
-        .flow(boilWaterStep)
+        .start(boilWaterStep)
         .next(addTeaStep)
         .next(addWaterStep)
         .next(teaIngredientDecider)
-        .on("milk")
-        .to(addMilkStep)
-        .from(teaIngredientDecider)
-        .on(ExitStatus.COMPLETED.getExitCode())
-        .end()
-        .build().build();
+          .on("milk")
+            .to(addMilkStep)
+            .from(teaIngredientDecider)
+          .on(ExitStatus.COMPLETED.getExitCode())
+            .end()
+          .build()
+        .build();
+    //@formatter:on
   }
 }
