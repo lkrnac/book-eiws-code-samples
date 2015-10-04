@@ -7,8 +7,7 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @EnableBatchProcessing
-@ImportResource({ "classpath:batch-slave-config.xml",
-    "classpath:jms-config.xml" })
+@ImportResource("classpath:batch-slave-config.xml")
 public class BatchSlaveApplication {
   public static void main(String[] args) throws InterruptedException {
     SpringApplication.run(BatchSlaveApplication.class, args);

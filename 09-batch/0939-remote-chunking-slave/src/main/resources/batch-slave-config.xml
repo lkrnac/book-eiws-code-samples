@@ -4,21 +4,23 @@
   xmlns:batch="http://www.springframework.org/schema/batch"
   xmlns:int="http://www.springframework.org/schema/integration"
   xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
-  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms-4.1.xsd
-		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+  xsi:schemaLocation="http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration/jms 
+    http://www.springframework.org/schema/integration/jms/spring-integration-jms-4.1.xsd
+    http://www.springframework.org/schema/integration 
+    http://www.springframework.org/schema/integration/spring-integration.xsd">
 
   <import resource="classpath:jms-config.xml"/>
 
-  <int:channel id="inSlaveChannel" />
-  <int:channel id="outSlaveChannel" />
-
   <int-jms:message-driven-channel-adapter id="inSlaveAdapter" 
     destination="masterCommands" channel="inSlaveChannel" />
-
-  <int-jms:outbound-channel-adapter id="outSlaveAdapter"
-    destination="slaveResponses" channel="outSlaveChannel"/>
+  <int:channel id="inSlaveChannel" />
+    
+  <int:service-activator id="slaveServiceActivator" method="handleChunk"
+    input-channel="inSlaveChannel" output-channel="outSlaveChannel" ref="slaveChunkHandler"/>
 
   <bean id="slaveChunkHandler"
     class="org.springframework.batch.integration.chunk.ChunkProcessorChunkHandler">
@@ -36,6 +38,7 @@
     </property>
   </bean>
   
-  <int:service-activator id="slaveServiceActivator" method="handleChunk"
-    input-channel="inSlaveChannel" output-channel="outSlaveChannel" ref="slaveChunkHandler"/>
+  <int:channel id="outSlaveChannel" />
+  <int-jms:outbound-channel-adapter id="outSlaveAdapter"
+    destination="slaveResponses" channel="outSlaveChannel"/>
 </beans>

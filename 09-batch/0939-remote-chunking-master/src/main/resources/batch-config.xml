@@ -10,34 +10,32 @@
 		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
   
   <import resource="classpath:jms-config.xml"/>
+
+  <bean class="org.springframework.batch.core.scope.StepScope">
+    <property name="proxyTargetClass" value="true"/>
+  </bean>
   
   <batch:job id="simpleRecordsJob">
     <batch:step id="simpleRecordsStep">
       <batch:tasklet>
-        <batch:chunk reader="simpleRecordReader" writer="simpleRecordWriter" 
+        <batch:chunk reader="simpleRecordReader" writer="remoteRecordWriter" 
           commit-interval="4" />
       </batch:tasklet>
     </batch:step>
   </batch:job>
-
-  <int-jms:outbound-channel-adapter id="outMasterAdapter"  destination="masterCommands"/>
-
+  
+  <bean id="remoteRecordWriter" scope="step"
+    class="org.springframework.batch.integration.chunk.ChunkMessageChannelItemWriter">
+    <property name="messagingOperations" ref="messagingTemplate" />
+    <property name="replyChannel" ref="inMasterChannel" />
+  </bean>
+  
   <bean id="messagingTemplate" class="org.springframework.integration.core.MessagingTemplate">
     <property name="defaultChannel" ref="outMasterAdapter" />
     <property name="receiveTimeout" value="2000" />
   </bean>
 
-  <bean id="simpleRecordWriter" scope="step"
-    class="org.springframework.batch.integration.chunk.ChunkMessageChannelItemWriter">
-    <property name="messagingOperations" ref="messagingTemplate" />
-    <property name="replyChannel" ref="inMasterChannel" />
-  </bean>
-
-  <bean id="remoteChunkHandler"
-    class="org.springframework.batch.integration.chunk.RemoteChunkHandlerFactoryBean">
-    <property name="chunkWriter" ref="simpleRecordWriter" />
-    <property name="step" ref="simpleRecordsStep" />
-  </bean>
+  <int-jms:outbound-channel-adapter id="outMasterAdapter"  destination="masterCommands"/>
 
   <int:channel id="inMasterChannel">
     <int:queue />
@@ -45,8 +43,4 @@
 
   <int-jms:message-driven-channel-adapter
     id="inMasterAdapter" destination="slaveResponses" channel="inMasterChannel" />
-    
-  <bean class="org.springframework.batch.core.scope.StepScope">
-    <property name="proxyTargetClass" value="true"/>
-  </bean>
 </beans>
