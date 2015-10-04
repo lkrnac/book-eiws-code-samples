@@ -9,7 +9,6 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.job.flow.FlowJob;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,13 +55,12 @@ public class BatchConfiguration {
       @Qualifier("boilWaterStep") Step boilWaterStep,
       @Qualifier("addTeaStep") Step addTeaStep,
       @Qualifier("addWaterStep") Step addWaterStep) {
-    FlowJob job =
-        (FlowJob) jobBuilderFactory.get("prepareTeaJobNotRestartable")
-            .start(boilWaterStep)
-            .next(addTeaStep)
-            .next(addWaterStep)
-            .build();
-    job.setRestartable(false);
+    Job job = jobBuilderFactory.get("prepareTeaJobNotRestartable")
+        .start(boilWaterStep)
+        .next(addTeaStep)
+        .next(addWaterStep)
+        .preventRestart()
+        .build();
     return job;
   }
 }
