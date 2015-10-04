@@ -165,7 +165,7 @@
     <module>../09-batch/0931-retry-xml</module>
     <module>../09-batch/0932-retry-javaconfig</module>
     <module>../09-batch/0933-decision-xml</module>
-    <module>../09-batch/09xx-decision-javaconfig</module>
+    <module>../09-batch/0934-decision-javaconfig</module>
     <module>../09-batch/09xx-multi-threaded-step-xml</module>
     <module>../09-batch/09xx-multi-threaded-step-javaconfig</module>
     <module>../09-batch/09xx-parallel-steps-xml</module>
