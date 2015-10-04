@@ -169,7 +169,7 @@
     <module>../09-batch/0935-multi-threaded-step-xml</module>
     <module>../09-batch/0936-multi-threaded-step-javaconfig</module>
     <module>../09-batch/0937-parallel-steps-xml</module>
-    <module>../09-batch/09xx-parallel-steps-javaconfig</module>
+    <module>../09-batch/0938-parallel-steps-javaconfig</module>
     <module>../09-batch/09xx-remote-chunking-slave</module>
     <module>../09-batch/09xx-remote-chunking-master</module>
     <module>../09-batch/09xx-remote-partitioning-slave</module>
