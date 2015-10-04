@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableBatchProcessing
 public class BatchConfiguration {
-
   @Bean
   public Step simpleRecordsStep(StepBuilderFactory stepBuilderFactory,
       SimpleRecordReader simpleRecordReader,
@@ -29,7 +28,7 @@ public class BatchConfiguration {
         .writer(simpleRecordWriter)
         .faultTolerant()
         .retry(IllegalStateException.class)
-        .retryLimit(2)
+        .retryLimit(3)
         .listener(simpleRetryListener)
         .build();
   }
@@ -37,9 +36,6 @@ public class BatchConfiguration {
   @Bean
   public Job simpleRecordsJob(JobBuilderFactory jobBuilderFactory,
       Step simpleRecordsStep) {
-    return jobBuilderFactory.get("simpleRecordsJob")
-        .flow(simpleRecordsStep)
-        .end()
-        .build();
+    return jobBuilderFactory.get("simpleRecordsJob").start(simpleRecordsStep).build();
   }
 }
