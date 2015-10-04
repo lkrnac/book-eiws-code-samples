@@ -3,7 +3,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>09xx-remote-chunking-master</artifactId>
+  <artifactId>0939-remote-chunking-master</artifactId>
   <packaging>jar</packaging>
 
   <parent>
@@ -27,7 +27,7 @@
     </dependency>
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
-      <artifactId>09xx-remote-chunking-slave</artifactId>
+      <artifactId>0939-remote-chunking-slave</artifactId>
       <version>0.0.2-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
