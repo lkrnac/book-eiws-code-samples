@@ -11,7 +11,7 @@
     <step id="simpleRecordsStep">
       <tasklet>
         <chunk reader="simpleRecordReader" writer="simpleRecordWriter" 
-          processor="simpleRecordProcessor" commit-interval="4" retry-limit="2">
+          processor="simpleRecordProcessor" commit-interval="4" retry-limit="3">
           <retryable-exception-classes>
             <include class="java.lang.IllegalStateException"/>
           </retryable-exception-classes>
