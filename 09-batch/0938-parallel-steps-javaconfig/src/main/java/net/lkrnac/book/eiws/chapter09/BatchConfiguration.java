@@ -56,7 +56,7 @@ public class BatchConfiguration {
       @Qualifier("addWaterStep") Step addWaterStep,
       TaskExecutor customTaskExecutor) {
     return jobBuilderFactory.get("prepareTeaJob")
-        .flow(boilWaterStep)
+        .start(boilWaterStep)
         .split(customTaskExecutor)
         .add(new FlowBuilder<Flow>("addIngredientsSplit")
             .from(boilWaterStep).next(addTeaStep)
