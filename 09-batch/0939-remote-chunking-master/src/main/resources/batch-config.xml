@@ -4,30 +4,19 @@
   xmlns:batch="http://www.springframework.org/schema/batch"
   xmlns:int="http://www.springframework.org/schema/integration"
   xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
-  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
-		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
-  
+  xsi:schemaLocation="http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration/jms 
+    http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
+    http://www.springframework.org/schema/integration 
+    http://www.springframework.org/schema/integration/spring-integration.xsd">
+
   <import resource="classpath:jms-config.xml"/>
 
   <bean class="org.springframework.batch.core.scope.StepScope">
     <property name="proxyTargetClass" value="true"/>
-  </bean>
-  
-  <batch:job id="simpleRecordsJob">
-    <batch:step id="simpleRecordsStep">
-      <batch:tasklet>
-        <batch:chunk reader="simpleRecordReader" writer="remoteRecordWriter" 
-          commit-interval="4" />
-      </batch:tasklet>
-    </batch:step>
-  </batch:job>
-  
-  <bean id="remoteRecordWriter" scope="step"
-    class="org.springframework.batch.integration.chunk.ChunkMessageChannelItemWriter">
-    <property name="messagingOperations" ref="messagingTemplate" />
-    <property name="replyChannel" ref="inMasterChannel" />
   </bean>
   
   <bean id="messagingTemplate" class="org.springframework.integration.core.MessagingTemplate">
@@ -43,4 +32,19 @@
 
   <int-jms:message-driven-channel-adapter
     id="inMasterAdapter" destination="slaveResponses" channel="inMasterChannel" />
+    
+  <batch:job id="simpleRecordsJob">
+    <batch:step id="simpleRecordsStep">
+      <batch:tasklet>
+        <batch:chunk reader="simpleRecordReader" writer="remoteRecordWriter" 
+          commit-interval="4" />
+      </batch:tasklet>
+    </batch:step>
+  </batch:job>
+  
+  <bean id="remoteRecordWriter" scope="step"
+    class="org.springframework.batch.integration.chunk.ChunkMessageChannelItemWriter">
+    <property name="messagingOperations" ref="messagingTemplate" />
+    <property name="replyChannel" ref="inMasterChannel" />
+  </bean>
 </beans>
