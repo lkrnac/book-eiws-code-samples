@@ -5,12 +5,12 @@ import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
 import net.lkrnac.book.eiws.chapter09.step.tea.AddWater;
 import net.lkrnac.book.eiws.chapter09.step.tea.BoilWater;
 
-import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.flow.FlowExecutionStatus;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,7 +54,7 @@ public class BatchConfiguration {
           .on("milk")
             .to(addMilkStep)
             .from(teaIngredientDecider)
-          .on(ExitStatus.COMPLETED.getExitCode())
+          .on(FlowExecutionStatus.COMPLETED.getName())
             .end()
           .build()
         .build();
