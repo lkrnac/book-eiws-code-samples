@@ -43,11 +43,11 @@ public class BatchApplicationTest extends AbstractTestNGSpringContextTests {
         (TestExecutablePoint) executableStep;
     Assert.assertEquals(testExecutableStep.getMessage(), "Boil Water");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Tea");
-    Assert.assertEquals(testExecutableStep.getMessage(),
-        "Add one spoon of sugar");
-    Assert.assertEquals(testExecutableStep.getMessage(),
-        "Add one spoon of sugar");
     Assert.assertEquals(testExecutableStep.getMessage(), "Add Water");
+    Assert.assertEquals(testExecutableStep.getMessage(),
+        "Add one spoon of sugar");
+    Assert.assertEquals(testExecutableStep.getMessage(),
+        "Add one spoon of sugar");
     Assert.assertEquals(jobExecution.getExitStatus(), ExitStatus.COMPLETED);
   }
 
