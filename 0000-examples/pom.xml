@@ -162,8 +162,8 @@
     <module>../09-batch/0928-repeat</module>
     <module>../09-batch/0929-skip-xml</module>
     <module>../09-batch/0930-skip-javaconfig</module>
+    <module>../09-batch/0931-retry-xml</module>
     <module>../09-batch/09xx-retry-javaconfig</module>
-    <module>../09-batch/09xx-retry-xml</module>
     <module>../09-batch/09xx-decision-javaconfig</module>
     <module>../09-batch/09xx-decision-xml</module>
     <module>../09-batch/09xx-multi-threaded-step-xml</module>
