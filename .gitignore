@@ -5,6 +5,7 @@
 /Servers/
 /RemoteSystemsTempFiles/
 /**/.settings/
+/**/.metadata/
 /**/.classpath
 /**/.springBeans
 /**/.project

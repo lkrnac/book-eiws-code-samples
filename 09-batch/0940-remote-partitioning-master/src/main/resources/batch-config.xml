@@ -23,14 +23,15 @@
     </batch:step>
   </batch:job>
 
-  <bean id="partitioner"
-    class="org.springframework.batch.core.partition.support.SimplePartitioner" />
+<!--   <bean id="partitioner" -->
+<!--     class="org.springframework.batch.core.partition.support.SimplePartitioner" /> -->
+  <bean id="partitioner" class="net.lkrnac.book.eiws.chapter09.RecordsPartitioner"/>
 
   <bean id="partitionHandler"
     class="org.springframework.batch.integration.partition.MessageChannelPartitionHandler">
     <property name="stepName" value="simpleRecordsStep" />
     <property name="replyChannel" ref="inMasterAggregatedChanngel"/>
-    <property name="gridSize" value="1" />
+    <property name="gridSize" value="2" />
     <property name="messagingOperations" ref="messagingTemplate">
     </property>
   </bean>

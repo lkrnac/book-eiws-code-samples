@@ -24,10 +24,16 @@
       <groupId>net.lkrnac.book.eiws</groupId>
       <artifactId>0900-batch-common</artifactId>
       <version>0.0.2-SNAPSHOT</version>
-    </dependency>
+    </dependency> 
     <dependency>
       <groupId>net.lkrnac.book.eiws</groupId>
       <artifactId>0940-remote-partitioning-slave</artifactId>
+      <version>0.0.2-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.lkrnac.book.eiws</groupId>
+      <artifactId>0940-remote-partitioning-sql-server</artifactId>
       <version>0.0.2-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
