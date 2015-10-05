@@ -172,6 +172,7 @@
     <module>../09-batch/0938-parallel-steps-javaconfig</module>
     <module>../09-batch/0939-remote-chunking-slave</module>
     <module>../09-batch/0939-remote-chunking-master</module>
+    <module>../09-batch/0940-remote-partitioning-sql-server</module>
     <module>../09-batch/0940-remote-partitioning-slave</module>
     <module>../09-batch/0940-remote-partitioning-master</module>
   </modules>
