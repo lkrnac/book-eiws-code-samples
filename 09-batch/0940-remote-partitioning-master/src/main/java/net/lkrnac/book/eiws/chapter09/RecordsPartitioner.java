@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class RecordsPartitioner implements Partitioner {
-
   @Override
   public Map<String, ExecutionContext> partition(int gridSize) {
     int min = 0;
@@ -22,31 +21,29 @@ public class RecordsPartitioner implements Partitioner {
     log.info("min = " + min + " max = " + max + " targetSize = " + targetSize);
 
     Map<String, ExecutionContext> result = new HashMap<String, ExecutionContext>();
-    int number = 0;
+    int partitionIdx = 0;
     int start = min;
     int end = start + targetSize - 1;
 
     while (start < max) {
-
       ExecutionContext value = new ExecutionContext();
-      result.put("partition" + number, value);
+      result.put("partition" + partitionIdx, value);
 
       if (end > max) {
-        end = max;
+        end = max - 1;
       }
-      log.info("partitionStart" + number + " = " + start);
-      log.info("partitionEnd" + number + " = " + end);
+      log.info("partitionStart" + partitionIdx + " = " + start);
+      log.info("partitionEnd" + partitionIdx + " = " + end);
 
       value.putInt("currentIndex", start);
       value.putInt("partitionEnd", end);
       start += targetSize;
       end += targetSize;
-      number++;
+      partitionIdx++;
     }
 
     log.info("partitions = " + result.size());
     log.info("*********************************");
     return result;
   }
-
 }

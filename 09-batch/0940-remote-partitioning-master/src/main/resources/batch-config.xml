@@ -3,10 +3,14 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
   xmlns:int="http://www.springframework.org/schema/integration"
   xmlns:int-jms="http://www.springframework.org/schema/integration/jms"
-  xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
-		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+  xsi:schemaLocation="http://www.springframework.org/schema/batch 
+    http://www.springframework.org/schema/batch/spring-batch.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration/jms 
+    http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
+    http://www.springframework.org/schema/integration 
+    http://www.springframework.org/schema/integration/spring-integration.xsd">
 
   <import resource="classpath:jms-config.xml" />
 
@@ -23,8 +27,6 @@
     </batch:step>
   </batch:job>
 
-<!--   <bean id="partitioner" -->
-<!--     class="org.springframework.batch.core.partition.support.SimplePartitioner" /> -->
   <bean id="partitioner" class="net.lkrnac.book.eiws.chapter09.RecordsPartitioner"/>
 
   <bean id="partitionHandler"
@@ -43,7 +45,6 @@
 
   <int-jms:outbound-channel-adapter id="outMasterAdapter"
     destination="masterCommands" />
-    
 
   <int:channel id="inMasterChannel" />
   <int-jms:message-driven-channel-adapter
