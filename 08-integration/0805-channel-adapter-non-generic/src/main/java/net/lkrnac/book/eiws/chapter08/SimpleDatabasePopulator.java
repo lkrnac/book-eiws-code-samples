@@ -1,4 +1,4 @@
-package net.lkrnac.book.eiws.chapter09;
+package net.lkrnac.book.eiws.chapter08;
 
 import javax.annotation.PostConstruct;
 
@@ -18,8 +18,7 @@ public class SimpleDatabasePopulator {
 
   @PostConstruct
   public void initDbTable() {
-    jdbcTemplate.execute("drop table USERS if exists");
-    jdbcTemplate
-        .execute("create table USERS(NAME varchar(50), EMAIL varchar(50))");
+    jdbcTemplate.execute("drop table TEXT_TABLE if exists");
+    jdbcTemplate.execute("create table TEXT_TABLE(TEXT varchar(30))");
   }
 }

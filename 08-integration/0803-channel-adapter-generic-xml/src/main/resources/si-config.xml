@@ -10,12 +10,11 @@
 		http://www.springframework.org/schema/integration 
     http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-  <context:component-scan annotation-config="true"
-    base-package="net.lkrnac.book.eiws.chapter08" />
+  <context:component-scan base-package="net.lkrnac.book.eiws.chapter08" />
 
   <int:inbound-channel-adapter ref="readService"
     method="read" channel="inChannel">
-    <int:poller fixed-rate="1000" />
+    <int:poller fixed-rate="1000" max-messages-per-poll="1"/>
   </int:inbound-channel-adapter>
 
   <int:channel id="inChannel" />
