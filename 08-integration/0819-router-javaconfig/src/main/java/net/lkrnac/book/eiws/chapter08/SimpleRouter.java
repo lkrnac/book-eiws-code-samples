@@ -6,12 +6,12 @@ import org.springframework.integration.annotation.Router;
 import org.springframework.messaging.MessageChannel;
 
 @MessageEndpoint
-public class SimpleRourter {
+public class SimpleRouter {
   private MessageChannel route1Channel;
   private MessageChannel route2Channel;
 
   @Autowired
-  public SimpleRourter(MessageChannel route1Channel,
+  public SimpleRouter(MessageChannel route1Channel,
       MessageChannel route2Channel) {
     super();
     this.route1Channel = route1Channel;
