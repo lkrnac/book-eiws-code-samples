@@ -17,7 +17,7 @@ public class JmsApplicationTests extends AbstractTestNGSpringContextTests {
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
-  @Test(timeOut = 3000)
+  @Test // (timeOut = 3000)
   public void testJms() throws Exception {
     // GIVEN: Spring configuration
 
