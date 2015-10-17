@@ -10,129 +10,129 @@
   <modules>
     <module>../0000-examples-parent</module>
     <module>../0000-common-library</module>
-    <module>../01-async/0101-java-concurrency</module>
-    <module>../01-async/0102-async-job</module>
-    <module>../01-async/0103-scheduled-job</module>
-    <module>../01-async/0104-java-scheduling</module>
-    <module>../02-remoting/0201-java-rmi-service</module>
-    <module>../02-remoting/0201-java-rmi-client</module>
-    <module>../02-remoting/0202-spring-rmi-java-config-service</module>
-    <module>../02-remoting/0202-spring-rmi-java-config-client</module>
-    <module>../02-remoting/0203-spring-rmi-xml-config-service</module>
-    <module>../02-remoting/0203-spring-rmi-xml-config-client</module>
-    <module>../02-remoting/0204-http-invoker-handler-servlet-java-config</module>
-    <module>../02-remoting/0205-http-invoker-handler-servlet-xml-config</module>
-    <module>../02-remoting/0206-http-invoker-dispatcher-servlet</module>
-    <module>../02-remoting/0207-http-invoker-simple-service</module>
-    <module>../02-remoting/0207-http-invoker-simple-client</module>
-    <module>../02-remoting/0208-hessian-handler-servlet-java-config</module>
-    <module>../02-remoting/0209-burlap-handler-servlet-xml-config</module>
-    <module>../02-remoting/0210-hessian-dispatcher-servlet</module>
-    <module>../03-ws/0301-ws-xmlconfig-service</module>
-    <module>../03-ws/0301-ws-xmlconfig-client</module>
-    <module>../03-ws/0302-ws-javaconfig-service</module>
-    <module>../03-ws/0302-ws-javaconfig-client</module>
-    <module>../03-ws/0303-ws-boot-service</module>
-    <module>../03-ws/0303-ws-boot-client</module>
-    <module>../03-ws/0305-ws-interceptor-client</module>
-    <module>../03-ws/0305-ws-interceptor-service</module>    
-    <module>../03-ws/0306-ws-error-client</module>
-    <module>../03-ws/0306-ws-error-service</module>    
-    <module>../03-ws/0307-ws-soapaction-client</module>    
-    <module>../03-ws/0307-ws-soapaction-service</module>    
-    <module>../04-rest/0400-rest-common</module>    
-    <module>../04-rest/0401-rest-jax-rs-server</module>    
-    <module>../04-rest/0402-rest-xml-config-server</module>    
-    <module>../04-rest/0403-rest-java-config-server</module>    
-    <module>../04-rest/0404-rest-boot-server</module>    
-    <module>../04-rest/0404-rest-boot-client</module>
-    <module>../04-rest/0405-rest-restcontroller-server</module>    
-    <module>../04-rest/0405-rest-async-client</module>
-    <module>../04-rest/0406-rest-parameters-server</module>    
-    <module>../04-rest/0406-rest-errorhandler-client</module>    
-    <module>../05-jms/0500-jms-common</module>    
-    <module>../05-jms/0501-jms11-jndi</module>    
-    <module>../05-jms/0502-jms2-jndi</module>    
-    <module>../05-jms/0503-async-jndi</module>
-    <module>../05-jms/0504-async-jms-namespace</module>
-    <module>../05-jms/0505-async-jms-xml</module>
-    <module>../05-jms/0506-async-jms-java-config</module>
-    <module>../05-jms/0507-sync-jms-java-config</module>
-    <module>../05-jms/0508-async-listener-annotation</module>
-    <module>../05-jms/0509-jms-message-converter</module>
-    <module>../05-jms/0510-jms-custom-converter</module>
-    <module>../05-jms/0511-jms-caching-connection-factory</module>
-    <module>../05-jms/0512-jms-message-creator</module>
-    <module>../05-jms/0513-jms-messaging-template</module>
-    <module>../05-jms/0514-jms-message-annotations</module>
-    <module>../05-jms/0515-publish-subscribe-java-config</module>
-    <module>../05-jms/0516-publish-subscribe-spring-boot</module>
-    <module>../06-jms-tx/0600-jms-tx-common</module>
-    <module>../06-jms-tx/0601-java-jms11-sync-tx</module>
-    <module>../06-jms-tx/0602-java-jms20-async-tx</module>
-    <module>../06-jms-tx/0603-auto-acknowledge-listener-success</module>
-    <module>../06-jms-tx/0605-auto-acknowledge-listener-lost</module>
-    <module>../06-jms-tx/0606-auto-acknowledge-sync-lost</module>
-    <module>../06-jms-tx/0607-client-acknowledge-listener-success</module>
-    <module>../06-jms-tx/0608-client-acknowledge-listener-duplicate</module>
-    <module>../06-jms-tx/0609-dups-ok-acknowledge</module>
-    <module>../06-jms-tx/0610-transacted-listener-success</module>
-    <module>../06-jms-tx/0611-transacted-listener-duplicate</module>
-    <module>../06-jms-tx/0612-transacted-xml</module>
-    <module>../06-jms-tx/0613-jms-transaction-manager</module>
-    <module>../06-jms-tx/0614-handle-duplicates-error-after</module>
-    <module>../06-jms-tx/0615-handle-duplicates-error-before</module>
-    <module>../06-jms-tx/06xx-auto-acknowledge-listener-duplicate</module>
-    <module>../07-jta/0700-jta-common</module>
-    <module>../07-jta/0701-jta-xml-config</module>
-    <module>../07-jta/0702-jta-java-config</module>
-    <module>../07-jta/0703-jta-spring-boot</module>
-    <module>../08-integration/0800-integration-common</module>
-    <module>../08-integration/0801-programmatic-message-creation</module>
-    <module>../08-integration/0802-parsing-headers</module>
-    <module>../08-integration/0803-channel-adapter-generic-xml</module>
-    <module>../08-integration/0804-channel-adapter-generic-javaconfig</module>
-    <module>../08-integration/0805-channel-adapter-non-generic</module>
-    <module>../08-integration/0806-service-activator-xml</module>
-    <module>../08-integration/0807-service-activator-javaconfig</module>
-    <module>../08-integration/0808-gateway-generic-xml</module>
-    <module>../08-integration/0809-gateway-generic-javaconfig</module>
-    <module>../08-integration/0810-gateway-non-generic</module>
-    <module>../08-integration/0811-transformer-generic-xml</module>
-    <module>../08-integration/0812-transformer-generic-javaconfig</module>
-    <module>../08-integration/0813-transformer-json</module>
-    <module>../08-integration/0814-header-enricher-xml</module>
-    <module>../08-integration/0815-filter-xml-ref</module>
-    <module>../08-integration/0816-filter-javaconfig</module>
-    <module>../08-integration/0817-filter-xml-spel</module>
-    <module>../08-integration/0818-router-xml-generic</module>
-    <module>../08-integration/0819-router-javaconfig</module>
-    <module>../08-integration/0820-router-xml-message-type</module>
-    <module>../08-integration/0821-bridge-xml</module>
-    <module>../08-integration/0822-bridge-from-javaconfig</module>
-    <module>../08-integration/0823-bridge-to-javaconfig</module>
-    <module>../08-integration/0824-chain-xml</module>
-    <module>../08-integration/0825-splitter-delimiters-xml</module>
-    <module>../08-integration/0826-splitter-javaconfig</module>
-    <module>../08-integration/0827-aggregator-xml</module>
-    <module>../08-integration/0828-aggregator-javaconfig</module>
-    <module>../08-integration/0829-aggregator-default-headers</module>
-    <module>../08-integration/0830-channel-priority-xml</module>
-    <module>../08-integration/0831-channel-rendezvuous-xml</module>
-    <module>../08-integration/0832-channel-executor-xml</module>
-    <module>../08-integration/0833-channel-pub-sub-xml</module>
-    <module>../08-integration/0834-channel-interceptor-xml</module>
-    <module>../08-integration/0835-channel-wire-tap-xml</module>
-    <module>../08-integration/0836-error-handling-sync</module>
-    <module>../08-integration/0837-error-propagated-async</module>
-    <module>../08-integration/0838-error-not-propagated-async</module>
-    <module>../08-integration/0839-error-channel-global</module>
-    <module>../08-integration/0840-error-channel-async</module>
-    <module>../08-integration/0841-transaction-propagation</module>
-    <module>../08-integration/0842-transacted-polling</module>
-    <module>../08-integration/0843-messaging-template</module>
-    <module>../08-integration/08xx-long-polling-xml</module>
-    <module>../08-integration/08xx-channel-null-xml</module>
+<!--     <module>../01-async/0101-java-concurrency</module> -->
+<!--     <module>../01-async/0102-async-job</module> -->
+<!--     <module>../01-async/0103-scheduled-job</module> -->
+<!--     <module>../01-async/0104-java-scheduling</module> -->
+<!--     <module>../02-remoting/0201-java-rmi-service</module> -->
+<!--     <module>../02-remoting/0201-java-rmi-client</module> -->
+<!--     <module>../02-remoting/0202-spring-rmi-java-config-service</module> -->
+<!--     <module>../02-remoting/0202-spring-rmi-java-config-client</module> -->
+<!--     <module>../02-remoting/0203-spring-rmi-xml-config-service</module> -->
+<!--     <module>../02-remoting/0203-spring-rmi-xml-config-client</module> -->
+<!--     <module>../02-remoting/0204-http-invoker-handler-servlet-java-config</module> -->
+<!--     <module>../02-remoting/0205-http-invoker-handler-servlet-xml-config</module> -->
+<!--     <module>../02-remoting/0206-http-invoker-dispatcher-servlet</module> -->
+<!--     <module>../02-remoting/0207-http-invoker-simple-service</module> -->
+<!--     <module>../02-remoting/0207-http-invoker-simple-client</module> -->
+<!--     <module>../02-remoting/0208-hessian-handler-servlet-java-config</module> -->
+<!--     <module>../02-remoting/0209-burlap-handler-servlet-xml-config</module> -->
+<!--     <module>../02-remoting/0210-hessian-dispatcher-servlet</module> -->
+<!--     <module>../03-ws/0301-ws-xmlconfig-service</module> -->
+<!--     <module>../03-ws/0301-ws-xmlconfig-client</module> -->
+<!--     <module>../03-ws/0302-ws-javaconfig-service</module> -->
+<!--     <module>../03-ws/0302-ws-javaconfig-client</module> -->
+<!--     <module>../03-ws/0303-ws-boot-service</module> -->
+<!--     <module>../03-ws/0303-ws-boot-client</module> -->
+<!--     <module>../03-ws/0305-ws-interceptor-client</module> -->
+<!--     <module>../03-ws/0305-ws-interceptor-service</module>     -->
+<!--     <module>../03-ws/0306-ws-error-client</module> -->
+<!--     <module>../03-ws/0306-ws-error-service</module>     -->
+<!--     <module>../03-ws/0307-ws-soapaction-client</module>     -->
+<!--     <module>../03-ws/0307-ws-soapaction-service</module>     -->
+<!--     <module>../04-rest/0400-rest-common</module>     -->
+<!--     <module>../04-rest/0401-rest-jax-rs-server</module>     -->
+<!--     <module>../04-rest/0402-rest-xml-config-server</module>     -->
+<!--     <module>../04-rest/0403-rest-java-config-server</module>     -->
+<!--     <module>../04-rest/0404-rest-boot-server</module>     -->
+<!--     <module>../04-rest/0404-rest-boot-client</module> -->
+<!--     <module>../04-rest/0405-rest-restcontroller-server</module>     -->
+<!--     <module>../04-rest/0405-rest-async-client</module> -->
+<!--     <module>../04-rest/0406-rest-parameters-server</module>     -->
+<!--     <module>../04-rest/0406-rest-errorhandler-client</module>     -->
+<!--     <module>../05-jms/0500-jms-common</module>     -->
+<!--     <module>../05-jms/0501-jms11-jndi</module>     -->
+<!--     <module>../05-jms/0502-jms2-jndi</module>     -->
+<!--     <module>../05-jms/0503-async-jndi</module> -->
+<!--     <module>../05-jms/0504-async-jms-namespace</module> -->
+<!--     <module>../05-jms/0505-async-jms-xml</module> -->
+<!--     <module>../05-jms/0506-async-jms-java-config</module> -->
+<!--     <module>../05-jms/0507-sync-jms-java-config</module> -->
+<!--     <module>../05-jms/0508-async-listener-annotation</module> -->
+<!--     <module>../05-jms/0509-jms-message-converter</module> -->
+<!--     <module>../05-jms/0510-jms-custom-converter</module> -->
+<!--     <module>../05-jms/0511-jms-caching-connection-factory</module> -->
+<!--     <module>../05-jms/0512-jms-message-creator</module> -->
+<!--     <module>../05-jms/0513-jms-messaging-template</module> -->
+<!--     <module>../05-jms/0514-jms-message-annotations</module> -->
+<!--     <module>../05-jms/0515-publish-subscribe-java-config</module> -->
+<!--     <module>../05-jms/0516-publish-subscribe-spring-boot</module> -->
+<!--     <module>../06-jms-tx/0600-jms-tx-common</module> -->
+<!--     <module>../06-jms-tx/0601-java-jms11-sync-tx</module> -->
+<!--     <module>../06-jms-tx/0602-java-jms20-async-tx</module> -->
+<!--     <module>../06-jms-tx/0603-auto-acknowledge-listener-success</module> -->
+<!--     <module>../06-jms-tx/0605-auto-acknowledge-listener-lost</module> -->
+<!--     <module>../06-jms-tx/0606-auto-acknowledge-sync-lost</module> -->
+<!--     <module>../06-jms-tx/0607-client-acknowledge-listener-success</module> -->
+<!--     <module>../06-jms-tx/0608-client-acknowledge-listener-duplicate</module> -->
+<!--     <module>../06-jms-tx/0609-dups-ok-acknowledge</module> -->
+<!--     <module>../06-jms-tx/0610-transacted-listener-success</module> -->
+<!--     <module>../06-jms-tx/0611-transacted-listener-duplicate</module> -->
+<!--     <module>../06-jms-tx/0612-transacted-xml</module> -->
+<!--     <module>../06-jms-tx/0613-jms-transaction-manager</module> -->
+<!--     <module>../06-jms-tx/0614-handle-duplicates-error-after</module> -->
+<!--     <module>../06-jms-tx/0615-handle-duplicates-error-before</module> -->
+<!--     <module>../06-jms-tx/06xx-auto-acknowledge-listener-duplicate</module> -->
+<!--     <module>../07-jta/0700-jta-common</module> -->
+<!--     <module>../07-jta/0701-jta-xml-config</module> -->
+<!--     <module>../07-jta/0702-jta-java-config</module> -->
+<!--     <module>../07-jta/0703-jta-spring-boot</module> -->
+<!--     <module>../08-integration/0800-integration-common</module> -->
+<!--     <module>../08-integration/0801-programmatic-message-creation</module> -->
+<!--     <module>../08-integration/0802-parsing-headers</module> -->
+<!--     <module>../08-integration/0803-channel-adapter-generic-xml</module> -->
+<!--     <module>../08-integration/0804-channel-adapter-generic-javaconfig</module> -->
+<!--     <module>../08-integration/0805-channel-adapter-non-generic</module> -->
+<!--     <module>../08-integration/0806-service-activator-xml</module> -->
+<!--     <module>../08-integration/0807-service-activator-javaconfig</module> -->
+<!--     <module>../08-integration/0808-gateway-generic-xml</module> -->
+<!--     <module>../08-integration/0809-gateway-generic-javaconfig</module> -->
+<!--     <module>../08-integration/0810-gateway-non-generic</module> -->
+<!--     <module>../08-integration/0811-transformer-generic-xml</module> -->
+<!--     <module>../08-integration/0812-transformer-generic-javaconfig</module> -->
+<!--     <module>../08-integration/0813-transformer-json</module> -->
+<!--     <module>../08-integration/0814-header-enricher-xml</module> -->
+<!--     <module>../08-integration/0815-filter-xml-ref</module> -->
+<!--     <module>../08-integration/0816-filter-javaconfig</module> -->
+<!--     <module>../08-integration/0817-filter-xml-spel</module> -->
+<!--     <module>../08-integration/0818-router-xml-generic</module> -->
+<!--     <module>../08-integration/0819-router-javaconfig</module> -->
+<!--     <module>../08-integration/0820-router-xml-message-type</module> -->
+<!--     <module>../08-integration/0821-bridge-xml</module> -->
+<!--     <module>../08-integration/0822-bridge-from-javaconfig</module> -->
+<!--     <module>../08-integration/0823-bridge-to-javaconfig</module> -->
+<!--     <module>../08-integration/0824-chain-xml</module> -->
+<!--     <module>../08-integration/0825-splitter-delimiters-xml</module> -->
+<!--     <module>../08-integration/0826-splitter-javaconfig</module> -->
+<!--     <module>../08-integration/0827-aggregator-xml</module> -->
+<!--     <module>../08-integration/0828-aggregator-javaconfig</module> -->
+<!--     <module>../08-integration/0829-aggregator-default-headers</module> -->
+<!--     <module>../08-integration/0830-channel-priority-xml</module> -->
+<!--     <module>../08-integration/0831-channel-rendezvuous-xml</module> -->
+<!--     <module>../08-integration/0832-channel-executor-xml</module> -->
+<!--     <module>../08-integration/0833-channel-pub-sub-xml</module> -->
+<!--     <module>../08-integration/0834-channel-interceptor-xml</module> -->
+<!--     <module>../08-integration/0835-channel-wire-tap-xml</module> -->
+<!--     <module>../08-integration/0836-error-handling-sync</module> -->
+<!--     <module>../08-integration/0837-error-propagated-async</module> -->
+<!--     <module>../08-integration/0838-error-not-propagated-async</module> -->
+<!--     <module>../08-integration/0839-error-channel-global</module> -->
+<!--     <module>../08-integration/0840-error-channel-async</module> -->
+<!--     <module>../08-integration/0841-transaction-propagation</module> -->
+<!--     <module>../08-integration/0842-transacted-polling</module> -->
+<!--     <module>../08-integration/0843-messaging-template</module> -->
+<!--     <module>../08-integration/08xx-long-polling-xml</module> -->
+<!--     <module>../08-integration/08xx-channel-null-xml</module> -->
     <module>../09-batch/0900-batch-common</module>
     <module>../09-batch/0901-chunk-processing-generic-xml</module>
     <module>../09-batch/0902-chunk-processing-generic-javaconfig</module>

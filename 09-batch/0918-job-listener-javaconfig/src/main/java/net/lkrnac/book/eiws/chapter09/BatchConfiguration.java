@@ -1,9 +1,5 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
-import net.lkrnac.book.eiws.chapter09.step.tea.AddWater;
-import net.lkrnac.book.eiws.chapter09.step.tea.BoilWater;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -12,6 +8,10 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
+import net.lkrnac.book.eiws.chapter09.step.tea.AddWater;
+import net.lkrnac.book.eiws.chapter09.step.tea.BoilWater;
 
 @Configuration
 @EnableBatchProcessing
@@ -38,10 +38,10 @@ public class BatchConfiguration {
       @Qualifier("addWaterStep") Step addWaterStep,
       TeaJobListener teaJobListener) {
     return jobBuilderFactory.get("prepareTeaJob")
-        .listener(teaJobListener)
         .start(boilWaterStep)
         .next(addTeaStep)
         .next(addWaterStep)
+        .listener(teaJobListener)
         .build();
   }
 }

@@ -1,16 +1,15 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
-
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.annotation.AfterStep;
-import org.springframework.batch.core.annotation.BeforeStep;
+import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import net.lkrnac.book.eiws.chapter09.step.SimpleExecutablePoint;
+
 @Component
-public class HotWaterStepListener {
+public class HotWaterStepListener implements StepExecutionListener {
   private SimpleExecutablePoint executablePoint;
 
   @Autowired
@@ -19,13 +18,13 @@ public class HotWaterStepListener {
     this.executablePoint = executablePoint;
   }
 
-  @BeforeStep
-  public void beforeHotWaterStep(StepExecution stepExecution) {
-    executablePoint.execute("Be carefull with hot water!");
+  @Override
+  public void beforeStep(StepExecution stepExecution) {
+    executablePoint.execute("Be careful with hot water!");
   }
 
-  @AfterStep
-  public ExitStatus afterHotWaterStep(StepExecution stepExecution) {
+  @Override
+  public ExitStatus afterStep(StepExecution stepExecution) {
     executablePoint.execute("Step involving hot water manipulation is done");
     return ExitStatus.COMPLETED;
   }

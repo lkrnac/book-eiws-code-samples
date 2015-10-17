@@ -10,6 +10,6 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:batch-config.xml")
 public class BatchApplication {
   public static void main(String[] args) throws InterruptedException {
-    SpringApplication.run(BatchApplication.class, args);
+    SpringApplication.run(BatchApplication.class);
   }
 }

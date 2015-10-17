@@ -43,6 +43,8 @@ public class BatchBeansConfiguration {
     jobRepositoryFactory.setTransactionManager(transactionManager);
     jobRepositoryFactory.setDataSource(dataSource);
     jobRepositoryFactory.setDatabaseType("h2");
+    jobRepositoryFactory.setTablePrefix("BATCH_");
+    jobRepositoryFactory.setMaxVarCharLength(10);
     return jobRepositoryFactory.getObject();
   }
 

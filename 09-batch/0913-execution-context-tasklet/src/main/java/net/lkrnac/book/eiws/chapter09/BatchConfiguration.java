@@ -1,9 +1,5 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
-import net.lkrnac.book.eiws.chapter09.step.tea.AddWaterWithCounter;
-import net.lkrnac.book.eiws.chapter09.step.tea.BoilWaterWithCounter;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -13,11 +9,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
+import net.lkrnac.book.eiws.chapter09.step.tea.AddWaterWithCounter;
+import net.lkrnac.book.eiws.chapter09.step.tea.BoilWaterWithCounter;
+
 @Configuration
 @EnableBatchProcessing
 public class BatchConfiguration {
   @Bean
-  public Step boilWaterStep(StepBuilderFactory stepFactory, BoilWaterWithCounter boilWater) {
+  public Step boilWaterStep(StepBuilderFactory stepFactory,
+      BoilWaterWithCounter boilWater) {
     return stepFactory.get("boilWaterStep").tasklet(boilWater)
         .allowStartIfComplete(true).build();
   }

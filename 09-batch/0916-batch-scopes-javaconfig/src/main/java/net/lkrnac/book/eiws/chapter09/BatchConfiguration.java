@@ -36,15 +36,15 @@ public class BatchConfiguration {
 
   @Bean
   public Step simpleRecordsStep(StepBuilderFactory stepBuilderFactory,
-      StatefulRecordReader statefullRecordReader,
+      StatefulRecordReader statefulRecordReader,
       SimpleRecordProcessor simpleRecordProcessor,
-      StatefulRecordWriter statefullRecordWriter) {
+      StatefulRecordWriter statefulRecordWriter) {
     return stepBuilderFactory.get("simpleRecordsStep")
         .<String, String> chunk(4)
-        .reader(statefullRecordReader)
+        .reader(statefulRecordReader)
         .processor(simpleRecordProcessor)
-        .writer(statefullRecordWriter)
-        .listener(statefullRecordWriter)
+        .writer(statefulRecordWriter)
+        .listener(statefulRecordWriter)
         .build();
   }
 

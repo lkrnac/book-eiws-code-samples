@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ImportResource;
 public class BatchApplication {
   public static void main(String[] args) throws Exception {
     ConfigurableApplicationContext context =
-        SpringApplication.run(BatchApplication.class, args);
+        SpringApplication.run(BatchApplication.class);
 
     JobLauncher jobLauncher = (JobLauncher) context.getBean(JobLauncher.class);
     Job job = (Job) context.getBean("combinedJob");

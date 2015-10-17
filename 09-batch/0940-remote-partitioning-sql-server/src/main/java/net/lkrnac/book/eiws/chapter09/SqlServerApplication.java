@@ -9,6 +9,6 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:sql-server-config.xml")
 public class SqlServerApplication {
   public static void main(String[] args) throws InterruptedException {
-    SpringApplication.run(SqlServerApplication.class, args);
+    SpringApplication.run(SqlServerApplication.class);
   }
 }

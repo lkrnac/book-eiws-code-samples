@@ -9,19 +9,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.transaction.support.AbstractPlatformTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class BatchBeansConfiguration {
   @Bean
-  public AbstractPlatformTransactionManager transactionManager() {
+  public PlatformTransactionManager transactionManager() {
     return new ResourcelessTransactionManager();
   }
 
   @Bean
-  public JobRepository jobRepository(
-      AbstractPlatformTransactionManager transactionManager) throws Exception {
-    return (new MapJobRepositoryFactoryBean(transactionManager)).getObject();
+  public JobRepository jobRepository(PlatformTransactionManager transactionManager)
+      throws Exception {
+    return new MapJobRepositoryFactoryBean(transactionManager).getObject();
   }
 
   @Bean

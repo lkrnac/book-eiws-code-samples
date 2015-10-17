@@ -23,7 +23,7 @@ public class SimpleRecordWriterDiscard implements ItemWriter<String> {
   }
 
   @BeforeStep
-  public void storeExectionContext(StepExecution stepExecution) {
+  public void storeExecutionContext(StepExecution stepExecution) {
     this.executionContext = stepExecution.getExecutionContext();
     executionContext.put(CHUNK_COUNT, 0);
   }
