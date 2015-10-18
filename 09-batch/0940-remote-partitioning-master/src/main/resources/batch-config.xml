@@ -32,7 +32,7 @@
   <bean id="partitionHandler"
     class="org.springframework.batch.integration.partition.MessageChannelPartitionHandler">
     <property name="stepName" value="simpleRecordsStep" />
-    <property name="replyChannel" ref="inMasterAggregatedChanngel"/>
+    <property name="replyChannel" ref="inMasterAggregatedChannel"/>
     <property name="gridSize" value="2" />
     <property name="messagingOperations" ref="messagingTemplate">
     </property>
@@ -50,9 +50,9 @@
   <int-jms:message-driven-channel-adapter
     id="inMasterAdapter" destination="slaveResponses" channel="inMasterChannel" />
 
-  <int:channel id="inMasterAggregatedChanngel">
+  <int:channel id="inMasterAggregatedChannel">
     <int:queue />
   </int:channel>
   <int:aggregator ref="partitionHandler" input-channel="inMasterChannel"
-    output-channel="inMasterAggregatedChanngel" />
+    output-channel="inMasterAggregatedChannel" />
 </beans>

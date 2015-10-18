@@ -8,13 +8,14 @@ import org.springframework.stereotype.Component;
 @JobScope
 @Component
 public class SugarCounter {
-  private int currentSugarCount = 0;
+  private int currentSugarCount;
   private int desiredSugarAmount;
 
   @Autowired
   public SugarCounter(@Value("#{jobParameters[sugarAmount]}") int desiredSugarAmount) {
     super();
     this.desiredSugarAmount = desiredSugarAmount;
+    this.currentSugarCount = 0;
   }
 
   public boolean addSugar() {

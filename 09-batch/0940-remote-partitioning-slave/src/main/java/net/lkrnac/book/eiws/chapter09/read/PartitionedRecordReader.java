@@ -20,7 +20,7 @@ public class PartitionedRecordReader implements ItemReader<String> {
   }
 
   @BeforeStep
-  public void storeExectionContext(StepExecution stepExecution) {
+  public void storeExecutionContext(StepExecution stepExecution) {
     this.executionContext = stepExecution.getExecutionContext();
     this.partitionEnd = executionContext.getInt("partitionEnd");
   }

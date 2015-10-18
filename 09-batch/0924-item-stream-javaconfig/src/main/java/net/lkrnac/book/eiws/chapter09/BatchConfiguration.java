@@ -20,13 +20,13 @@ public class BatchConfiguration {
       SimpleRecordReader simpleRecordReader,
       SimpleRecordProcessor simpleRecordProcessor,
       StreamRecordWriter StreamRecordWriter,
-      RecordsReaderItemStream readerItemStream) {
+      RecordsReaderItemStream recordsReaderItemStream) {
     return stepBuilderFactory.get("simpleRecordsStep")
         .<String, String> chunk(4)
         .reader(simpleRecordReader)
         .processor(simpleRecordProcessor)
         .writer(StreamRecordWriter)
-        .stream(readerItemStream)
+        .stream(recordsReaderItemStream)
         .build();
   }
 

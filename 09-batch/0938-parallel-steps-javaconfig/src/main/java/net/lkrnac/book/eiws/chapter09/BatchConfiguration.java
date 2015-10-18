@@ -1,10 +1,5 @@
 package net.lkrnac.book.eiws.chapter09;
 
-import net.lkrnac.book.eiws.chapter09.step.tea.AddSugar;
-import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
-import net.lkrnac.book.eiws.chapter09.step.tea.AddWater;
-import net.lkrnac.book.eiws.chapter09.step.tea.BoilWater;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -17,6 +12,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import net.lkrnac.book.eiws.chapter09.step.tea.AddSugar;
+import net.lkrnac.book.eiws.chapter09.step.tea.AddTea;
+import net.lkrnac.book.eiws.chapter09.step.tea.AddWater;
+import net.lkrnac.book.eiws.chapter09.step.tea.BoilWater;
 
 @Configuration
 @EnableBatchProcessing
@@ -55,7 +55,7 @@ public class BatchConfiguration {
       @Qualifier("addSugarStep") Step addSugarStep,
       @Qualifier("addWaterStep") Step addWaterStep,
       TaskExecutor customTaskExecutor) {
-    return jobBuilderFactory.get("prepareTeaJob")
+    Job job = jobBuilderFactory.get("prepareTeaJob")
         .start(boilWaterStep)
         .split(customTaskExecutor)
         .add(new FlowBuilder<Flow>("addIngredientsSplit")
@@ -65,5 +65,6 @@ public class BatchConfiguration {
         .next(addWaterStep)
         .end()
         .build();
+    return job;
   }
 }
