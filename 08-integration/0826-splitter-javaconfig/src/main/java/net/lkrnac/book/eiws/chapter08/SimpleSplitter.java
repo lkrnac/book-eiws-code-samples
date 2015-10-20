@@ -8,7 +8,7 @@ import org.springframework.integration.annotation.MessageEndpoint;
 import org.springframework.integration.annotation.Splitter;
 
 @MessageEndpoint
-public class SimpleSlitter {
+public class SimpleSplitter {
   @Splitter(inputChannel = "inChannel", outputChannel = "splitChannel")
   public List<String> splitMessage(String message) {
     return Arrays.asList(StringUtils.split(message, ";"));
