@@ -1,0 +1,70 @@
+@startuml
+skinparam monochrome true
+
+participant "prepareTeaJob" as ptj
+participant "simpleRecordsStep" as srs
+participant "statefulRecordReader" as srr
+participant "ReadRepository" as rr
+participant "statefulRecordWriter" as srw
+participant "statefulRecordWriter" as srw
+participant "BoilWaterStep" as bws
+participant "ReadCountRestricter" as rcr 
+participant "WrittenRecordsCounter " as wrc
+
+activate ptj
+activate wrc
+ptj -> srs: simpleRecordsStep  
+activate srs
+srs -> rcr: initialize recordCountToProcess to 3 
+activate rcr
+
+srs -> srr: read record
+activate srr
+srr -> rcr: read record count
+srr <- rcr: record count
+srr -> rr: read next record
+activate rr
+srr <- rr: next record
+deactivate rr
+srr -> rcr: increment read count
+srr -> srs: record 1
+deactivate srr
+
+note over srs
+  process record 1 
+end note
+
+note over srs
+  same sequence for record 2 and 3 
+end note
+
+srs -> srr: read record
+activate srr
+srr -> rcr: read record count
+srr <- rcr: record count
+srr -> srs: null
+deactivate srr
+
+srs -> srw: write chunk (records 1,2,3)
+activate srw
+srw -> wrc: store written count
+srw -> srs: chunk written
+deactivate srw
+
+srs -> ptj: records processed
+deactivate rcr 
+deactivate srs
+
+ptj -> bws: boil water
+activate bws
+bws <- wrc: read written records count
+ptj <- bws: action simulated 
+deactivate bws
+
+note over ptj
+  execute remaining steps 
+end note
+
+deactivate wrc
+deactivate ptj
+@enduml
