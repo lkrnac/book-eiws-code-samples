@@ -1,6 +1,9 @@
 [ ![Codeship Status for lkrnac/book-eiws-code-samples](https://codeship.com/projects/3d6d0a40-ae3f-0132-7ed9-2ecd9a04cc80/status?branch=master)](https://codeship.com/projects/68847)
 
-# Build:
+# More information
+http://lkrnac.net/blog/2015/10/enterprise-spring-examples-and-integration-tests
+
+# Build
     cd 0000-examples-parent
     mvn clean install
     cd ../0000-examples
