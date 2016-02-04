@@ -1,5 +1,7 @@
 [ ![Codeship Status for lkrnac/book-eiws-code-samples](https://codeship.com/projects/3d6d0a40-ae3f-0132-7ed9-2ecd9a04cc80/status?branch=master)](https://codeship.com/projects/68847)
 
+Examples for book **Pivotal Certified Spring Enterprise Integration Specialist Exam A Study Guide** http://www.apress.com/9781484207949
+
 # More information
 http://lkrnac.net/blog/2015/10/enterprise-spring-examples-and-integration-tests
 
